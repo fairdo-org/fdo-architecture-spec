@@ -1,0 +1,49 @@
+<p>
+Each FDO record MUST fulfill the following requirements:
+</p>
+An FDO record consists of tuples (called “FDO attributes”)
+<ul>
+<li>
+  [R3-1] A PID identifying an FDO resolves into a structured information record, called the FDO record.
+</li>
+<li>
+  [R3-2] The FDO record consists of a finite number of tuples (called FDO attributes, short: attributes) that can be interpreted by a machine. The limit for the number of tuples per record depends on the implementation.
+</li>
+</ul>
+
+An FDO record MUST the attributes 0.FDO/Type, 0.FDO/Profile and 0.FDO/Data
+<ul>
+<li>
+  [R3-3] Each FDO record MUST link to at least one FDO profile (see section 4), which it complies to, via the designated attribute 0.FDO/Profile in its FDO record. To link multiple FDO profiles, the attribute 0.FDO/Profile MAY be repeated multiple times in the FDO record.
+  <ul>
+  <li>
+    The first element of such a tuple representing the FDO’s profile is either the PID 0.FDO/Profile, or the string FDO_Profile. 
+  </li>
+  <li>
+    The second element is a PID referencing an FDO profile.
+  </li>
+  </ul>
+</li>
+<li>
+  [R3-4] Each FDO MUST specify its FDO type via the designated attribute 0.FDO/Type in its FDO record. To link multiple FDO types, the attribute 0.FDO/Type MAY be repeated multiple times in the FDO record.
+  <ul>
+  <li>
+    The first element of such a tuple representing the FDO’s type is either the PID 0.FDO/Type, or the string FDO_Type. 
+  </li>
+  <li>
+    The 0.FDO/Type attribute follows the attribute referencing mechanism as defined in section 7.4.
+  </li>
+  </ul>
+</li>
+<li>
+  [R3-5] Each FDO MUST contain the designated attribute 0.FDO/Data in its FDO record at least once. The 0.FDO/Data attribute points to data associated with the FDO. 
+  <ul>
+  <li>
+  The first element of such a tuple representing the FDO’s data is either the PID 0.FDO/Data, or the string FDO_Data. 
+  </li>
+  <li>
+  The 0.FDO/Data attribute follows the attribute referencing mechanism as defined in section 7.4.
+  </li>
+  </ul>
+</li>
+</ul>
