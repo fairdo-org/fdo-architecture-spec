@@ -85,7 +85,7 @@ An FDO attribute definition is a template for FDO Attributes.
         [R5-8] To specify syntactic, machine-readable rules, an attribute definition MUST contain a syntax definition by using the attribute 0.FDO/DataType with a reference to a syntax definition (see section 5.6) as its value. Furthermore, the attribute definition MUST contain the attribute (0.FDO/ValidationMechanism, Syntax). To instantiate the attribute definition in an FDO record, 
         <ul>    
             <li>the first element MUST be either the PID or a name of the attribute definition, and</li>
-            <li>the value MUST validate against the syntax definition referenced in the attribute definition at least upon creation and update (see [R8-1]).</li>
+            <li>the value MUST validate against the syntax definition referenced in the attribute definition at least upon creation and update (see <a href="#validation"></a>).</li>
         </ul>
     </li>
     <li>
