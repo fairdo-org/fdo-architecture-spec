@@ -1,0 +1,61 @@
+<dfn>FDO Attributes</dfn> are properties of an FDO 
+<ul>
+    <li>
+        [R5-1] Each tuple in an <a>FDO Record</a> is called an FDO Attribute (short: attribute).
+    </li>
+    <li>
+        [R5-2] An attribute denotes a property of an FDO in form of a tuple that consists of the following two elements: 
+        <ul>
+            <li>
+                The first element of the tuple MUST be either a PID that resolves to an attribute definition, or a human-readable name of an attribute. 
+            </li>
+            <li>
+                The second element (called value) can be any literal. If the first element refers to an attribute definition, then the value MUST be successfully validated (see section 8) against the attribute definition at least upon creation and update.
+                 <aside class="note" title="todo">
+                    <p>Link respective section when available</p>
+                </aside>
+            </li>
+        </ul>
+    </li>
+    <li>
+        [R5-3] There are three qualitative categories of attributes (or attribute definitions): Mandatory, optional, and community-defined attributes. 
+        <ul>
+            <li>
+                The mandatory attributes are defined by the FDO Forum. These attributes MUST be used in each FDO record. This set is defined in the root profile (see section 5.4). 
+            </li>    
+            <li>
+                The optional attributes are defined by the FDO Forum. It is a list of pre-defined attributes which are frequently reused by use-cases within their FDO records and profiles (see Table X in appendix). Use-cases SHOULD reuse these attributes, whenever suitable, for better harmonization of FDO information. 
+            </li>    
+            <li>
+                Community-defined attributes are any attributes that are not defined by the FDO Forum. They appear in different forms, with decreasing level of machine-actionability in the following enumeration:
+                <ul>
+                    <li>
+                        A Community attribute MAY be specified as an attribute definition, according to [R5-4] - [R5-15], against which the instantiated attribute in an FDO record MUST be validated. The attribute definition is instantiated as the following attribute:
+                        <ul>
+                        <li>first element: the PID or the name of the attribute definition</li>
+                        <li>value: any literal validating against the first element</li>
+                        </ul>
+                    </li>
+                    <li> 
+                        Community attributes MAY be used in records by referencing existing elements in vocabularies, terminologies or ontologies. Validation MAY be performed, but is not guaranteed. The attribute looks as follows:
+                        <ul>
+                        <li>first element: reference to element from vocabulary, terminology or ontology</li>
+                        <li>value: instantiates the first element</li>
+                        </ul>
+                        See section 5.7.5 for more details.
+                    </li>
+                    <li>
+                        <ul>
+                        Community attributes MAY be used in records by a simple human-readable label. No validation can be performed here.
+                        <li>first element: human-readable label</li>
+                        <li>value: any literal</li>
+                        </ul>
+                    </li>
+                </ul>   
+                <aside class="note" title="todo">
+                    <p>These levels do not impose additional requirements, but help repositories and users to assess validation behaviour, interoperability, and long-term interpretability of FDO Records.</p>
+                </aside> 
+            </li>    
+        </ul>
+    </li>   
+</ul>
