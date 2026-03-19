@@ -1,24 +1,54 @@
 <p>
-The concept of FAIR Digital Objects emerged from discussions in a) the Research Data Alliance 
-where Working and Interest Groups discussed - drawing upon a seminal paper by Kahn and Wilensky 
-(Kahn & Wilensky 2006) - all aspects around Digital Objects as replacement for the file oriented 
-approach which is still being used and creating so many inefficiencies and b) the FAIR community 
-where machine actionability is a key issue (Jacobsen et al. 2020). 
+    The concept of FAIR Digital Objects (FDOs) emerged from discussions in a) the Research Data Alliance where Working
+    and Interest Groups discussed - drawing upon a seminal paper by Kahn and Wilensky (Kahn & Wilensky 2006) - worked on
+    all aspects around Digital Objects as replacement for the file oriented approach which is still being used and
+    creating so many inefficiencies and b) the FAIR community where machine actionability is a key issue (Jacobsen et
+    al. 2020).
+</p>
+<h1>
+    The FDO Concept
+</h1>
+<p>
+    A FAIR Digital Object (FDO) is a standardised and persistent bundle of information that represents and describes a
+    (digital or physical) resource which can be of any type (data, metadata, semantic assertions, configurations, AI
+    models, etc.). FDOs implement the FAIR Principles. As such, they comply to the following FAIR guidelines:
+</p>
+<ul>
+    <li>
+        Each resource (which is represented as an FDO) is identified by a globally unique, resolvable, and persistent
+        identifier (PID).
+    </li>
+    <li>
+        The PID resolves into a structured, machine actionable metadata record that describes the identified resource.
+    </li>
+    <li>
+        The record contains external reference(s) to the data bit-sequence of the resource and additional metadata
+        bit-sequence(s), if appropriate.
+    </li>
+    <li>
+        The FDO contains at least license, provenance, and domain-specific metadata that follow agreed upon standards.
+    </li>
+</ul>
+<p>
+    FDOs can be seen not only as an implementation of the
+    <a href="https://www.nature.com/articles/sdata201618" target="_blank">FAIR principles</a>
+    but also as a way to improve data sovereignty, transparency/traceability, accountability and persistence.
+    These characteristics will be increasingly important when establishing a stable, robust and highly distributed ecosystem
+    of data, which includes well-documented AI models and their training corpus. Societies and business will be
+    increasingly dependent on proper AI models, requesting a reliable and trustworthy data basis. FDOs are passive units
+    of information, however increasingly often they will be associated with operations which not only enable encapsulation
+    but can also be used to implement autonomously acting agents. Due to their properties, FDOs are also very well
+    positioned to be used as common basic building blocks for gateways to the many dataspaces that have been developed
+    and which currently are emerging in science and industry. The FDO bundle can inform the 3 layers of dataspaces:
+    creating trust amongst partners, comparing rights on resources with user claims, and finally exchanging the data.
 </p>
 <p>
-FAIR Digital Objects bundle all information necessary to process associated bit-sequences which 
-can be of any type (data, metadata, semantic assertions, configurations, AI models, etc.). 
-They are referenced by a globally unique and resolvable persistent identifier (PID) and are machine 
-actionable by specifying its core information structures. In doing so they can be seen not only as 
-an implementation of the FAIR principles but also as a way to improve data sovereignty, transparency/traceability, 
-accountability and persistence. These characteristics will be increasingly important when establishing 
-a stable, robust and highly distributed ecosystem of data, which includes well-documented AI models 
-and their training corpus. Societies and business will be increasingly dependent on proper AI models, 
-requesting a reliable and trustworthy data basis. FDOs are passive units of information, however increasingly 
-often they will be associated with operations which not only enable encapsulation but can also be used to 
-implement autonomously acting agents. Due to their properties, FDOs are also very well positioned to be 
-used as common basic building blocks for gateways to the many dataspaces that have been developed and 
-which currently are emerging in science and industry. The FDO bundle can inform the 3 layers of dataspaces: 
-creating trust amongst partners, comparing rights on resources with user claims, and finally exchanging the data.
+    The vision of the FDO concept is to enable machine actionability and the automated processing of data. If an FDO
+    client finds a PID that identifies an FDO, then this client will be able to automatically interpret and process the
+    FDO (subject to potential access constraints), regardless of the technology used to implement it. The basis for
+    enabling automated processing regardless of the used technology is that FDO implementations comply with the rules
+    specified in this implementation-agnostic specification. At its core, this specification describes the structure of
+    an FDO - that is, the components an FDO consists of and the rules that apply to those components (Chapter 3).
+    Afterwards, details are given on how the individual components would be found, accessed and interpreted by a generic
+    FDO client, to enable automated processing of the entire FDO, especially its data (Chapter 4).
 </p>
-
