@@ -1,38 +1,38 @@
 <p>
-  The granularity of FDOs depends on the pragmatic utility decisions made 
-  within communities of practice. In order to represent resources as FDOs, 
-  it is necessary to decide what useful entities should be worked with in the 
-  relevant application field, and how these entities should be connected to 
-  each other. An example is MRI scans of the brain. One option is to create one 
-  FDO for the entire set of slices. Another option is to create one FDO for each 
-  slice, with attributes indicating which slice it is. Whatever the initial 
-  decision is, it can be revised later by either breaking up the bit sequence(s) 
-  of a given FDO into parts and creating new FDOs to represent these parts, or by 
+  The granularity of FDOs depends on the pragmatic utility decisions made
+  within communities of practice. In order to represent resources as FDOs,
+  it is necessary to decide what useful entities should be worked with in the
+  relevant application field, and how these entities should be connected to
+  each other. An example is MRI scans of the brain. One option is to create one
+  FDO for the entire set of slices. Another option is to create one FDO for each
+  slice, with attributes indicating which slice it is. Whatever the initial
+  decision is, it can be revised later by either breaking up the bit sequence(s)
+  of a given FDO into parts and creating new FDOs to represent these parts, or by
   aggregating individual FDOs into collections, which are also FDOs.
 </p>
 <p>
   The detailed requirements on granularity are:
-<ul>
-  <li>
-    [R2-1] Each FDO represents exactly one resource. The resource MAY be complex, that is, it MAY 
-    consist of multiple other resources. 
-  </li>  
-  <li>
-    [R2-2] If an FDO represents a resource which consists of multiple parts that are interpreted as 
-    resources in their own right, this FDO is called a collection. The decision which parts are 
-    interpreted as resources in their own right (and hence MAY be represented as their own FDOs) is 
-    dependent on pragmatic utility decisions within communities of practices.  
-  </li>  
-  <li>
-    [R2-3] A resource MUST be described by FDO attributes (see section 5.5) and it MAY have associated 
-    data bit-sequence(s). As an example, digital twins of physical objects, or FDOs such as profiles or 
-    attribute definitions MAY not necessarily have associated data bit-sequence(s). 
-  </li>  
-  <li>
-    [R2-4] Every FDO attribute in an FDO record only describes the identified resource and not any 
-    other resources. Even if the FDO is a collection, all attributes in the FDO record describe the 
-    resource as a whole and not its parts. To describe one of the parts of the resource with FDO attributes, 
+<dl>
+  <dt>[R2-1]</dt>
+  <dd> Each FDO represents exactly one resource. The resource MAY be complex, that is, it MAY
+    consist of multiple other resources.
+  </dd>
+  <dt>[R2-2]</dt>
+  <dd> If an FDO represents a resource which consists of multiple parts that are interpreted as
+    resources in their own right, this FDO is called a collection. The decision which parts are
+    interpreted as resources in their own right (and hence MAY be represented as their own FDOs) is
+    dependent on pragmatic utility decisions within communities of practices.
+  </dd>
+  <dt>[R2-3]</dt>
+  <dd> A resource MUST be described by FDO attributes (see section 5.5) and it MAY have associated
+    data bit-sequence(s). As an example, digital twins of physical objects, or FDOs such as profiles or
+    attribute definitions MAY not necessarily have associated data bit-sequence(s).
+  </dd>
+  <dt>[R2-4]</dt>
+  <dd> Every FDO attribute in an FDO record only describes the identified resource and not any
+    other resources. Even if the FDO is a collection, all attributes in the FDO record describe the
+    resource as a whole and not its parts. To describe one of the parts of the resource with FDO attributes,
     this part needs to be wrapped into its own FDO record.
-  </li>  
-</ul>
+  </dd>
+</dl>
 </p>
