@@ -9,7 +9,7 @@
 </p>
 
 <dl>
-     <h3>Purpose of the FDO Type</h3>
+    <h3>Purpose of the FDO Type</h3>
     <dt>[R10-1]</dt>
     <dd>
         0.FDO/Type is a mandatory attribute that MUST be instantiated in each FDO record.
@@ -49,20 +49,75 @@
     <dt>[R10-7]</dt>
     <dd>
         Types MAY be derived from other types (i.e., there may be hierarchies of types
-        defined within communities of practice). To state that a type t1 is derived from a
-        type t2, the FDO record of t1 SHOULD contain the attribute 0.FDO/DerivedFromType, whose
-        value is a PID that resolves to t2.
+        defined within communities of practice). To state that a type t<sub>2</sub> is derived from a
+        type t<sub>1</sub>, the FDO record of t<sub>2</sub> SHOULD contain the attribute <i>0.FDO/DerivedFromType</i>, whose
+        value is a PID that resolves to t<sub>1</sub>.
     </dd>
     <h3>The FDO Type of collections:</h3>
-    FDOs may represent collections of objects (see also section 5.2). 
-    To assign FDO type(s) to a collection and to objects within the collection, 
+    FDOs may represent collections of objects (see also section 5.2).
+    To assign FDO type(s) to a collection and to objects within the collection,
     the following conditions apply:
     <dt>[R10-8]</dt>
     <dd>The FDO type(s) of a collection MUST describe the collection as a whole.</dd>
     <dt>[R10-9]</dt>
     <dd>
-        If an FDO type SHOULD be assigned to objects within the collection, each object MUST 
-        be represented as an FDO itself. This FDO can then contain the 0.FDO/Type attribute to 
+        If an FDO type SHOULD be assigned to objects within the collection, each object MUST
+        be represented as an FDO itself. This FDO can then contain the 0.FDO/Type attribute to
         specify FDO type(s).
+    </dd>
+</dl>
+<section>Operation Association Mechanisms</section>
+Types MAY be used to associate FDOs to operations. The specification of FDO operations is still in an early state and
+not yet completely understood. A more comprehensive list of requirements beyond [R10-10] – [R10-13] will be included in
+a later version of this document. However, the specification of how to associate FDO operations with FDOs which they are
+able to act on is already more elaborate. The following requirements apply:
+<h3>FDO Operations</h3>
+<dl>
+    <dt>[R10-10]</dt>
+    <dd> FDO operations (short: operations) are procedures that can be invoked on FDOs to create, manipulate or delete
+        FDO record(s), bit-sequence(s), or trigger other related activities.
+    </dd>
+    <dt>[R10-11]</dt>
+    <dd> Operations abstract and encapsulate their concrete implementation details by providing a uniform interface that
+        at least defines their input parameters, output parameters, and how the operation should be executed. This
+        enables
+        execution of operations in arbitrary, possibly restricted environments.
+    </dd>
+    <dt>[F10-12]</dt>
+    <dd> Operations MUST themselves be represented as FDOs. Hence, they are identified by a PID that resolves into an
+        FDO record consisting of attributes.
+    </dd>
+    <dt>[R10-13]</dt>
+    <dd> An operation definition profile 0.FDO/OperationDef which specifies a minimal set of attributes that an
+        operation must define (similar to 0.FDO/ProfileDef or 0.FDO/AttributeDef, see sections 5.4 and 5.5) does not
+        exist yet
+        but may be specified in the future.
+    </dd>
+</dl>
+<h3>FDO Operation Association Mechanisms</h3>
+<dl>
+    <dt>[R10-14]</dt>
+    <dd> To associate an operation to an FDO, types SHOULD be used (i.e., FDO attribute(s), FDO profile(s) and the FDO
+        type(s) as defined in <a href="#do-types"></a>). In detail, to associate an operation to an FDO, (at least) one
+        of the following operation association mechanisms SHOULD be applied:
+        <ul>
+            <li>
+                The FDO record refers to applicable operations for this FDO via a designated attribute.
+            </li>
+            <li>
+                The FDO profile refers to applicable operations for any FDO complying to this profile via a designated
+                attribute.
+            </li>
+            <li>
+                The attributes available in an FDO record are matched with applicable operations and the attributes they
+                require.
+            </li>
+        </ul>
+        More information on the operation association mechanisms are available in the paper “A Comparative Analysis of
+        Modelling Approaches for the Association of FAIR Digital Object Operations”
+        <a href="https://doi.org/10.5334/dsj-2025-022">10.5334/dsj-2025-022</a>.
+    </dd>
+    <dt>[R10-15]</dt>
+    <dd> Providing an operation to list available operations for specific FDO types is strongly RECOMMENDED.
     </dd>
 </dl>
