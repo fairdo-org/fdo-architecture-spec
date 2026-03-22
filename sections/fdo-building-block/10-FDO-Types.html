@@ -1,0 +1,39 @@
+<p>
+    This section specifies the (declared) FDO Type as the value of the 0.FDO/Type attribute, 
+    which is instantiated in FDO records (2. In above enumeration). This 0.FDO/Type attribute 
+    is an intentionally chosen entry point that signals some default processing semantics for the 
+    FDO. Other facets of the FDO type could be derived independently of the 0.FDO/Type attribute using 
+    other typing mechanisms, e.g., by inspecting the presence of other record attributes (1. and 3. 
+    in above enumeration). Please note that we will refer to the 0.FDO/Type attribute as the “FDO type” 
+    in the following.
+</p>
+<dl>
+<ul>
+    <li>Purpose of the FDO Type</li>
+    <dt>[R10-1]</dt>
+    <dd>
+        0.FDO/Type is a mandatory attribute that MUST be instantiated in each FDO record. 
+        It can be repeated multiple times. It specifies the type of the resource being 
+        represented by the FDO.
+    </dd>
+    <dt>[R10-2]</dt>
+    <dd>
+        The purpose of the 0.FDO/Type attribute is to give a hint to a machine how this 
+        object MAY be processed. 
+    </dd>
+    <li> The FDO Type of FDOs that belong to the Type System</li>
+    <dt>[R10-3]</dt>
+    <dd>
+        Profiles, attribute definitions, syntax definitions, and FDOs representing the 
+        FDO type (see [R10-6]) are special FDOs in the sense that they are part of the type system. 
+        They MUST have the following FDO type:
+        <ul>
+            <li>A profile has the FDO type “FDO_Profile”.</li>
+            <li>An attribute definition has the FDO type “FDO_Attribute_Definition”.</li>
+            <li>A syntax definition has the FDO type “FDO_Syntax_Definition”.</li>
+            <li>An FDO representing an FDO type has the FDO type “FDO_Type_Definition”.</li>
+        </ul>
+        Adding additional FDO types to these FDOs is allowed.
+</dd>
+</ul>
+</dl>

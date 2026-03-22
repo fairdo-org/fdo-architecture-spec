@@ -49,7 +49,7 @@ The repository is organized as follows:
 docs/        Rendered specification (GitHub Pages)
 sections/    Individual specification sections (HTML source)
 assets/      Stylesheets and scripts used for rendering
-images/      Images included in the sections
+img/      Images included in the sections
 ```
 
 The `index.html` file serves as the entry point for the published specification.

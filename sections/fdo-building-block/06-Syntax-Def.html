@@ -1,0 +1,34 @@
+An FDO syntax definition specifies syntactic validation rules for FDO attributes
+<ul>
+    <li>
+        [R6-1] FDO syntax definitions (short: syntax definitions) define syntactic validation rules for attribute definitions. They are referenced by attribute definitions (see [R5-8]).
+    </li>
+    <li>
+        [R6-2] The following rules can be used to define a syntax: An attribute value can be specified to 
+        <ul>
+            <li>follow one of the primitive data types “string”, “number”, “integer” and “boolean”.</li>
+            <li>comply with a regular expression.</li>
+            <li>lie within a numeric range.</li>
+            <li>be equal to one element from a whitelist.</li>
+            <li>be not equal to all elements from a blacklist.</li>
+        </ul>    
+    </li>
+    <li>
+        [R6-4] shows how to encode these rules. 
+    </li>
+</ul>
+The FDO syntax definition profile (0.FDO/SyntaxDef) is the template for all FDO syntax definitions
+<ul>
+    <li>
+        [R6-3] Syntax definitions are themselves represented as FDOs. Hence, they are identified by a PID that resolves into an FDO record consisting of attributes.</li>
+    </li>
+    <li>
+        [R6-4] The FDO syntax definition profile defines a list of attribute definitions that MUST be instantiated in the FDO record of each syntax definition, according to the cardinalities in the attribute definitions (i.e., each syntax definition instantiates the FDO syntax definition profile). The FDO syntax definition profile is defined by the FDO Forum, has the PID 0.FDO/SyntaxDef and contains the list of attribute definitions shown in Table 4.
+    </li>
+    <li>
+        [R6-5] Syntax definitions MAY have additional attributes and instantiate additional profiles for any reason (e.g., for communities to add other syntactic rules than given in [R6-2]). Domain-specific validation technologies MAY be expressed using this; however their realization MUST be considered optional for generic clients.
+    </li>
+    <li>
+        [R6-6] Community-specified syntax definitions MAY be implemented by communities of practice in the DTR or any other suitable open registry. Special rules apply when syntax definitions should be updated, see [R11-3] - [R11-6]. 
+    </li>
+</ul>

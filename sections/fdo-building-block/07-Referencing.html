@@ -1,0 +1,31 @@
+<p>
+    References are key to the FDO concept as they are used to associate bit-sequences and refer to any other related objects and information. However, their syntax, interpretation, and resolution remain implementation specific. This section aims at providing a solution for intra and inter FDO references. 
+</p>
+<dl>
+<ul>
+    <li>
+        References
+        <dt> [R7-1] </dt>
+        <dd> The most primitive syntax for all references MUST be a string. </dd>
+        <dt> [R7-2] </dt>
+        <dd>     
+            A reference is considered an unvalidated reference if it is a string that follows 
+            the syntactic format of a PID. The PID MAY not be resolvable. The classification as 
+            an “unvalidated reference” MAY be performed by a heuristic that creates false positives. 
+            Therefore, unvalidated references MAY be called a “PID candidate”, as they syntactically 
+            appear to be a PID, but MAY NOT always resolve to an FDO.
+        </dd>
+       <dt> [R7-3] </dt>
+        <dd>
+            For a reference to be considered a validated reference, it MUST resolve to a valid FDO 
+            record in reasonable time. It MUST also qualify as an “unvalidated reference”.
+        </dd>    
+    <li>
+        Profile Referencing <br>
+        Profile referencing permits an attribute definition A to specify that the value MUST be a 
+        reference to an FDO following a specific profile. Hence, it is a mechanism to enforce that 
+        specific attributes in FDO records reference other FDOs according to a certain profile. 
+        
+    </li>
+</ul>
+</dl>
