@@ -56,9 +56,61 @@ The FDO profile definition profile (<i>0.FDO/ProfileDef</i>) is a template for a
   </dd>
 </dl>
 
+<table border="2">
+  <caption style="caption-side:bottom">Table 1: The list of attribute definitions specified by the FDO profile definition profile (0.FDO/ProfileDef). These attributes MUST be used when defining any new profile. This table does not include all information about the attribute definitions. Please resolve the attribute definition PIDs via the Handle System or see the appendix of this document. </caption>
+  <tr>
+    <th>PID of Attribute Definition </th>
+    <th>Description of the attribute </th>
+    <th>Cardinality of the attribute</th>
+  </tr>
+  <tr>
+    <td>0.FDO/Type</td>
+    <td>The FDO type(s) as specified in section 5.10. The FDO type of a profile is simply the string <em>FDO_Type</em>.</td>
+    <td>1..*</td>
+  </tr>
+  <tr>
+    <td>0.FDO/Profile</td>
+    <td>The profile(s) as specified in section 5.4. The profile of a profile is <em>0.FDO/ProfileDef</em>.</td>
+    <td>1..*</td>
+  </tr>
+  <tr>
+    <td>0.FDO/Data</td>
+    <td>Data of the FDO. For profiles, this attribute does often not apply, in which case this attribute MAY simply use the string <em>Not_Applicable</em>. </td>
+    <td>1..*</td>
+  </tr>
+  <tr>
+    <td>0.FDO/Name</td>
+    <td>Human-readable and localized label(s) for the profile. </td>
+    <td>1..*</td>
+  </tr>
+  <tr>
+    <td>0.FDO/Description</td>
+    <td>Human-readable and localized description(s) for the profile.</td>
+    <td>0..*</td>
+  </tr>
+  <tr>
+    <td>0.FDO/Attribute</td>
+    <td><em>0.FDO/Attribute</em> defines the list of attribute definitions that MUST be instantiated in any FDO instantiating this profile. The cardinality of the attribute definitions MUST be respected in the FDOs. <em>0.FDO/Attribute</em> is repeated at least three times, once with each of the values <em>0.FDO/Type</em>, <em>0.FDO/Profile</em>, <em>0.FDO/Data</em>, because these are the mandatory attributes that MUST be contained in any FDO. Additional attributes can be added by further repeating the <em>0.FDO/Attribute</em> with other values. </td>
+    <td>3..*</td>
+  </tr>
+  <tr>
+    <td>0.FDO/Extends</td>
+    <td>If this profile is an extension of another profile, this attribute specifies the PID of the parent profile (see [R4-11]).</td>
+    <td>0..*</td>
+  </tr>
+  <tr>
+    <td>0.FDO/denyAdditionalAttributes</td>
+    <td>This is an optional boolean flag indicating whether an FDO that instantiates the respective profile MUST NOT have additional attributes than those given by the profile. This restriction is only active if the value is set to a truthy boolean.</td>
+    <td>0..1</td>
+  </tr>
+  </table>
+
+
+<p>
 The FDO Root Profile (0.FDO/Root) can be extended to create new FDO profiles.
 Since profiles are defined as lists of attribute definitions, there exists a simple mechanism to extend profiles. The
 mechanism is defined as follows:
+</p>
 <dl>
   <dt>[R4-9]</dt>
   <dd>The root profile defines a list of attribute definitions that MUST be instantiated in any <a>FDO Record</a>
