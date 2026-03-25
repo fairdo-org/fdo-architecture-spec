@@ -57,7 +57,7 @@ The FDO profile definition profile (<i>0.FDO/ProfileDef</i>) is a template for a
 </dl>
 
 <table border="2">
-  <caption style="caption-side:bottom">Table 1: The list of attribute definitions specified by the FDO profile definition profile (0.FDO/ProfileDef). These attributes MUST be used when defining any new profile. This table does not include all information about the attribute definitions. Please resolve the attribute definition PIDs via the Handle System or see the appendix of this document. </caption>
+  <caption style="caption-side:bottom"><b>Table 1</b>: The list of attribute definitions specified by the FDO profile definition profile (0.FDO/ProfileDef). These attributes MUST be used when defining any new profile. This table does not include all information about the attribute definitions. Please resolve the attribute definition PIDs via the Handle System or see the appendix of this document. </caption>
   <tr>
     <th>PID of Attribute Definition </th>
     <th>Description of the attribute </th>
@@ -65,12 +65,12 @@ The FDO profile definition profile (<i>0.FDO/ProfileDef</i>) is a template for a
   </tr>
   <tr>
     <td>0.FDO/Type</td>
-    <td>The FDO type(s) as specified in section 5.10. The FDO type of a profile is simply the string <em>FDO_Type</em>.</td>
+    <td>The FDO type(s) as specified in section 3.10. The FDO type of a profile is simply the string <em>FDO_Type</em>.</td>
     <td>1..*</td>
   </tr>
   <tr>
     <td>0.FDO/Profile</td>
-    <td>The profile(s) as specified in section 5.4. The profile of a profile is <em>0.FDO/ProfileDef</em>.</td>
+    <td>The profile(s) as specified in section 3.4. The profile of a profile is <em>0.FDO/ProfileDef</em>.</td>
     <td>1..*</td>
   </tr>
   <tr>
@@ -145,3 +145,27 @@ mechanism is defined as follows:
     <i>0.FDO/Root</i> or another profile).
   </dd>
 </dl>
+
+<table border="2">
+  <caption style="caption-side:bottom"><b>Table 2</b>:  The list of attribute definitions specified by the root profile (0.FDO/Root). These attributes MUST be used in any FDO. The root profile may be extended to define new profiles. This table does not include all information about the attribute definitions. Please resolve the attribute definition PIDs via the Handle System or see the appendix of this document.</caption>
+  <tr>
+    <th>PID of Attribute Definition </th>
+    <th>Description of the attribute </th>
+    <th>Cardinality of the attribute</th>
+  </tr>
+  <tr>
+    <td>0.FDO/Type</td>
+    <td>The FDO type(s) as specified in section 3.10. </td>
+    <td>1..*</td>
+  </tr>
+  <tr>
+    <td>0.FDO/Profile</td>
+    <td>The profile(s) as specified in section 3.4.</td>
+    <td>1..*</td>
+  </tr>
+  <tr>
+    <td>0.FDO/Data</td>
+    <td>Indicates the data (also called: bit-sequence) of the FDO.</td>
+    <td>1..*</td>
+  </tr>
+</table>
