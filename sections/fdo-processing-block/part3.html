@@ -1,0 +1,21 @@
+<dl>
+<h3>[S-3] PID Record Parsing into an FDO Record </h3>
+<dt>Description</dt>
+<p>This step takes an identifier record from step 2 and MUST convert it into a set of type value pairs.  </p>
+
+<dt>Inputs</dt>
+<p>This step expects exactly one syntactically valid PID record in the format of choosing of the PID system. This input may not be blank. Typically, this is the output of [S-2].</p>
+
+<dt>Outputs</dt>
+<p></p>The result of this step is an FDO record with all its individual type-value pair tuples parsed. At this point, the information inside the record and its tuples is not yet validated against the attribute definitions and profiles. The structure of the FDO record must be valid. Typically, this FDO record structure consists out of the following information: 
+<ul>
+  <li>The PID the FDO record was resolved with.</li>
+  <li>A list of FDO attribute tuples. The first value in every tuple refers to the attribute definition AKA type of the type-value tuple. The second value in every tuples is a value claiming to be compliant to this attribute definition or stated differently, an instance of the type.</li>
+  </ul>
+<p>Any other information extracted from the FDO record such as intrinsic metadata are not requirements of the specification but will be described within the respective implementation profile.Examples such as the record, tuple time stamps of resolution in RFC3339 format, a time to live (TTL), and possibly other implementation specific fields.</p>
+
+  <dt>Expected behavior</dt>
+<p>This step is expected to transform a valid PID record into a valid FDO record. The concrete realization is specific to every implementation. This step must terminate within a reasonable minimal timeframe (e.g., of <10 ms). It is not intended to perform network requests or if is does, it would cache the information for efficiency purposes. This step only extracts FDO attributes out of the PID record and discards the remainder of the PID record. If needed, some PID system-specific information may be transformed into FDO attributes. The validation of the contents occurs in a later step (see [S-5]).</p>
+
+  <dt>Example</dt>
+</dl>
