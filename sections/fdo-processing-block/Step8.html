@@ -1,0 +1,38 @@
+<dl>
+<dt>Description</dt>
+<p>The step requires that Step 7 successfully validated one or more profiles resulting in one or more sets of attributes.  For each set of attributes, the FDO Attribute Processing checks each attribute’s type - value pair to determine if the value is appropriate given its type.  This validation process will greatly vary in complexity depending on the specific type.</p>
+
+  <dt>Inputs</dt>
+<p>The inputs consist of the list of Validated_Profile from Step 7 with a status of VALID, PARTIALLY_VALID. . Note that this step could be used with any attribute list that would need validation.</p>
+
+  <dt>Outputs</dt>
+<p>The output will be a list of ValidatedProfile where each attribute will have a ValidityStatus status and a ErrorDescription description.</p>
+
+  <dt>Expected behavior</dt>
+<p>The FDO Attribute Processing iterates over the list of attributes and using the following steps:</p>
+<ol>
+  <li>If it has a validation rule for the type it applies it on the attribute’s value.  It will set the validity status and any error description it may have generated.  
+
+<p>The ValidityStatus will include, but not limited to, the following list:</p>
+<ul>
+<li>VALID: Indicates that the value is appropriate according to the type validation rules.</li>
+<li>INVALID: Indicates that the value did not comply with the validation rules.  </li>
+<li>PARTIAL: Indicates that the value is partially valid.  An example is the case of a 0.FDO/DateTime attribute, where the date is filled in but there is no time information.  While incomplete, this value could still be of interest to the client.</li>
+</ul>ul>
+</li>
+
+<li>It is expected that there could be additional specific type defined statuses.  
+
+<p>If the FDO Attribute Processing does not have validation rules for the type, it will attempt to acquire them.  The FDO Attribute Process has the following options:</p>
+<ul>
+<li>Assume that the PID could be that of an FDO.  Start with Step 1 using the type identifier as the potential PID.  The Expected Type List in Step 5 should be 0.FDO/AttributeDef, and the Expected Profile List in Step 6 be 0.FDO/AttributeDefinitionProfile, finally, one all the steps are completed, extract the validation rules.  If it succeeds it will retry operation 1 above. If it fails at any point, the FDO Attribute Process will set the attribute status to NOT_VALIDATED and wi</li>
+
+<li>The type has a PID that the client knows points to a type registry. It tries to acquire the rules and retries operation 1 above.</li>
+
+<li>The type as a PID that is unrecognizable.  The process cannot evaluate the attribute  sets  status of 
+NORULES: Indicates that the attribute processing did not have any rules to validate the attribute.</li>
+  </ul>
+  </li>
+  </ol>
+</dl>
+
