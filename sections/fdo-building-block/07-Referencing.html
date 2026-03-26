@@ -5,9 +5,9 @@
 </p>
 <dl>
     <h3>References</h3>
-    <dt> [R7-1] </dt>
-    <dd> The most primitive syntax for all references MUST be a string. </dd>
-    <dt> [R7-2] </dt>
+    <dt> [R7-1]</dt>
+    <dd> The most primitive syntax for all references MUST be a string.</dd>
+    <dt> [R7-2]</dt>
     <dd>
         A reference is considered an unvalidated reference if it is a string that follows
         the syntactic format of a PID. The PID MAY not be resolvable. The classification as
@@ -15,20 +15,19 @@
         Therefore, unvalidated references MAY be called a “PID candidate”, as they syntactically
         appear to be a PID, but MAY NOT always resolve to an FDO.
     </dd>
-    <dt> [R7-3] </dt>
+    <dt> [R7-3]</dt>
     <dd>
         For a reference to be considered a validated reference, it MUST resolve to a valid FDO
         record in reasonable time. It MUST also qualify as an “unvalidated reference”.
     </dd>
 </dl>
 <h3>Profile Referencing </h3>
-Profile referencing permits an attribute definition A to specify that the value MUST be a
-reference to an FDO following a specific profile. Hence, it is a mechanism to enforce that
-specific attributes in FDO records reference other FDOs according to a certain profile.
-<aside class="example" title="Profile Referencing">
-    <p>
-        The 0.FDO/Profile Attribute.
-    </p>
+Profile referencing permits an attribute definition A to specify that the value a<sub>val</sub> (of an attribute a=(a
+<sub>def</sub>,a<sub>val</sub>) that instantiates A) MUST be a reference to an FDO following a specific profile. Hence,
+it is a mechanism to enforce that specific attributes in FDO records reference other FDOs (i.e., are validated
+references) according to a certain profile. Profile referencing works as follows:
+
+<aside class="example" title="Profile Referencing: The 0.FDO/Profile Attribute.">
     The attribute definition <i>0.FDO/Profile</i> uses profile referencing. It contains the following two attributes:
     <ul>
         <li>
@@ -43,8 +42,17 @@ specific attributes in FDO records reference other FDOs according to a certain p
             reference to a profile)
         </li>
     </ul>
+    <figure id="profile-ref">
+        <img src="img/Profile_Referencing.png" alt="Profile_Referencing.png" height=400>
+        <figcaption>
+            An example for profile referencing.
+        </figcaption>
+    </figure>
 </aside>
-Format of an Attribute Definition that Applies Profile Referencing:
+
+<p>The Detailed Requirements for Profile Referencing are:</p>
+
+<b>Format of an Attribute Definition that Applies Profile Referencing:</b>
 <dl>
     <dt>[R7-4]</dt>
     <dd>An attribute definition MUST explicitly state that it uses this feature by containing the attribute
@@ -58,7 +66,8 @@ Format of an Attribute Definition that Applies Profile Referencing:
         an FDO (hence, that the value is a validated reference complying to at least <i>0.FDO/Root</i>).
     </dd>
 </dl>
-Instantiation of the Attribute Definition that Applies Profile Referencing:
+
+<b>Instantiation of the Attribute Definition that Applies Profile Referencing:</b>
 <dl>
     <dt>[R7-6]</dt>
     <dd>
@@ -79,6 +88,187 @@ Instantiation of the Attribute Definition that Applies Profile Referencing:
                     </li>
                 </ul>
             </li>
+        </ul>
+    </dd>
+</dl>
+
+<h3> Inline FDOs</h3>
+<p>
+    When using profile referencing, an attribute references another FDO, for example a=(&ltattr_def&gt,&ltPID
+    resolving to other FDO&gt). However, rather than referencing the other FDO, it may be serialized directly as the
+    in-line value of a. In this case, the serialization depends on the implementation, and the implementation MUST
+    specify the serialization format. Furthermore, inline-FDOs typically do NOT have their own PIDs and are hence NOT
+    suited for attribute definitions, syntax definitions or profiles.
+</p>
+
+<h3>Attribute Referencing</h3>
+Attribute referencing is a generic mechanism for redirecting to one or multiple other attribute(s) in the same record.
+Attribute referencing can, for example, be used to group information for different purposes. Or it can be used very
+similarly to unions, i.e., to state that an attribute is effectively realized through one or several other attributes in
+the record, which follow more specific attribute definitions. To start with, here is an example:
+
+<aside class="example" title="Attribute referencing: The 0.FDO/Data Attribute">
+    The mandatory attribute 0.FDO/Data (and actually also the 0.FDO/Type attribute) apply attribute referencing. The
+    reason for this is that data can appear in different forms (see also <a href="#attr-ref-1">Figure 3</a>):
+    <ul>
+        <li>Data may be given by a reference to an external bit-sequence. Then, the <em>0.FDO/Data</em> attribute would
+            have as its value a URL. (<a href="#attr-ref-1">Figure 3</a>, top-right)
+        </li>
+        <li>Data could also be encapsulated in its own FDO, especially, if the FDO is a collection. Then, the
+            <em>0.FDO/Data</em> attribute would have as its value a reference to an FDO, which possibly follows a
+            specific profile (<a href="#attr-ref-1">Figure 3</a>, bottom-left).
+        </li>
+        <li>Data could also be in-line in the record. Then, the <em>0.FDO/Data</em> attribute would have as its value a
+            simple data bit-sequence (<a href="#attr-ref-1">Figure 3</a>, top-left).
+        </li>
+    </ul>
+    <figure id="attr-ref-1">
+        <img src="img/Attribute_Referencing_3.png" alt="Attribute_Referencing_1.png" height=400>
+        <figcaption>
+            Four examples for how the 0.FDO/Data attribute definition can be instantiated in FDO records. In all
+            examples, the <em>0.FDO/Data</em> attribute references another attribute definition that specifies the way
+            how the
+            data are represented in this FDO.
+        </figcaption>
+    </figure>
+    As <em>0.FDO/Data</em> uses attribute referencing, all these different notions of data references can be unified in
+    one common and standardized attribute definition <em>0.FDO/Data</em>. It is essential that the <em>0.FDO/Data</em>
+    attribute is not redefined over and over by different implementations. Otherwise, a machine would not be able to
+    know which attribute to inspect in order to find the data bit-sequence of an FDO, irrespective of the
+    implementation. Attribute referencing provides a harmonized entrypoint (<em>0.FDO/Data</em>) for machines to easily
+    detect data.
+</aside>
+
+<p>The detailed requirements for Attribute Referencing are:</p>
+
+<p><b>Format of an Attribute Definition that Applies Attribute Referencing:</b></p>
+<p>The following requirements must be fulfilled such that an attribute definition A applies attribute referencing:</p>
+<dl>
+    <dt>[R7-7]</dt>
+    <dd>
+        The attribute definition A MUST explicitly state that it uses this feature by containing the attribute <em>(0.FDO/ValidationMechanism,
+        AttributeReference)</em>.
+    </dd>
+    <dt>[R7-8]</dt>
+    <dd>
+        The attribute definition A MAY specify a whitelist of attribute definition PIDs B<sub>1</sub>,...,B<sub>n</sub>
+        using the attribute <em>(0.FDO/DataType, B<sub>i</sub>)</em>, i=1,...,n, in its record. If A specifies this
+        whitelist, an attribute a (instantiating A) MUST reference an attribute b that instantiates any of B<sub>1</sub>,...,B<sub>n</sub>.
+        If the <em>0.FDO/DataType</em> attribute is not contained in A, any attribute b may be referenced by a, as there
+        is no whitelist.
+    </dd>
+    <dt>[R7-9]</dt>
+    <dd>
+        The cardinality of the attribute definition A only specifies the occurrence of instances of A itself (and not
+        the occurrence of instances of any of B<sub>1</sub>,...,B<sub>n</sub>). The cardinality of
+        B<sub>1</sub>,...,B<sub>n</sub> cannot be influenced by A.
+    </dd>
+</dl>
+
+<p><b>Instantiation of an Attribute Definition that Applies Attribute Referencing</b></p>
+<dl>
+    <dt>[R7-10]</dt>
+    <dd>
+        An attribute a=(a<sub>def</sub>,a<sub>val</sub>) (instantiating attribute definition A) is a reference to an
+        attribute b=(b<sub>def</sub>,b<sub>val</sub>) (instantiating attribute definition B) if and only if
+        <ul>
+            <li>a<sub>val</sub> is a PID resolving to an attribute definition</li>
+            <li>the referenced attribute b is instantiated in the same FDO record as attribute a</li>
+            <li>a<sub>val</sub> = b<sub>def</sub></li>
+            <li>b<sub>val</sub> is validated by b<sub>def</sub>. This ensures, the reference is actually fulfilled.</li>
+        </ul>
+    </dd>
+</dl>
+
+<p>See also <a href="#attr-ref-2">Figures 4</a> and <a href="#attr-ref-3">5</a> for illustration. If A is specified to
+    apply attribute referencing (see [R7-7]) but there is no attribute b that fulfills all four conditions, then
+    attribute a MAY be ignored to handle this error gracefully in certain use cases. </p>
+<figure id="attr-ref-2">
+    <img src="img/Attribute_Referencing_1.png" alt="Attribute_Referencing_2.png">
+    <figcaption>
+        Attribute referencing in its simplest form. The attribute a=(a<sub>def</sub>,a<sub>val</sub>) is a reference to
+        the attribute b=(b<sub>def</sub>, b<sub>val</sub>).
+    </figcaption>
+</figure>
+
+<figure id="attr-ref-3">
+    <img src="img/Attribute_Referencing_2.png" alt="Attribute_Referencing_3.png">
+    <figcaption>
+        Attribute referencing with cardinalities larger than 1. On the left, the cardinality of B is larger than 1,
+        hence B can be instantiated multiple times. On the right, the cardinality of A is also larger than 1.
+    </figcaption>
+</figure>
+
+<dl>
+    <dt>[R7-11]</dt>
+    <dd> There may be cases of consecutive referencing (e.g., a references b, b references c, …). All such references
+        within an FDO record must form a directed acyclic graph (no loops allowed).
+    </dd>
+</dl>
+Note that attribute referencing is very similar to unions of attribute definitions (see [R5-9]): In both cases, an
+attribute definition states that its instantiation validates one of several attribute definitions. However, the slight
+difference is that for attribute referencing, the instantiating record also states which of the attribute definitions is
+actually chosen, while this is not stated in the case of unions.
+
+<h3>External Vocabulary Referencing</h3>
+It is essential for FDOs that existing vocabularies, ontologies and terminologies can be reused in records (even if they
+are not in the strict format as described in section 3.5). This can be carried out by applying external vocabulary
+referencing.
+
+<aside class="example" title="External Vocabulary Referencing: Using Schema.org in FDOs">
+    <a href="#ex-vocab-ref">Figure 6</a> shows how schema.org terms can be used in an FDO record by applying external
+    vocabulary referencing.
+    <figure id="ex-vocab-ref">
+        <img src="img/External_Vocab_Referencing.png" alt="External_Vocab_Referencing.png">
+        <figcaption>
+            This figure shows how schema.org terms are used in the FDO 21.123/456.
+        </figcaption>
+    </figure>
+    <ul>
+        <li>
+            The attribute definition <em>0.FDO/SchemaOrgTerm</em> states that it uses external attribute referencing through the
+            attribute <em>(0.FDO/ValidationMechanism, ExternalVocabularyReference)</em>.
+        </li>
+        <li>
+            The syntax definition <em>0.FDO/SchemaOrgTermSyntax</em> specifies the syntax of the attribute definition, i.e., it
+            must be instantiated by the string “https://schema.org”, which is the schema.org namespace.
+
+        </li>
+        <li>The FDO 21.123/456 contains the attribute <em>(0.FDO/SchemaOrgTerm, https://schema.org)</em> to indicate that it uses
+            vocabulary from schema.org. Afterwards, any schema.org term can be used as an attribute in the form
+            <em>(&ltURL of term&gt, &ltvalue&gt)</em>, such as <em>(https://schema.org/priceCurrency, USD)</em>.
+        </li>
+    </ul>
+</aside>
+
+<p>The detailed requirements for External Vocabulary Referencing are:</p>
+<p><b>Format of an Attribute Definition that Applies External Vocabulary Referencing:</b></p>
+<p>The following detailed requirements must be fulfilled such that an attribute definition A applies external vocabulary referencing:</p>
+<dl>
+    <dt>[R7-12]</dt>
+    <dd> The attribute definition A MUST explicitly state that it uses this feature by containing the attribute
+        <em>(0.FDO/ValidationMechanism, ExternalVocabularyReference)</em>.
+    </dd>
+    <dt>[R7-13]</dt>
+    <dd>The attribute definition A MUST specify the namespace of the external vocabulary using the attribute
+        <em>0.FDO/DataType</em> which references a syntax definition that validates the namespace.</dd>
+</dl>
+
+<p><b>Instantiation of External Vocabulary Attributes in the Record:</b></p>
+<dl>
+    <dt>[R7-14]</dt>
+    <dd>To use external vocabulary in the FDO record, the record MUST contain
+        <ul>
+            <li>an attribute a=(a<sub>def</sub>,a<sub>val</sub>) that instantiates attribute definition A, where A
+                applies external vocabulary referencing
+            </li>
+            <li>an attribute b=(b<sub>def</sub>,b<sub>val</sub>) representing a vocabulary term</li>
+        </ul>
+        The following requirements must be fulfilled by a and b:
+        <ul>
+            <li>a<sub>val</sub> is a URL representing a namespace</li>
+            <li>b<sub>def</sub> = a<sub>val</sub>/&ltterm&gt, i.e., b<sub>def</sub> is a URL representing a term under a namespace</li>
+            <li>b<sub>val</sub> instantiates b<sub>def</sub>.</li>
         </ul>
     </dd>
 </dl>

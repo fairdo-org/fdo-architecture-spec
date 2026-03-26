@@ -1,4 +1,4 @@
-<dfn>FDO Attribute</dfn>s are properties of an FDO
+<b><dfn>FDO Attributes</dfn> are properties of an FDO</b>:
 <dl>
     <dt>[R5-1]</dt>
     <dd>Each tuple in an <a>FDO Record</a> is called an FDO Attribute (short: attribute).</dd>
@@ -70,7 +70,7 @@
         </ul>
     </dd>
 </dl>
-An FDO attribute definition is a template for FDO Attributes.
+<b>An FDO attribute definition is a template for FDO Attributes:</b>
 <dl>
     <dt>[R5-4]</dt>
     <dd>FDO attribute definitions (short: attribute definitions) are themselves represented as FDOs. Hence, they
@@ -148,7 +148,7 @@ An FDO attribute definition is a template for FDO Attributes.
 </dl>
 
 
-The FDO attribute definition profile (<i>0.FDO/AttributeDef</i>) is the template for all FDO attribute definitions
+<b>The FDO attribute definition profile (<i>0.FDO/AttributeDef</i>) is the template for all FDO attribute definitions</b>:
 <dl>
     <dt>[R5-12]</dt>
     <dd> The FDO attribute definition profile defines a list of attribute definitions that MUST be instantiated
@@ -173,3 +173,80 @@ The FDO attribute definition profile (<i>0.FDO/AttributeDef</i>) is the template
         - [R11-6].
     </dd>
 </dl>
+
+<table border="2">
+    <caption style="caption-side:bottom"><b>Table 3</b>: The list of attribute definitions specified by the FDO
+        attribute definition profile (0.FDO/AttributeDef). These attributes MUST be used when defining any new attribute
+        definition. This table does not include all information about the attributes. Please resolve the attribute
+        definition PIDs via the Handle System or see the appendix of this document.
+    </caption>
+    <tr>
+        <th>PID of Attribute Definition</th>
+        <th>Description of the attribute</th>
+        <th>Cardinality of the attribute</th>
+    </tr>
+    <tr>
+        <td>0.FDO/Type</td>
+        <td>The FDO type(s) as specified in section 3.10. The FDO type of an attribute definition is simply the string
+            <em>FDO_Attribute_Definition</em>.
+        </td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td>0.FDO/Profile</td>
+        <td>The profile(s) as specified in section 3.4. The profile of an attribute definition is
+            <em>0.FDO/AttributeDef</em>.
+        </td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td>0.FDO/Data</td>
+        <td>Data of the FDO. For attribute definitions, this attribute does often not apply, in which case this
+            attribute MAY simply use the string <em>Not_Applicable</em>.
+        </td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td>0.FDO/Name</td>
+        <td>Human-readable and localized labels for the FDO attribute definition. All of these are viable candidates for
+            referencing the respective attribute definition in FDOs.
+        </td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td>0.FDO/Description</td>
+        <td>Human-readable and localized descriptions for the FDO attribute definition.</td>
+        <td>0..*</td>
+    </tr>
+    <tr>
+        <td>0.FDO/ValidationMechanism</td>
+        <td>One of:
+            <ul>
+                <li><em>Syntax</em> (see [R5-8])</li>
+                <li><em>Union</em> (see [R5-9])</li>
+                <li><em>InlineCombination</em> (see [R5-10])</li>
+                <li><em>AttributeReference</em> (see section 3.7.4)</li>
+                <li><em>ProfileReference</em> (see section 3.7.2)</li>
+                <li><em>ExternalVocabularyReference</em> (see section 3.7.5)</li>
+            </ul>
+        </td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>0.FDO/DataType</td>
+        <td>A reference to one of:
+            <ul>
+                <li>a syntax definition (see [R5-8])</li>
+                <li>an attribute definition (see [R5-9], [R5-10] and section 3.7.4)</li>
+                <li>a profile (see section 3.7.2)</li>
+                <li>an external vocabulary namespace (see section 3.7.5)</li>
+            </ul>
+        </td>
+        <td>0..*</td>
+    </tr>
+    <tr>
+        <td>0.FDO/Cardinality</td>
+        <td>Description of the obligation and repeatability of values in an FDO.</td>
+        <td>1</td>
+    </tr>
+</table>

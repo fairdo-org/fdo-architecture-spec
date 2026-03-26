@@ -1,4 +1,4 @@
-An FDO syntax definition specifies syntactic validation rules for FDO attributes
+<b>An FDO syntax definition specifies syntactic validation rules for FDO attributes:</b>
 <dl>
     <dt>[R6-1]</dt>
     <dd>
@@ -17,7 +17,7 @@ An FDO syntax definition specifies syntactic validation rules for FDO attributes
         [R6-4] shows how to encode these rules.
     </dd>
 </dl>
-The FDO syntax definition profile (<i>0.FDO/SyntaxDef</i>) is the template for all FDO syntax definitions
+<b>The FDO syntax definition profile (<i>0.FDO/SyntaxDef</i>) is the template for all FDO syntax definitions:</b>
 <dl>
     <dt>[R6-3]</dt>
     <dd>Syntax definitions are themselves represented as FDOs. Hence, they are identified by a PID that resolves
@@ -42,3 +42,84 @@ The FDO syntax definition profile (<i>0.FDO/SyntaxDef</i>) is the template for a
         [R11-6].
     </dd>
 </dl>
+
+<table border="2">
+    <caption style="caption-side:bottom"><b>Table 4</b>: The list of attribute definitions specified by the FDO syntax
+        definition profile (0.FDO/SyntaxDef). These attributes MUST be used when defining any new syntax definition.
+        This table does not include all information about the attributes. Please resolve the attribute definition PIDs
+        via the Handle System or see the appendix of this document.
+    </caption>
+    <tr>
+        <th>PID of Attribute Definition</th>
+        <th>Description of the attribute</th>
+        <th>Cardinality of the attribute</th>
+    </tr>
+    <tr>
+        <td>0.FDO/Type</td>
+        <td>The FDO type(s) as specified in section 3.10. The FDO type of a syntax definition is simply the string <em>FDO_Syntax_Definition</em>.
+        </td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td>0.FDO/Profile</td>
+        <td>The profile(s) as specified in section 3.4. The profile of a syntax definition is <em>0.FDO/SyntaxDef</em>.
+        </td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td>0.FDO/Data</td>
+        <td>Data of the FDO. For syntax definitions, this attribute does often not apply, in which case this attribute
+            MAY simply use the string <em>Not_Applicable</em>.
+        </td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td>0.FDO/Name</td>
+        <td>Human-readable and localized labels for this syntax.</td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td>0.FDO/Description</td>
+        <td>Human-readable and localized descriptions for this syntax.</td>
+        <td>0..*</td>
+    </tr>
+    <tr>
+        <td>0.FDO/PrimitiveDataType</td>
+        <td>There are four possible values: “string”, “number”, “integer”, and “boolean”. All of these primitives MUST
+            be supported by all clients.
+        </td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>0.FDO/Regex</td>
+        <td>Only applicable if 0.FDO/PrimitiveDataType is “string”. This regular expression in ECMA-262 syntax MUST be
+            successfully validated for all attributes that use this syntax definition.
+        </td>
+        <td>0..1</td>
+    </tr>
+    <tr>
+        <td>0.FDO/NumericInterval</td>
+        <td>An interval for the value (space of real numbers), that has different meanings depending on the primitive
+            data type.
+            If <em>0.FDO/PrimitiveDataType</em> is “string”: a range of the length of the value.
+            If <em>0.FDO/PrimitiveDataType</em> is “number” or “integer”: an interval that restricts the attribute value
+        </td>
+        <td>0..1</td>
+    </tr>
+    <tr>
+        <td>0.FDO/Whitelist</td>
+        <td>Specifies that a specific value is allowed to instantiate this attribute. If <em>0.FDO/Whitelist</em>
+            appears multiple times, this gives an exhaustive list of allowed values to instantiate the attribute. No
+            other values than these are permitted
+        </td>
+        <td>0..*</td>
+    </tr>
+    <tr>
+        <td>0.FDO/Blacklist</td>
+        <td>Specifies that a specific value is not allowed to instantiate this attribute. If <em>0.FDO/Blacklist</em>
+            appears multiple times, this gives a non-exhaustive list of forbidden values for the attribute. Other
+            restrictions such as <em>0.FDO/Regex</em> or <em>0.FDO/NumericRange</em> still apply.
+        </td>
+        <td>0..*</td>
+    </tr>
+</table>

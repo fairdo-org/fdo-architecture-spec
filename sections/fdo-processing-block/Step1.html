@@ -1,0 +1,39 @@
+<b>Description</b>
+<p>This step MUST determine if the provided string is an identifier, whether it is potentially resolvable and how.  This MAY be achieved using any technical solution such as a regular expression based analysis aware of the well known resolvable ID systems. This process MAY result in false positives, but MUST avoid false negatives.  
+</p>
+<h3>Inputs</h3>
+<p>This input is an arbitrary string.</p>
+<h3>Outputs</h3>
+<ul>
+<li>If the analysis is successful it returns one or more of the following Identifier-Resolver structure consisting of:
+  <ul>
+    <li>A syntactically valid identifier.  (There may be multiple outcomes)</li>
+    <li>A ResolverList with 0 or more resolvers by name in order of probability.  The resolver SHOULD be identified as an FDO.</li>
+  </ul>
+</li>
+<li>If the analysis fails the processing steps, it will do so as follows:
+<p>Throws an exception UNRECOGNIZED_IDENTIFIER.</p>
+  
+<b>Expected behavior</b>
+<p>This step will iterate through a set of well known recognizable resolvable Identifier patterns.  Each client may have its own list that it will use when performing this step.  A list of identifier technologies SHALL be maintained by the FDO Forum and be updated by the various FDO Implementations and by the community at large.  These FDOs will include information about the identifier syntax and resolvers.</p>
+
+<b>Example</b>
+
+Example 1:  The input string is https://dx.doi.org/10.500/123.
+<p>Step 1 would process this as known DOI.  There would be two instances of the Identifier-Resolvers structure:</p>
+  <ul>
+ <li>identifier: https://dx.doi.org/10.500/123 </li>
+<li>ResolverList includes: </li>
+- 0.FDO/HTTP_GET. 
+- Identifier: 10.500/123.  
+-The ResolversList includes: 
+0.FDO/HDL_RESOLVER,
+0.FDO/HDL_WEB_RESOLVER 
+    </ul>
+
+Example 2: The input string is https://www.ACME.org/fdo/123-245-232
+<p>Step 1 would determine that this is a valid URI and that it could be an FDO because of the “fdo” in path name.  But while “123-245-232” looks like an identifier, no known resolver can be found.   Step one would generate an identifier-resolver with the following values:</p>
+	Identifier: https://www.ACME.org/fdo/123-245-232
+	The resolver 0.FDO/HTTP_GET
+	
+	
