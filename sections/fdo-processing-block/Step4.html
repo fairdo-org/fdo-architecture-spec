@@ -1,73 +1,82 @@
 <p>This step validates the FDO record according to the FDO Root Profile, specifically, it verifies that all required FDO
   Root Profile type value pairs are present within the FDO record. This method returns an integer status reflecting the
   degree of validation.</p>
+<dl>
+  <dt>Inputs:</dt>
+  <dd>This step expects the output of S-3: exactly one well-structured FDO record. The input may not be blank.</dd>
 
-<b>Inputs:</b>
-<p>This step expects the output of S-3: exactly one well-structured FDO record. The input may not be blank.</p>
+  <dt>Outputs:</dt>
+  <dd>A flag status reflecting the success, partial success, and error finding FDO Root Profile Attributes.</dd>
 
-<b>Outputs:</b>
-<p>A flag status reflecting the success, partial success, and error finding FDO Root Profile Attributes.</p>
+  <dt>Expected behavior:</dt>
+  <dd>
+    <p>This step finds the FDO Root Profile required type-value pairs. It compiles a list of all attributes within the
+      FDO
+      record. It then finds all of the required attributes as specified by the Root Profile. This step specifically
+      looks
+      for the attributes: “0.FDO/Type”, “0.FDO/Profile”,
+      “0.FDO/Name”, “0.FDO/Description” and “0.FDO/Data_Attributes” that are defined within the Root FDO. While the
+      “0.FDO/Name” and “0.FDO/Description” are useful for human consumption, they are not necessary for machine
+      processing
+      of the FDO.</p>
 
-<b>Expected behavior:</b>
-<p>This step finds the FDO Root Profile required type-value pairs. It compiles a list of all attributes within the FDO
-  record. It then finds all of the required attributes as specified by the Root Profile. This step specifically looks
-  for the attributes: “0.FDO/Type”, “0.FDO/Profile”,
-  “0.FDO/Name”, “0.FDO/Description” and “0.FDO/Data_Attributes” that are defined within the Root FDO. While the
-  “0.FDO/Name” and “0.FDO/Description” are useful for human consumption, they are not necessary for machine processing
-  of the FDO.</p>
-
-<p>The Status value MAY have the following values:</p>
-<ul>>
-  <li>COMPLETE (integer value of 0) to indicate that all the FDO Root Profile fields were successfully found. With such
-    a status, the FDO processing has all the information it needs to proceed to the next step.</li>
-  <li>REQUIRED-FIELDS (integer value of 1) to indicate that only the 0.FDO/Profile and 0.FDO/Type attributes were found.
-  </li>
-  <li>PROFILE_ONLY (integer value of 2) indicates that only the 0.FDO/Profile attribute(s) were found.</li>
-  <li>TYPE_ONLY(integer value of 3) indicates that only the 0.FDO/Type attribute(s) were found.</li>
-  <li>NON_COMPLIANT(integer value of -1) indicates that the core FDO Root values were not found. At this point, the FDO
-    Record cannot be further processed as an FDO.</li>
-</ul>
-<aside class="example" title="A well formed FDO with all required FDO Root Profile fields">
-  <table>
-    <thead>
-      <tr>
-        <th scope="col">10.1234/456/th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">0.FDO/Type</th>
-        <td>10.123/Type1</td>
-      </tr>
-      <tr>
-        <th scope="row">0.FDO/Profile</th>
-        <td>10.123/Profile1</td>
-      </tr>
-      <tr>
-        <th scope="row">0.FDO/Name</th>
-        <td>Test FDO</td>
-      </tr>
-      <tr>
-        <th scope="row">0.FDO/Description</th>
-        <td>FDO Test Demonstration</td>
-      </tr>
-      <tr>
-        <th scope="row">0.FDO/Data_Attribute</th>
-        <td>0.FDO/SelfRef</td>
-      </tr>
-      <tr>
-        <th scope="row">0.FDO/SelfRef</th>
-        <td>DOI:10.234/456</td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <th scope="row" colspan="2">Average age</th>
-        <td>33</td>
-      </tr>
-    </tfoot>
-  </table>
-</aside>
-
-<p>In this example, the FDO Record Root Profile validation process would return a COMPLETE status as all the attributes
-  are present in the FDO Record.</p>
+    <p>The Status value MAY have the following values:</p>
+    <ul>>
+      <li>COMPLETE (integer value of 0) to indicate that all the FDO Root Profile fields were successfully found. With
+        such
+        a status, the FDO processing has all the information it needs to proceed to the next step.</li>
+      <li>REQUIRED-FIELDS (integer value of 1) to indicate that only the 0.FDO/Profile and 0.FDO/Type attributes were
+        found.
+      </li>
+      <li>PROFILE_ONLY (integer value of 2) indicates that only the 0.FDO/Profile attribute(s) were found.</li>
+      <li>TYPE_ONLY(integer value of 3) indicates that only the 0.FDO/Type attribute(s) were found.</li>
+      <li>NON_COMPLIANT(integer value of -1) indicates that the core FDO Root values were not found. At this point, the
+        FDO
+        Record cannot be further processed as an FDO.</li>
+    </ul>
+    <aside class="example" title="A well formed FDO with all required FDO Root Profile fields">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">10.1234/456/th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">0.FDO/Type</th>
+            <td>10.123/Type1</td>
+          </tr>
+          <tr>
+            <th scope="row">0.FDO/Profile</th>
+            <td>10.123/Profile1</td>
+          </tr>
+          <tr>
+            <th scope="row">0.FDO/Name</th>
+            <td>Test FDO</td>
+          </tr>
+          <tr>
+            <th scope="row">0.FDO/Description</th>
+            <td>FDO Test Demonstration</td>
+          </tr>
+          <tr>
+            <th scope="row">0.FDO/Data_Attribute</th>
+            <td>0.FDO/SelfRef</td>
+          </tr>
+          <tr>
+            <th scope="row">0.FDO/SelfRef</th>
+            <td>DOI:10.234/456</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th scope="row" colspan="2">Average age</th>
+            <td>33</td>
+          </tr>
+        </tfoot>
+      </table>
+      <p>In this example, the FDO Record Root Profile validation process would return a COMPLETE status as all the
+        attributes
+        are present in the FDO Record.</p>
+    </aside>
+  </dd>
+</dl>

@@ -1,33 +1,34 @@
 <p>
-    The Generic FDO Processing Block (Processing Block) consists of the discrete set of steps that a canonical FDO
+    The Generic FDO Processing Block consists of the discrete set of steps that a canonical FDO
     client would execute in order to access an FDO and all its components given its PID.
 </p>
 <p>To help visualize the function of the FDO Processing block, it is useful to consider the simplest canonical FDO case
-    illustrated in figure 1 below as well as a more complex example in Figure 2. It is important to note that both these
-    figures are abstract representations of FDOs and different implementations could have these various attributes
-    named, structures, and stored differently.
+    illustrated in <a href="#step-fig1">Figure 1</a> below as well as a more complex example in
+    <a href="#step-fig2">Figure 2</a>. It is important to note that both these figures are abstract representations of
+    FDOs and different implementations could have these various attributes named, structures, and stored differently.
 </p>
-<img src="img/SimpleFDO.png" alt="Representation of a simple FDO: Tuples and graph" style="vertical-align:middle">
+<img id="step-fig1" src="img/SimpleFDO.png" alt="Representation of a simple FDO: Tuples and graph"
+    style="vertical-align:middle">
 <p style="text-align: center">Figure 1. Representation of a simple FDO: Tuples and graph.</p>
-<img src="img/ComplexFDO.png" alt="Representation of a complext FDO: Tuples and graph" style="vertical-align:middle">
+<img id="step-fig1" src="img/ComplexFDO.png" alt="Representation of a complext FDO: Tuples and graph"
+    style="vertical-align:middle">
 <p style="text-align: center">Figure 2. Representation of a complex FDO: Tuples and graph.</p>
 
-<p>
-    <b>Abstract FDO Processing Block steps </b>
-<p>
-    All FDO Processing block implementations regardless of their specific data and implementation configurations SHOULD
-    be able to describe how their approach satisfies the following set of discreet steps listed below.
-</p>
 <dl>
+    <dt>Abstract FDO Processing Block steps</dt>
+    <dd>All FDO Processing block implementations regardless of their specific data and implementation configurations
+        SHOULD
+        be able to describe how their approach satisfies the following set of discreet steps listed below.
+    </dd>
     <dt><a href="#step1">[Step 1]</a> PID Detection</dt>
     <dd>Given a string, determine if it is a PID that can be resolved.</dd>
     
     <dt><a href="#step2">[Step 2]</a> PID Processing / Resolution</dt>
     <dd>Resolve the identifier into a PID record. </dd>
-    
+
     <dt><a href="#step3">[Step 3]</a> PID Record Parsing into an FDO Record</dt> 
     <dd>Parse the PID record in a set of type value pairs</dd>
-    
+
     <dt><a href="#step4">[Step 4]</a> FDO Record root profile validation</dt>
     <dd>Locate all required core FDO attributes and create an FDO Record. </dd>
     
@@ -48,8 +49,8 @@
     
     <dt><a href="#step9">[Step 9]</a> FDO Attributes Evaluation</dt>
     <dd>Evaluates the values of the attributes to make sure that they are appropriate.</dd>
-    
-    <dt>[<a href="#step10">[Step 10]</a> FDO Data Access</dt>
+
+    <dt><a href="#step10">[Step 10]</a> FDO Data Access</dt>
     <dd>The client accesses the FDO’s data subject to access control.</dd>
     
     <dt><a href="#step11">[Step 11]</a> FDO Record Type Validation</dt>

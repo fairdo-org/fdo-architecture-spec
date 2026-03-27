@@ -1,25 +1,27 @@
-This process shall resolve the identifier using the resolvers from the Iist of Identifier-Resolvers provided by Step
-1.
+This process shall resolve the identifier using the resolvers from the Iist of Identifier-Resolvers provided by 
+<a href="#step1">[Step 1]</a>.
 <dl>
   <dt>Inputs</dt>
-  <p>A list of Identifer-Resolvers from step 1</p>
-  <p>An optional flag TRY_ALL that will try all resolvers. The default is to stop at the first successful resolution.
-  </p>
-
+  <dd>
+    <p>A list of Identifer-Resolvers from <a href="#step1">[Step 1]</a></p>
+    <p>An optional flag TRY_ALL that will try all resolvers. The default is to stop at the first successful resolution.
+    </p>
+  </dd>
   <dt>Outputs</dt>
-  <p>For each resolver specified in list of resolvers that succeed, the following information is returned.</p>
-  <ul>
-    <li>The name of the resolver.</li>
-    <li>Resolution status: RESOLVED</li>
-    <li>The Identifier Record. </li>
-  </ul>
-  <p>If the resolution is not successful:</p>
-  <ul>
-    <li>The name of the resolver</li>
-    <li>Resolution status: NOT_RESOLVED</li>
-    <li>The resolvers error message if any.</li>
-  </ul>
+  <dd>For each resolver specified in list of resolvers that succeed, the following information is returned.</p>
+    <ul>
+      <li>The name of the resolver</li>
+      <li>Resolution status: RESOLVED</li>
+      <li>The Identifier Record</li>
+    </ul>
+    <p>If the resolution is not successful:</p>
+    <ul>
+      <li>The name of the resolver</li>
+      <li>Resolution status: NOT_RESOLVED</li>
+      <li>The resolvers error message if any</li>
+    </ul>
+  </dd>
   <dt>Expected behavior</dt>
-  <p>The process will try each resolver until one is successful or ,if specified, all successful resolutions. This
-    process will return each resolver’s respective identifier record. The process MUST prevent false positives. </p>
+  <dd>The process will try each resolver until one is successful or ,if specified, all successful resolutions. This
+    process will return each resolver’s respective identifier record. The process MUST prevent false positives. </dd>
 </dl>

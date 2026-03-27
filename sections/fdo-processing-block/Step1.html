@@ -16,8 +16,9 @@
             as an FDO.</li>
         </ul>
       </li>
-      If the analysis fails the processing steps, it will do so as follows:
-      <p>Throws an exception UNRECOGNIZED_IDENTIFIER.</p>
+      <li>If the analysis fails the processing steps, it will do so as follows:
+        Throws an exception UNRECOGNIZED_IDENTIFIER.</li>
+    </ul>
   </dd>
   <dt>Expected behavior</dt>
   <dd>
@@ -44,8 +45,10 @@
       <p>Step 1 would determine that this is a valid URI and that it could be an FDO because of the “fdo” in path name.
         But while “123-245-232” looks like an identifier, no known resolver can be found. Step one would generate an
         identifier-resolver with the following values:</p>
-      Identifier: https://www.ACME.org/fdo/123-245-232
-      The resolver 0.FDO/HTTP_GET
+      <ul>
+        <li>Identifier: https://www.ACME.org/fdo/123-245-232</li>
+        <li>The resolver 0.FDO/HTTP_GET</li>
+      </ul>
     </aside>
   </dd>
 </dl>
