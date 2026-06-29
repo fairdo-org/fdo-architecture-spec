@@ -1,3 +1,4 @@
+<h3 id="updating">Updating FDOs</h3>
 <h3>General Requirements</h3>
 <p>While the previous sections normatively specify the structure and required elements of FDO records, long-term
     operation of FDO-based infrastructures requires clarity on how FDO records may be updated over time. From an
@@ -20,38 +21,38 @@
 
 The following requirements apply:
 <dl>
-    <dt>[R11-1]</dt>
+    <dt>[R11-1] <dfn data-lt="update documentation|implementation-specific mechanisms|change logs">Update Documentation</dfn></dt>
     <dd> It is RECOMMENDED that repositories operating FDO services document updates to FDO records through
         implementation-specific mechanisms (e.g. timestamps or internal change logs) to support auditability, trust, and
         long-term stewardship (documentation of points 1-3).
     </dd>
-    <dt>[R11-2]</dt>
+    <dt>[R11-2] <dfn data-lt="new FDO for meaning changes|new PID|modification vs creation">New FDO for Meaning Changes</dfn></dt>
     <dd> It is RECOMMENDED that updates that would change the meaning or interpretation of the referenced bit-sequence(s) should normally
-        result in the creation of a new FDO with a new PID rather than modification of the existing FDO record (point
+        result in the creation of a new FDO with a new <a>PID</a> rather than modification of the existing FDO record (point
         4).
     </dd>
 </dl>
 
-<h3>Special Requirements for profiles, attribute- and syntax definitions</h3>
-<p>FDO profiles, attribute- and syntax definitions play a central role in ensuring predictability and machine
+<h3>Special Requirements for profiles, attribute- and <a>syntax definitions</a></h3>
+<p>FDO profiles, attribute- and <a>syntax definitions</a> play a central role in ensuring predictability and machine
     actionability of FDO records. From an operational and long-term stewardship perspective, it is important to consider
-    the lifecycle of profiles, attribute- and syntax definitions beyond their initial creation and registration.
+    the lifecycle of profiles, attribute- and <a>syntax definitions</a> beyond their initial creation and registration.
 </p>
 <dl>
     <dt id="r11-3">[R11-3]</dt>
-    <dd> Stability and immutability: Once a profile, attribute- or syntax definition is used productively to create FDO
+    <dd> Stability and immutability: Once a profile, attribute- or <a>syntax definition</a> is used productively to create FDO
         records, they effectively act as contracts between FDO creators, repositories, and consumers. To preserve trust,
-        reproducibility, and long-term interpretability, any FDO profiles, attribute- and syntax definitions SHOULD be
+        reproducibility, and long-term interpretability, any FDO profiles, attribute- and <a>syntax definitions</a> SHOULD be
         treated as stable and immutable artefacts.
     </dd>
-    <dt>[R11-4]</dt>
-    <dd> Profile evolution and versioning: Changes of attribute- or syntax definitions that affect the structure,
+    <dt>[R11-4] <dfn data-lt="profile versioning|profile evolution|new PIDs for changes">Profile Versioning</dfn></dt>
+    <dd> <a>Profile</a> evolution and versioning: Changes of attribute- or <a>syntax definitions</a> that affect the structure,
         cardinalities, or semantics of attributes SHOULD normally result in the creation of new profiles, attribute- or
-        syntax definitions with new PIDs. Existing FDO records continue to reference the profile under which they were
-        created. Minor editorial changes that do not affect validation or interpretation may be handled according to
+        <a>syntax definitions</a> with new PIDs. Existing FDO records continue to reference the profile under which they were
+        created. Minor editorial changes that do not affect <a>validation</a> or interpretation may be handled according to
         repository policies.
     </dd>
-    <dt>[R11-5]</dt>
+    <dt>[R11-5] <dfn data-lt="legacy FDO records|earlier profile versions|profile remains resolvable">Legacy FDO Records</dfn></dt>
     <dd> Handling of legacy FDO records: Long-lived repositories are expected to manage FDO records created under
         earlier profile versions. Such records remain valid as long as the referenced profile remains resolvable.
         Optional mappings between profiles may be provided to support interoperability, but automatic migration of
@@ -59,7 +60,7 @@ The following requirements apply:
     </dd>
     <dt id="r11-6">[R11-6]</dt>
     <dd> Operational considerations: It is RECOMMENDED that repositories operating FDO services document profile versions,
-        ensure persistent accessibility of profiles, and support validation of FDO records against the profiles they
+        ensure persistent accessibility of profiles, and support <a>validation</a> of FDO records against the profiles they
         instantiate throughout their operational lifetime.
     </dd>
 </dl>

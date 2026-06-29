@@ -1,11 +1,12 @@
-<b>An FDO syntax definition specifies syntactic validation rules for FDO attributes:</b>
+<h3 id="syntax-def">Syntax Definitions</h3>
+<b>An FDO <a>syntax definition</a> specifies syntactic <a>validation</a> rules for FDO attributes:</b>
 <dl>
-    <dt>[R6-1]</dt>
+    <dt>[R6-1] <dfn data-lt="syntax definition purpose|syntactic validation rules|define syntax">Syntax Definition Purpose</dfn></dt>
     <dd>
-        FDO syntax definitions (short: syntax definitions) define syntactic validation rules for attribute definitions.
-        They are referenced by attribute definitions (see [R5-8]).</dd>
+        FDO <a>syntax definitions</a> (short: <a>syntax definitions</a>) define syntactic <a>validation</a> rules for <a>attribute definitions</a>.
+        They are referenced by <a>attribute definitions</a> (see [R5-8]).</dd>
 
-    <dt> [R6-2]</dt>
+    <dt> <dfn id="r6_2">[R6-2]</dfn></dt>
     <dd> The following rules can be used to define a syntax: An attribute value can be specified to
         <ul>
             <li>follow one of the primitive data types “string”, “number”, “integer” and “boolean”.</li>
@@ -14,39 +15,39 @@
             <li>be equal to one element from a whitelist.</li>
             <li>be not equal to all elements from a blacklist.</li>
         </ul>
-        [R6-4] shows how to encode these rules.
+        <dfn id="r6_4">[R6-4]</dfn> shows how to encode these rules.
     </dd>
 </dl>
-<b>The FDO syntax definition profile (<i>0.FDO/SyntaxDef</i>) is the template for all FDO syntax definitions:</b>
+<b>The FDO <a>syntax definition</a> profile (<i>0.FDO/SyntaxDef</i>) is the template for all FDO <a>syntax definitions</a>:</b>
 <dl>
-    <dt>[R6-3]</dt>
-    <dd>Syntax definitions are themselves represented as FDOs. Hence, they are identified by a PID that resolves
+    <dt>[R6-3] <dfn data-lt="syntax definition as FDO|syntax is FDO">Syntax Definition as FDO</dfn></dt>
+    <dd>Syntax definitions are themselves represented as FDOs. Hence, they are identified by a <a>PID</a> that resolves
         into an FDO record consisting of attributes.</dd>
     <dt> [R6-4]</dt>
-    <dd>The FDO syntax definition profile defines a list of attribute definitions that MUST be instantiated in
-        the FDO record of each syntax definition, according to the cardinalities in the attribute definitions (i.e.,
-        each syntax definition instantiates the FDO syntax definition profile). The FDO syntax definition profile is
-        defined by the FDO Forum, has the PID <i>0.FDO/SyntaxDef</i> and contains the list of attribute definitions
+    <dd>The FDO <a>syntax definition</a> profile defines a list of <a>attribute definitions</a> that MUST be instantiated in
+        the FDO record of each <a>syntax definition</a>, according to the cardinalities in the <a>attribute definitions</a> (i.e.,
+        each <a>syntax definition</a> instantiates the FDO <a>syntax definition</a> profile). The FDO <a>syntax definition</a> profile is
+        defined by the <a>FDO Forum</a>, has the <a>PID</a> <i>0.FDO/SyntaxDef</i> and contains the list of <a>attribute definitions</a>
         shown in
         Table 4.
     </dd>
-    <dt>[R6-5]</dt>
+    <dt>[R6-5] <dfn data-lt="domain-specific validation|additional syntax attributes|custom validation">Domain-Specific Validation</dfn></dt>
     <dd> Syntax definitions MAY have additional attributes and instantiate additional profiles for any reason
-        (e.g., for communities to add other syntactic rules than given in [R6-2]). Domain-specific validation
+        (e.g., for communities to add other syntactic rules than given in [R6-2]). Domain-specific <a>validation</a>
         technologies MAY be expressed using this; however their realization MUST be considered optional for generic
         clients.
     </dd>
-    <dt>[R6-6]</dt>
-    <dd> Community-specified syntax definitions MAY be implemented by communities of practice in the DTR or any
-        other suitable open registry. Special rules apply when syntax definitions should be updated, see [R11-3] -
+    <dt>[R6-6] <dfn data-lt="community syntax definitions|community-specified syntax">Community Syntax Definitions</dfn></dt>
+    <dd> Community-specified <a>syntax definitions</a> MAY be implemented by communities of practice in the DTR or any
+        other suitable open registry. Special rules apply when <a>syntax definitions</a> should be updated, see [R11-3] -
         [R11-6].
     </dd>
 </dl>
 
 <table border="2">
-    <caption style="caption-side:bottom"><b>Table 4</b>: The list of attribute definitions specified by the FDO syntax
-        definition profile (0.FDO/SyntaxDef). These attributes MUST be used when defining any new syntax definition.
-        This table does not include all information about the attributes. Please resolve the attribute definition PIDs
+    <caption style="caption-side:bottom"><b>Table 4</b>: The list of <a>attribute definitions</a> specified by the FDO syntax
+        definition profile (0.FDO/SyntaxDef). These attributes MUST be used when defining any new <a>syntax definition</a>.
+        This table does not include all information about the attributes. Please resolve the <a>attribute definition</a> PIDs
         via the Handle System or see the appendix of this document.
     </caption>
     <tr>
@@ -56,19 +57,19 @@
     </tr>
     <tr>
         <td>0.FDO/Type</td>
-        <td>The FDO type(s) as specified in section 3.10. The FDO type of a syntax definition is simply the string <em>FDO_Syntax_Definition</em>.
+        <td>The FDO type(s) as specified in section 3.10. The FDO type of a <a>syntax definition</a> is simply the string <em>FDO_Syntax_Definition</em>.
         </td>
         <td>1..*</td>
     </tr>
     <tr>
-        <td>0.FDO/Profile</td>
-        <td>The profile(s) as specified in section 3.4. The profile of a syntax definition is <em>0.FDO/SyntaxDef</em>.
+        <td>0.FDO/<a>Profile</a></td>
+        <td>The profile(s) as specified in section 3.4. The profile of a <a>syntax definition</a> is <em>0.FDO/SyntaxDef</em>.
         </td>
         <td>1..*</td>
     </tr>
     <tr>
         <td>0.FDO/Data</td>
-        <td>Data of the FDO. For syntax definitions, this attribute does often not apply, in which case this attribute
+        <td>Data of the FDO. For <a>syntax definitions</a>, this attribute does often not apply, in which case this attribute
             MAY simply use the string <em>Not_Applicable</em>.
         </td>
         <td>1..*</td>
@@ -93,7 +94,7 @@
     <tr>
         <td>0.FDO/Regex</td>
         <td>Only applicable if 0.FDO/PrimitiveDataType is “string”. This regular expression in ECMA-262 syntax MUST be
-            successfully validated for all attributes that use this syntax definition.
+            successfully validated for all attributes that use this <a>syntax definition</a>.
         </td>
         <td>0..1</td>
     </tr>

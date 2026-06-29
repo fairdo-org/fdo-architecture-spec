@@ -1,0 +1,39 @@
+<h3 id="granularity">Granularity</h3>
+<p>
+  The <a>granularity</a> of FDOs depends on the pragmatic utility decisions made
+  within communities of practice. In order to represent <a>resource</a>s as FDOs,
+  it is necessary to decide what useful entities should be worked with in the
+  relevant application field, and how these entities should be connected to
+  each other. An example is MRI scans of the brain. One option is to create one
+  FDO for the entire set of slices. Another option is to create one FDO for each
+  slice, with attributes indicating which slice it is. Whatever the initial
+  decision is, it can be revised later by either breaking up the bit sequence(s)
+  of a given FDO into parts and creating new FDOs to represent these parts, or by
+  aggregating individual FDOs into <a>collections</a>, which are also FDOs.
+</p>
+<p>
+  The detailed requirements on <a>granularity</a> are:
+<dl>
+  <dt>[R2-1] <dfn data-lt="single resource representation|resource representation|one resource">Single Resource Representation</dfn></dt>
+  <dd> Each FDO represents exactly one <a>resource</a>. The <a>resource</a> MAY be complex, that is, it MAY
+    consist of multiple other <a>resource</a>s.
+  </dd>
+  <dt>[R2-2] <dfn>Collection Definition</dfn></dt>
+  <dd> If an FDO represents a <a>resource</a> which consists of multiple parts that are interpreted as
+    <a>resource</a>s in their own right, this FDO is called a <a>collection</a>. The decision which parts are
+    interpreted as <a>resource</a>s in their own right (and hence MAY be represented as their own FDOs) is
+    dependent on pragmatic utility decisions within communities of practices.
+  </dd>
+  <dt>[R2-3] <dfn data-lt="resource description|described by attributes|attribute description">Resource Description</dfn></dt>
+  <dd> A <a>resource</a> MUST be described by FDO attributes (see <a href="#attributes"></a>) and it MAY have associated
+    data bit-sequence(s). As an example, digital twins of physical objects, or FDOs such as profiles or
+    <a>attribute definitions</a> MAY not necessarily have associated data bit-sequence(s).
+  </dd>
+  <dt>[R2-4] <dfn data-lt="attribute scope|attribute describes resource|describes the identified resource">Attribute Scope</dfn></dt>
+  <dd> Every FDO attribute in an FDO record only describes the identified <a>resource</a> and not any
+    other <a>resource</a>s. Even if the FDO is a <a>collection</a>, all attributes in the FDO record describe the
+    <a>resource</a> as a whole and not its parts. To describe one of the parts of the <a>resource</a> with FDO attributes,
+    this part needs to be wrapped into its own FDO record.
+  </dd>
+</dl>
+</p>

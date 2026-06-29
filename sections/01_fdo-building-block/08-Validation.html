@@ -1,0 +1,33 @@
+<h3 id="validation">Validation</h3>
+<p>
+    <a>Validation</a> is a key characteristic of FDOs.
+    It enables detecting errors in the <a>FDO Record</a> early on.
+    <a>Validation</a> SHOULD at least be carried out upon creation and update of an FDO.
+</p>
+<p>
+    An <a>FDO Record</a> is said to be valid if and only if
+</p>
+<dl>
+    <dt>[R8-1] <dfn data-lt="profile attribute presence|0.FDO/Profile required|profile reference mandatory">Profile Attribute Presence</dfn></dt>
+    <dd>
+        it contains the attribute <i>0.FDO/<a>Profile</a></i> at least once. The value of each of these attributes MUST be references
+        to profiles.
+    </dd>
+    <dt>[R8-2] <dfn data-lt="profile validation|cardinality compliance">Profile Validation</dfn></dt>
+    <dd>For each of these referenced profiles,
+        <ul>
+            <li>the <a>FDO Record</a> MUST contain attributes that instantiate the <a>attribute definitions</a> listed in the
+                profile, according to their cardinalities.</li>
+            <li>the values of these attributes MUST comply with the specified <a>validation</a> rules, e.g., with syntax rules,
+                profile referencing rules, attribute referencing rules, or external vocabulary referencing rules, as
+                given by the <a>attribute definition</a>.</li>
+        </ul>
+    </dd>
+    <dt>[R8-3] <dfn data-lt="attribute validation|correctly validated|validation rules">Attribute Validation</dfn></dt>
+    <dd>All attributes with an <a>attribute definition</a> MUST be correctly validated according to their <a>validation</a> rules.
+    </dd>
+    <dt>[R8-4] <dfn data-lt="validates against root">Root Profile Validation</dfn></dt>
+    <dd>The <a>FDO Record</a> MUST successfully validates against the <i>0.FDO/Root profile</i>.</dd>
+    <dt>[R8-5] <dfn data-lt="specification compliance|no rule violations|document rules">Specification Compliance</dfn></dt>
+    <dd>The FDO MUST NOT violate any of the rules specified in this document.</dd>
+</dl>

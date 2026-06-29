@@ -1,7 +1,8 @@
+<h3 id="step3">S-3: PID Record Parsing into an FDO Record</h3>
 This step takes an identifier record from <a href="#step2">[Step 2]</a> and MUST convert it into a set of type value pairs.
 <dl>
   <dt>Inputs</dt>
-  <dd>This step expects exactly one syntactically valid PID record in the format of choosing of the PID system. This
+  <dd>This step expects exactly one syntactically valid <a>PID</a> record in the format of choosing of the <a>PID</a> system. This
     input may not be blank. Typically, this is the output of <a href="#step2">[Step 2]</a>.</dd>
 
   <dt>Outputs</dt>
@@ -11,7 +12,7 @@ This step takes an identifier record from <a href="#step2">[Step 2]</a> and MUST
   The structure of the FDO record must be valid. Typically, this FDO record structure consists out of the following
   information:
   <ul>
-    <li>The PID the FDO record was resolved with.</li>
+    <li>The <a>PID</a> the FDO record was resolved with.</li>
     <li>A list of FDO attribute tuples. The first value in every tuple refers to the attribute definition AKA type of
       the type-value tuple. The second value in every tuples is a value claiming to be compliant to this attribute
       definition or stated differently, an instance of the type.</li>
@@ -21,12 +22,12 @@ This step takes an identifier record from <a href="#step2">[Step 2]</a> and MUST
     time stamps of resolution in RFC3339 format, a time to live (TTL), and possibly other implementation specific
     fields.</p>
   <dt>Expected behavior</dt>
-  <dd>This step is expected to transform a valid PID record into a valid FDO record. The concrete realization is
+  <dd>This step is expected to transform a valid <a>PID</a> record into a valid FDO record. The concrete realization is
     specific
     to every implementation. This step must terminate within a reasonable minimal timeframe (e.g., of < 10 ms). It is
       not intended to perform network requests or if is does, it would cache the information for efficiency purposes.
-      This step only extracts FDO attributes out of the PID record and discards the remainder of the PID record. If
-      needed, some PID system-specific information may be transformed into FDO attributes. The validation of the
+      This step only extracts FDO attributes out of the <a>PID</a> record and discards the remainder of the <a>PID</a> record. If
+      needed, some <a>PID</a> system-specific information may be transformed into FDO attributes. The validation of the
       contents occurs in a later step (see <a href ="#step5">[Step 5]</a>).</dd>
 
 </dl>

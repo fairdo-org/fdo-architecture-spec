@@ -100,8 +100,6 @@
         ],
         github: "https://github.com/fairdo-org/fdo-architecture-spec/",
         shortName: "FDO_Architecture_Spec",
-        //xref: "web-platform",
-        //group: "TSIG",
         latestVersion: null,
         edDraftURI: "https://github.com/fairdo-org/fdo-architecture-spec",
         commitHistoryURL: "https://github.com/fairdo-org/fdo-architecture-spec/commits/main/",
@@ -114,7 +112,7 @@
             href: "https://www.nature.com/articles/sdata201618",
             doi: "10.1038/sdata.2016.18"
           },
-          "KahnWilensky2006": {
+          "Kahn-Wilensky": {
             title: "Towards a Digital Object Architecture",
             authors: ["Robert Kahn", "Robert Wilensky"],
             date: "2006",
@@ -127,8 +125,23 @@
             publisher: "European Commission",
             date: "2020",
             href: "https://doi.org/10.5281/zenodo.4017888"
+          },
+          "MachineActionability": {
+            title: "Machine Actionability: The Missing Piece in the FAIR Puzzle",
+            authors: ["Tobias Kuhn", "Michel Dumontier", "et al."],
+            publisher: "Zenodo",
+            date: "2023",
+            href: "https://zenodo.org/records/7825650"
+          },
+          "FDO-Operations": {
+            title: "A Comparative Analysis of Modelling Approaches for the Association of FAIR Digital Object Operations",
+            authors: ["S. Bingert", "J. Böhm", "et al."],
+            publisher: "Data Science Journal",
+            date: "2025",
+            doi: "10.5334/dsj-2025-022"
           }
-        }
+        },
+        lint: { "no-unused-dfns": false }
       };
     </script>
   </head>
@@ -161,127 +174,46 @@
     <section id="sotd">
       <p>
         This document is an official publication of the FDO Forum.
-        This document version has the status of a draft work document according to the FDO Forum process.
+        This document version has the status of a draft work document, according to the FDO Forum process.
         This document will undergo the FDO Forum process for official documents.
       </p>
     </section>
-    <section class="informative">
-      <h2>Introduction</h2>
-      <div data-include="sections/introduction/00-Intro.html"></div>
-
-      <h3>How to Read this Document</h3>
-      <div data-include="sections/introduction/01-How-To-Read-This-Document.html"></div>
-
-      <h3>High-Level Overview of the FDO Concept</h3>
-      <div data-include="sections/introduction/02-High-Level-Overview.html"></div>
-    </section>
-    <section class="informative">
-      <h2>Terminology</h2>
-      <div data-include="sections/02-Terminology.html"></div>
-    </section>
+    <section class="informative" data-include="sections/00_introduction/00-Intro.html"></section>
+    <section class="informative" data-include="sections/00_introduction/01-How-To-Read-This-Document.html"></section>
+    <section class="informative" data-include="sections/00_introduction/02-High-Level-Overview.html"></section>
+    <section class="informative" data-include="sections/00_introduction/03-Terminology.html"></section>
 
     <section data-dfn-for="building-blocks" class="normative">
       <h2>FDO Building Blocks</h2>
-      <section id="pid">
-        <h3>PID</h3>
-        <div data-include="sections/fdo-building-block/01-PID.html"></div>
-      </section>
-      <section id="granularity">
-        <h3>Granularity</h3>
-        <div data-include="sections/fdo-building-block/02-Granularity.html"></div>
-      </section>
-      <section id="records">
-        <h3>FDO Records</h3>
-        <div data-include="sections/fdo-building-block/03-FDO-Records.html"></div>
-      </section>
-      <section id="profiles">
-        <h3>FDO Profiles</h3>
-        <div data-include="sections/fdo-building-block/04-FDO-Profiles.html"></div>
-      </section>
-      <section id="attributes">
-        <h3>FDO Attributes</h3>
-        <div data-include="sections/fdo-building-block/05-Attributes.html"></div>
-      </section>
-      <section id="syntax-def">
-        <h3>Syntax Definitions</h3>
-        <div data-include="sections/fdo-building-block/06-Syntax-Def.html"></div>
-      </section>
-      <section id="advanced-ref">
-        <h3>Advanced Referencing</h3>
-        <div data-include="sections/fdo-building-block/07-Referencing.html"></div>
-      </section>
-      <section id="validation">
-        <h3>Validation</h3>
-        <div data-include="sections/fdo-building-block/08-Validation.html"></div>
-      </section>
-      <section id="mo-attributes">
-        <h3>Mandatory and Optional attributes</h3>
-        <div data-include="sections/fdo-building-block/09-Mandetory-Attributes.html"></div>
-      </section>
-      <section id="fdo-types">
-        <h3>FDO Types</h3>
-        <div data-include="sections/fdo-building-block/10-FDO-Types.html"></div>
-      </section>
-      <section id="updating">
-        <h3>Updating FDOs</h3>
-         <div data-include="sections/fdo-building-block/11-Updating.html"></div>
-      </section>
+      <section data-include="sections/01_fdo_building_blocks/01-PID.html" id="pid"></section>
+      <section data-include="sections/01_fdo_building_blocks/02-Granularity.html" id="granularity"></section>
+      <section data-include="sections/01_fdo_building_blocks/03-FDO-Records.html" id="records"></section>
+      <section data-include="sections/01_fdo_building_blocks/04-FDO-Profiles.html" id="profiles"></section>
+      <section data-include="sections/01_fdo_building_blocks/05-Attributes.html" id="attributes"></section>
+      <section data-include="sections/01_fdo_building_blocks/06-Syntax-Def.html" id="syntax-def"></section>
+      <section data-include="sections/01_fdo_building_blocks/07-Referencing.html" id="advanced-ref"></section>
+      <section data-include="sections/01_fdo_building_blocks/08-Validation.html" id="validation"></section>
+      <section data-include="sections/01_fdo_building_blocks/09-Mandatory-Attributes.html" id="mandatory-attributes"></section>
+      <section data-include="sections/01_fdo_building_blocks/10-FDO-Types.html" id="fdo-types"></section>
+      <section data-include="sections/01_fdo_building_blocks/11-Updating.html" id="updating"></section>
     </section>
 
     <section data-dfn-for="generic-processing">
       <h2>Generic FDO Processing</h2>
-      <section id="processing-intro">
-        <h3>Introduction to Processing</h3>
-        <div data-include="sections/fdo-processing-block/Introduction.html"></div>
-      </section>
-      <section id="step1">
-        <h3>S-1: Detection of PIDs</h3>
-        <div data-include="sections/fdo-processing-block/Step1.html"></div>
-      </section>
-      <section id="step2">
-        <h3>S-2: Processing / Resolution of PIDs</h3>
-        <div data-include="sections/fdo-processing-block/Step2.html"></div>
-      </section>
-      <section id="step3">
-        <h3>S-3: PID Record Parsing into an FDO Record</h3>
-        <div data-include="sections/fdo-processing-block/Step3.html"></div>
-      </section>
-      <section id="step4">
-        <h3>S-4: FDO Record Root Profile Validation</h3>
-        <div data-include="sections/fdo-processing-block/Step4.html"></div>
-      </section>
-      <section id="step5">
-        <h3>S-5: FDO Record Type(s) Inspection</h3>
-        <div data-include="sections/fdo-processing-block/Step5.html"></div>
-      </section>
-      <section id="step6">
-        <h3>S-6: FDO Profile(s) Inspection</h3>
-        <div data-include="sections/fdo-processing-block/Step6.html"></div>
-      </section>
-      <section id="step7">
-        <h3>S-7: FDO Profile(s) Validation </h3>
-        <div data-include="sections/fdo-processing-block/Step7.html"></div>
-      </section>
-      <section id="step8">
-        <h3>S-8: FDO Attributes Processing</h3>
-        <div data-include="sections/fdo-processing-block/Step8.html"></div>
-      </section>
-      <section id="step9">
-        <h3>S-9: FDO Attributes Evaluation</h3>
-        <div data-include="sections/fdo-processing-block/Step9.html"></div>
-      </section>
-      <section id="step10">
-        <h3>S-10: FDO Data Access</h3>
-        <div data-include="sections/fdo-processing-block/Step10.html"></div>
-      </section>
-      <section id="step11">
-        <h3>S-11: FDO Data Validation</h3>
-        <div data-include="sections/fdo-processing-block/Step11.html"></div>
-      </section>
+      <section data-include="sections/02_generic_processing/Introduction.html" id="processing-intro"></section>
+      <section data-include="sections/02_generic_processing/Step1.html" id="step1"></section>
+      <section data-include="sections/02_generic_processing/Step2.html" id="step2"></section>
+      <section data-include="sections/02_generic_processing/Step3.html" id="step3"></section>
+      <section data-include="sections/02_generic_processing/Step4.html" id="step4"></section>
+      <section data-include="sections/02_generic_processing/Step5.html" id="step5"></section>
+      <section data-include="sections/02_generic_processing/Step6.html" id="step6"></section>
+      <section data-include="sections/02_generic_processing/Step7.html" id="step7"></section>
+      <section data-include="sections/02_generic_processing/Step8.html" id="step8"></section>
+      <section data-include="sections/02_generic_processing/Step9.html" id="step9"></section>
+      <section data-include="sections/02_generic_processing/Step10.html" id="step10"></section>
+      <section data-include="sections/02_generic_processing/Step11.html" id="step11"></section>
     </section>
-    <section id="conformance">
-      <div data-include="sections/03-Conformance.html"></div>
-    </section>
+    <section id="conformance" data-include="sections/04-Conformance.html"></section>
     <section id="tof" class="appendix"></section>
     <section id="index" class="appendix"></section>
   </body>

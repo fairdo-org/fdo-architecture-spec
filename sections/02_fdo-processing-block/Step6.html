@@ -1,46 +1,47 @@
+<h3 id="step6">S-6: FDO Profile(s) Inspection</h3>
 <p>This step determines whether the FDO record’s profile(s) is the same or compatible with the FDO profile the client
   expects to process. This step assumes that <a href="#step4">[Step 4]</a> was completed and that its status indicates that a 0.FDO/Profile
   field is present. </p>
 <p>This step is in some way analogous to the FDO Type inspection step with the difference that a profile specifies the
-  set of fields that a FDO Record should have to describe a particular type of objects. </p>
+  set of fields that a <a>FDO Record</a> should have to describe a particular type of objects. </p>
 <dl>
   <dt>Inputs</dt>
   <dd>This step expects that Step 4 had a FDO Root Profile validation status of COMPLETE, REQUIRED_FIELDS, PROFILE_ONLY
     and two inputs:
     <ol>
-      <li>The list of Profiles that the client is looking for. This is called the expected FDO Profile list.</li>
+      <li>The list of Profiles that the client is looking for. This is called the expected <a>FDO Profile</a> list.</li>
       <li>The Profile_Matching flag. The three possible values are:
         <ul>
-          <li>ALL_MATCH: Indicates that any FDO Profile is acceptable. This ignores the Expected FDO Profile list if
+          <li>ALL_MATCH: Indicates that any <a>FDO Profile</a> is acceptable. This ignores the Expected <a>FDO Profile</a> list if
             provided.</li>
-          <li>EXACT_MATCH. Indicates that the FDO Profile matching requires an exact match with the FDO Profile(s) in
-            the expected FDO Profile list.</li>
-          <li>DERIVED_MATCH. Indicates that the FDO Profile in the FDO Record can be derived Profile from the expected
-            FDO Profile list. Derived profiles remain backward compatible with their parent profile.</li>
+          <li>EXACT_MATCH. Indicates that the <a>FDO Profile</a> matching requires an exact match with the <a>FDO Profile</a>(s) in
+            the expected <a>FDO Profile</a> list.</li>
+          <li>DERIVED_MATCH. Indicates that the <a>FDO Profile</a> in the <a>FDO Record</a> can be derived Profile from the expected
+            <a>FDO Profile</a> list. Derived profiles remain backward compatible with their parent profile.</li>
         </ul>
       </li>
     </ol>
   </dd>
   <dt>Outputs</dt>
-  <dd>This step returns a flag describing the status of the match as well as a list with all of the FDO Profiles that
+  <dd>This step returns a flag describing the status of the match as well as a list with all of the <a>FDO Profiles</a> that
     match or are derived from the expected types. If the list is empty, it indicates that no matches, and if requested,
     no
     derived matches were found.
   </dd>
   <dt>Expected behavior</dt>
-  <dl>In this step, the client will compare the list of FDO Profile in the FDO Record with the expected FDO Profile list
+  <dl>In this step, the client will compare the list of <a>FDO Profile</a> in the <a>FDO Record</a> with the expected <a>FDO Profile</a> list
     for matches. The following lists the possible behaviors:
     <ol>
-      <li>The Expected FDO Profile List is empty and or the Profile_Matching is set to ALL_MATCH.
-        <p>The result is the FULL_MATCH flag with a list with all FDO Profiles from the FDO Record.</p>
+      <li>The Expected <a>FDO Profile</a> List is empty and or the Profile_Matching is set to ALL_MATCH.
+        <p>The result is the FULL_MATCH flag with a list with all <a>FDO Profiles</a> from the <a>FDO Record</a>.</p>
       </li>
-      <li>The FDO Profile(s) in the FDO records fully match those in the expected FDO Profile List.
-        <p>The result is FULL_MATCH and the list of all expected FDO Profile List. </p>
+      <li>The <a>FDO Profile</a>(s) in the FDO records fully match those in the expected <a>FDO Profile</a> List.
+        <p>The result is FULL_MATCH and the list of all expected <a>FDO Profile</a> List. </p>
       </li>
-      <li>The FDO Profile(s) in the FDO record match at least one of the FDO Profiles in the expected FDO profile list.
-        <p>The result is PARTIAL_MATCH with a list containing the FDO Profile(s) that match.</p>
+      <li>The <a>FDO Profile</a>(s) in the FDO record match at least one of the <a>FDO Profiles</a> in the expected FDO profile list.
+        <p>The result is PARTIAL_MATCH with a list containing the <a>FDO Profile</a>(s) that match.</p>
       </li>
-      <li>The FDO Profile in the FDO records match none of the FDO Profile list. There are two different results
+      <li>The <a>FDO Profile</a> in the FDO records match none of the <a>FDO Profile</a> list. There are two different results
         depending
         on the the matching condition:
         <ul>
@@ -48,14 +49,14 @@
             expected profile.
             The result is NO_MATCH and an empty list.</li>
           <li>If the Profile_Matching_Flag is set to DERIVED_MATCH, the client will respectively analyse each of the FDO
-            Profiles in the FDO Record and determine if they are derived from profiles that are within the expected FDO
+            Profiles in the <a>FDO Record</a> and determine if they are derived from profiles that are within the expected FDO
             Profile list. Note that derived FDO profiles are compatible with their parent FDO profile.
-            To determine is and FDO Profile is derived from another, the client resolves each of the FDO Profiles into
+            To determine is and <a>FDO Profile</a> is derived from another, the client resolves each of the <a>FDO Profiles</a> into
             their respective FDOs and then analyses these FDOs to see if the Profiles definition specifies that they are
-            derived from FDO Profiles that match a profile within the expected FDO profile List. If the FDO Profiles
-            within the FDO Record are derived from FDO Profiles in the expected FDO profile list, the FDO Record is
-            compatible with one or more of its expected FDO Profile.
-            Any errors in accessing FDO Profile’s FDO terminates the search for derived matches and results in that FDO
+            derived from <a>FDO Profiles</a> that match a profile within the expected FDO profile List. If the <a>FDO Profiles</a>
+            within the <a>FDO Record</a> are derived from <a>FDO Profiles</a> in the expected FDO profile list, the <a>FDO Record</a> is
+            compatible with one or more of its expected <a>FDO Profile</a>.
+            Any errors in accessing <a>FDO Profile</a>’s FDO terminates the search for derived matches and results in that FDO
             Profile’s not matching.
             The results can be:
             <ul>
@@ -68,8 +69,8 @@
     </ol>
   </dl>
   <aside class="example" title="A well formed FDO with all required FDO Root Profile fields">
-    <p>The examples below assume the simple FDO Record described below. Adding to the example is the fact that the FDO
-      Profile 21.32/234 is derived from FDO Profile 21.32/123 which is itself derived from FDO Profile 21.1/0.</p>
+    <p>The examples below assume the simple <a>FDO Record</a> described below. Adding to the example is the fact that the FDO
+      Profile 21.32/234 is derived from <a>FDO Profile</a> 21.32/123 which is itself derived from <a>FDO Profile</a> 21.1/0.</p>
 
     <table>
       <caption>

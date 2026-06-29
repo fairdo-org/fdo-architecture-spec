@@ -1,3 +1,4 @@
+<h3 id="step5">S-5: FDO Record Type(s) Inspection</h3>
 <p>This step determines whether the given FDO record’s type is that which the client expects while processing the FDO.
   It assumes that <a href="#step4">[Step 4]</a> was completed and that its status indicates that a 0.FDO/Type field is present.</p>
 <p>There are many reasons to perform this step. It could be that the client software is only capable of processing
@@ -10,7 +11,7 @@
     two inputs:
     <ul>
       <li>The list of types that the client is looking for. This is called the expected FDO Type list. It can be empty
-        indicating that any FDO Type within the FDO Record will be accepted. This forces the MATCH_ALL flag described
+        indicating that any FDO Type within the <a>FDO Record</a> will be accepted. This forces the MATCH_ALL flag described
         below.</li>
       <li>The Type_Matching flag. There are three possible values for this flag:
         <ul>
@@ -31,12 +32,12 @@
 
   <dt>Expected behavior</dt>
 
-  <dd>In this step, the client will compare the list of FDO Types in the FDO Record with the expected FDO Type list
+  <dd>In this step, the client will compare the list of FDO Types in the <a>FDO Record</a> with the expected FDO Type list
     looking for matches. The following lists the possible scenarios:
 
     <ol>
       <li>If the FDO Type List is empty and/or the Type_Matching flag is set to MATCH_ALL, all the FDO Types within the
-        FDO Record are considered appropriate. The result is FULL_MATCH and the list of all FDO Types found in the FDO
+        <a>FDO Record</a> are considered appropriate. The result is FULL_MATCH and the list of all FDO Types found in the FDO
         Record.</li>
       <li>The FDO Types in the FDO records fully match those in the expected FDO Type List. The result is ALL_MATCH and
         the list of all matched FDO Types.</li>
@@ -49,13 +50,13 @@
             type.
             The results is NO_MATCH.</li>
           <li>If the Type_Matching is set to DERIVED_MATCH, the client will respectively analyse each of the FDO Type in
-            the FDO Record and determine if they are derived from types that are within the expected FDO Type list. The
+            the <a>FDO Record</a> and determine if they are derived from types that are within the expected FDO Type list. The
             assumption is that derived FDO Types are compatible with their parent FRO Type.
             To do so, the client resolves each of the FDO Types into their respective FDOs and then analyses these FDOs
             to
             see if the types they describe are derived from FDO Types that match a type within the FDO Type List. If the
-            client determines that one or more of the FDO Type in the FDO Records are derived from FDO Types that are in
-            the expected FDO Type list, it will conclude that the FDO Record is compatible with one or more of its
+            client determines that one or more of the FDO Type in the <a>FDO Records</a> are derived from FDO Types that are in
+            the expected FDO Type list, it will conclude that the <a>FDO Record</a> is compatible with one or more of its
             expected FDO types.
             The results can be NO_MATCH if no derived FDO Types are found or DERIVED_MATCH if one or more derived FDO
             Types matches are found.</li>
@@ -64,7 +65,7 @@
     </ol>
   </dd>
   <aside class="example" title="A well formed FDO with all required FDO Root Profile fields">
-    <p>The examples below assume the simple FDO Record. Adding to the example is the fact that the FDO Type 21.32/234 is
+    <p>The examples below assume the simple <a>FDO Record</a>. Adding to the example is the fact that the FDO Type 21.32/234 is
       derived from FDO Type 21.32/123 which is itself derived from FDO Type 21.1/0.</p>
     <table>
       <thead>

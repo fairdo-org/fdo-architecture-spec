@@ -1,4 +1,5 @@
-<p>The vision of the FDO concept is to enable machine actionability and the automated processing of data. If an FDO
+<p>
+    The vision of the FDO concept is to enable machine actionability and the automated processing of data. If an FDO
     client finds a PID that identifies an FDO, then this client would be able to automatically interpret and process the
     FDO (subject to potential access constraints), regardless of the technology used to implement it. The basis for
     enabling automated processing regardless of the used technology is that FDO implementations comply with the rules
@@ -35,12 +36,12 @@
         identifier. A PID system must resolve the PID to an FDO record.
     </li>
     <li>
-        <strong>FDO record</strong>: The FDO record is a predictable and machine actionable information structure that
+        <strong>[=FDO Record=]</strong>: The FDO record is a predictable and machine actionable information structure that
         contains attributes of the resource which the FDO represents. The FDO record is that piece of information a FDO
         client first encounters after PID resolution.
     </li>
     <li>
-        <strong>FDO attributes</strong>: The FDO record consists of FDO attributes in the form of tuples, where
+        <strong>[=FDO Attributes=]</strong>: The FDO record consists of FDO attributes in the form of tuples, where
         <ol>
             <li>
                 the first element of the tuple identifies an FDO attribute definition (which is similar to the
@@ -71,7 +72,7 @@
         </ol>
     </li>
     <li>
-        <strong>FDO attribute definitions</strong>: An FDO attribute definition specifies syntactic rules and a semantic
+        <strong>FDO Attribute Definition</strong>: An FDO attribute definition specifies syntactic rules and a semantic
         meaning of an FDO attribute. In detail, an attribute definition specifies:
         <ol>
             <li>
@@ -93,7 +94,7 @@
         definitions. Each attribute definition is itself an FDO.
     </li>
     <li>
-        <strong>FDO profiles</strong>: The FDO profile specifies the set of FDO attribute definitions that must or can
+        <strong>[=FDO Profile=]</strong>: The FDO profile specifies the set of FDO attribute definitions that must or can
         (depending on the cardinality of the attribute definitions) be instantiated to create FDO records by a certain
         repository, community, or implementation. The FDO profile makes the content of an FDO record predictable for an
         FDO client: Each FDO record needs to have a reference to the FDO profile it complies with. By inspecting the
@@ -101,7 +102,7 @@
         FDO.
     </li>
     <li>
-        <strong>FDO type</strong>: Each FDO has to specify an FDO Type which essentially provides any client with a hint
+        <strong>[=FDO Type=]</strong>: Each FDO has to specify an FDO Type which essentially provides any client with a hint
         how the resource can be processed.
     </li>
     <li>
