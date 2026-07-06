@@ -1,39 +1,48 @@
 <h3 id="granularity">Granularity</h3>
 <p>
-  The <a>granularity</a> of FDOs depends on the pragmatic utility decisions made
-  within communities of practice. In order to represent <a>resource</a>s as FDOs,
-  it is necessary to decide what useful entities should be worked with in the
-  relevant application field, and how these entities should be connected to
-  each other. An example is MRI scans of the brain. One option is to create one
-  FDO for the entire set of slices. Another option is to create one FDO for each
-  slice, with attributes indicating which slice it is. Whatever the initial
-  decision is, it can be revised later by either breaking up the bit sequence(s)
-  of a given FDO into parts and creating new FDOs to represent these parts, or by
-  aggregating individual FDOs into <a>collections</a>, which are also FDOs.
+    The <a>granularity</a> of <a>FDO</a>s depends on the pragmatic utility decisions made within communities of practice.
+    To represent <a>resource</a>s as <a>FDO</a>s, it is necessary to determine useful entities and their relationships.
+    The <a>granularity</a> of <a>FDO</a>s is determined by the decision which <a>resource</a>s are represented as
+    separate <a>FDO</a>s and which are not.
+    This decision is influenced by the need to balance detail and manageability in representing and manipulating the resources.
+    Whatever the initial decision is, it can be revised later.
+    One option is breaking up the bit sequence(s) of a given <a>FDO</a> into parts and creating new <a>FDO</a>s to
+    represent these parts.
+    Another option is aggregating individual <a>FDO</a>s into <a>collections</a>, which are themselves also <a>FDO</a>s.
+    The detailed requirements on <a>granularity</a> are:
 </p>
-<p>
-  The detailed requirements on <a>granularity</a> are:
+<aside class="example" title="Example of a granularity decision">
+    An example is MRI scans of the brain.
+    One option is to create one <a>FDO</a> for the entire set of slices.
+    Another option is to create one <a>FDO</a> for each slice, with <a>attribute</a>s indicating which slice it is.
+</aside>
+
 <dl>
-  <dt>[R2-1] <dfn data-lt="single resource representation|resource representation|one resource">Single Resource Representation</dfn></dt>
-  <dd> Each FDO represents exactly one <a>resource</a>. The <a>resource</a> MAY be complex, that is, it MAY
-    consist of multiple other <a>resource</a>s.
-  </dd>
-  <dt>[R2-2] <dfn>Collection Definition</dfn></dt>
-  <dd> If an FDO represents a <a>resource</a> which consists of multiple parts that are interpreted as
-    <a>resource</a>s in their own right, this FDO is called a <a>collection</a>. The decision which parts are
-    interpreted as <a>resource</a>s in their own right (and hence MAY be represented as their own FDOs) is
-    dependent on pragmatic utility decisions within communities of practices.
-  </dd>
-  <dt>[R2-3] <dfn data-lt="resource description|described by attributes|attribute description">Resource Description</dfn></dt>
-  <dd> A <a>resource</a> MUST be described by FDO attributes (see <a href="#attributes"></a>) and it MAY have associated
-    data bit-sequence(s). As an example, digital twins of physical objects, or FDOs such as profiles or
-    <a>attribute definitions</a> MAY not necessarily have associated data bit-sequence(s).
-  </dd>
-  <dt>[R2-4] <dfn data-lt="attribute scope|attribute describes resource|describes the identified resource">Attribute Scope</dfn></dt>
-  <dd> Every FDO attribute in an FDO record only describes the identified <a>resource</a> and not any
-    other <a>resource</a>s. Even if the FDO is a <a>collection</a>, all attributes in the FDO record describe the
-    <a>resource</a> as a whole and not its parts. To describe one of the parts of the <a>resource</a> with FDO attributes,
-    this part needs to be wrapped into its own FDO record.
-  </dd>
+    <dt><h4 class="rule-heading" id="rule-r2_1">[R2-1] <dfn>Single Resource Representation</dfn></h4></dt>
+    <dd>
+        Each <a>FDO</a> represents exactly one <a>resource</a>.
+        The <a>resource</a> MAY be complex, that is, it MAY consist of multiple other <a>resource</a>s.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r2_2">[R2-2] <dfn>Collection Definition</dfn></h4></dt>
+    <dd>
+        If an <a>FDO</a> represents a <a>resource</a> which consists of multiple parts that are interpreted as
+        <a>resource</a>s in their own right, this <a>FDO</a> is called a <a>collection</a>.
+        The decision which parts are interpreted as <a>resource</a>s in their own right (and hence MAY be represented as their own <a>FDO</a>s) is
+        dependent on pragmatic utility decisions within communities of practices.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r2_3">[R2-3] <dfn>Resource Description</dfn></h4></dt>
+    <dd>
+        A <a>resource</a> MUST be described by <a>FDO attribute</a>s.
+        It MAY have associated data <a>bit-sequence(s)</a>, if it is a digital resource.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r2_4">[R2-4] <dfn>Attribute Scope</dfn></h4></dt>
+    <dd>
+        Every <a>FDO attribute</a> in an <a>FDO</a> record only describes the identified <a>resource</a> and not any other <a>resource</a>s.
+        Even if the <a>FDO</a> is a <a>collection</a>, all <a>attribute</a>s in the <a>FDO</a> record describe the<a>resource</a> as a whole and parts of it.
+        To describe one of the parts of the <a>resource</a> with <a>FDO attribute</a>s, extract this part into its own <a>FDO</a> record,
+        define an <a href="#inline-fdos">Inline FDO</a>, or use a <a href="#rule-r5_10">Composite Attribute</a> .
+    </dd>
 </dl>
-</p>
