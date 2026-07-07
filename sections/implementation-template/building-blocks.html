@@ -68,3 +68,56 @@
         <dd>Specify how the extension mechanism of profiles works within your implementation.</dd>
     </dl>
 </section>
+
+<section>
+    <h4>FDO Attribute Definitions</h4>
+    <dl>
+        <dt>[I5-1] Representation of FDO attribute definitions (M)</dt>
+        <dd>
+            Each attribute definition is itself an FDO. You must specify how the attribute definition is represented in
+            the given implementation (i.e., how the attribute definition looks like; this can be understood as a recipe
+            for building FDO attribute definitions in the given FDO implementation).
+            <br><em>Note: [I5-1] should define the overall
+            structure of an attribute definition. You can go into more detail of how to encode syntax, semantics,
+            complex attributes and complex validation rules in [I5-3] - [I5-8]. If your implementation uses additional
+            implementation-specific rules for attributes or validation, you can describe them in [I5-9] - ...</em>
+        </dd>
+        <dt>[I5-2] Attribute Definition Profile (M)</dt>
+        <dd>
+            Give the PID for the attribute definition profile that is used in your implementation.
+        </dd>
+        <dt>[I5-3] Encoding Semantics (M)</dt>
+        <dd>
+            Specify where one can find the name and the description of an attribute definition.
+        </dd>
+        <dt>[I5-4] Encoding Syntax (M)</dt>
+        <dd> Specify how the following rules are represented in an attribute definition in the given implementation. An
+            attribute…
+            <ul>
+                <li> … must have a cardinality.</li>
+                <li> … must follows one of the primitive data types “string”, “number”, “integer” and “boolean”.</li>
+                <li> … may comply with a regular expression.</li>
+                <li> … may lie within a numeric range.</li>
+                <li> … may be equal to one element from a whitelist.</li>
+                <li> … may be not equal to all elements from a blacklist.</li>
+            </ul>
+            <em>Note: If some of these rules are not compatible with the given implementation (i.e., cannot be encoded
+                in the given technology), you must point this out. Different technologies may have different levels of
+                expressability.</em>
+        </dd>
+        <dt>[I5-5] Composition of Attribute Definitions (R)</dt>
+        <dd>Specify how compositions of attributes are represented in the given implementation.</dd>
+        <dt>[I5-6] Unions of Attribute Definitions (R)</dt>
+        <dd>Specify how unions of attributes are represented in the given implementation.</dd>
+        <dt>[I5-7] Profile Referencing (R)</dt>
+        <dd>Specify how profile referencing looks like in the given implementation.</dd>
+        <dt>[I5-8] Attribute Referencing (R)</dt>
+        <dd>Specify how attribute referencing looks like in the given implementation.</dd>
+        <dt>[I5-9] - ... Implementation-specific rules (O)</dt>
+        <dd>
+            You can further specify semantic, syntactic, and complex validation rules that are not covered by
+            this document. Then, you must describe how the rules are encoded in the given implementation, and how a
+            record is validated against the rules.
+        </dd>
+    </dl>
+</section>
