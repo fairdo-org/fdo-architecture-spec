@@ -3,11 +3,11 @@
     <h4>PID & Resolution</h4>
     <p>Define the deterministic steps how a PID is unambiguously mapped to its FDO record. This involves:</p>
     <dl>
-        <dt>[I1-1] PID system</dt>
-        <dd>Which PID System/s is/are used?</dd>
-        <dt>[I1-2] PID detection</dt>
+        <dt>[I1-1] PID system (M)</dt>
+        <dd>Say which PID System/s is/are used in your FDO implementation.</dd>
+        <dt>[I1-2] PID detection (M)</dt>
         <dd>Specify the most narrow regular expression for this PID.</dd>
-        <dt>[I1-3] PID resolution</dt>
+        <dt>[I1-3] PID resolution (M)</dt>
         <dd>Specify the steps that need to be taken to resolve the PID into the FDO record.</dd>
     </dl>
 </section>
@@ -15,16 +15,16 @@
 <section>
     <h4>Attribute Mapping</h4>
     <dl>
-        <dt>[I2-1] Map mandatory attributes</dt>
+        <dt>[I2-1] Map mandatory attributes (M)</dt>
         <dd>
             Map the conceptual mandatory attributes (see Table 2) to real attribute definitions: 0.FDO/Type,
             0.FDO/Profile, and 0.FDO/Data.
         </dd>
-        <dt>[I2-2] Map optional attributes (Optional)</dt>
+        <dt>[I2-2] Map optional attributes (R)</dt>
         <dd>
             It is recommended to also provide mappings for the conceptual optional attributes (see Table X; to be done).
         </dd>
-        <dt>[I2-3] Map other attributes (Optional)</dt>
+        <dt>[I2-3] Map other attributes (O)</dt>
         <dd>Here you can define other attributes that are frequently used by your implementation.</dd>
     </dl>
 </section>
@@ -33,13 +33,13 @@
     <h4>FDO records</h4>
     <p>Specify how an FDO record is realized by the given FDO implementation.</p>
     <dl>
-        <dt>[I3-1] Map FDO record → implementation structure</dt>
+        <dt>[I3-1] Map FDO record → implementation structure (M)</dt>
         <dd>
             Starting with the conceptional FDO record containing attributes a<sub>1</sub>,...,a<sub>n</sub>, map this
             record to an implementation structure that contains implementation-specific attributes
             a'<sub>1</sub>,...,a'<sub>n</sub>.
         </dd>
-        <dt>[I3-2] Map implementation structure → FDO record</dt>
+        <dt>[I3-2] Map implementation structure → FDO record (M)</dt>
         <dd>
             Starting with an implementation structure that contains implementation-specific attributes
             a'<sub>1</sub>,...,a'<sub>n</sub>, map this structure to a conceptional FDO record containing attributes
@@ -51,7 +51,7 @@
 <section>
     <h4>FDO Profiles</h4>
     <dl>
-        <dt>[I4-1] Profile representation</dt>
+        <dt>[I4-1] Profile representation (M)</dt>
         <dd>
             Each profile is itself an FDO. You must specify how the FDO profile is represented in the given
             implementation (i.e., how the FDO looks like; this can be understood as a recipe for building FDO profiles
@@ -60,11 +60,11 @@
             a machine to read and interpret a profile in the given implementation in order to perform validation of
             records against the profile.</em>
         </dd>
-        <dt>[I4-2] Profile definition profile (Optional)</dt>
+        <dt>[I4-2] Profile definition profile (M)</dt>
         <dd>Give the PID for the profile definition profile from your implementation.</dd>
-        <dt>[I4-3] Root profile (Optional)</dt>
+        <dt>[I4-3] Root profile (R)</dt>
         <dd>Give the PID for the root profile from your implementation.</dd>
-        <dt>[I4-4] Profile extension (Optional)</dt>
+        <dt>[I4-4] Profile extension (R)</dt>
         <dd>Specify how the extension mechanism of profiles works within your implementation.</dd>
     </dl>
 </section>
@@ -133,7 +133,7 @@
 <section>
     <h4>Collections</h4>
     <dl>
-        <dt>[I7-1] Representation of collection FDOs (O)</dt>
+        <dt>[I7-1] Representation of collection FDOs (R)</dt>
         <dd>
             Specify how a collection FDO is realized in the given implementation. This may involve describing how the
             collection FDO is connected with its parts (e.g. use of specific attributes for this purpose), whether
