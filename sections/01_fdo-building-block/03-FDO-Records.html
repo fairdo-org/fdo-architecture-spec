@@ -12,7 +12,7 @@
     <dt><h4 class="rule-heading" id="rule-r3_2">[R3-2] <dfn data-lt="attribute tuple|record entry|FDO record entry|FDO record tuple|record tuple|tuple"><a>FDO attribute</a> tuples</dfn></h4></dt>
     <dd>
         The <a>FDO Record</a> consists of a finite number of tuples
-        (called <a>FDO attribute</a>s, short: <a>attribute</a>s) that can be interpreted by a machine.
+        (called <a>FDO attributes</a>, short: <a>attributes</a>) that can be interpreted by a machine.
         Conceptually, every tupel consists of a single key and a single value.
         Keys are NOT unique in an FDO record.
         The limit for the number of tuples per record depends on the implementation.
@@ -20,7 +20,7 @@
 
     <dt><h4 class="rule-heading" id="rule-r3_3">[R3-3] Minimal <a>FDO Record</a> Requirements</h4></dt>
     <dd>
-        All <a>FDO Record</a> MUST contain the <a>attribute</a>s from the <a href="#rule-r4_9">0.FDO/Root profile</a>:
+        All <a>FDO Record</a> MUST contain the <a>attributes</a> from the <a href="#rule-r4_9">0.FDO/Root profile</a>:
         <em><a>0.FDO/Profile</a></em>, <em><a>0.FDO/Type</a></em> and <em><a>0.FDO/Data</a></em>
     </dd>
 
@@ -28,7 +28,7 @@
     <dd>
         Each <a>FDO Record</a> MUST link to at least one <a>FDO Profile</a>, which it complies to.
         This is done using the designated <em><a>0.FDO/Profile</a></em> <a>attribute</a> in its <a>FDO Record</a>.
-        To link multiple <a>FDO Profile</a>s, the <a>attribute</a> <em><a>0.FDO/Profile</a></em> MAY be repeated multiple times in the <a>FDO Record</a>.
+        To link multiple <a>FDO Profiles</a>, the <a>attribute</a> <em><a>0.FDO/Profile</a></em> MAY be repeated multiple times in the <a>FDO Record</a>.
         <ul>
             <li>
                 The first element of such a tuple representing the <a>FDO</a>'s profile is either the <a>PID</a>
@@ -43,7 +43,7 @@
     <dt><h4 class="rule-heading" id="rule-r3_5">[R3-5] <em><a>0.FDO/Type</a></em> <a>attribute</a></h4></dt>
     <dd>
         Each <a>FDO</a> MUST specify its <a>FDO Type</a> using the designated <em><a>0.FDO/Type</a></em> <a>attribute</a>.
-        To link multiple <a>FDO type</a>s, the <a>attribute</a> <em><a>0.FDO/Type</a></em> MAY be repeated multiple times in the <a>FDO Record</a>.
+        To link multiple <a>FDO types</a>, the <a>attribute</a> <em><a>0.FDO/Type</a></em> MAY be repeated multiple times in the <a>FDO Record</a>.
         <em><a>0.FDO/Type</a></em> follows the <a href="#attribute-referencing">attribute referencing</a> mechanism.
         <ul>
             <li>

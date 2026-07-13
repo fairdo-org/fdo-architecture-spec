@@ -27,17 +27,17 @@
 
     <dt><h4 class="rule-heading" id="rule-r5_3">[R5-3] <dfn>Attribute Categories</dfn></h4></dt>
     <dd>There are three qualitative categories of <a>attributes</a> (or <a>attribute definitions</a>):
-        mandatory, optional, and community-defined <a>attribute</a>s.
+        mandatory, optional, and community-defined <a>attributes</a>.
         <ul>
             <li>
-                The <a>FDO Forum</a> defines a set of mandatory <a>attribute</a>s that MUST be used in each <a>FDO Record</a>.
+                The <a>FDO Forum</a> defines a set of mandatory <a>attributes</a> that MUST be used in each <a>FDO Record</a>.
                 This set is defined in the <a>root profile</a>.
             </li>
             <li>
-                The <a>FDO Forum</a> defines a set of <dfn data-lt="optional attribute">optional, but recommended <a>attribute</a>s</dfn>.
+                The <a>FDO Forum</a> defines a set of <dfn data-lt="optional attribute">optional, but recommended <a>attributes</a></dfn>.
                 These include all <a>attributes</a> needed for the functioning of the <a>FDO type system</a> specified in this document (see <a href="#appendixAttrsFDOTypeSystem"></a>).
-                It also includes some pre-defined <a>attributes</a> which SHOULD be reused by use-cases within their <a>FDO Record</a>s and <a>profiles</a> (see <a href="#appendix"></a>).
-                Use-cases SHOULD reuse these <a>attribute</a>s, whenever suitable, for better harmonization of <a>FDO attribute</a> information.
+                It also includes some pre-defined <a>attributes</a> which SHOULD be reused by use-cases within their <a>FDO Records</a> and <a>profiles</a> (see <a href="#appendix"></a>).
+                Use-cases SHOULD reuse these <a>attributes</a>, whenever suitable, for better harmonization of <a>FDO attribute</a> information.
             </li>
             <li>
                 <dfn>Community-defined <a>attributes</a></dfn> are any <a>attributes</a> that are not defined by the <a>FDO Forum</a>.
@@ -75,7 +75,7 @@
                 <aside class="note" title="">
                     <p>These levels do not impose additional requirements but help repositories and users to assess
                         <a>validation</a> behavior, interoperability, and long-term interpretability of
-                        <a>FDO Record</a>s.
+                        <a>FDO Records</a>.
                     </p>
                 </aside>
             </li>
@@ -85,9 +85,9 @@
 
     <dt><h4 class="rule-heading" id="rule-r5_4">[R5-4] <dfn data-lt="FDO attribute definition">Attribute Definitions are <a>FDOs</a></dfn></h4></dt>
     <dd>
-        <a>FDO attribute definitions</a> (short: <a>attribute definitions</a>) are themselves represented as <a>FDO</a>s.
-        Hence, they are unambiuously identified by a <a>PID</a> that resolves into an <a>FDO Record</a> consisting of <a>attribute</a>s.
-        An <a>attribute definition</a> defines the value space of its instantiating <a>attribute</a>s in all <a>FDO Record</a> and represents its semantics.
+        <a>FDO attribute definitions</a> (short: <a>attribute definitions</a>) are themselves represented as <a>FDOs</a>.
+        Hence, they are unambiuously identified by a <a>PID</a> that resolves into an <a>FDO Record</a> consisting of <a>attributes</a>.
+        An <a>attribute definition</a> defines the value space of its instantiating <a>attributes</a> in all <a>FDO Record</a> and represents its semantics.
     </dd>
 
 
@@ -155,7 +155,7 @@
     <dd>
         An <a>attribute definition</a> A MAY be a composition of <a>attribute definitions</a> (a.k.a. “all of”)
         <em>A<sub>1</sub>,...,A<sub>n</sub></em> by
-        containing the <a>attribute</a> (<a><em>0.FDO/ValidationMechanism</em></a>, InlineCombination) and the <a>attribute</a>s
+        containing the <a>attribute</a> (<a><em>0.FDO/ValidationMechanism</em></a>, InlineCombination) and the <a>attributes</a>
         (<a><em>0.FDO/DataType</em></a>, <em>A<sub>i</sub></em>) for i=1,...,n.
         To instantiate this <a>attribute definition</a> in another <a>FDO record</a>,
         <ul>
@@ -190,7 +190,7 @@
 
     <dt><h4 class="rule-heading" id="rule-r5_13">[R5-13] <dfn data-lt="extra <a>attributes</a> in definition"><a>Additional Attributes</a> in <a>Attribute Definition FDOs</a></dfn></h4></dt>
     <dd>
-        <a>Attribute Definition</a>s MAY have additional <a>attributes</a> and instantiate additional profiles for any reason.
+        <a>Attribute Definitions</a> MAY have additional <a>attributes</a> and instantiate additional profiles for any reason.
         This SHOULD be used to relate <a>attribute definitions</a> to existing external resources such as vocabularies, ontologies, or terminologies.
     </dd>
 
@@ -198,7 +198,7 @@
     <dt><h4 class="rule-heading" id="rule-r5_14">[R5-14] <dfn><a>FDO Forum</a> <a>Attribute Definitions</a></dfn></h4></dt>
 <!--    TODO: This doesnt seem up to date anymore. Remove?-->
     <dd>
-        The <a>attribute definitions</a> listed in Tables 1 - 4 (comprising the mandatory and optional <a>attribute</a>s
+        The <a>attribute definitions</a> listed in Tables 1 - 4 (comprising the mandatory and optional <a>attributes</a>
         defined by the <a>FDO Forum</a>) are implemented within the <a>Data Type Registry</a> (DTR) by the <a>FDO Forum</a>.
         Those <a>attribute definitions</a> are implemented as Handles and SHOULD be reused in any <a>FDO</a> implementation independent of the used technology.
         This ensures interoperability between different <a>FDO</a> implementations and compliance with the type system.
@@ -214,8 +214,8 @@
 <table border="2" id="attrDefProfileRecord">
     <caption style="caption-side:bottom"><b>Table 3</b>: The list of <a>attribute definitions</a> specified by the <a>FDO attribute definition profile</a> (<a><em>0.FDO/AttributeDef</em></a>).
         These <a>attributes</a> MUST be used when defining any new <a>attribute definition</a>.
-        This table does not include all information about the <a>attribute</a>s.
-        Please resolve the <a>attribute definition</a> <a>PID</a>s via the Handle System or see the <a href="#appendixAttrsFDOTypeSystem">appendix</a> of this document.
+        This table does not include all information about the <a>attributes</a>.
+        Please resolve the <a>attribute definition</a> <a>PIDs</a> via the Handle System or see the <a href="#appendixAttrsFDOTypeSystem">appendix</a> of this document.
     </caption>
     <tr>
         <th>PID of <a>Attribute Definition</a></th>
@@ -254,7 +254,7 @@
         </td>
         <td>
             Human-readable and localized labels for the <a>FDO attribute definition</a>.
-            All of these are viable candidates for referencing the respective <a>attribute definition</a> in <a>FDO</a>s.
+            All of these are viable candidates for referencing the respective <a>attribute definition</a> in <a>FDOs</a>.
         </td>
         <td>1..*</td>
     </tr>

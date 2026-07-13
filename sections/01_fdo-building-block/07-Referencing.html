@@ -2,7 +2,7 @@
 <dl>
     <dt><h4 class="rule-heading" id="rule-r7_1">[R7-1] <dfn>References</dfn></h4></dt>
     <dd>
-        <a>References</a> are key to <a>FDO</a>s as they are used to associate <a>bit-sequence</a>s and refer to any other related objects and information.
+        <a>References</a> are key to <a>FDOs</a> as they are used to associate <a>bit-sequences</a> and refer to any other related objects and information.
         Therefore, the <a>primitive data type</a> for all references MUST be a string.
         However, their syntax, interpretation, and resolution remain implementation specific.
         This <a href="#advanced-ref">section</a> aims at providing a solution for intra and inter <a>FDO</a> references.
@@ -27,12 +27,12 @@
 <a>Profile referencing</a> permits an <a>attribute definition</a> <em>A</em> to specify that the value <em>a<sub>val</sub></em>
 (of an <a>attribute</a> <em>a=(a<sub>def</sub>,a<sub>val</sub>)</em> that instantiates <em>A</em>)
 MUST be a reference to an <a>FDO</a> following a specific profile.
-Hence, it is a mechanism to enforce that specific <a>attribute</a>s in <a>FDO records</a> reference other <a>FDO</a>s (i.e., are <a>validated references</a>) that comply with a certain <a>profile</a>.
+Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO records</a> reference other <a>FDOs</a> (i.e., are <a>validated references</a>) that comply with a certain <a>profile</a>.
 <a>Profile</a> referencing works as follows:
 
 <aside class="example" title="<a>Profile Referencing</a>: The <a><em>0.FDO/Profile</em></a> <a>attribute</a>.">
     The <a>attribute definition</a> <a><em>0.FDO/Profile</em></a> uses <a>profile referencing</a>.
-    It contains the following two <a>attribute</a>s:
+    It contains the following two <a>attributes</a>:
     <ul>
         <li>
             (<a><em>0.FDO/ValidationMechanism</em></a>, <em>ProfileReference</em>:
@@ -67,7 +67,7 @@ Hence, it is a mechanism to enforce that specific <a>attribute</a>s in <a>FDO re
     <dt><h4 class="rule-heading" id="rule-r7_5">[R7-5] Profile Reference Target</h4></dt>
     <dd>
         The <a>attribute definition</a> MAY also specify a list of profile
-        <a>PID</a>s <em>P<sub>1</sub>,...,P<sub>n</sub></em> where at least
+        <a>PIDs</a> <em>P<sub>1</sub>,...,P<sub>n</sub></em> where at least
         one of them MUST <a href="#validation">validate</a> the referenced <a>FDO</a>.
         This is done by adding the <a>attribute</a> (<a><em>0.FDO/Data</em></a>, <em>P<sub>i</sub></em>), <em>i=1,...,n</em>, into the <a>attribute definition</a>.
         If <a><em>0.FDO/Data</em></a> is not contained in the <a>attribute definition</a>, it just means that the referenced entity is
@@ -100,12 +100,12 @@ Hence, it is a mechanism to enforce that specific <a>attribute</a>s in <a>FDO re
     </dd>
 </dl>
 
-<h3 id="inline-fdo"><dfn data-lt="Lambda FDO|Inline Serialization">Inline <a>FDO</a>s</dfn></h3>
+<h3 id="inline-fdo"><dfn data-lt="Lambda FDO|Inline Serialization">Inline <a>FDOs</a></dfn></h3>
 <p>
     When using <a>profile referencing</a>, an <a>attribute</a> references another<a>FDO</a>, for example <em>a=(&ltattr_def&gt,&ltPID resolving to other <a>FDO</a>&gt)</em>.
     However, rather than referencing the other <a>FDO</a>, it may be serialized directly as the in-line value of <em>a</em>.
     In this case, the serialization depends on the implementation, and the implementation MUST specify the serialization format.
-    Furthermore, <a>inline-FDOs</a> typically do NOT have their own <a>PID</a>s and are hence NOT
+    Furthermore, <a>inline-FDOs</a> typically do NOT have their own <a>PIDs</a> and are hence NOT
     suited for <a>attribute definitions</a>, <a>syntax definitions</a> or <a>profile definitions</a>.
 </p>
 
@@ -113,7 +113,7 @@ Hence, it is a mechanism to enforce that specific <a>attribute</a>s in <a>FDO re
 <p>
     <a>Attribute referencing</a> is a generic mechanism for redirecting to one or multiple other <a>attribute</a>(s) in the same record.
     <a>Attribute referencing</a> can, for example, be used to group information for different purposes.
-    Or it can be used very similarly to unions, i.e., to state that an <a>attribute</a> is effectively realized through one or several other <a>attribute</a>s in the record, which follow more specific <a>attribute definitions</a>.
+    Or it can be used very similarly to unions, i.e., to state that an <a>attribute</a> is effectively realized through one or several other <a>attributes</a> in the record, which follow more specific <a>attribute definitions</a>.
     To start with, here is an example:
 </p>
 
@@ -141,7 +141,7 @@ Hence, it is a mechanism to enforce that specific <a>attribute</a>s in <a>FDO re
         <img alt="Attribute_Referencing_1.png" height="400" src="img/Attribute_Referencing_3.png">
         <figcaption>
             Four examples for how the <a><em>0.FDO/Data</em></a> <a>attribute definition</a> can be instantiated in
-            <a>FDO record</a>s.
+            <a>FDO records</a>.
             In all examples, the <em><a><em>0.FDO/Data</em></a></em> <a>attribute</a> references another
             <a>attribute definition</a> that specifies the way how the data are represented in this <a>FDO</a>.
         </figcaption>
@@ -169,7 +169,7 @@ Hence, it is a mechanism to enforce that specific <a>attribute</a>s in <a>FDO re
 
     <dt><h4 class="rule-heading" id="rule-r7_8">[R7-8] <dfn><a>Attribute Reference</a> Whitelist</dfn></h4></dt>
     <dd>
-        The <a>attribute definition</a> A MAY specify a whitelist of <a>attribute definition</a><a>PID</a>s
+        The <a>attribute definition</a> A MAY specify a whitelist of <a>attribute definition</a><a>PIDs</a>
         <em>B<sub>1</sub>,...,B<sub>n</sub></em>using the <a>attribute</a> <em>(<a><em>0.FDO/DataType</em></a>, B<sub>i</sub>)</em>, i=1,...,n, in its record.
         If A specifies this whitelist, an <a>attribute</a> a (instantiating A) MUST reference an
         <a>attribute</a> b that instantiates any of B<sub>1</sub>,...,B<sub>n</sub>.
@@ -245,12 +245,12 @@ Hence, it is a mechanism to enforce that specific <a>attribute</a>s in <a>FDO re
 <h3 id="external-vocabulary-referencing"><dfn>External Vocabulary Referencing</dfn></h3>
 <!--TODO: Redo according to GitHub issue-->
 <p>
-    It is essential for <a>FDO</a>s that existing vocabularies, ontologies, and terminologies can be reused in <a>records</a>
+    It is essential for <a>FDOs</a> that existing vocabularies, ontologies, and terminologies can be reused in <a>records</a>
     (even if they do not fulfill the same guarantees as attributes, described in <a href="#attributes"></a>).
     This can be carried out by applying <a>external vocabulary referencing</a>.
 </p>
 
-<aside class="example" title="External Vocabulary Referencing: Using Schema.org in <a>FDO</a>s">
+<aside class="example" title="External Vocabulary Referencing: Using Schema.org in <a>FDOs</a>">
     <a href="#ex-vocab-ref"></a> shows how schema.org terms can be used in an <a>FDO record</a> by applying <a>external
     vocabulary referencing</a>.
     <figure id="ex-vocab-ref">
