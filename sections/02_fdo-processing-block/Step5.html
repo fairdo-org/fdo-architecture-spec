@@ -31,7 +31,7 @@
                         This ignores the Expected <a>FDO type</a> list if provided.
                     </li>
                     <li>EXACT_MATCH.
-                        Indicates that the <a>FDO type</a>s in the <a>FDO record</a> need to match exactly the <a>FDO type</a>s in the
+                        Indicates that the <a>FDO types</a> in the <a>FDO record</a> need to match exactly the <a>FDO types</a> in the
                         expected <a>FDO type</a> list.
                     </li>
                     <li>DERIVED_MATCH.
@@ -45,7 +45,7 @@
     </dd>
     <dt>Outputs</dt>
     <dd>
-        This step returns the status of the match as well as a list of the <a>FDO type</a>s that match or are derived from the expected types.
+        This step returns the status of the match as well as a list of the <a>FDO types</a> that match or are derived from the expected types.
         If the list is empty, it indicates that none were found.
         The client can determine from the number of <a>FDO type</a> matches whether the match is full or partial.
     </dd>
@@ -53,27 +53,27 @@
     <dt>Expected behavior</dt>
 
     <dd>
-        In this step, the client will compare the list of <a>FDO type</a>s in the <a>FDO Record</a> with the expected <a>FDO type</a> list
+        In this step, the client will compare the list of <a>FDO types</a> in the <a>FDO Record</a> with the expected <a>FDO type</a> list
         looking for matches.
         The following lists the possible scenarios:
 
         <ol>
             <li>
-                If the <a>FDO type</a> List is empty and/or the Type_Matching flag is set to MATCH_ALL, all the <a>FDO type</a>s within the
+                If the <a>FDO type</a> List is empty and/or the Type_Matching flag is set to MATCH_ALL, all the <a>FDO types</a> within the
                 <a>FDO Record</a> are considered appropriate.
-                The result is FULL_MATCH and the list of all <a>FDO type</a>s found in the <a>FDO record</a>.
+                The result is FULL_MATCH and the list of all <a>FDO types</a> found in the <a>FDO record</a>.
             </li>
             <li>
-                The <a>FDO type</a>s in the <a>FDO record</a>s fully match those in the expected <a>FDO type</a> List.
+                The <a>FDO types</a> in the <a>FDO records</a> fully match those in the expected <a>FDO type</a> List.
                 The result is ALL_MATCH and
-                the list of all matched <a>FDO type</a>s.
+                the list of all matched <a>FDO types</a>.
             </li>
             <li>
-                The <a>FDO type</a>s in the <a>FDO record</a> matches at least one of the <a>FDO type</a> in the expected <a>FDO type</a> list.
-                The result is PARTIAL_MATCH and the list of the matching <a>FDO type</a>s.
+                The <a>FDO types</a> in the <a>FDO record</a> matches at least one of the <a>FDO type</a> in the expected <a>FDO type</a> list.
+                The result is PARTIAL_MATCH and the list of the matching <a>FDO types</a>.
             </li>
             <li>
-                The <a>FDO type</a> in the <a>FDO record</a>s matches none of the <a>FDO type</a> list.
+                The <a>FDO type</a> in the <a>FDO records</a> matches none of the <a>FDO type</a> list.
                 There are two different results depending on
                 the matching condition
                 <ul>
@@ -84,13 +84,13 @@
                     <li>
                         If the Type_Matching is set to DERIVED_MATCH, the client will respectively analyze each of the <a>FDO type</a> in
                         the <a>FDO Record</a> and determine if they are derived from types that are within the expected <a>FDO type</a> list.
-                        The  assumption is that derived <a>FDO type</a>s are compatible with their parent FDO Type.
-                        To do so, the client resolves each of the <a>FDO type</a>s into their respective <a>FDO</a>s and then analyses these <a>FDO</a>s
-                        to see if the types they describe are derived from <a>FDO type</a>s that match a type within the <a>FDO type</a> List.
+                        The  assumption is that derived <a>FDO types</a> are compatible with their parent FDO Type.
+                        To do so, the client resolves each of the <a>FDO types</a> into their respective <a>FDOs</a> and then analyses these <a>FDOs</a>
+                        to see if the types they describe are derived from <a>FDO types</a> that match a type within the <a>FDO type</a> List.
                         If the client determines that one or more of the <a>FDO type</a> in the <a>FDO Records</a> are derived from
-                        <a>FDO type</a>s that are in the expected <a>FDO type</a> list, it will conclude that the <a>FDO Record</a>
-                        is compatible with one or more of its expected <a>FDO type</a>s.
-                        The results can be NO_MATCH if no derived <a>FDO type</a>s are found or DERIVED_MATCH if one or more derived <a>FDO Types</a> matches are found.
+                        <a>FDO types</a> that are in the expected <a>FDO type</a> list, it will conclude that the <a>FDO Record</a>
+                        is compatible with one or more of its expected <a>FDO types</a>.
+                        The results can be NO_MATCH if no derived <a>FDO types</a> are found or DERIVED_MATCH if one or more derived <a>FDO Types</a> matches are found.
                     </li>
                 </ul>
             </li>

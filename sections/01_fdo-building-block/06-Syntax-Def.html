@@ -22,8 +22,8 @@
 
     <dt><h4 class="rule-heading" id="rule-r6_3">[R6-3] <dfn>Syntax Definition are <a>FDOs</a></dfn></h4></dt>
     <dd>
-        All <a>syntax definitions</a> MUST themselves be represented as <a>FDO</a>s that instantiate the <a>syntax definition profile</a>.
-        Hence, they are identified by a <a>PID</a> that resolves into an <a>FDO record</a> consisting of <a>attribute</a>s.
+        All <a>syntax definitions</a> MUST themselves be represented as <a>FDOs</a> that instantiate the <a>syntax definition profile</a>.
+        Hence, they are identified by a <a>PID</a> that resolves into an <a>FDO record</a> consisting of <a>attributes</a>.
     </dd>
 
    <dt><h4 class="rule-heading" id="rule-r6_4">[R6-4] <dfn data-lt="0.FDO/SyntaxDef|FDO Syntax Definition Profile">Syntax Definition Profile</dfn></h4></dt>
@@ -37,7 +37,7 @@
 
     <dt><h4 class="rule-heading" id="rule-r6_5">[R6-5] Domain-Specific Validation</h4></dt>
     <dd>
-        The <a>FDO record</a> of a <a>syntax definition</a> MAY have <a>additional <a>attribute</a>s</a> and instantiate additional <a>profiles</a> for any reason.
+        The <a>FDO record</a> of a <a>syntax definition</a> MAY have <a>additional <a>attributes</a></a> and instantiate additional <a>profiles</a> for any reason.
         For example, domain-specific validation technologies (e.g., SHACL, JSON scheme) MAY be expressed using this.
         However, their implementation MUST be considered optional for generic <a>FDO clients</a>.
     </dd>
@@ -52,9 +52,9 @@
 <table border="2" id="recordSyntaxDefProfile">
     <caption style="caption-side:bottom"><b>Table 4</b>:
         The list of <a>attribute definitions</a> specified by the <a>FDO syntax definition profile</a> (<a><em>0.FDO/SyntaxDef</em></a>).
-        These <a>attribute</a>s MUST be used when defining any new <a>syntax definition</a>.
-        This table does not include all information about the <a>attribute</a>s.
-        Please resolve the <a>attribute definition</a> <a>PID</a>s
+        These <a>attributes</a> MUST be used when defining any new <a>syntax definition</a>.
+        This table does not include all information about the <a>attributes</a>.
+        Please resolve the <a>attribute definition</a> <a>PIDs</a>
         via the Handle System or see the <a href="appendixAttrsFDOTypeSystem">appendix</a> of this document.
     </caption>
     <tr>
@@ -113,7 +113,7 @@
         <td><a><em>0.FDO/Regex</em></a></td>
         <td>
             Only applicable if the value of <a><em>0.FDO/PrimitiveDataType</em></a> is <em>“string”</em>.
-            This regular expression in [[ECMA-262]] syntax MUST be successfully validated for all <a>attribute</a>s that use this <a>syntax definition</a>.
+            This regular expression in [[ECMA-262]] syntax MUST be successfully validated for all <a>attributes</a> that use this <a>syntax definition</a>.
         </td>
         <td>0..1</td>
     </tr>
