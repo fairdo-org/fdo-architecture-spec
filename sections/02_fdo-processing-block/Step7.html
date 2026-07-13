@@ -1,79 +1,106 @@
-<h3 id="step7">S-7: FDO Profile(s) Validation</h3>
-<p>From <a href="#step6">[Step 6]</a>, one or more <a>FDO Profiles</a> of interest were found in the <a>FDO Record</a>. </p>
-<p>The <a>FDO Profile</a> validation step verifies that the <a>FDO Record</a> is valid according to the <a>FDO Profile</a>’s definition. An
-  FDO is said to be an instance of a <a>FDO Profile</a> when it exhibits all the characteristics it specifies. </p>
-<p>The validation step acquires the <a>FDO Profile</a> Definition for each of the <a>FDO Profiles</a> in the <a>FDO Record</a> by resolving
-  each of the <a>FDO Profiles</a>’ identifiers and accessing their respective FDO. Each <a>FDO Profile</a> Definition specifies the
-  properties and more specifically the set of attributes that must be present in any FDO that instantiates it. This
-  definition includes such things as the names of the attributes, value type, description etc. </p>
-<p>The profile validation returns a description of the state of validation which can range between complete and
-  partial success and total failure indicating to the processing entity the validity of <a>FDO Record</a> and the values it
-  can expect to find in it.</p>
+<h3 id="step7">S-7: <a>FDO Profile</a>(s) Validation</h3>
+<p>
+    From <a href="#step6"></a>, one or more <a>FDO Profiles</a> of interest were found in the <a>FDO Record</a>.
+    The <a>FDO Profile</a> validation step verifies that the <a>FDO Record</a> is valid according to the
+    <a>FDO Profile</a>’s definition.
+    An <a>FDO</a> is said to be an instance of a <a>FDO Profile</a> when it exhibits all the characteristics it specifies.
+</p>
+<p>
+    The validation step acquires the <a>FDO Profile</a> Definition for each of the <a>FDO Profiles</a> in the
+    <a>FDO Record</a> by resolving each of the <a>FDO Profiles</a>’ identifiers and accessing their respective <a>FDO</a>.
+    Each <a>FDO Profile</a> Definition specifies the properties and more specifically the set of <a>attribute</a>s
+    that must be present in any <a>FDO</a> that instantiates it.
+    This definition includes such things as the names of the <a>attribute</a>s, value type, description, etc.
+</p>
+<p>
+    The <a>profile validation</a> returns a description of the state of validation which can range between complete and
+    partial success and total failure indicating to the processing entity the validity of
+    <a>FDO Record</a> and the values it can expect to find in it.
+</p>
 <dl>
-  <dt>Inputs</dt>
-  <dd>The inputs consist of the <a>FDO Record</a>, and the list of the <a>FDO Profile</a> to validate the <a>FDO Record</a> against.
-  <dt>Outputs</dt>
-  <dd>The output consists of a list of Validated_Profile. A Validated_Profile consists of the following:
-    <ul>
-      <li>Profile <a>PID</a>: <a>PID</a> of the <a>FDO Profile</a> validated</li>
-      <li>Status:
+    <dt>Inputs</dt>
+    <dd>
+        The inputs consist of the <a>FDO Record</a>, and the list of the <a>FDO Profile</a> to validate the
+        <a>FDO Record</a> against.
+    <dt>Outputs</dt>
+    <dd>
+        The output consists of a list of Validated_Profile.
+        A Validated_Profile consists of the following:
         <ul>
-          <li>VALID: All profile required attributes are found. Note that missing optional fields is acceptable.</li>
-          <li>PARTIALLY_VALID: Some profile required attributes are missing. </li>
-          <li>INVALID, No profile required attributes are found.</li>
-          <li>NOT_DEFINED. No <a>FDO Profile</a> definition could not be found. </li>
+            <li>Profile <a>PID</a>: <a>PID</a> of the <a>FDO Profile</a> validated</li>
+            <li>Status:
+                <ul>
+                    <li>VALID: All profile required <a>attribute</a>s are found.
+                        Note that missing optional fields is acceptable.
+                    </li>
+                    <li>PARTIALLY_VALID: Some profile required <a>attribute</a>s are missing.</li>
+                    <li>INVALID, No profile required <a>attribute</a>s are found.</li>
+                    <li>NOT_DEFINED.
+                        No <a>FDO Profile</a> definition could not be found.
+                    </li>
+                </ul>
+            </li>
+            <li>Attributes: The list of <a>attribute</a>s found in the <a>FDO Profile</a>.
+                Empty list when invalid.
+            </li>
+            <li>MissingAttributes: The list of missing required <a>attribute</a>s.
+                Empty list when VALID.
+            </li>
         </ul>
-      </li>
-      <li>Attributes: The list of attributes found in the <a>FDO Profile</a>. Empty list when invalid.</li>
-      <li>MissingAttributes: The list of missing required attributes. Empty list when VALID.</li>
-    </ul>
-  </dd>
-  <dt>Expected behavior</dt>
+    </dd>
+    <dt>Expected behavior</dt>
 
-  <dd>The <a>FDO Profile</a> Validation shall process each <a>FDO Profile</a> selected from the <a>FDO Record</a> during step 6 and create a
-    list of Profile Validation Status specifying how the <a>FDO Record</a> conforms to each of the <a>FDO Profile</a>’s requirements.
+    <dd>
+        The <a>FDO Profile</a> Validation shall process each <a>FDO Profile</a> selected from the
+        <a>FDO Record</a> during <a href="#step6"></a> and create a list of <a>profile validation</a> status
+        specifying how the <a>FDO Record</a> conforms to each of the <a>FDO Profile</a>’s requirements.
 
-    <p>For each <a>FDO Profile</a> selected, the process will acquire its respective FDO and extract from it the <a>FDO Profile</a>
-      Definition. From this definition it will get the list of attributes and look for them in the <a>FDO Record</a>. Every
-      attribute it finds in the <a>FDO Record</a> will be added to the Attributes list. Every required attribute not found in
-      the
-      <a>FDO Record</a> is added to the MissingAttributes list.</p>
+        <p>
+            For each <a>FDO Profile</a> selected, the process will acquire its respective <a>FDO</a> and extract from it the
+            <a>FDO profile definition</a>.
+            From this definition it will get the list of <a>attribute</a>s and look for them in the <a>FDO Record</a>.
+            Every <a>attribute</a> it finds in the <a>FDO Record</a> will be added to the <a>attribute</a>s list.
+            Every required <a>attribute</a> not found in the <a>FDO Record</a> is added to the MissingAttributes list.
+        </p>
 
-    <p>The following describe the expected behavior for a given <a>FDO Profile</a>.</p>
-    <ol>
-      <li>If the <a>FDO Profile</a> cannot be mapped to a valid <a>FDO Profile</a> Definition the process throws one of the following
-        Exception:
-        <ul>
-          <li>ERROR_RESOLVING_FDO: Profile <a>PID</a> cannot be resolved.</li>
-          <li>ERROR_PROFILE_NOT_ACCESSIBLE: The <a>PID</a> resolve but the FDO is not accessible / not valid.</li>
-          <li>ERROR_NO_PROFILE_DEF: No definition found in the Profile FDO.</li>
-          <li>ERROR_INVALID_PROFILE: The Profile FDO is not a Profile definition.</li>
-          <li>ERROR_PARSING_DEFINITION: Illegal or incompatible profile definition.</li>
-        </ul>
-      </li>
-      <li>The <a>FDO Profile</a> has an <a>FDO Profile</a> Definition and the <a>FDO Record</a> has all of the required attributes. The
-        Profile_Validation_Status contains:
-        <ul>
-          <li>Status: VALID</li>
-          <li>Attributes: contains the list of all found attributes</li>
-          <li>MissingAttributes: empty.</li>
-        </ul>
-      </li>
-      <li>
-        The <a>FDO Profile</a> has an <a>FDO Profile</a> Definition and the <a>FDO Record</a> has some of the required attributes. The
-        Profile_Validation_Status contains:
-        <ul>
-          <li>Status: PARTIALLY_VALID</li>
-          <li>Attributes: contains the list of found attributes.</li>
-          <li>MissingAttributes: contains the required attributes that are missing.</li>
-        </ul>
-      </li>
-      <li>
-        The <a>FDO Profile</a> has an <a>FDO Profile</a> Definition and the <a>FDO Record</a> has none of the required attributes.
-        Status: INVALID
-        Attributes: contains the list of any optional attributes.
-        MissingAttributes: contains the list of required Attributes
-      </li>
-    </ol>
-  </dd>
+        <p>The following describes the expected behavior for a given <a>FDO Profile</a>.</p>
+        <ol>
+            <li>
+                If the <a>FDO Profile</a> cannot be mapped to a valid <a>FDO profile definition</a> the process throws one of the following exceptions:
+                <ul>
+                    <li>ERROR_RESOLVING_FDO: Profile <a>PID</a> cannot be resolved.</li>
+                    <li>ERROR_PROFILE_NOT_ACCESSIBLE: The <a>PID</a> resolve but the <a>FDO</a> is not accessible / not valid.
+                    </li>
+                    <li>ERROR_NO_PROFILE_DEF: No definition found in the <a>FDO profile</a>.</li>
+                    <li>ERROR_INVALID_PROFILE: The <a>FDO profile</a> is not a <a>profile definition</a>.</li>
+                    <li>ERROR_PARSING_DEFINITION: Illegal or incompatible profile definition.</li>
+                </ul>
+            </li>
+            <li>The <a>FDO Profile</a> has an <a>FDO profile definition</a> and the <a>FDO Record</a> has all the required <a>attribute</a>s.
+                The Profile_Validation_Status contains:
+                <ul>
+                    <li>Status: VALID</li>
+                    <li>Attributes: contains the list of all found <a>attribute</a>s</li>
+                    <li>MissingAttributes: empty.</li>
+                </ul>
+            </li>
+            <li>
+                The <a>FDO Profile</a> has an <a>FDO profile definition</a> and the
+                <a>FDO Record</a> has some of the required <a>attribute</a>s.
+                The Profile_Validation_Status contains:
+                <ul>
+                    <li>Status: PARTIALLY_VALID</li>
+                    <li>Attributes: contains the list of found <a>attribute</a>s.</li>
+                    <li>MissingAttributes: contains the required <a>attribute</a>s that are missing.</li>
+                </ul>
+            </li>
+            <li>
+                The <a>FDO Profile</a> has an <a>FDO profile definition</a> and the
+                <a>FDO Record</a> has none of the required <a>attribute</a>s.
+                Status: INVALID
+                <a>attribute</a>s: contains the list of any optional <a>attribute</a>s.
+                MissingAttributes: contains the list of required <a>attribute</a>s
+            </li>
+        </ol>
+    </dd>
 </dl>

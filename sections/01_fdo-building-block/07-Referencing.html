@@ -141,7 +141,7 @@ Hence, it is a mechanism to enforce that specific <a>attribute</a>s in <a>FDO re
         <img alt="Attribute_Referencing_1.png" height="400" src="img/Attribute_Referencing_3.png">
         <figcaption>
             Four examples for how the <a><em>0.FDO/Data</em></a> <a>attribute definition</a> can be instantiated in
-            <a>FDO</a> records.
+            <a>FDO record</a>s.
             In all examples, the <em><a><em>0.FDO/Data</em></a></em> <a>attribute</a> references another
             <a>attribute definition</a> that specifies the way how the data are represented in this <a>FDO</a>.
         </figcaption>
@@ -195,7 +195,7 @@ Hence, it is a mechanism to enforce that specific <a>attribute</a>s in <a>FDO re
         (instantiating <a>attribute definition</a> B) if and only if
         <ul>
             <li><em>a<sub>val</sub></em> is a <a>PID</a> resolving to an <a>attribute definition</a></li>
-            <li>the referenced <a>attribute</a> b is instantiated in the same <a>FDO</a> record as <a>attribute</a> a </li>
+            <li>the referenced <a>attribute</a> b is instantiated in the same <a>FDO record</a> as <a>attribute</a> a </li>
             <li><em>a<sub>val</sub> = b<sub>def</sub></em></li>
             <li><em>b<sub>val</sub></em> is validated by <em>b<sub>def</sub></em>. This ensures the reference is actually fulfilled.</li>
         </ul>
@@ -230,7 +230,7 @@ Hence, it is a mechanism to enforce that specific <a>attribute</a>s in <a>FDO re
     <dt><h4 class="rule-heading" id="rule-r7_11">[R7-11] <dfn>Consecutive usage of <a>attribute references</a></dfn></h4></dt>
     <dd>
         There may be cases of consecutive referencing (e.g., a references b, b references c, …).
-        All such references within an <a>FDO</a> record must form a directed acyclic graph (no loops allowed).
+        All such references within an <a>FDO record</a> must form a directed acyclic graph (no loops allowed).
     </dd>
 </dl>
 <p>
@@ -297,7 +297,7 @@ Hence, it is a mechanism to enforce that specific <a>attribute</a>s in <a>FDO re
 
     <dt><h4 class="rule-heading" id="rule-r7_14">[R7-14] Using external vocabulary <a>attributes</a> in an <a>FDO</a></h4></dt>
     <dd>
-        To use <a>external vocabulary referencing</a> in the <a>FDO</a> record, the record MUST contain
+        To use <a>external vocabulary referencing</a> in the <a>FDO record</a>, the record MUST contain
         <ul>
             <li>
                 an <a>attribute</a> <em>a=(a<sub>def</sub>,a<sub>val</sub>)</em> that instantiates

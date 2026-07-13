@@ -143,7 +143,7 @@
         An <a>attribute definition</a> A MAY be a union of <a>attribute definitions</a> (a.k.a. “any of”)
         <em>A<sub>1</sub>,...,A<sub>n</sub></em> by containing the <a>attribute</a> (<a><em>0.FDO/ValidationMechanism</em></a>, Union)
         and the <a>attributes</a> (<a><em>0.FDO/DataType</em></a>, <em>A<sub>i</sub></em>) for i=1,...,n.
-        To instantiate this <a>attribute definition</a> in another <a>FDO</a> record,
+        To instantiate this <a>attribute definition</a> in another <a>FDO record</a>,
         <ul>
             <li>the first element MUST be the <a>PID</a> or a name of <em>A</em>,</li>
             <li>the value MUST comply with the <a>syntactic rules</a> of at least one of <em>A<sub>1</sub>,...,A<sub>n</sub></em>.</li>
@@ -181,7 +181,7 @@
     <dt><h4 class="rule-heading" id="rule-r5_12">[R5-12] <dfn data-lt="0.FDO/AttributeDef|Attribute Definition Profile">FDO Attribute Definition Profile</dfn></h4></dt>
     <dd>
         The <a>FDO attribute definition profile</a> defines a set of <a>attribute definitions</a> that MUST be instantiated
-        in the <a>FDO</a> record of every <a>attribute definition</a> with respect to their cardinalities.
+        in the <a>FDO record</a> of every <a>attribute definition</a> with respect to their cardinalities.
         The <a>FDO attribute definition profile</a> is a <a>profile</a> that instatiates <a><em>0.FDO/ProfileDef</em></a> and extends from the <a>root profile</a>.
         It is defined by the <a>FDO Forum</a>, has the <a>PID</a> <a><em>0.FDO/AttributeDef</em></a> and contains the set of
         <a>attribute definitions</a> shown in <a href="#attrDefProfileRecord">Table 3</a>.

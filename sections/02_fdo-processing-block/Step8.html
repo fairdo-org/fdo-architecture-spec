@@ -1,56 +1,70 @@
-<h3 id="step8">S-8: FDO Attributes Processing</h3>
-The step requires that <a href="#step7">[Step 7]</a> successfully validated one or more profiles resulting in one or
-more sets of
-attributes. For each set of attributes, the <a>FDO Attribute</a> Processing checks each attribute’s type - value pair to
-determine if the value is appropriate given its type. This validation process will greatly vary in complexity
-depending on the specific type.
+<h3 id="step8">S-8: <a>FDO attribute</a>s Processing</h3>
+The step requires that <a href="#step7"></a> successfully validated one or more profiles resulting in one or
+more sets of <a>attributes</a>.
+For each set of <a>attribute</a>s, the <a>FDO attribute</a> processing checks each <a>attribute</a>’s type - value pair to
+determine if the value is appropriate given its type.
+This validation process will greatly vary in complexity depending on the specific type.
 <dl>
-  <dt>Inputs</dt>
-  <dd>The inputs consist of the list of Validated_Profile from <a href="#step7">[Step 7]</a> with a status of VALID,
-    PARTIALLY_VALID. . Note
-    that this step could be used with any attribute list that would need validation.
-  </dd>
-  <dt>Outputs</dt>
-  <dd>The output will be a list of ValidatedProfile where each attribute will have a ValidityStatus status and a
-    ErrorDescription description.</dd>
+    <dt>Inputs</dt>
+    <dd>
+        The inputs consist of the list of Validated_Profile from <a href="#step7"></a> with a status of VALID, PARTIALLY_VALID.
+        Note that this step could be used with any <a>attribute</a> list that would need validation.
+    </dd>
+    <dt>Outputs</dt>
+    <dd>
+        The output will be a list of ValidatedProfile where each <a>attribute</a> will have a ValidityStatus status and a
+        ErrorDescription description.
+    </dd>
 
-  <dt>Expected behavior</dt>
-  <dd>The <a>FDO Attribute</a> Processing iterates over the list of attributes and using the following steps:</p>
-    <ol>
-      <li>If it has a validation rule for the type it applies it on the attribute’s value. It will set the validity
-        status
-        and any error description it may have generated.
+    <dt>Expected behavior</dt>
+    <dd>
+        The <a>FDO attribute</a> processing iterates over the list of <a>attribute</a>s and using the following steps:
+        <ol>
+            <li>If it has a validation rule for the type it applies it on the <a>attribute</a>’s value.
+                It will set the validity status and any error description it may have generated.
+                The ValidityStatus will include, but not limited to, the following list:
+                <ul>
+                    <li>VALID: Indicates that the value is appropriate according to the type validation rules.</li>
+                    <li>INVALID: Indicates that the value did not comply with the validation rules.</li>
+                    <li>PARTIAL: Indicates that the value is partially valid.
+                        An example is the case of a <a><em>0.FDO/DateTime</em></a> <a>attribute</a>,
+                        where the date is filled in but there is no time information.
+                        While incomplete, this value could still be of interest to the client.
+                    </li>
+                </ul>
+            </li>
 
-        <p>The ValidityStatus will include, but not limited to, the following list:</p>
-        <ul>
-          <li>VALID: Indicates that the value is appropriate according to the type validation rules.</li>
-          <li>INVALID: Indicates that the value did not comply with the validation rules. </li>
-          <li>PARTIAL: Indicates that the value is partially valid. An example is the case of a 0.FDO/DateTime
-            attribute,
-            where the date is filled in but there is no time information. While incomplete, this value could still be of
-            interest to the client.</li>
-        </ul>
-      </li>
+            <li>
+                It is expected that there could be additional specific type-defined statuses.
+                If the <a>FDO attribute</a> processing does not have validation rules for the type,
+                it will attempt to acquire them.
+                The <a>FDO attribute</a> process has the following options:
 
-      <li>It is expected that there could be additional specific type defined statuses.
+                <ul>
+                    <li>
+                        Assume that the <a>PID</a> could be that of an <a>FDO</a>.
+                        Start with <a href="#step1"></a> using the type
+                        identifier as the potential <a>PID</a>.
+                        The Expected Type List in <a href="#step5"></a> should be <a><em>0.FDO/AttributeDef</em></a>,
+                        and the Expected Profile List in <a href="#step6"></a> be <a><em>0.FDO/AttributeDef</em></a>initionProfile,
+                        finally, one all the steps are completed, extract the validation rules.
+                        If it succeeds, it will retry operation 1 above.
+                        If it fails at any point, the <a>FDO attribute</a> Process will set
+                        the <a>attribute</a> status to NOT_VALIDATED and wi
+                    </li>
 
-        <p>If the <a>FDO Attribute</a> Processing does not have validation rules for the type, it will attempt to acquire them.
-          The <a>FDO Attribute</a> Process has the following options:</p>
-        <ul>
-          <li>Assume that the <a>PID</a> could be that of an FDO. Start with S<a href="#step1">[Step 1]</a> using the type
-            identifier as the potential <a>PID</a>. The Expected Type List in <a href="#step5">[Step 5]</a> should be
-            0.FDO/AttributeDef, and the Expected Profile List in <a href="#step6">[Step 6]</a> be
-            0.FDO/AttributeDefinitionProfile, finally, one all the steps are completed, extract the validation rules.
-            If it succeeds it will retry operation 1 above. If it fails at any point, the <a>FDO Attribute</a> Process will set
-            the attribute status to NOT_VALIDATED and wi</li>
+                    <li>
+                        The type has a <a>PID</a> that the client knows points to a type registry.
+                        It tries to acquire the rules and retries operation 1 above.
+                    </li>
 
-          <li>The type has a <a>PID</a> that the client knows points to a type registry. It tries to acquire the rules and
-            retries operation 1 above.</li>
-
-          <li>The type as a <a>PID</a> that is unrecognizable. The process cannot evaluate the attribute sets status of
-            NORULES: Indicates that the attribute processing did not have any rules to validate the attribute.</li>
-        </ul>
-      </li>
-    </ol>
-  </dd>
+                    <li>
+                        The type as a <a>PID</a> that is unrecognizable.
+                        The process cannot evaluate the <a>attribute</a> sets status of NORULES:
+                        Indicates that the <a>attribute</a> processing did not have any rules to validate the <a>attribute</a>.
+                    </li>
+                </ul>
+            </li>
+        </ol>
+    </dd>
 </dl>

@@ -1,28 +1,32 @@
-<h3 id="step2">S-2: Processing / Resolution of PIDs</h3>
-This process shall resolve the identifier using the resolvers from the Iist of Identifier-Resolvers provided by 
+<h3 id="step2">S-2: Processing / Resolution of <a>PID</a>s</h3>
+This process shall resolve the identifier using the resolvers from the Iist of Identifier-Resolvers provided by
 <a href="#step1">[Step 1]</a>.
 <dl>
-  <dt>Inputs</dt>
-  <dd>
-    <p>A list of Identifer-Resolvers from <a href="#step1">[Step 1]</a></p>
-    <p>An optional flag TRY_ALL that will try all resolvers. The default is to stop at the first successful resolution.
-    </p>
-  </dd>
-  <dt>Outputs</dt>
-  <dd>For each resolver specified in list of resolvers that succeed, the following information is returned.</p>
-    <ul>
-      <li>The name of the resolver</li>
-      <li>Resolution status: RESOLVED</li>
-      <li>The Identifier Record</li>
-    </ul>
-    <p>If the resolution is not successful:</p>
-    <ul>
-      <li>The name of the resolver</li>
-      <li>Resolution status: NOT_RESOLVED</li>
-      <li>The resolvers error message if any</li>
-    </ul>
-  </dd>
-  <dt>Expected behavior</dt>
-  <dd>The process will try each resolver until one is successful or ,if specified, all successful resolutions. This
-    process will return each resolver’s respective identifier record. The process MUST prevent false positives. </dd>
+    <dt>Inputs</dt>
+    <dd>
+        <p>A list of Identifer-Resolvers from <a href="#step1">[Step 1]</a></p>
+        <p>An optional flag TRY_ALL that will try all resolvers.
+            The default is to stop at the first successful resolution.
+        </p>
+    </dd>
+    <dt>Outputs</dt>
+    <dd>For each resolver specified in list of resolvers that succeed, the following information is returned.</p>
+        <ul>
+            <li>The name of the resolver</li>
+            <li>Resolution status: RESOLVED</li>
+            <li>The Identifier Record</li>
+        </ul>
+        <p>If the resolution is not successful:</p>
+        <ul>
+            <li>The name of the resolver</li>
+            <li>Resolution status: NOT_RESOLVED</li>
+            <li>The resolvers error message if any</li>
+        </ul>
+    </dd>
+    <dt>Expected behavior</dt>
+    <dd>The process will try each resolver until one is successful or, if specified, all successful resolutions.
+        This
+        process will return each resolver’s respective identifier record.
+        The process MUST prevent false positives.
+    </dd>
 </dl>
