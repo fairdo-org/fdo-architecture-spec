@@ -64,7 +64,10 @@ jobs:
           sed -i '/<\/body>/r /tmp/banner.html' index.html
 
       - name: Cleanup orphaned previews
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
           git fetch origin gh-pages --depth=1
           git checkout gh-pages
           
