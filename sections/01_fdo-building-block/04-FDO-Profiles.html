@@ -161,20 +161,24 @@
     <tr>
         <td><a><em>0.FDO/Attribute</em></a>
         </td>
-        <td><em><a><em>0.FDO/Attribute</em></a></em> defines the set of
-            <a>attribute definitions</a> that MUST be instantiated in any <a>FDO</a> instantiating this <a>profile</a>.
+        <td><a><em>0.FDO/Attribute</em></a> defines <a>attribute definitions</a>
+            that MUST be instantiated in any <a>FDO</a> instantiating this <a>profile</a> (via 0.FDO/Profile).
+            The value of this <a>attribute</a> is a PID of the <a>attribute definition</a>.
+            It can be repeated to add multiple <a>attribute definitions</a>.
             The cardinality of the <a>attribute definitions</a> MUST be respected in the <a>FDOs</a>.
-            When not using <a>profile extension</a>, <a><em>0.FDO/Attribute</em></a> MUST be defined with at least the attributes from the <a>root profile</a>.
-            Other <a>attribute definitionss</a> can be added by adding more <a><em>0.FDO/Attribute</em></a> <a>tuples</a> with the <a>PID</a> of the desired <a>attribute definition</a>.
+            When not using <a>profile extension</a>, <a><em>0.FDO/Attribute</em></a> MUST be defined
+            with at least the attributes the <a>root profile</a> specifies.
         </td>
         <td>0..*</td>
     </tr>
     <tr>
         <td><a><em>0.FDO/ExtendsProfile</em></a></td>
-        <td>If this <a>profile</a> is an extension of another <a>profile</a>, this <a>attribute</a> specifies the
-            <a>PID</a> of the parent profile (see <a href="#r4_11">[R4-11]</a>).
-            All <a>profiles</a> MUST either extend from <a><em>0.FDO/Root</em></a>, another profile that recursively extends
-            from <a><em>0.FDO/Root</em></a>, or specify the mandatory attributes from <a><em>0.FDO/Root</em></a> using <a><em>0.FDO/Attribute</em></a>.
+        <td>This <a>attribute</a> specifies the PID of another <a>profile</a>.
+            A <a>profile</a> containing this attribute, will implicitly require all attributes
+            of the referenced <a>profile</a> (see <a href="#r4_11">[R4-11]</a>).
+            In order to ensure all FDOs using this <a>profile</a> have the minimum set of attributes (as specified by 0.FDO/Root),
+            a FDO MUST either extend directly or indirectly from <a><em>0.FDO/Root</em></a>.
+            Alternatively, it may specify these minimum attributes directly using <a><em>0.FDO/Attribute</em></a>.
         </td>
         <td>0..*</td>
     </tr>
