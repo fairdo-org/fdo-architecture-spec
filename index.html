@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Fair Digital Objects Architecture DRAFT</title>
+    <script
+      src="https://www.w3.org/Tools/respec/respec-w3c"
+      class="remove"
+      defer
+    ></script>
+    <script class="remove">
+      // All config options at https://respec.org/docs/
+      var respecConfig = {
+        specStatus: "unofficial",
+        editors: [
+          {
+            name: "S. Bingert", 
+            company: "GWDG",
+            companyUrl: "https://www.gwdg.de/",
+            orcid: "0000-0001-9547-1582"
+          },
+          { 
+            name: "Ch. Blanchi",
+            company: "DONA",
+            companyUrl: "https://www.dona.net",
+            orcid: "0000-0003-2277-5176"
+          },
+          { 
+            name: "J. Böhm", 
+            company: "GWDG",
+            companyUrl: "https://www.gwdg.de/"
+          }
+        ],
+        authors: [
+          {
+            name: "N. Blumenröhr",
+            company: "KIT"
+          },
+          { 
+            name: "I. Anders",
+            company: "DKRZ",
+            companyUrl: "https://www.dkrz.de/",
+            orcid: "0000-0001-7337-3009"          
+          },
+          { 
+            name: "J. Castro",
+            company: "ZBMED",
+            orcid: "0000-0003-3986-0510"
+          },
+          { 
+            name: "W. Elbers",
+            company: "CLARIN"
+          },
+          { 
+            name: "T. Goosen",
+            company: "CLARIN",
+            orcid: "0000-0002-1634-257X"
+          },
+          { 
+            name: "M. Inckmann",
+            company: "KIT",
+            orcid: "0009-0005-2800-4833"
+          },
+          { 
+            name: "T. Kuhn",
+            company: "Knowledge Pixels"
+          },
+          { 
+            name: "K. Peters-von Gehlen",
+            company: "DKRZ",
+            companyUrl: "https://www.dkrz.de/"
+          },
+          { 
+            name: "A. Pfeil",
+            company: "KIT"
+          },
+          { 
+            name: "U. Schwardmann"
+          },
+          { 
+            name: "S. Soiland-Reyes",
+            company: "University Manchester"
+          },
+          { 
+            name: "C. Weiland",
+            company: "Senckenberg, SDCT"
+          }
+        ],
+        github: "https://github.com/fairdo-org/fdo-architecture-spec/",
+        shortName: "FDO_Architecture",
+        //xref: "web-platform",
+        //group: "TSIG",
+        latestVersion: null,
+        edDraftURI: "https://github.com/fairdo-org/fdo-architecture-spec",
+        commitHistoryURL: "https://github.com/fairdo-org/fdo-architecture-spec/commits/main/"
+      };
+    </script>
+  </head>
+  <body>
+    <p class="copyright"> 
+      <a href="https://fair-org.github.io/fdo-architecture-spec/">Fair Digital Objects Architecture Spec</a> 
+      © 2026 by 
+      <a href="https://fairdo.org">FDO Forum</a> 
+      is licensed under 
+      <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+      <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;">
+      <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;">
+    </p>
+    <section id="abstract">
+      <p>This document specifies the architecture of FAIR Digital Objects (FDOs) as a unified,
+        technology-independent framework for representing and managing digital and physical resources 
+        in a machine-actionable manner. FDOs are persistent bundles of information identified by 
+        globally unique and resolvable persistent identifiers (PIDs) that resolve to structured 
+        FDO Records defined by explicit profiles and registered attributes. 
+        The specification describes the core building blocks of FDOs
+        and defines normative requirements to ensure predictability, interoperability, and long-term persistence. 
+        By separating abstract object semantics from concrete implementation technologies, 
+        the architecture enables interoperability across heterogeneous implementation stacks.
+        FDOs provide a common foundation for repositories, dataspaces, and automated processing 
+        workflows, supporting FAIR principles, data sovereignty, trust, and scalable reuse across 
+        scientific and industrial ecosystems.
+      </p>
+    </section>
+    <section id="sotd">
+      <p>
+        This document is an official publication of the FDO Forum. 
+        This document version has the status of a draft work document according to the FDO Forum process. 
+        This document will undergo the FDO Forum process for official documents.
+      </p>
+    </section>
+    <section class="informative">
+      <h2>Introduction</h2>
+      <div data-include="sections/introduction/00-Intro.html"></div>
+        <h3>How to Read this Document</h3>
+            <div data-include="sections/introduction/01-How-To-Read-This-Document.html"></div>
+        <h3>High-Level Overview of the FDO Concept</h3>
+            <div data-include="sections/introduction/02-High-Level-Overview.html"></div>
+<!--     
+      <aside class="note" title="A useful note">
+      <p>I'm a note!</p>
+      </aside>
+-->
+    </section>
+    <section>
+      <h2>Terminology</h2>
+      <div data-include="sections/02-Terminology.html"></div>
+    </section>
+  <!--
+    <section>
+      <h2>A section</h2>
+      <aside class="example">
+        <p>This is an example.</p>
+        <pre class="js">
+        // Automatic syntax highlighting
+        function someJavaScript(){}
+        </pre>
+      </aside>     
+      <section>
+        <h3>I'm a sub-section</h3>
+        <p class="issue" data-number="121">
+          <!-- Issue can automatically be populated from GitHub -/->
+        </p>
+      </section
+    </section>
+    <section data-dfn-for="Foo">
+      <h2>Start your spec!</h2>
+      <pre class="idl">
+        [Exposed=Window]
+        interface Foo {
+        attribute DOMString bar;
+        undefined doTheFoo();
+        };
+      </pre>
+      <p>The <dfn>Foo</dfn> interface represents a {{Foo}}.</p>
+      <p>
+        The <dfn>doTheFoo()</dfn> method does the foo. Call it by running
+        {{Foo/doTheFoo()}}.
+      </p>
+      <ol class="algorithm">
+        <li>A |variable:DOMString| can be declared like this.</li>
+      </ol>
+    </section>
+-->
+    <section data-dfn-for="building-blocks">
+      <h2>FDO Building Blocks</h2>
+      <section id="pid">
+        <h3>PID</h3>
+        <div data-include="sections/fdo-building-block/01-PID.html"></div>
+      </section>  
+      <section id="granularity">
+        <h3>Granularity</h3>
+        <div data-include="sections/fdo-building-block/02-Granularity.html"></div>
+      </section>  
+      <section id="records">
+        <h3>FDO Records</h3>
+        <div data-include="sections/fdo-building-block/03-FDO-Records.html"></div>
+      </section>  
+      <section id="profiles">
+        <h3>FDO Profiles</h3>
+        <div data-include="sections/fdo-building-block/04-FDO-Profiles.html"></div>
+      </section>  
+      <section id="attributes">
+        <h3>FDO Attributes</h3>
+        <div data-include="sections/fdo-building-block/05-Attributes.html"></div>
+      </section>  
+      <section id="syntax-def">
+        <h3>Syntax Definitions</h3>
+        <div data-include="sections/fdo-building-block/06-Syntax-Def.html"></div>
+      </section>  
+      <section id="advanced-ref">
+        <h3>Advanced Referencing</h3>
+        <div data-include="sections/fdo-building-block/07-Referencing.html"></div>
+      </section>  
+      <section id="validation">
+        <h3>Validation</h3>
+        <div data-include="sections/fdo-building-block/08-Validation.html"></div>
+      </section>  
+      <section id="mo-attributes">
+        <h3>Mandatory and Optional attributes</h3>
+        <div data-include="sections/fdo-building-block/09-Mandetory-Attributes.html"></div>
+      </section>  
+      <section id="fdo-types">
+        <h3>FDO Types</h3>
+        <div data-include="sections/fdo-building-block/10-FDO-Types.html"></div>
+      </section> 
+      <section id="updating">
+        <h3>Updating FDOs</h3>
+         <div data-include="sections/fdo-building-block/11-Updating.html"></div>
+      </section>  
+    </section>
+    <section data-dfn-for="generic-processing">
+      <h2>Generic FDO Processing</h2>
+      <section id="processing-intro">
+        <h3>Introduction to Processing</h3>
+        <div data-include="sections/fdo-processing-block/Introduction.html"></div>
+      </section>
+      <section id="step1">
+        <h3>S-1: Detection of PIDs</h3>
+        <div data-include="sections/fdo-processing-block/Step1.html"></div>
+      </section>
+      <section id="step2">
+        <h3>S-2: Processing / Resolution of PIDs</h3>
+        <div data-include="sections/fdo-processing-block/Step2.html"></div>
+      </section>
+      <section id="step3">
+        <h3>S-3: PID Record Parsing into an FDO Record</h3>
+        <div data-include="sections/fdo-processing-block/Step3.html"></div>
+      </section>
+      <section id="step4">
+        <h3>S-4: FDO Record Root Profile Validation</h3>
+        <div data-include="sections/fdo-processing-block/Step4.html"></div>
+      </section>
+      <section id="step5">
+        <h3>S-5: FDO Record Type(s) Inspection</h3>
+        <div data-include="sections/fdo-processing-block/Step5.html"></div>
+      </section>
+      <section id="step6">
+        <h3>S-6: FDO Profile(s) Inspection</h3>
+        <div data-include="sections/fdo-processing-block/Step6.html"></div>
+      </section>
+      <section id="step7">
+        <h3>S-7: FDO Profile(s) Validation </h3>
+        <div data-include="sections/fdo-processing-block/Step7.html"></div>
+      </section>
+      <section id="step8">
+        <h3>S-8: FDO Attributes Processing</h3>
+        <div data-include="sections/fdo-processing-block/Step8.html"></div>
+      </section>
+      <section id="step9">
+        <h3>S-9: FDO Attributes Evaluation</h3>
+        <div data-include="sections/fdo-processing-block/Step9.html"></div>
+      </section>
+      <section id="step10">
+        <h3>S-10: FDO Data Access</h3>
+        <div data-include="sections/fdo-processing-block/Step10.html"></div>
+      </section>
+      <section id="step11">
+        <h3>S-11: FDO Data Validation</h3>
+        <div data-include="sections/fdo-processing-block/Step11.html"></div>
+      </section>
+    </section> 
+    <section id="conformance">
+      <div data-include="sections/03-Conformance.html"></div>
+    </section>
+    <section id="tof" class="appendix"></section>
+    <section id="index" class="appendix"></section>
+  </body>
+</html>
