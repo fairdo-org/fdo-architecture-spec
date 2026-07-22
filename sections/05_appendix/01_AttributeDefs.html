@@ -1,34 +1,41 @@
 <h3 id="appendixAttrsFDOTypeSystem">List of <a>attribute definitions</a> used in this document</h3>
 
-<p>
-    The lists of attributes given in C.1.1-C.1.3 are very early drafts and currently under discussion. The discussion
+<aside class="note">
+    The lists of attributes given in <a href="#sec-c-1-1">C.1.1</a> - <a href="#sec-c-1-3">C.1.3</a> are very early drafts and currently under discussion. The discussion
     space can be found <a href="https://github.com/fairdo-org/fdo-architecture-spec/discussions/43">here</a>.
-</p>
-<p>
+</aside>
+<aside class="note">
     To achieve definition of high-quality attributes, each attribute definition has to settle on:
-</p>
-<ul>
-    <li>the attribute name</li>
-    <li>the attribute description</li>
-    <li>the attribute cardinality</li>
-    <li>the attribute validation mechanism (syntax, union, inlineCombination, attribute referencing,
-        profile referencing, external vocabulary referencing)
-    </li>
-    <li>
-        Depending on the validation mechanism an attribute uses, the following needs to be specified:
-        <ul>
-            <li>syntax: a syntax definition belonging to this attribute</li>
-            <li>union: several attribute definitions comprising this union</li>
-            <li>inlineCombination: several attribute definitions comprising this inline combination</li>
-            <li>attribute referencing: a list of attributes which can be pointed at</li>
-            <li>profile referencing: a list of profiles which can be pointed at</li>
-            <li>external vocabulary referencing: always points at 0.FDO/ImportsVocabulary</li>
-        </ul>
-    </li>
-</ul>
+    <ul>
+        <li>the attribute name</li>
+        <li>the attribute description</li>
+        <li>the attribute cardinality</li>
+        <li>the attribute validation mechanism (syntax, union, inlineCombination, attribute referencing,
+            profile referencing, external vocabulary referencing)
+        </li>
+        <li>
+            Depending on the validation mechanism an attribute uses, the following needs to be specified:
+            <ul>
+                <li>syntax: a syntax definition belonging to this attribute</li>
+                <li>union: several attribute definitions comprising this union</li>
+                <li>
+                    inlineCombination: several attribute definitions comprising this inline combination, and potentially
+                    a cardinality to override the original attribute cardinality
+                </li>
+                <li>attribute referencing: a list of attributes which can be pointed at</li>
+                <li>profile referencing: a list of profiles which can be pointed at</li>
+                <li>external vocabulary referencing: always points at 0.FDO/ImportsVocabulary</li>
+            </ul>
+        </li>
+    </ul>
+</aside>
 
-<h4>Mandatory attributes</h4>
+<h4 id="sec-c-1-1">Mandatory attributes</h4>
+This list of attributes is a draft of the mandatory attributes as defined by the FDO Forum.
 
-<h4>Optional/recommended attributes</h4>
+<h4>Optional/Recommended attributes</h4>
+This list of attributes is a draft of the optional/recommended attributes as defined by the FDO Forum.
 
-<h4>Attributes belonging to the type system</h4>
+<h4 id="sec-c-1-3">Attributes belonging to the type system</h4>
+This list of attributes is a draft of the attributes that belong to the type system and that are continuously
+mentioned throughout this specification. They are defined by the FDO Forum.
