@@ -57,7 +57,7 @@ The document uses [https://respec.org/docs/](https://respec.org/docs/) for the c
 
 ## Previews
 
-Every branch and pull request automatically generates a preview deployment. Branch previews are available at `https://fairdo-org.github.io/fdo-architecture-spec/preview/<branch-name>/`, and PR previews at `https://fairdo-org.github.io/fdo-architecture-spec/preview/PR-<number>/`.
+Every branch and pull request automatically generates a preview deployment. Branch previews are available at `https://fairdo-org.github.io/fdo-architecture-spec/preview/<branch-name>/` (see the action run for the actual URL, if you use special characters in the branch name), and PR previews at `https://fairdo-org.github.io/fdo-architecture-spec/preview/pr-<number>/`.
 
 ## Contributing
 
