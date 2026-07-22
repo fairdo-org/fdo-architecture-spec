@@ -29,9 +29,72 @@
         </li>
     </ul>
 </aside>
+<aside class="note">
+    Discussion workflow: When the group has agreed an a specific cell in one of the tables, one editor is chosen to make
+    the changes in the table. We use the following color code to guide the discussion:
+    <ol>
+        <li>red: discussion did not start yet, or currently under discussion</li>
+        <li>green: discussion finalized</li>
+    </ol>
+    Colors will be removed after discussions have concluded.
+</aside>
 
 <h4 id="sec-c-1-1">Mandatory attributes</h4>
 This list of attributes is a draft of the mandatory attributes as defined by the FDO Forum.
+
+<table border="2" id="mandatory-attributes" style="background-color: #FFC2C2">
+    <caption style="caption-side:bottom"><b>Table 2</b>: <a>Attribute definitions</a> that MUST be used in any <a>FDO</a>.
+    </caption>
+    <tr style="background-color: white">
+        <th>PID</th>
+        <th>Human-readable name</th>
+        <th>Description</th>
+        <th>Cardinality</th>
+        <th>Validation mechanism</th>
+        <th>Validation mechanism specific information</th>
+    </tr>
+    <tr>
+        <td style="background-color: lightgreen">0.FDO/Type</td>
+        <td>FDO_Type</td>
+        <td>This attribute specifies the type of the resource being represented by the FDO. The purpose of the FDO type
+            is to give a hint to a machine how this object may be processed. Each FDO must have at least one FDO type
+            but can also have multiple FDO types. The FDO type typically points to one of the following attributes that
+            specify the FDO type more closely: ... (tbd). But other values of the attributes are possible as well. This
+            attribute is defined by the FDO Forum and is part of the list of mandatory FDO attributes.
+        </td>
+        <td style="background-color: lightgreen">1..*</td>
+        <td style="background-color: lightgreen">Attribute referencing</td>
+        <td>Reference to any string allowed (no pre-defined list of allowed data types/values)</td>
+    </tr>
+    <tr>
+        <td style="background-color: lightgreen">0.FDO/Profile</td>
+        <td>FDO_Profile</td>
+        <td>This attribute specifies the profile used by the FDO. The purpose of the FDO profile is specify which
+            attributes must/may be present in the FDO, and which cardinality they have in the given context. Each FDO
+            must have at least one FDO profile but can also have multiple FDO profiles. The FDO profile references
+            another FDO that defines a profile. The reference can be of any syntax. This attribute is defined by the FDO
+            Forum and is part of the list of mandatory FDO attributes.
+        </td>
+        <td style="background-color: lightgreen">1..*</td>
+        <td style="background-color: lightgreen">Profile referencing</td>
+        <td style="background-color: lightgreen">Reference to a profile FDO (0.FDO/ProfileDef)</td>
+    </tr>
+    <tr>
+        <td>0.FDO/Data</td>
+        <td>FDO_Data</td>
+        <td>
+            This attribute indicates a path to the data (also called: bit-sequence) of the FDO. The purpose of the FDO
+            data reference is to signal a machine where it can find the data associated to this FDO. Each FDO must have
+            at least one FDO data reference but can also have multiple FDO data references. The FDO data reference
+            typically points to one of the following attributes that specify the FDO data reference more closely: ... (tbd).
+            But other values of the attributes are possible as well. This attribute is defined by the FDO Forum and is
+            part of the list of mandatory FDO attributes.
+        </td>
+        <td style="background-color: lightgreen">1..*</td>
+        <td style="background-color: lightgreen">Attribute referencing</td>
+        <td>Reference to any string allowed (no pre-defined list of allowed data types/values)</td>
+    </tr>
+</table>
 
 <h4>Optional/Recommended attributes</h4>
 This list of attributes is a draft of the optional/recommended attributes as defined by the FDO Forum.
