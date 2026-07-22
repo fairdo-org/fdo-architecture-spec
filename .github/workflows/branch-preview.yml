@@ -67,6 +67,7 @@ jobs:
           sed -i '/<\/body>/r /tmp/banner.html' index.html
 
       - name: Deploy preview
+        id: deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: .
@@ -74,3 +75,7 @@ jobs:
           target-folder: preview/${{ steps.sanitize.outputs.branch_name }}
           clean: false
           force: false
+
+      - name: Trigger orphan cleanup
+        if: steps.deploy.outcome == 'success'
+        uses: ./.github/workflows/cleanup-orphans.yml
