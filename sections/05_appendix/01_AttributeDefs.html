@@ -96,6 +96,9 @@ This list of attributes is a draft of the mandatory attributes as defined by the
     </tr>
 </table>
 
+
+
+
 <h4>Optional/Recommended attributes</h4>
 This list of attributes is a draft of the optional/recommended attributes as defined by the FDO Forum.
 
@@ -458,147 +461,203 @@ mentioned throughout this specification. They are defined by the FDO Forum.
         <th>Validation mechanism specific information</th>
     </tr>
     <tr>
-        <td></td>
         <td>0.FDO/Type</td>
         <td></td>
+        <td>see under C.1.1</td>
         <td></td>
         <td></td>
         <td></td>
     </tr>
     <tr>
-        <td></td>
         <td>0.FDO/Profile</td>
         <td></td>
+        <td>see under C.1.1</td>
         <td></td>
         <td></td>
         <td></td>
     </tr>
     <tr>
-        <td></td>
         <td>0.FDO/Data</td>
         <td></td>
+        <td>see under C.1.1</td>
         <td></td>
         <td></td>
         <td></td>
     </tr>
     <tr>
-        <td></td>
         <td>0.FDO/Name</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>FDO_digital_object_name</td>
+        <td>A localized human-readable name for the target-value of 0.FDO/Data_Attribute</td>
+        <td>1..*</td>
+        <td>Syntax</td>
+        <td>0.FDO/LocalizedString:
+            <ul>
+                <li>Primitive Data Type: String</li>
+                <li>Regular Expression: TODO: ^IETF-BCP-47#</li>
+            </ul>
+        </td>
     </tr>
     <tr>
-        <td></td>
         <td>0.FDO/Description</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>FDO_digital_object_description</td>
+        <td>A localized human-readable description of the target-value of 0.FDO/Data_Attribute</td>
+        <td>0..*</td>
+        <td>Syntax</td>
+        <td>0.FDO/LocalizedString
+            <ul>
+                <li>Primitive Data Type: String</li>
+                <li>Regular Expression: TODO: ^IETF-BCP-47#</li>
+            </ul>
+        </td>
     </tr>
     <tr>
-        <td></td>
-        <td>0.FDO/JsonSchema</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td></td>
         <td>0.FDO/Attribute</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>FDO_attribute</td>
+        <td>Used in profiles to specify which attributes must be in FDOs.</td>
+        <td>1...*</td>
+        <td>Profile Reference</td>
+        <td>0.FDO/AttributeDef</td>
     </tr>
     <tr>
-        <td></td>
         <td>0.FDO/Extends</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>FDO_Profile_Extension</td>
+        <td>If this FDO is a profile that is an extension of another profile, this attribute specifies the PID of the parent profile.
+            If this FDO is a type that is an extension of another type, this attribute specifies the PID of the parent type.
+        </td>
+        <td>0..*</td>
+        <td>Profile Referencing</td>
+        <td>0.FDO/Root</td>
     </tr>
     <tr>
-        <td></td>
         <td>0.FDO/denyAdditionalAttributes</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>FDO_prohibition_of_additional_ attributes</td>
+        <td>If this attribute is not set or has a false value, additional Attributes are allowed (recommended value)</td>
+        <td>0..1</td>
+        <td>Syntax</td>
+        <td>0.FDO/Boolean:
+            <ul>
+                <li>Primitive data type: boolean</li>
+            </ul>
+        </td>
     </tr>
     <tr>
-        <td></td>
         <td>0.FDO/Cardinality</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>FDO_cardinality</td>
+        <td>Description of the obligation and repeatability of values in an FDO</td>
+        <td>1</td>
+        <td>Syntax</td>
+        <td>
+            0.FDO/CardinalityString
+            <ul>
+                <li>Primitive Data Type: String</li>
+                <li>Regular Expression: ^(\d+)(\.\.(\d+|\*))?$</li>
+            </ul>
+        </td>
     </tr>
     <tr>
-        <td></td>
         <td>0.FDO/ValidationMechanism</td>
+        <td>Validation_Mechanism</td>
+        <td>This attribute is used in attribute definitions. It lets the attribute specify which validation mechanism it
+            follows.</td>
         <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>Syntax</td>
+        <td>0.FDO/ValidationMechanismEnum:
+            <ul>
+                <li>primitive data type: string</li>
+                <li>whitelist of: Syntax, Union, InlineCombination, AttributeReference, ProfileReference, ExternalVocabularyReference</li>
+            </ul>
+        </td>
     </tr>
     <tr>
-        <td></td>
         <td>0.FDO/DataType</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>FDO_reference_to_data_type</td>
+        <td>May refer to 0.FDO/SyntaxDef or 0.FDO/ProfileDef  </td>
+        <td>1..*</td>
+        <td>Union</td>
+        <td>? 0.FDO/SyntaxDef, 0.FDO/ProfileDef</td>
     </tr>
     <tr>
-        <td></td>
         <td>0.FDO/PrimitiveDataType</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>FDO_primitive_data_type</td>
+        <td>A basic classification of which type of value to expect. All of these must be supported by all clients.</td>
+        <td>1</td>
+        <td>Syntax</td>
+        <td>0.FDO/PrimitiveDataTypeEnum
+            <ul>
+                <li>Primitive data type: string</li>
+                <li>whitelist of: string, number, integer, boolean</li>
+            </ul>
+        </td>
     </tr>
     <tr>
-        <td></td>
         <td>0.FDO/Regex</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>FDO_regular_expression</td>
+        <td>A string defining a Regular expression</td>
+        <td>0..1</td>
+        <td>Syntax</td>
+        <td>
+            0.FDO/RegexString
+            <ul>
+                <li>Primitive Data Type: string</li>
+                <li>Regex: TODO: A regex that catches all regex patterns</li>
+            </ul>
+        </td>
     </tr>
     <tr>
-        <td></td>
         <td>0.FDO/NumericInterval</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>FDO_numeric_interval</td>
+        <td>An interval of real numbers. see https://en.wikipedia.org/wiki/Interval_(mathematics)</td>
+        <td>0..1</td>
+        <td>Syntax</td>
+        <td>0.FDO/NumericRangeSyntax
+        <ul>
+            <li>Primitive data type: string</li>
+            <li>Regex: todo</li>
+        </ul></td>
     </tr>
     <tr>
-        <td></td>
         <td>0.FDO/Whitelist</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>FDO_whitelist</td>
+        <td>An exhaustive enumeration of values to accept.</td>
+        <td>0..*</td>
+        <td>Syntax</td>
+        <td>0.FDO/EnumValue
+            <ul>
+                <li>primitive data type: string, number, boolean, enum</li>
+            </ul>
+        </td>
     </tr>
     <tr>
-        <td></td>
         <td>0.FDO/Blacklist</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>FDO_blacklist</td>
+        <td>A non-exhaustive enumeration of values to reject.</td>
+        <td>0..*</td>
+        <td>Syntax</td>
+        <td>0.FDO/EnumValue
+            <ul>
+                <li>primitive data type: string, number, boolean, enum</li>
+            </ul>
+        </td>
     </tr>
     <tr>
-        <td></td>
         <td>0.FDO/ImportVocabulary</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>Vocabulary Import</td>
+        <td>Valur refers to an FDO that describes a vocabulary.</td>
+        <td>0..*</td>
+        <td>Profile Referencing</td>
+        <td>0.FDO/VocabularyDef</td>
+    </tr>
+    <tr>
+        <td>0.FDO/SelfRef</td>
+        <td>FDO_reference_to_itself</td>
+        <td>References the FDO it is added to.</td>
+        <td>1</td>
+        <td>Syntax</td>
+        <td>0.FDO/Unvalidated_Ref
+            <ul>
+                <li>Primitive Data Type: String</li>
+                <li>Regular Expression: TODO: A regex that catches all possible PIDs </li>
+            </ul>
+        </td>
     </tr>
 </table>
