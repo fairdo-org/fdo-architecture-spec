@@ -1,0 +1,124 @@
+name: Deploy PR Preview
+
+on:
+  workflow_run:
+    workflows: ["Build PR Preview"]
+    types: [completed]
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+concurrency:
+  group: pr-preview-deploy-${{ github.event.workflow_run.id }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success'
+    steps:
+      - name: Download site artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: pr-preview
+          path: site
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Read PR metadata
+        id: meta
+        run: |
+          echo "pr_number=$(jq -r '.pr_number' site/metadata.json)" >> "$GITHUB_OUTPUT"
+          echo "action=$(jq -r '.action' site/metadata.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Read workflow_run PR number
+        id: wf
+        env:
+          WF_PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
+        run: |
+          echo "pr_number=${WF_PR_NUMBER}" >> "$GITHUB_OUTPUT"
+
+      - name: Verify PR association
+        if: steps.meta.outputs.pr_number != steps.wf.outputs.pr_number
+        run: |
+          echo "::error::Artifact PR number (${{ steps.meta.outputs.pr_number }}) does not match workflow_run PR (${{ steps.wf.outputs.pr_number }}). Aborting."
+          exit 1
+
+      - name: Remove metadata file from deploy
+        run: rm -f site/metadata.json
+
+      - name: Deploy preview
+        id: deploy
+        if: steps.meta.outputs.action != 'closed'
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: site
+          branch: gh-pages
+          target-folder: preview/pr-${{ steps.meta.outputs.pr_number }}
+          clean: false
+          force: false
+
+      - name: Post/Update PR comment
+        if: always() && (steps.meta.outputs.action == 'closed' || steps.deploy.outcome == 'success')
+        uses: actions/github-script@v9
+        env:
+          PR_NUMBER: ${{ steps.meta.outputs.pr_number }}
+          PR_ACTION: ${{ steps.meta.outputs.action }}
+        with:
+          script: |
+            const prNumber = parseInt(process.env.PR_NUMBER, 10);
+            const action = process.env.PR_ACTION;
+            const previewUrl = `https://${context.repo.owner}.github.io/${context.repo.repo}/preview/pr-${prNumber}/`;
+
+            let commentBody;
+            if (action === 'closed') {
+              commentBody = `### 🏁 PR Preview Closed
+
+            The preview for this PR is now marked as **INACTIVE**.
+
+            🔗 **Preview URL**: ${previewUrl}
+
+            The preview will remain available but shows its inactive status.`;
+            } else {
+              commentBody = `### 🚀 PR Preview Available
+
+            A preview deployment of this PR is now available.
+
+            🔗 **Preview URL**: ${previewUrl}
+
+            ⚠️ This preview is automatically updated with each commit. The banner on the preview page will show when the PR is merged or closed.`;
+            }
+
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+            });
+
+            const botComment = comments.find(comment =>
+              comment.user.type === 'Bot' &&
+              comment.body.includes('PR Preview')
+            );
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: commentBody,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: commentBody,
+              });
+            }
+
+  cleanup:
+    needs: deploy
+    if: needs.deploy.result == 'success'
+    uses: ./.github/workflows/cleanup-orphans.yml
