@@ -1,4 +1,4 @@
-name: Deploy PR Preview
+name: Deploy PR Preview to Pages
 
 on:
   pull_request:
@@ -21,12 +21,15 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Inject preview banner (if deploying)
+      - name: Inject preview banner (if PR is open)
         if: github.event.action != 'closed'
+        env:
+          REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
-          cat > /tmp/banner.html << 'EOF'
+          cat > /tmp/banner.html << EOF
           <div id="pr-preview-banner" class="pr-preview-banner">
-            ⚠️ This is a preview build for <a href="https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }}" target="_blank" rel="noopener noreferrer">PR #${{ github.event.pull_request.number }}</a>
+            📋 This is a preview build for <a href="https://github.com/${REPOSITORY}/pull/${PR_NUMBER}" target="_blank" rel="noopener noreferrer">PR #${PR_NUMBER}</a>
             <span id="pr-status"></span>
           </div>
           <style>
@@ -35,8 +38,8 @@ jobs:
               top: 0;
               left: 0;
               right: 0;
-              background: #ff9800;
-              color: #000;
+              background: #2196f3;
+              color: #fff;
               padding: 8px 16px;
               text-align: center;
               font-weight: bold;
@@ -48,7 +51,7 @@ jobs:
               background: #9e9e9e;
             }
             .pr-preview-banner a {
-              color: #000;
+              color: #fff;
               text-decoration: underline;
             }
             body {
@@ -57,7 +60,7 @@ jobs:
           </style>
           <script>
             (function() {
-              fetch('https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}')
+              fetch('https://api.github.com/repos/${REPOSITORY}/pulls/${PR_NUMBER}')
                 .then(r => r.json())
                 .then(data => {
                   if (data && (data.merged_at || data.closed_at)) {
@@ -73,9 +76,72 @@ jobs:
           sed -i '/<\/body>/r /tmp/banner.html' index.html
 
       - name: Deploy preview
-        uses: rossjrw/pr-preview-action@v1
+        id: deploy
+        if: github.event.action != 'closed'
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          source-dir: .
-          preview-branch: gh-pages
-          umbrella-dir: pr-preview
-          action: auto
+          folder: .
+          branch: gh-pages
+          target-folder: preview/pr-${{ github.event.pull_request.number }}
+          clean: false
+          force: false
+
+      - name: Post/Update PR comment
+        if: always() && (github.event.action == 'closed' || steps.deploy.outcome == 'success')
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const previewUrl = `https://${context.repo.owner}.github.io/${context.repo.repo}/preview/PR-${context.payload.pull_request.number}/`;
+            const prNumber = context.payload.pull_request.number;
+            const action = context.payload.action;
+            
+            let commentBody;
+            if (action === 'closed') {
+              commentBody = `### 🏁 PR Preview Closed
+            
+            The preview for this PR is now marked as **INACTIVE**.
+            
+            🔗 **Preview URL**: ${previewUrl}
+            
+            The preview will remain available but shows its inactive status.`;
+            } else {
+              commentBody = `### 🚀 PR Preview Available
+            
+            A preview deployment of this PR is now available.
+            
+            🔗 **Preview URL**: ${previewUrl}
+            
+            ⚠️ This preview is automatically updated with each commit. The banner on the preview page will show when the PR is merged or closed.`;
+            }
+            
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+            });
+            
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('PR Preview')
+            );
+            
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: commentBody,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: commentBody,
+              });
+            }
+
+  cleanup:
+    needs: deploy-preview
+    if: github.event.action != 'closed'
+    uses: ./.github/workflows/cleanup-orphans.yml

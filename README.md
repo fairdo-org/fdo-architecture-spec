@@ -55,6 +55,10 @@ The `index.html` file serves as the entry point for the published specification.
 
 The document uses [https://respec.org/docs/](https://respec.org/docs/) for the current layout.
 
+## Previews
+
+Every branch and pull request automatically generates a preview deployment. Branch previews are available at `https://fairdo-org.github.io/fdo-architecture-spec/preview/<branch-name>/`, and PR previews at `https://fairdo-org.github.io/fdo-architecture-spec/preview/PR-<number>/`.
+
 ## Contributing
 
 Contributions are welcome and encouraged.

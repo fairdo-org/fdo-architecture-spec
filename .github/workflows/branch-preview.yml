@@ -1,0 +1,85 @@
+name: Deploy branch preview to Pages
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Sanitize branch name
+        id: sanitize
+        env:
+          BRANCH_NAME: ${{ github.ref_name }}
+        run: |
+          SANITIZED=$(echo "$BRANCH_NAME" | sed 's/[^a-zA-Z0-9._-]/-/g' | sed 's/--*/-/g' | sed 's/^-//;s/-$//')
+          if [ -z "$SANITIZED" ]; then
+            echo "::error::Sanitized branch name is empty for '$BRANCH_NAME'. Cannot deploy preview to an isolated subfolder."
+            exit 1
+          fi
+          echo "branch_name=$SANITIZED" >> "$GITHUB_OUTPUT"
+
+      - name: Inject preview banner
+        env:
+          REPOSITORY: ${{ github.repository }}
+          BRANCH_NAME: ${{ github.ref_name }}
+          SANITIZED_BRANCH_NAME: ${{ steps.sanitize.outputs.branch_name }}
+        run: |
+          cat > /tmp/banner.html << EOF
+          <div id="branch-preview-banner" class="branch-preview-banner">
+            🔧 This is a preview build for <a href="https://github.com/${REPOSITORY}/tree/${BRANCH_NAME}" target="_blank" rel="noopener noreferrer">Branch ${SANITIZED_BRANCH_NAME}</a>
+            <span id="branch-status"></span>
+          </div>
+          <style>
+            .branch-preview-banner {
+              position: fixed;
+              top: 0;
+              left: 0;
+              right: 0;
+              background: #ff9800;
+              color: #000;
+              padding: 8px 16px;
+              text-align: center;
+              font-weight: bold;
+              z-index: 9999;
+              box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+              font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            }
+            .branch-preview-banner a {
+              color: #000;
+              text-decoration: underline;
+            }
+            body {
+              margin-top: 40px;
+            }
+          </style>
+          EOF
+
+          sed -i '/<\/body>/r /tmp/banner.html' index.html
+
+      - name: Deploy preview
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: .
+          branch: gh-pages
+          target-folder: preview/${{ steps.sanitize.outputs.branch_name }}
+          clean: false
+          force: false
+
+  cleanup:
+    needs: deploy-preview
+    uses: ./.github/workflows/cleanup-orphans.yml

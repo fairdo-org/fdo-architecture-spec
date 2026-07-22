@@ -1,0 +1,154 @@
+name: Cleanup Orphaned Previews
+
+on:
+  workflow_call:
+    inputs:
+      dry_run:
+        description: 'Run cleanup without pushing changes'
+        required: false
+        type: boolean
+        default: false
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Run cleanup without pushing changes'
+        required: false
+        type: boolean
+        default: false
+  push:
+    branches: [gh-pages]
+    paths: ['preview/**']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cleanup-gh-pages
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'Cleanup orphaned previews')"
+    steps:
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v7
+        with:
+          ref: gh-pages
+          path: gh-pages
+          fetch-depth: 1
+
+      - name: Cleanup orphaned previews
+        working-directory: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          removed_count=0
+          kept_count=0
+          error_count=0
+          
+          if [ ! -d "preview" ]; then
+            echo "No preview directory found, nothing to cleanup"
+            exit 0
+          fi
+          
+          for dir in preview/*/; do
+            if [ -d "$dir" ]; then
+              dirname=$(basename "$dir")
+              
+              if [[ $dirname == pr-* ]]; then
+                pr_number=${dirname#pr-}
+                
+                if [ -z "$pr_number" ]; then
+                  echo "Warning: Invalid PR directory name: $dirname"
+                  error_count=$((error_count + 1))
+                  continue
+                fi
+                
+                http_code=$(curl -sI -o /dev/null -w "%{http_code}" "https://api.github.com/repos/${REPOSITORY}/pulls/$pr_number" 2>/dev/null)
+                curl_exit=$?
+                
+                if [ $curl_exit -ne 0 ]; then
+                  echo "Warning: Failed to check PR #$pr_number (network error), keeping preview"
+                  kept_count=$((kept_count + 1))
+                  error_count=$((error_count + 1))
+                  continue
+                fi
+                
+                if [ "$http_code" = "404" ]; then
+                  echo "Removing orphaned PR preview: $dirname (PR not found)"
+                  rm -rf "$dir"
+                  removed_count=$((removed_count + 1))
+                elif [ "$http_code" = "200" ]; then
+                  echo "Keeping $dirname: PR is open"
+                  kept_count=$((kept_count + 1))
+                else
+                  echo "Skipping $dirname: API returned HTTP $http_code (keeping preview as fail-safe)"
+                  kept_count=$((kept_count + 1))
+                  error_count=$((error_count + 1))
+                fi
+              else
+                # Sanitized branch name from directory
+                sanitized_name="$dirname"
+                
+                if [ -z "$sanitized_name" ]; then
+                  echo "Warning: Invalid branch directory name: $dirname"
+                  error_count=$((error_count + 1))
+                  continue
+                fi
+                
+                # Get all remote branches and sanitize each one to compare
+                branch_exists=false
+                while IFS= read -r remote_branch; do
+                  # Extract just the branch name (remove refs/heads/)
+                  branch_name="${remote_branch#refs/heads/}"
+                  # Sanitize it the same way as deploy workflow
+                  sanitized_branch=$(echo "$branch_name" | sed 's/[^a-zA-Z0-9._-]/-/g' | sed 's/--*/-/g' | sed 's/^-//;s/-$//')
+                  
+                  if [ "$sanitized_branch" = "$sanitized_name" ]; then
+                    branch_exists=true
+                    break
+                  fi
+                done < <(git ls-remote --heads origin 2>/dev/null | awk '{print $2}')
+                
+                if [ "$branch_exists" = false ]; then
+                  echo "Removing orphaned branch preview: $dirname (branch not found)"
+                  rm -rf "$dir"
+                  removed_count=$((removed_count + 1))
+                else
+                  echo "Keeping $dirname: branch exists (as $branch_name)"
+                  kept_count=$((kept_count + 1))
+                fi
+              fi
+            fi
+          done
+          
+          echo ""
+          echo "=== Cleanup Summary ==="
+          echo "Removed: $removed_count orphaned previews"
+          echo "Kept: $kept_count active previews"
+          if [ $error_count -gt 0 ]; then
+            echo "Errors/Warnings: $error_count (previews kept as fail-safe)"
+          fi
+          
+          if [ "${DRY_RUN}" = "true" ]; then
+            echo ""
+            echo "DRY RUN MODE: No changes pushed"
+            exit 0
+          fi
+          
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Cleanup orphaned previews"
+            if ! git push origin gh-pages 2>&1; then
+              echo "Warning: Failed to push cleanup changes (possible concurrent update). Skipping."
+            else
+              echo "Successfully pushed cleanup changes"
+            fi
+          else
+            echo "No cleanup needed"
+          fi
