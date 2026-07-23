@@ -1,0 +1,67 @@
+<h3 id="step1">S-1: Detection of <a>PIDs</a></h3>
+<p>
+    This step MUST determine if the provided string is an identifier, whether it is potentially resolvable and how.
+    This
+    MAY be achieved using any technical solution such as a regular expression based analysis aware of the well known
+    resolvable ID systems.
+    This process MAY result in false positives, but MUST avoid false negatives.
+</p>
+<dl>
+    <dt>Inputs</dt>
+    <dd>This input is an arbitrary string.</dd>
+    <dt>Outputs</dt>
+    <dd>
+        <ul>
+            <li>If the analysis is successful it returns one or more of the following Identifier-Resolver structure consisting
+                of:
+                <ul>
+                    <li>A syntactically valid identifier. (There may be multiple outcomes)</li>
+                    <li>
+                        A ResolverList with 0 or more resolvers by name in order of probability.
+                        The resolver SHOULD be identified as an <a>FDO</a>.
+                    </li>
+                </ul>
+            </li>
+            <li>If the analysis fails the processing steps, it will do so as follows:
+                Throws an exception UNRECOGNIZED_IDENTIFIER.
+            </li>
+        </ul>
+    </dd>
+    <dt>Expected behavior</dt>
+    <dd>
+        <p>
+            This step will iterate through a set of well-known recognizable resolvable Identifier patterns.
+            Each client may have its own list that it will use when performing this step.
+            A list of identifier technologies SHALL be maintained by the
+            <a>FDO Forum</a> and be updated by the various <a>FDO</a> Implementations and by the community at large.
+            These <a>FDOs</a> will include information about the identifier syntax and resolvers.</p>
+
+        <aside class="example" title="The input string is https://dx.doi.org/10.500/123">
+            <p>[Step 1] would process this as known DOI.
+                There would be two instances of the Identifier-Resolvers structure:</p>
+            <ul>
+                <li>identifier: https://dx.doi.org/10.500/123</li>
+                <li>ResolverList includes:</li>
+                <ul>
+                    <li><em>0.FDO/HTTP_GET</em></li>
+                    <li>Identifier: 10.500/123</li>
+                    <li>The ResolversList includes:
+                        0.FDO/HDL_RESOLVER,
+                        0.FDO/HDL_WEB_RESOLVER
+                    </li>
+                </ul>
+            </ul>
+        </aside>
+
+        <aside class="example" title="The input string is https://www.ACME.org/fdo/123-245-232">
+            <p>[Step 1] would determine that this is a valid URI and that it could be an <a>FDO</a> because of the “fdo” in path name.
+                But while “123-245-232” looks like an identifier, no known resolver can be found. [Step 1] would generate an
+                identifier-resolver with the following values:</p>
+            <ul>
+                <li>Identifier: https://www.ACME.org/fdo/123-245-232</li>
+                <li>The resolver 0.FDO/HTTP_GET
+                </li>
+            </ul>
+        </aside>
+    </dd>
+</dl>

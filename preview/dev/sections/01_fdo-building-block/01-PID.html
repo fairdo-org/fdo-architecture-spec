@@ -1,0 +1,55 @@
+<h3 id="pid">PID</h3>
+<p>
+    A reliable <a>PID system</a> is a core component of all <a>FDOs</a>.
+    It MUST provide referential stability over very long periods.
+    A <a>PID</a> is an identifier that MUST resolve <a>PIDs</a> to an information structure which contains properties of the <a>FDO</a>.
+    We will call this information structure an <a>FDO Record</a>.
+    The combination of <a>PIDs</a> and <a>FDO Records</a> acts comparable to a passport which not only consists of an identification string, but also of properties which characterize the object.
+    The <a>PID system</a> MUST be able to cope with the special requirements of the digital era which are frequent copying and moving of the associated <a>bit-sequences</a> and changing content in many cases.
+    The <a>PID system</a> is required to handle frequent updates of <a>PID records</a> and provide consistent results to <a>PID resolution</a> requests to guarantee stable referencing to the <a>bit-sequence</a>.
+    For such a system to be acceptable in the realm of <a>FDOs</a> the following criteria MUST be fulfilled:
+</p>
+<dl>
+    <dt><h4 class="rule-heading" id="rule-r1_1">[R1-1] <dfn>PID Specification</dfn></h4></dt>
+    <dd>
+        The <a>PID system</a> MUST be based on specifications that are being maintained by an independent
+        international organization and MUST cater for a distributed solution.
+        Such specification MUST define the assignment and resolution procedures as well as other organizational
+        and technical requirements.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r1_2">[R1-2] <a>PID system</a> Governance</h4></dt>
+    <dd> The
+        <a>PID system</a> MUST be governed by an independent, non-profit organisation with global governance and proven
+        sustainability for long periods.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r1_3">[R1-3] <dfn>Global <a>PID</a> Resolution</dfn></h4></dt>
+    <dd>
+        The <a>PID system</a> MUST support global resolution and therefore global uniqueness of the <a>PIDs</a> at a
+        high level of stability.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r1_4">[R1-4] <dfn><a>FDO Record</a> Resolution</dfn></h4></dt>
+    <dd>
+        The <a>PIDs</a> must resolve into a well-defined information structure called <a>FDO Record</a> which contains type-value pairs and supports the predictability and machine-actionability of its content.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r1_5">[R1-5] <dfn><a>PID Record</a> Storage</dfn></h4></dt>
+    <dd> The <a>FDO Records</a> the
+        <a>PIDs</a> are resolving to MUST be managed by independent trustworthy organizations.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r1_6">[R1-6] <dfn><a>PID</a> Access Protocol</dfn></h4></dt>
+    <dd>
+        Resolution of the <a>PIDs</a> and therefore access to the<a>FDO Records</a> MUST be possible by a well-defined access protocol.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r1_7">[R1-7] <dfn><a>PID</a> Security</dfn></h4></dt>
+    <dd>
+        The <a>PID system</a> MUST offer a high degree of security that only enables the owner of a<a>FDO Record</a> to manipulate it.
+        It SHOULD be possible to restrict the access to the whole record or to individual key-value pairs.
+    </dd>
+</dl>
+By adhering to these requirements the <a>PID system</a> is supporting data sovereignty, transparency/traceability,
+accountability and <a>persistence</a>.

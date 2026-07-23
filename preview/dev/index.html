@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>FAIR Digital Objects Architecture Specification DRAFT</title>
+    <script
+      src="https://www.w3.org/Tools/respec/respec-w3c"
+      class="remove"
+      defer
+    ></script>
+    <script class="remove">
+      // All config options at https://respec.org/docs/
+      const respecConfig = {
+        specStatus: "unofficial",
+        editors: [
+          {
+            name: "S. Bingert",
+            company: "GWDG",
+            companyUrl: "https://www.gwdg.de/",
+            orcid: "0000-0001-9547-1582"
+          },
+          {
+            name: "Ch. Blanchi",
+            company: "DONA",
+            companyUrl: "https://www.dona.net",
+            orcid: "0000-0003-2277-5176"
+          },
+          {
+            name: "J. Böhm",
+            company: "GWDG",
+            companyUrl: "https://www.gwdg.de/",
+            orcid: "0009-0004-9802-113X"
+          },
+          {
+            name: "M. Inckmann",
+            company: "KIT",
+            companyUrl: "https://kit.edu",
+            orcid: "0009-0005-2800-4833"
+          },
+          {
+            name: "Z. Trautt",
+            company: "NIST",
+            companyUrl: "https://nist.gov",
+            orcid: "0000-0001-5929-0354"
+          }
+        ],
+        authors: [
+          {
+            name: "N. Blumenröhr",
+            company: "KIT",
+            companyUrl: "https://kit.edu",
+            orcid: "0009-0007-0235-4995"
+          },
+          {
+            name: "I. Anders",
+            company: "DKRZ",
+            companyUrl: "https://www.dkrz.de/",
+            orcid: "0000-0001-7337-3009"
+          },
+          {
+            name: "J. Castro",
+            company: "ZBMED",
+            orcid: "0000-0003-3986-0510"
+          },
+          {
+            name: "W. Elbers",
+            company: "CLARIN"
+          },
+          {
+            name: "T. Goosen",
+            company: "CLARIN",
+            orcid: "0000-0002-1634-257X"
+          },
+          {
+            name: "T. Kuhn",
+            company: "Knowledge Pixels"
+          },
+          {
+            name: "K. Peters-von Gehlen",
+            company: "DKRZ",
+            companyUrl: "https://www.dkrz.de/"
+          },
+          {
+            name: "A. Pfeil",
+            company: "KIT",
+            companyUrl: "https://kit.edu",
+            orcid: "0000-0001-6575-1022"
+          },
+          {
+            name: "U. Schwardmann"
+          },
+          {
+            name: "S. Soiland-Reyes",
+            company: "University Manchester"
+          },
+          {
+            name: "C. Weiland",
+            company: "Senckenberg, SDCT"
+          }
+        ],
+        github: "https://github.com/fairdo-org/fdo-architecture-spec/",
+        shortName: "FDO_Architecture_Spec",
+        latestVersion: null,
+        edDraftURI: "https://github.com/fairdo-org/fdo-architecture-spec",
+        commitHistoryURL: "https://github.com/fairdo-org/fdo-architecture-spec/commits/main/",
+        localBiblio: {
+          "FAIR": {
+            title: "The FAIR Guiding Principles for scientific data management and stewardship",
+            authors: ["Mark D. Wilkinson", "Michel Dumontier", "IJsbrand Jan Aalbersberg", "et al."],
+            publisher: "Scientific Data",
+            date: "2016",
+            href: "https://www.nature.com/articles/sdata201618",
+            doi: "10.1038/sdata.2016.18"
+          },
+          "Kahn-Wilensky": {
+            title: "Towards a Digital Object Architecture",
+            authors: ["Robert Kahn", "Robert Wilensky"],
+            date: "2006",
+            href: "https://www.cnri.reston.va.us/home/cstr/arch/k-w.pdf",
+            publisher: "Corporation for National Research Initiatives"
+          },
+          "Jacobsen2020": {
+            title: "FAIR Digital Objects for European research area",
+            authors: ["Ann Jacobsen", "Alan R. Williams", "et al."],
+            publisher: "European Commission",
+            date: "2020",
+            href: "https://doi.org/10.5281/zenodo.4017888"
+          },
+          "MachineActionability": {
+            title: "Machine Actionability: The Missing Piece in the FAIR Puzzle",
+            authors: ["Tobias Kuhn", "Michel Dumontier", "et al."],
+            publisher: "Zenodo",
+            date: "2023",
+            href: "https://zenodo.org/records/7825650"
+          },
+          "FDO-Operations": {
+            title: "A Comparative Analysis of Modelling Approaches for the Association of FAIR Digital Object Operations",
+            authors: ["S. Bingert", "J. Böhm", "et al."],
+            publisher: "Data Science Journal",
+            date: "2025",
+            doi: "10.5334/dsj-2025-022"
+          },
+          "ECMA262": {
+            title: "ECMAScript® 2026 Language Specification",
+            authors: ["ECMA International", "TC39"],
+            publisher: "ECMA International",
+            date: "2026-06-30",
+            href: "https://262.ecma-international.org/17.0/index.html#sec-regexp-regular-expression-objects"
+          },
+          "FDO-Operations-2025":{
+            title: "A Comparative Analysis of Modeling Approaches for the Association of FAIR Digital Objects Operations",
+            authors:[
+                    "Nicolas Blumenröhr",
+                    "Jana Böhm",
+                    "Philipp Ost",
+                    "Marco Kulüke",
+                    "Peter Wittenburg",
+                    "Christophe Blanchi",
+                    "Sven Bingert"
+            ],
+            publisher: "Data Science Journal",
+            date: "2025-08-29",
+            doi: "10.5334/dsj-2025-022"
+          },
+          "HandleFDOSpec2026": {
+            title: "Handle-Based FAIR Digital Objects Specification",
+            authors: ["J. Böhm", "M. Inckmann", "et al."],
+            date: "2026",
+            href: "https://fairdo-org.github.io/handle_fdo_specification/"
+          }
+        },
+        lint: { "no-unused-dfns": false }
+      };
+    </script>
+  </head>
+  <body>
+    <p class="copyright">
+      <a href="https://fair-org.github.io/fdo-architecture-spec/">FAIR Digital Objects Architecture Specifications</a>
+      © 2026 by
+      <a href="https://fairdo.org">FDO Forum</a>
+      is licensed under
+      <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+      <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;">
+      <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;">
+    </p>
+    <section id="abstract">
+      <p>
+        This document specifies the architecture of FAIR Digital Objects (FDOs) as a unified,
+        technology-independent framework for representing and managing digital and physical resources
+        in a machine-actionable manner. FDOs are persistent bundles of information identified by
+        globally unique, persistent, and resolvable identifiers (PIDs) that resolve to structured
+        FDO Records defined by explicit profiles and registered attributes.
+        The specification describes the core building blocks of FDOs
+        and defines normative requirements to ensure predictability, interoperability, and long-term persistence.
+        By separating abstract object semantics from concrete implementation technologies,
+        the architecture enables interoperability across heterogeneous implementation stacks.
+        FDOs provide a common foundation for repositories, dataspaces, and automated processing
+        workflows, supporting FAIR principles, data sovereignty, trust, and scalable reuse across
+        scientific and industrial ecosystems.
+      </p>
+    </section>
+    <section id="sotd">
+      <p>
+        This document is an official publication of the FDO Forum.
+        This document version has the status of a draft work document, according to the FDO Forum process.
+        This document will undergo the FDO Forum process for official documents.
+      </p>
+    </section>
+    <section class="informative" data-include="sections/00_introduction/00-Intro.html"></section>
+    <section class="informative" data-include="sections/00_introduction/01-How-To-Read-This-Document.html"></section>
+    <section class="informative" data-include="sections/00_introduction/02-High-Level-Overview.html"></section>
+    <section class="informative" data-include="sections/00_introduction/03-Terminology.html"></section>
+
+    <section data-dfn-for="building-blocks" class="normative">
+      <h2>FDO Building Blocks</h2>
+      <section data-include="sections/01_fdo-building-block/01-PID.html" id="pid"></section>
+      <section data-include="sections/01_fdo-building-block/02-Granularity.html" id="granularity"></section>
+      <section data-include="sections/01_fdo-building-block/03-FDO-Records.html" id="records"></section>
+      <section data-include="sections/01_fdo-building-block/04-FDO-Profiles.html" id="profiles"></section>
+      <section data-include="sections/01_fdo-building-block/05-Attributes.html" id="attributes"></section>
+      <section data-include="sections/01_fdo-building-block/06-Syntax-Def.html" id="syntax-def"></section>
+      <section data-include="sections/01_fdo-building-block/07-Referencing.html" id="advanced-ref"></section>
+      <section data-include="sections/01_fdo-building-block/08-Validation.html" id="validation"></section>
+      <section data-include="sections/01_fdo-building-block/09-Mandatory-Attributes.html" id="mandatory-attributes"></section>
+      <section data-include="sections/01_fdo-building-block/10-FDO-Types.html" id="fdo-types"></section>
+      <section data-include="sections/01_fdo-building-block/11-Updating.html" id="updating"></section>
+    </section>
+
+    <section data-dfn-for="generic-processing">
+      <h2>Generic FDO Processing</h2>
+      <section data-include="sections/02_fdo-processing-block/Introduction.html" id="processing-intro"></section>
+      <section data-include="sections/02_fdo-processing-block/Step1.html" id="step1"></section>
+      <section data-include="sections/02_fdo-processing-block/Step2.html" id="step2"></section>
+      <section data-include="sections/02_fdo-processing-block/Step3.html" id="step3"></section>
+      <section data-include="sections/02_fdo-processing-block/Step4.html" id="step4"></section>
+      <section data-include="sections/02_fdo-processing-block/Step5.html" id="step5"></section>
+      <section data-include="sections/02_fdo-processing-block/Step6.html" id="step6"></section>
+      <section data-include="sections/02_fdo-processing-block/Step7.html" id="step7"></section>
+      <section data-include="sections/02_fdo-processing-block/Step8.html" id="step8"></section>
+      <section data-include="sections/02_fdo-processing-block/Step9.html" id="step9"></section>
+      <section data-include="sections/02_fdo-processing-block/Step10.html" id="step10"></section>
+      <section data-include="sections/02_fdo-processing-block/Step11.html" id="step11"></section>
+    </section>
+
+    <section id="implementation-template">
+      <h2>Implementation Template</h2>
+      <section data-include="sections/03_implementation/01_introduction.html" id="implementation-intro"></section>
+      <section data-include="sections/03_implementation/02_building-blocks.html" id="implementation-building-blocks"></section>
+      <section data-include="sections/03_implementation/03_processing-block.html" id="implementation-processing-block"></section>
+    </section>
+
+    <section id="conformance" data-include="sections/04-Conformance.html"></section>
+    <section id="tof" class="appendix"></section>
+    <section id="index" class="appendix"></section>
+    <section id="appendix" class="appendix">
+      <h2>Appendix</h2>
+      <section data-include="sections/05_appendix/01_AttributeDefs.html" id="appendixAttrDefsUsed"></section>
+    </section>
+  </body>
+<div id="branch-preview-banner" class="branch-preview-banner">
+  🔧 This is a preview build for <a href="https://github.com/fairdo-org/fdo-architecture-spec/tree/dev" target="_blank" rel="noopener noreferrer">Branch dev</a>
+  <span id="branch-status"></span>
+</div>
+<style>
+  .branch-preview-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #ff9800;
+    color: #000;
+    padding: 8px 16px;
+    text-align: center;
+    font-weight: bold;
+    z-index: 9999;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .branch-preview-banner a {
+    color: #000;
+    text-decoration: underline;
+  }
+  body {
+    margin-top: 40px;
+  }
+</style>
+</html>

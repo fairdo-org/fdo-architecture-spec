@@ -1,0 +1,161 @@
+<h3 id="fdo-types">FDO Types</h3>
+<p>
+    Typing is an essential building block of the <a>FDO</a> concept.
+    The term “type/typing” refers to several concepts simultaneously:
+<ol>
+    <li>Attribute definitions are types for properties of an <a>FDO</a> and are instantiated by <a>attributes</a> in the <a>FDO record</a>.
+    </li>
+    <li>The value of the<a><em>0.FDO/Type</em></a> <a>attribute</a> in the <a>FDO record</a> is a type of the <a>resource</a> being represented by the
+        <a>FDO</a>.
+    </li>
+    <li>The value of the <a><em>0.FDO/Profile</em></a> <a>attribute</a> in the <a>FDO record</a> is a type of the <a>FDO record</a> (which instantiates the
+        profile).
+    </li>
+</ol>
+All these types together form the type system.
+<h4 id="0.FDO-Type">The <dfn data-lt="FDO type|type">0.FDO/Type</dfn> <a>attribute</a></h4>
+<p>
+    This section specifies the (declared) FDO Type (<i><a><em>0.FDO/Type</em></a></i>) as the value of the <a><em>0.FDO/Type</em></a>
+    <a>attribute</a>,  which is instantiated in <a>FDO records</a> (2. in the above enumeration).
+    This <a><em>0.FDO/Type</em></a> <a>attribute</a> is an intentionally chosen entry point that signals some default processing semantics for the <a>FDO</a>.
+    Other facets of the <a>FDO type</a> could be derived independently of the <a><em>0.FDO/Type</em></a> <a>attribute</a> using
+    other typing mechanisms, e.g., by inspecting the presence of other record <a>attributes</a> <!--(1. and 3.
+    in above enumeration)-->.
+    Please note that we will refer to the <a><em>0.FDO/Type</em></a> <a>attribute</a> as the “FDO type”
+    in the following.
+</p>
+<dl>
+    <b>Purpose of the <a>FDO Type</a>:</b>
+    <dt><h4 class="rule-heading" id="rule-r10_1">[R10-1] Type <a>attribute</a> Requirement</h4></dt>
+    <dd>
+        <a><em>0.FDO/Type</em></a> is a mandatory <a>attribute</a> that MUST be instantiated in each <a>FDO record</a>.
+        It can be repeated multiple times.
+        It specifies the type of the <a>resource</a> being represented by the <a>FDO</a>.
+    </dd>
+    <dt><h4 class="rule-heading" id="rule-r10_2">[R10-2] Type Processing Hint</h4></dt>
+    <dd>
+        The purpose of the <a><em>0.FDO/Type</em></a> <a>attribute</a> is to give a hint to a machine how this
+        object MAY be processed.
+    </dd>
+
+    <b>The <a>FDO Type</a> of <a>FDOs</a> that belong to the Type System:</b>
+    <dt><h4 class="rule-heading" id="rule-r10_3">[R10-3] Type System <a>FDO Types</a></h4></dt>
+    <dd>
+        <a>Profile definitions</a>, <a>attribute definitions</a>, <a>syntax definitions</a>, and <a>FDOs</a> representing the
+        <a>FDO type</a> (see <a href="rule-r10_6"></a>) are special <a>FDOs</a> in the sense that they are part of the type system.
+        They MUST have the following <a>FDO type</a>:
+        <ul>
+            <li>A <a>profile</a> has the <a>FDO type</a> <em>“FDO_Profile”</em>.</li>
+            <li>An <a>attribute definition</a> has the <a>FDO type</a> <em>“FDO_Attribute_Definition”</em>.</li>
+            <li>A <a>syntax definition</a> has the <a>FDO type</a> <em>“FDO_Syntax_Definition”</em>.</li>
+            <li>An <a>FDO</a> representing an <a>FDO type</a> has the <a>FDO type</a> <em>“FDO_Type_Definition”</em>.</li>
+        </ul>
+        Adding additional <a>FDO types</a> to these <a>FDOs</a> is allowed.
+    </dd>
+
+    <b><a>FDO Types</a> are defined by communities:</b>
+    <dt><h4 class="rule-heading" id="rule-r10_4">[R10-4] <dfn>Community Type Definition</dfn></h4></dt>
+    <dd>Communities of practice MAY define their <a>FDO types</a> according to their needs.</dd>
+
+
+    <dt><h4 class="rule-heading" id="rule-r10_5">[R10-5] Type Interpretability</h4></dt>
+    <dd>
+        The <a>FDO type</a> SHOULD also be interpretable outside the community of practice to ensure interoperability.
+        This SHOULD be ensured by linking to existing standards or software that explain how to interpret the <a>FDO type</a>.
+        These external <a>resources</a> SHOULD be publicly accessible.
+    </dd>
+
+    <dt>  <h4 class="rule-heading" id="rule-r10_6">[R10-6] Type as <a>FDO</a></h4></dt>
+    <dd>Community-defined <a>FDO types</a> SHOULD be <a>FDOs</a> for better interpretability.</dd>
+
+    <dt><h4 class="rule-heading" id="rule-r10_7">[R10-7] Type Derivation</h4></dt>
+    <dd>
+        <a>Types</a> MAY be derived from other <a>types</a> (i.e., there may be hierarchies of types
+        defined within communities of practice).
+        To state that a type t<sub>2</sub> is derived from a
+        type <em>t<sub>1</sub></em>, the <a>FDO record</a> of <em>t<sub>2</sub></em> SHOULD contain the <a>attribute</a> <a><em>0.FDO/DerivedFromType</em></a>,
+        whose value is a <a>PID</a> that resolves to <em>t<sub>1</sub></em>.
+    </dd>
+
+    <b><a>FDO Type</a> of <a>collections</a>:</b>
+    <p>
+        FDOs may represent <a>collections</a> of objects (see also <a href="#granularity"></a>).
+        To assign <a>FDO types</a> to a <a>collection</a> and to objects within the <a>collection</a>,
+        the following conditions apply:
+    </p>
+    <dt><h4 class="rule-heading" id="rule-r10_8">[R10-8] <a>Collection</a> Type</h4></dt>
+    <dd>The <a>FDO type</a>(s) of a <a>collection</a> MUST describe the <a>collection</a> as a whole.</dd>
+
+    <dt><h4 class="rule-heading" id="rule-r10_9">[R10-9] Object Type in a <a>Collection</a></h4></dt>
+    <dd>
+        If an <a>FDO type</a> SHOULD be assigned to objects within the <a>collection</a>, each object MUST
+        be represented as an <a>FDO</a> (or <a>inline FDO</a>) itself.
+        This <a>FDO</a> can then contain the <a><em>0.FDO/Type</em></a> <a>attribute</a> to specify <a>FDO types</a>.
+    </dd>
+</dl>
+
+<h4 id="operation-association-mechanisms">Operation Association Mechanisms</h4>
+<p>
+    <a>Types</a> MAY be used to associate <a>FDOs</a> to <a>operations</a>.
+    The specification of <a>FDO operations</a> is still in an early state and not yet completely understood.
+    A more comprehensive list of requirements beyond <a href="#rule-r10_10"></a> – <a href="#rule-r10_13"></a> will be
+    included in a later version of this document.
+    However, the specification of how to associate <a>FDO operations</a> with
+    <a>FDOs</a> which they are able to act on is already more elaborate.
+    The following requirements apply:
+</p>
+<dl>
+    <dt><h4 class="rule-heading" id="rule-r10_10">[R10-10] <dfn data-lt="Operation">FDO Operation</dfn> Definition</h4></dt>
+    <dd>
+        <a>FDO</a> operations (short: operations) are procedures that can be invoked on <a>FDOs</a> to create, manipulate or
+        delete <a>FDO record</a>(s), <a>bit-sequence(s)</a>, or trigger other related activities.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r10_11">[R10-11] Operation Interface</h4></dt>
+    <dd>
+        <a>Operations</a> abstract and encapsulate their concrete implementation details by providing a uniform interface
+        that at least defines their input parameters, output parameters, and how the operation should be executed.
+        This enables execution of operations in arbitrary, possibly restricted environments.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r10_12">[R10-12] <a>Operations</a> as <a>FDOs</a></h4></dt>
+    <dd>
+        Operations MUST themselves be represented as <a>FDOs</a>.
+        Hence, they are identified by a <a>PID</a> that resolves into an
+        <a>FDO record</a> consisting of <a>attributes</a>.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r10_13">[R10-13] <dfn>Operation Definition Profile</dfn></h4></dt>
+    <dd>
+        An operation definition profile <a><em>0.FDO/OperationDef</em></a> which specifies a minimal set of <a>attributes</a> that
+        an operation must define (similar to <a><em>0.FDO/ProfileDef</em></a> or <a><em>0.FDO/AttributeDef</em></a>, see
+        <a href="#profiles"></a> and <a href="#attributes"></a>) does not exist yet but may be specified in the
+        future.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r10_14">[R10-14] Operation Association</h4></dt>
+    <dd>
+        To associate an <a>operation</a> with an <a>FDO</a>, types SHOULD be used (i.e., <a>FDO attribute</a>(s), <a>FDO Profile</a>(s) and the
+        <a>FDO types</a> as defined in <a href="#0.FDO-Type"></a>).
+        In detail, to associate an operation to an <a>FDO</a>, (at least)
+        one of the following operation association mechanisms SHOULD be applied:
+        <ul>
+            <li>
+                The <a>FDO record</a> refers to applicable <a>operations</a> for this <a>FDO</a> via a designated <a>attribute</a>.
+            </li>
+            <li>
+                The <a>FDO Profile</a> refers to applicable <a>operations</a> for any <a>FDO</a> complying to this <a>profile</a>via a
+                designated <a>attribute</a>.
+            </li>
+            <li>
+                The <a>attributes</a> available in an <a>FDO record</a> are matched with applicable <a>operations</a> and the <a>attributes</a>
+                they require.
+            </li>
+        </ul>
+        More information on the <a>operation association mechanisms</a> is available in the paper [[FDO-Operations-2025]].
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r10_15">[R10-15] List Operations</h4>></dt>
+    <dd> Providing an operation to list available <a>operations</a> for specific <a>FDO types</a> is strongly RECOMMENDED.
+    </dd>
+</dl>

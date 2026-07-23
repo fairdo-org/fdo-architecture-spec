@@ -1,0 +1,275 @@
+<h3 id="profiles">FDO Profiles</h3>
+<p>
+    <a>FDO Profiles</a> are templates for <a>FDO Records</a>.
+    They specify which <a>attributes</a> SHOULD be considered in an <a>FDO Record</a>.
+    They DO NOT specify the cardinality of the <a>attributes</a>; this is done in the <a>attribute definitions</a>.
+    All <a>FDO Profiles</a> are themselves fully valid FDOs (see <a href="#rule-r4_6">[R4-6]</a>) that instantiate the
+    <a>profile definition profile</a> (see <a href="#rule-r4_7">[R4-7]</a>).
+    All <a>FDO Profiles</a> MUST fulfill the following requirements:
+</p>
+<dl>
+    <dt><h4 class="rule-heading" id="rule-r4_1"><dfn
+            data-lt="FDO profile|profile">[R4-1] Definition of the term "FDO Profile"</dfn></h4></dt>
+    <dd>
+        An <a>FDO Profile</a> (short: profile) is a machine-readable template that MAY be instantiated by
+        <a>FDO Records</a>.
+        It defines a set of <a>attribute definitions</a> that MUST be contained in any <a>FDO Record</a>
+        instantiating the profile, according to the cardinalities specified in the <a>attribute definitions</a> (see <a
+            href="#rule-r5_7">[R5-7]</a>).
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r4_2">[R4-1] <a>Attribute Definition</a> Inclusion</h4></dt>
+    <dd>
+        An <a>attribute definition</a> is contained in a <a>profile</a>’s list of
+        <a>attribute definitions</a> (as described in [R4-1]) if
+        and only if the profile contains an <a>attribute</a>, where the <a>attribute</a>’s
+        <ul>
+            <li>
+                first element is either <a><em>0.FDO/Attribute</em></a> or <a><em>0.FDO/Attribute</em></a>, and
+            </li>
+            <li>
+                the second element (value) contains a <a>PID</a> resolving to the <a>attribute definition</a>.
+            </li>
+        </ul>
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r4_3">[R4-3] <dfn>Mandatory Profile <a>attributes</a></dfn></h4></dt>
+    <dd>
+        Each profile MUST at least contain the mandatory <a>attributes</a> <a><em>0.FDO/Type</em></a>,
+        <a><em>0.FDO/Profile</em></a>, and <a><em>0.FDO/Data</em></a> as
+        defined by the <a>FDO Forum</a> (see the <a>root profile</a>).
+        It can further contain <a>attributes</a> from the list of optional <a>attributes</a> as defined by <a>FDO</a>
+        Forum (see table X in appendix), or arbitrary community-specified
+        <a>attributes</a>, as long as these are identified by <a>PIDs</a>.
+    </dd>
+
+
+    <dt><h4 class="rule-heading" id="rule-r4_4">[R4-4] <dfn>Additional <a>attributes</a></dfn></h4></dt>
+    <dd>
+        An <a>FDO Record</a> MAY contain additional <a>attributes</a> whose
+        <a>attribute definitions</a> are not listed in the <a>profiles</a> it instantiates.
+        <a>Profiles</a> MAY prohibit this feature for
+        <a>FDOs</a> that instantiate them by setting the value of the optional
+        <dfn><em>0.FDO/denyAdditionalAttributes</em></dfn> <a>attribute</a> to a truthy value.
+        By default, additional <a>attributes</a> are allowed to facilitate the use of multiple
+        <a>FDO profiles</a> in a single <a>FDO Record</a>.
+        Explicitly prohibiting additional <a>attributes</a> SHOULD be sparingly used and is NOT recommended.
+    </dd>
+
+
+    <dt><h4 class="rule-heading" id="rule-r4_5">[R4-5] <dfn data-lt="Profile Instantiation">Profile Compliance</dfn>
+    </h4></dt>
+    <dd>
+        Each <a>FDO Record</a> MUST comply with all the <a>profiles</a> it instantiates.
+        This means that it MUST successfully validate (see <a href="#validation"></a>) against these
+        <a>profiles</a> at least upon creation and update of the <a>FDO record</a>.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r4_6">[R4-6] <dfn data-lt="profile FDOs">Profiles are <a>FDOs</a></dfn></h4>
+    </dt>
+    <dd>
+        Each <a>profile</a> is itself represented as an <a>FDO</a>.
+        Hence, it is identified by a <a>PID</a> that resolves into an <a>FDO Record</a> consisting of
+        <a>attribute tuples</a>.
+        All <a>profiles</a> MUST at least comply with the <a>FDO root profile</a> and the
+        <a>FDO Profile definition profile</a> (see <a href="#rule-r4_7">[R4-7]</a>).
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r4_7">[R4-7] <dfn
+            data-lt="0.FDO/ProfileDef|FDO Profile Definition Profile">Profile Definition Profile</dfn></h4></dt>
+    <dd>
+        The <a>FDO Profile definition profile</a> defines a set of
+        <a>attribute definitions</a> that MUST be instantiated in the
+        <a>FDO Record</a> of each <a>profile</a>.
+        Thus, this <a>profile</a> for all <a>profile FDOs</a>, is itself a fully valid <a>FDO</a> that instantiates the
+        <a>root profile</a> and itself.
+        It uses <a>profile extension</a> to inherit the set of <a>attribute definitions</a> of the <a>root profile</a>.
+        In addition to those <a>attributes</a>, the <a>FDO Profile definition profile</a> also demands the use of
+        <a><em>0.FDO/Name</em></a> and <a><em>0.FDO/Description</em></a>.
+        The <a><em>0.FDO/Attribute</em></a> <a>attribute</a> is used to specify the set of
+        <a>attribute definitions</a> that MUST be used in any
+        <a>FDO</a> instantiating a profile (<a>profile FDOs</a> included).
+        <a><em>0.FDO/ExtendsProfile</em></a> is used by the <a>profile extension mechanism</a> to indicate the "parent"
+        <a>profile</a> to extend from.
+        The conceptual record of the <a>FDO Profile definition profile</a> with the PID
+        <em>0.FDO/ProfileDef</em> is defined in <a href="ProfileDefRecord">Table 1</a>.
+    </dd>
+
+
+    <dt><h4 class="rule-heading" id="rule-r4_8">[R4-8] <dfn>Profile Registration</dfn></h4></dt>
+    <dd>
+        Any <a>profile</a> and all <a>attribute definitions</a> it uses MUST be defined in open registries.
+        This is done to promote the findability and reusability of <a>FDO profiles</a>, and thus the interoperability of
+        <a>FDOs</a>.
+        Special rules apply in case profiles are updated, see <a href="#r11-3">R11-3</a> - <a href="#r11-6">R11-6</a>.
+    </dd>
+</dl>
+
+<table border="2" id="ProfileDefRecord">
+    <caption style="caption-side: bottom">
+        <b>Table 1</b>: The conceptual record of the <a>FDO Profile definition profile</a> (with the PID
+        <a><em>0.FDO/ProfileDef</em></a>).
+        This figure shows the <a>attribute definitions</a> that MUST be used in any <a>FDO</a> instantiating a profile.
+        The <a>attribute definitions</a> are specified by their <a>PIDs</a>, which resolve to the respective
+        <a>attribute definition</a>.
+        The cardinality of the <a>attribute definitions</a> is also shown.
+        This table does not include all information about the <a>attribute definitions</a>; for more information see the
+        <a href="#appendixAttrDefsUsed">appendix</a>.
+    </caption>
+    <tr>
+        <th>PID of <a>Attribute Definition</a></th>
+        <th>Description of the <a>attribute</a></th>
+        <th>Cardinality of the <a>attribute</a></th>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Type</em></a>
+        </td>
+        <td>The <a>FDO type</a>(s) as specified in <a href="#0.FDO-Type"></a>.
+            The <a>FDO type</a> of a <a>profile</a> is simply the string <em>FDO_Type</em>.
+        </td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Profile</em></a></td>
+        <td>The profile(s) as specified in section 3.4.
+            The profile of a profile is <a><em>0.FDO/ProfileDef</em></a>.
+        </td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Data</em></a>
+        </td>
+        <td>Data of the <a>FDO</a>.
+            For profiles, this <a>attribute</a> does often not apply, in which case this
+            <a>attribute</a> MAY simply use the string <em>Not_Applicable</em>.
+            Alternatively, an <a>attribute reference</a> to the <a><em>0.FDO/SelfRef</em></a> <a>attribute</a>, which has the <a>PID</a> of the <a>FDO</a> in which it is used as its value, MAY be used as well.
+        </td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Name</em></a>
+        </td>
+        <td>Human-readable and localized label(s) for the profile.</td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Description</em></a>
+        </td>
+        <td>Human-readable and localized description(s) for the profile.</td>
+        <td>0..*</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Attribute</em></a>
+        </td>
+        <td><em><a><em>0.FDO/Attribute</em></a></em> defines the set of
+            <a>attribute definitions</a> that MUST be instantiated in any <a>FDO</a> instantiating this <a>profile</a>.
+            The cardinality of the <a>attribute definitions</a> MUST be respected in the <a>FDOs</a>.
+            When not using <a>profile extension</a>, <a><em>0.FDO/Attribute</em></a> MUST be defined with at least the attributes from the <a>root profile</a>.
+            Other <a>attribute definitionss</a> can be added by adding more <a><em>0.FDO/Attribute</em></a> <a>tuples</a> with the <a>PID</a> of the desired <a>attribute definition</a>.
+        </td>
+        <td>0..*</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/ExtendsProfile</em></a></td>
+        <td>If this <a>profile</a> is an extension of another <a>profile</a>, this <a>attribute</a> specifies the
+            <a>PID</a> of the parent profile (see <a href="#r4_11">[R4-11]</a>).
+            All <a>profiles</a> MUST either extend from <a><em>0.FDO/Root</em></a>, another profile that recursively extends
+            from <a><em>0.FDO/Root</em></a>, or specify the mandatory attributes from <a><em>0.FDO/Root</em></a> using <a><em>0.FDO/Attribute</em></a>.
+        </td>
+        <td>0..*</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/denyAdditionalAttributes</em></a>
+        </td>
+        <td>This is an optional boolean flag indicating whether an <a>FDO</a> that instantiates the respective <a>profile</a> MUST NOT have <a>additional attributes</a> than those given by the profile.
+            This restriction is only active if the value is set to a truthy boolean.
+            Otherwise, <a>additional attributes</a> and multiple <a>profiles</a> are allowed.
+        </td>
+        <td>0..1</td>
+    </tr>
+</table>
+
+
+<p>
+    <b>The <a>FDO</a> Root <a>Profile</a> (<a><em>0.FDO/Root</em></a>) can be extended to create new <a>FDO Profiles</a>:</b>
+</p>
+<p>
+    Since profiles are defined as lists of
+    <a>attribute definitions</a>, there exists a simple mechanism to extend profiles.
+    The
+    mechanism is defined as follows:
+</p>
+<dl>
+    <dt><h4 class="rule-heading" id="rule-r4_9">[R4-9] <dfn data-lt="0.FDO/Root|minimal FDO|core FDO">Root Profile</dfn></h4></dt>
+    <dd>
+        The <a>root profile</a> defines a minimal set of <a>attribute definitions</a> that MUST be instantiated in any <a>FDO Record</a>.
+        All <a>FDOs</a> including the <a>root profile</a> itself MUST comply with the <a>root profile</a>.
+        It is the minimal <a>profile</a> in the sense that it contains the mandatory <a>attribute definitions</a> <a><em>0.FDO/Type</em></a>,
+        <a><em>0.FDO/Profile</em></a>, and <a><em>0.FDO/Data</em></a> that are essential to the interpretability of <a>FDO records</a>.
+        Therefore, compliance with the <a>root profile</a> MUST be checked by all clients even if it is not explicitly included in an <a>FDO Record</a> or its <a>profile extension hierarchy</a>.
+        The root profile is defined by the <a>FDO Forum</a> and has the <a>PID</a> <a><em>0.FDO/Root</em></a>.
+        It instatiates itself and <a>0.FDO/ProfileDef</a>, as it is a <a>profile</a>, and contains the list of <a>attribute definitions</a> shown in <a href="rootProfileRecord">Table 2</a>.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r4_10">[R4-10] <dfn data-lt="0.FDO/ExtendsProfile|Profile Extension|Profile Inheritance">Profile Extension Mechanism</dfn></h4></dt>
+    <dd>
+        <a>Profiles</a> SHOULD be extended by other <a>profiles</a> whenever semantically appropriate.
+        The <a>root profile</a> serves as the root of the extension mechanism, meaning, any <a>profile</a> MUST be defined as an extension of the <a>root profile</a> or any
+        of its children.
+        <br>
+        To extend a <a>profile</a> <em>P<sub>1</sub></em> from a <a>profile</a> <em>P<sub>2</sub></em>, the <em>P<sub>2</sub></em> MUST contain an
+        <a>attribute</a>where
+        <ul>
+            <li>the first element is <a><em>0.FDO/ExtendsProfile</em></a> or the string <em>FDO_Extends_Profile</em>, and </li>
+            <li>the value is the <a>PID</a> identifying <em>P<sub>1</sub></em>.</li>
+        </ul>
+
+        In this case, <em>P<sub>2</sub></em> inherits all <a>attribute definitions</a> listed as values to <a><em>0.FDO/Attribute</em></a> in <em>P<sub>1</sub></em>.
+        This is recursive, such that the <a>attribute definitions</a> that are listed in profiles that <em>P<sub>1</sub></em> extends from also apply to <em>P<sub>2</sub></em>.
+        <em>P<sub>2</sub></em> MAY add further <a>attribute definitions</a> by instantiating <a><em>0.FDO/Attribute</em></a> in its <a>FDO Record</a>.
+        The resulting inheritance hierarchy MUST be conflict-free and representable by a directed acyclic graph.
+    </dd>
+
+
+    <dt><h4 class="rule-heading" id="rule-r4_11">[R4-11] <dfn>Profile Validation Hierarchy</dfn></h4></dt>
+    <dd>
+        To validate an <a>FDO Record</a> against a <a>profile</a> that uses the <a>extension mechanism</a>, all <a>profiles</a> in the
+        extension hierarchy MUST be resolved until a profile is reached that does not extend another profile (which may be
+        <a><em>0.FDO/Root</em></a> or another <a>profile</a>).
+        During this process, a set of <a>attribute definitions</a> is collected from all <a>profiles</a> in the extension hierarchy.
+        The <a>FDO Record</a> MUST then be validated against this set of <a>attribute definitions</a> according to the cardinalities specified in the <a>attribute definitions</a>.
+        If any of the <a>profiles</a> in the extension hierarchy explicitly prohibits <a>additional attributes</a>, then the <a>FDO Record</a> MUST NOT contain any <a>attributes</a> that are not listed in the set of <a>attribute definitions</a> up to this node in the hierarchy.
+        The validation only succeeds if all <a>attribute definitions</a> are satisfied and none of the <a>profiles</a> in the extension hierarchy prohibits <a>additional attributes</a> that are present in the <a>FDO Record</a>.
+    </dd>
+</dl>
+
+<table border="2" id="rootProfileRecord">
+    <caption style="caption-side:bottom"><b>Table 2</b>: The list of <a>attribute definitions</a> specified by the root profile (<a><em>0.FDO/Root</em></a>).
+        These <a>attributes</a> MUST be used in any <a>FDO</a>.
+        The <a>root profile</a> MAY be extended to define new <a>profiles</a>.
+        This table does not include all information about the <a>attribute definitions</a>.
+        Please see the <a href="#appendixAttrDefsUsed">appendix</a> of this document.
+    </caption>
+    <tr>
+        <th>PID of <a>Attribute Definition</a></th>
+        <th>Description of the <a>attribute</a></th>
+        <th>Cardinality of the <a>attribute</a></th>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Type</em></a>
+        </td>
+        <td>The <a>FDO types</a> as specified in <a href="fdo-types"> section 5.10</a>.</td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Profile</em></a></td>
+        <td>The <a>profile(s)</a> as specified in this section</td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Data</em></a>
+        </td>
+        <td>Indicates a path to the data (also called: <a>bit-sequence</a>) of the <a>FDO</a>.</td>
+        <td>1..*</td>
+    </tr>
+</table>

@@ -1,0 +1,75 @@
+<h3 id="processing-intro">Introduction to Processing</h3>
+<p>
+    The Generic <a>FDO</a> Processing Block consists of the discrete set of steps that a canonical <a>FDO</a>
+    client would execute in order to access an <a>FDO</a> and all its components given its <a>PID</a>.
+</p>
+<p>To help visualize the function of the <a>FDO</a> Processing block, it is useful to consider the simplest canonical <a>FDO</a> case
+    illustrated in [[[#step-fig1]]] below as well as a more complex example in
+    [[[#step-fig2]]].
+    It is important to note that both these figures are abstract representations of
+    <a>FDOs</a> and different implementations could have these various <a>attributes</a> named, structures, and stored differently.
+</p>
+<figure id="step-fig1">
+    <img alt="Representation of a simple <a>FDO</a>: Tuples and graph" src="img/SimpleFDO.png"
+         style="vertical-align:middle">
+    <figcaption>Representation of a simple <a>FDO</a>: Tuples and graph.</figcaption>
+</figure>
+<figure id="step-fig2">
+    <img alt="Representation of a complext <a>FDO</a>: Tuples and graph" src="img/ComplexFDO.png"
+         style="vertical-align:middle">
+    <figcaption>Representation of a complex <a>FDO</a>: Tuples and graph.</figcaption>
+</figure>
+
+<dl>
+    <dt>Abstract <a>FDO</a> Processing Block steps</dt>
+    <dd>All <a>FDO</a> Processing block implementations regardless of their specific data and implementation configurations
+        SHOULD
+        be able to describe how their approach satisfies the following set of discreet steps listed below.
+    </dd>
+    <dt><a href="#step1">[Step 1]</a> <a>PID</a> Detection</dt>
+    <dd>Given a string, determine if it is a <a>PID</a> that can be resolved.</dd>
+
+    <dt><a href="#step2">[Step 2]</a> <a>PID</a> Processing / Resolution</dt>
+    <dd>Resolve the identifier into a <a>PID</a> record.</dd>
+
+    <dt><a href="#step3">[Step 3]</a> <a>PID</a> Record Parsing into an <a>FDO Record</a></dt>
+    <dd>Parse the <a>PID</a> record in a set of type value pairs</dd>
+
+    <dt><a href="#step4">[Step 4]</a> <a>FDO Record</a> root profile validation</dt>
+    <dd>Locate all required core <a>FDO attributes</a> and create an <a>FDO Record</a>.</dd>
+
+    <dt><a href="#step5">[Step 5]</a> <a>FDO Record</a> Type inspection</dt>
+    <dd>Determine if the <a>FDO</a> has a type and whether this type is appropriate given the requirements of the client.
+        A
+        useful hint.
+    </dd>
+
+    <dt><a href="#step6">[Step 6]</a> <a>FDO Profile</a> Inspection</dt>
+    <dd> Determine if the <a>FDO</a> has one or more profiles and whether these profiles are appropriate given the requirements
+        of the client.
+    </dd>
+
+    <dt><a href="#step7">[Step 7]</a> <a>FDO Profile</a>(s) Validation</dt>
+    <dd>Validate the <a>FDO</a> according to the profile(s) that are of interest to the client.</dd>
+
+    <dt><a href="#step8">[Step 8]</a> <a>FDO <a>attributes</a></a> Processing</dt>
+    <dd>The client validates each of the <a>attributes</a> values of interests and processes these values to confirm the
+        appropriateness of the <a>FDO</a>.
+    </dd>
+
+    <dt><a href="#step9">[Step 9]</a> <a>FDO <a>attributes</a></a> Evaluation</dt>
+    <dd>Evaluates the values of the <a>attributes</a> to make sure that they are appropriate.</dd>
+
+    <dt><a href="#step10">[Step 10]</a> <a>FDO</a> Data Access</dt>
+    <dd>The client accesses the <a>FDO</a>’s data subject to access control.</dd>
+
+    <dt><a href="#step11">[Step 11]</a> <a>FDO Record</a> Type Validation</dt>
+    <dd>Determine if the <a>FDO</a>’s data matches the type of the <a>FDO</a>.</dd>
+</dl>
+This specification uses these steps to describe the function and characteristic of the various components of the <a>FDO</a>.
+FDO implementations are not required to implement each of these steps as long as they can account for how their implicit
+assumptions and different components achieve the same results.
+
+Each of the steps are described below.
+
+</p>

@@ -1,0 +1,48 @@
+<h3 id="granularity">Granularity</h3>
+<p>
+    The <a>granularity</a> of <a>FDOs</a> depends on the pragmatic utility decisions made within communities of practice.
+    To represent <a>resources</a> as <a>FDOs</a>, it is necessary to determine useful entities and their relationships.
+    The <a>granularity</a> of <a>FDOs</a> is determined by the decision which <a>resources</a> are represented as
+    separate <a>FDOs</a> and which are not.
+    This decision is influenced by the need to balance detail and manageability in representing and manipulating the resources.
+    Whatever the initial decision is, it can be revised later.
+    One option is breaking up the bit sequence(s) of a given <a>FDO</a> into parts and creating new <a>FDOs</a> to
+    represent these parts.
+    Another option is aggregating individual <a>FDOs</a> into <a>collections</a>, which are themselves also <a>FDOs</a>.
+    The detailed requirements on <a>granularity</a> are:
+</p>
+<aside class="example" title="Example of a granularity decision">
+    An example is MRI scans of the brain.
+    One option is to create one <a>FDO</a> for the entire set of slices.
+    Another option is to create one <a>FDO</a> for each slice, with <a>attributes</a> indicating which slice it is.
+</aside>
+
+<dl>
+    <dt><h4 class="rule-heading" id="rule-r2_1">[R2-1] <dfn>Single Resource Representation</dfn></h4></dt>
+    <dd>
+        Each <a>FDO</a> represents exactly one <a>resource</a>.
+        The <a>resource</a> MAY be complex, that is, it MAY consist of multiple other <a>resources</a>.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r2_2">[R2-2] <dfn>Collection Definition</dfn></h4></dt>
+    <dd>
+        If an <a>FDO</a> represents a <a>resource</a> which consists of multiple parts that are interpreted as
+        <a>resources</a> in their own right, this <a>FDO</a> is called a <a>collection</a>.
+        The decision which parts are interpreted as <a>resources</a> in their own right (and hence MAY be represented as their own <a>FDOs</a>) is
+        dependent on pragmatic utility decisions within communities of practices.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r2_3">[R2-3] <dfn>Resource Description</dfn></h4></dt>
+    <dd>
+        A <a>resource</a> MUST be described by <a>FDO attributes</a>.
+        It MAY have associated data <a>bit-sequence(s)</a>, if it is a digital resource.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r2_4">[R2-4] <dfn>Attribute Scope</dfn></h4></dt>
+    <dd>
+        Every <a>FDO attribute</a> in an <a>FDO record</a> only describes the identified <a>resource</a> and not any other <a>resources</a>.
+        Even if the <a>FDO</a> is a <a>collection</a>, all <a>attributes</a> in the <a>FDO record</a> describe the<a>resource</a> as a whole and parts of it.
+        To describe one of the parts of the <a>resource</a> with <a>FDO attributes</a>, extract this part into its own <a>FDO record</a>,
+        define an <a href="#inline-fdos">Inline FDO</a>, or use a <a href="#rule-r5_10">Composite Attribute</a> .
+    </dd>
+</dl>

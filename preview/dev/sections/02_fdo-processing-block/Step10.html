@@ -1,0 +1,23 @@
+<h3 id="step10">S-10: <a>FDO</a> Data Access</h3>
+This step consists in accessing the <a>FDO</a>’s Data.
+<dl>
+    <dt>Inputs</dt>
+    <dd>The Validated_Profiles with their respective <a>attributes</a> from <a href="#step8"></a>.</dd>
+    <dt>Outputs</dt>
+    <dd>There are four different possible outputs:
+        <ul>
+            <li>The in-line data value</li>
+            <li>An <a>FDO</a> <a>PID</a></li>
+            <li>An <a>FDO Profile</a></li>
+            <li>A URI</li>
+            <li>A null value.</li>
+        </ul>
+    </dd>
+    <dt>Expected behavior</dt>
+    <dd>
+        The Client inspects each of the Validated_Profiles and finds their respective
+        <a><em>0.FDO/Data</em></a> <a>attributes</a> to find the data <a>attributes</a>.
+        The client should make the best effort to provide the means to access the data depending on the
+        manner in which the <a>FDO</a> references its data.
+    </dd>
+</dl>

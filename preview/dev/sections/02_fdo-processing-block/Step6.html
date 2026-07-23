@@ -1,0 +1,153 @@
+<h3 id="step6">S-6: <a>FDO Profile</a>(s) Inspection</h3>
+<p>
+    This step determines whether the <a>FDO record</a>’s profile(s) is the same or compatible with the <a>FDO Profile</a> the client expects to process.
+    This step assumes that <a href="#step4"></a> was completed and that its status indicates that a <a><em>0.FDO/Profile</em></a>
+    <a>attribute</a>is present.
+    This step is in some way analogous to the <a>FDO type</a> inspection step with the difference that a profile specifies the
+    set of fields that a <a>FDO Record</a> should have to describe a particular type of objects. </p>
+<dl>
+    <dt>Inputs</dt>
+    <dd>
+        This step expects that <a href="#step4"></a> had a <a>FDO root profile</a> validation status of COMPLETE, REQUIRED_FIELDS, PROFILE_ONLY
+        and two inputs:
+        <ol>
+            <li>The list of Profiles that the client is looking for.
+                This is called the expected <a>FDO Profile</a> list.
+            </li>
+            <li>The Profile_Matching flag.
+                The three possible values are:
+                <ul>
+                    <li>ALL_MATCH: Indicates that any <a>FDO Profile</a> is acceptable.
+                        This ignores the Expected <a>FDO Profile</a> list if
+                        provided.
+                    </li>
+                    <li>EXACT_MATCH.
+                        Indicates that the <a>FDO Profile</a> matching requires an exact match with the
+                        <a>FDO Profile</a>(s) in
+                        the expected <a>FDO Profile</a> list.
+                    </li>
+                    <li>DERIVED_MATCH.
+                        Indicates that the <a>FDO Profile</a> in the
+                        <a>FDO Record</a> can be derived Profile from the expected
+                        <a>FDO Profile</a> list.
+                        Derived profiles remain backward compatible with their parent profile.
+                    </li>
+                </ul>
+            </li>
+        </ol>
+    </dd>
+    <dt>Outputs</dt>
+    <dd>
+        This step returns a flag describing the status of the match as well as a list with all the
+        <a>FDO Profiles</a> that match or are derived from the expected types.
+        If the list is empty, it indicates that no matches, and if requested, no derived matches were found.
+    </dd>
+
+    <dt>Expected behavior</dt>
+    <dd>
+        In this step, the client will compare the list of <a>FDO Profile</a> in the <a>FDO Record</a> with the expected
+        <a>FDO Profile</a> list for matches.
+        The following lists the possible behaviors:
+        <ol>
+            <li>
+                The Expected <a>FDO Profile</a> List is empty, and or the Profile_Matching is set to ALL_MATCH.
+                The result is the FULL_MATCH flag with a list with all <a>FDO Profiles</a> from the <a>FDO Record</a>.
+            </li>
+            <li>
+                The <a>FDO Profile</a>(s) in the <a>FDO records</a> fully match those in the expected <a>FDO Profile</a> List.
+                The result is FULL_MATCH and the list of all expected <a>FDO Profile</a> List.
+            </li>
+            <li>
+                The <a>FDO Profile</a>(s) in the <a>FDO record</a> matches at least one of the
+                <a>FDO Profiles</a> in the expected <a>FDO Profile</a> list.
+                The result is PARTIAL_MATCH with a list containing the <a>FDO Profile</a>(s) that match.
+            </li>
+            <li>
+                The <a>FDO Profile</a> in the <a>FDO records</a> matches none of the <a>FDO Profile</a> lists.
+                There are two different results
+                depending
+                on the matching condition:
+                <ul>
+                    <li>
+                        If the Profile_Matching_Flag is set to EXACT_MATCH, the client concludes that the <a>FDO</a> does not have the
+                        expected profile.
+                        The result is NO_MATCH and an empty list.
+                    </li>
+                    <li>
+                        If the Profile_Matching_Flag is set to DERIVED_MATCH, the client will respectively analyze each of the <a>FDO profiles</a> in the
+                        <a>FDO Record</a> and determine if they are derived from profiles that are within the expected <a>FDO profile</a>list.
+                        Note that derived <a>FDO Profiles</a> are compatible with their parent <a>FDO Profile</a>.
+                        To determine is and <a>FDO Profile</a> is derived from another, the client resolves each of the <a>FDO Profiles</a> into
+                        their respective <a>FDOs</a> and then analyzes these <a>FDOs</a> to see if the Profiles definition specifies that they are
+                        derived from <a>FDO Profiles</a> that match a profile within the expected <a>FDO Profile</a> list.
+                        If the <a>FDO Profiles</a> within the <a>FDO Record</a> are derived from <a>FDO Profiles</a> in the expected <a>FDO Profile</a> list,
+                        the <a>FDO Record</a> is compatible with one or more of its expected <a>FDO Profile</a>.
+                        Any errors in accessing <a>FDO Profile</a>’s <a>FDO</a> terminates the search for derived matches and results in that <a>FDO profile</a>’s not matching.
+                        The results can be:
+                        <ul>
+                            <li>NO_MATCH and an empty list if no derived Profiles are found.</li>
+                            <li>DERIVED_MATCH a list with the derived Profile matches.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+    </dd>
+    <aside class="example" title="A well-formed <a>FDO</a> with all required <a>FDO root profile</a> fields">
+        <p>
+            The examples below assume the simple <a>FDO Record</a> described below.
+            Adding to the example is the fact that the <a>FDO</a>
+            Profile 21.32/234 is derived from <a>FDO Profile</a> 21.32/123, which is itself derived from <a>FDO Profile</a> 21.1/0.
+        </p>
+
+        <table>
+            <caption>
+                Example 1: A well-formed <a>FDO</a>
+            </caption>
+            <thead>
+            <tr>
+                <th scope="col">10.1234/456/th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">0.FDO/Type
+                </th>
+                <td>10.123/Type1</td>
+            </tr>
+            <tr>
+                <th scope="row">0.FDO/Profile
+                </th>
+                <td>21.32/234</td>
+            </tr>
+            <tr>
+                <th scope="row">0.FDO/Profile
+                </th>
+                <td>10.123/Profile1</td>
+            </tr>
+
+            <tr>
+                <th scope="row">0.FDO/Name
+                </th>
+                <td>Test <a>FDO</a></td>
+            </tr>
+            <tr>
+                <th scope="row">0.FDO/Description
+                </th>
+                <td>FDO Test Demonstration</td>
+            </tr>
+            <tr>
+                <th scope="row">0.FDO/Data_Attribute
+                </th>
+                <td>0.FDO/SelfRef
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">0.FDO/SelfRef
+                </th>
+                <td>DOI:10.234/456</td>
+            </tr>
+            </tbody>
+        </table>
+    </aside>
+</dl>

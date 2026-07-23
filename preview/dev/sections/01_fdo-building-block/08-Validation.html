@@ -1,0 +1,46 @@
+<h3 id="validation">Validation</h3>
+<p>
+    <a>Validation</a> is a key characteristic of <a>FDOs</a>.
+    It enables detecting errors in the <a>FDO Record</a> early on.
+    <a>Validation</a> SHOULD at least be carried out upon creation and update of an <a>FDO</a>.
+</p>
+<dl>
+    <dt><h4 class="rule-heading" id="rule-r8_1">[R8-1] Presence of the <a><em>0.FDO/Profile</em></a><a>attribute</a></h4></dt>
+    <dd>
+        An <a>FDO Record</a> is said to be valid if and only if it contains the <a>attribute</a> <a><em>0.FDO/Profile</em></a> at least once.
+        The value of each of these <a>attributes</a> MUST be references to <a>profiles</a>.
+        This is expressed using <a>profile reference</a> to <a><em>0.FDO/ProfileDef</em></a>.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r8_2">[R8-2] Profile Validation</h4></dt>
+    <dd>
+        For each of these referenced <a>profiles</a>,
+        <ul>
+            <li>
+                the <a>FDO Record</a> MUST contain <a>attributes</a> that instantiate the
+                <a>attribute definitions</a> listed in the
+                <a>profile</a>, according to the their individual cardinalities.
+            </li>
+            <li>
+                the values of these <a>attributes</a> MUST comply with the specified
+                <a>validation</a> rules, e.g., with <a href="#syntax-def">syntax definition</a>,
+                <a href="#profile-referencing">profile referencing</a> rules, <a href="#attribute-referencing">attribute referencing</a> rules, or
+                <a href="#external-vocabulary-referencing">external vocabulary referencing</a> rules, as given by the <a>attribute definition</a>.
+            </li>
+        </ul>
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r8_3">[R8-3] <dfn><a>Attribute</a> Validation</dfn></h4></dt>
+    <dd>
+        All <a>attributes</a> with an <a>attribute definition</a> MUST be correctly validated according to their
+        <a>validation</a> rules.
+    </dd>
+
+
+    <dt><h4 class="rule-heading" id="rule-r8_4">[R8-4] Root Profile Validation</h4></dt>
+    <dd>The <a>FDO Record</a> MUST successfully validate against the <a><em>0.FDO/Root</em></a> <a>profile</a>.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r8_5">[R8-5] Specification Compliance</h4></dt>
+    <dd>The <a>FDO</a> MUST NOT violate any of the rules specified in this document.</dd>
+</dl>

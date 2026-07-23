@@ -1,0 +1,28 @@
+<h3 id="step9">S-9: <a>FDO attributes</a> Evaluation</h3>
+<p>
+    This step evaluates the set of <a>attributes</a> within each Evaluated_Profile returned from <a href="#step8"></a> to
+    determine whether they describe an object of interest to the accessing client.
+    The <a>FDO attribute</a> Evaluation criteria are specific for each Evaluated_Profile and for each client.
+</p>
+<dl>
+    <dt>Inputs</dt>
+    <dd>
+        The list of Evaluated_Profile from <a href="#step8"></a> and a set of client-specified criteria for
+        evaluating each of the <a>attributes</a> within each <a>profile</a>.
+    </dd>
+    <dt>Outputs</dt>
+    <dd>
+        The output is true or false for each of the Validated_Profiles.
+        Either a <a>profile</a> describes an object that is relevant to the client or it is not.
+    </dd>
+    <dt>Expected behavior</dt>
+    <dd>
+        <p> For each Validated_Profile, inspect the list of <a>attributes</a> within each of the Validated_Profile and evaluate
+            if their values match the client’s requirements.
+        </p>
+        <p>
+            Clients may have different requirements such as requiring fully valid <a>FDOs</a> with valid
+            <a>FDO Profiles</a>, verified <a>attributes</a> while others may have less restrictive needs.
+        </p>
+    </dd>
+</dl>

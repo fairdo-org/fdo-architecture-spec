@@ -1,0 +1,20 @@
+<h3 id="step11">S-11: <a>FDO</a> Data Validation</h3>
+The data validation shall analyze the data acquired from <a href="#step9"></a> and validate it against the
+various <a>attributes</a> found in the <a>FDO</a>.
+The validation is specific to each of the <a>attribute</a> types and some <a>attributes</a> may
+specify in their <a>FDO</a> definition, rules for verifying that the data is compliant with the value in the <a>attribute</a>.
+
+<dl>
+    <dt>Inputs</dt>
+    <dd>The inputs shall consist of the data from <a href="#step9"></a> and the Evaluated_Profiles from
+        <a href="#step8"></a> and a list of test <a>attributes</a> the client wishes to evaluate the data with.
+    </dd>
+    <dt>Expected behavior</dt>
+    <dd>For each of the test <a>attributes</a>, find the <a>attribute</a> in the list of Evaluated_Profiles and evaluate the value of
+        the <a>attributes</a> and determine if the data matches.
+    </dd>
+    <dt>Outputs</dt>
+    <dd>The output is a list of <a>attributes</a> whose values matched the data and a list of <a>attributes</a> whose values did not
+        match the data.
+    </dd>
+</dl>
