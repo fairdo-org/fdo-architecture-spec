@@ -31,5 +31,5 @@ jobs:
         with:
           folder: .
           branch: gh-pages
-          clean-exclude: pr-preview/
+          clean-exclude: preview/
           force: false
