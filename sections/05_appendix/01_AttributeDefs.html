@@ -1,1 +1,663 @@
 <h3 id="appendixAttrsFDOTypeSystem">List of <a>attribute definitions</a> used in this document</h3>
+
+<aside class="note">
+    The lists of attributes given in <a href="#sec-c-1-1">C.1.1</a> - <a href="#sec-c-1-3">C.1.3</a> are very early drafts and currently under discussion. The discussion
+    space can be found <a href="https://github.com/fairdo-org/fdo-architecture-spec/discussions/43">here</a>.
+</aside>
+<aside class="note">
+    To achieve definition of high-quality attributes, each attribute definition has to settle on:
+    <ul>
+        <li>the attribute name</li>
+        <li>the attribute description</li>
+        <li>the attribute cardinality</li>
+        <li>the attribute validation mechanism (syntax, union, inlineCombination, attribute referencing,
+            profile referencing, external vocabulary referencing)
+        </li>
+        <li>
+            Depending on the validation mechanism an attribute uses, the following needs to be specified:
+            <ul>
+                <li>syntax: a syntax definition belonging to this attribute</li>
+                <li>union: several attribute definitions comprising this union</li>
+                <li>
+                    inlineCombination: several attribute definitions comprising this inline combination, and potentially
+                    a cardinality to override the original attribute cardinality
+                </li>
+                <li>attribute referencing: a list of attributes which can be pointed at</li>
+                <li>profile referencing: a list of profiles which can be pointed at</li>
+                <li>external vocabulary referencing: always points at 0.FDO/ImportsVocabulary</li>
+            </ul>
+        </li>
+    </ul>
+</aside>
+<aside class="note">
+    Discussion workflow: When the group has agreed an a specific cell in one of the tables, one editor is chosen to make
+    the changes in the table. We use the following color code to guide the discussion:
+    <ol>
+        <li>red: discussion did not start yet, or currently under discussion</li>
+        <li>green: discussion finalized</li>
+    </ol>
+    Colors will be removed after discussions have concluded.
+</aside>
+
+<h4 id="sec-c-1-1">Mandatory attributes</h4>
+This list of attributes is a draft of the mandatory attributes as defined by the FDO Forum.
+
+<table border="2" id="mandatory-attributes" style="background-color: #FFC2C2">
+    <caption style="caption-side:bottom"><b>Table C.1.1</b>: <a>Attribute definitions</a> that MUST be used in any <a>FDO</a>.
+    </caption>
+    <tr style="background-color: white">
+        <th>PID</th>
+        <th>Human-readable name</th>
+        <th>Description</th>
+        <th>Cardinality</th>
+        <th>Validation mechanism</th>
+        <th>Validation mechanism specific information</th>
+    </tr>
+    <tr>
+        <td style="background-color: lightgreen">0.FDO/Type</td>
+        <td>FDO_Type</td>
+        <td>This attribute specifies the type of the resource being represented by the FDO. The purpose of the FDO type
+            is to give a hint to a machine how this object may be processed. Each FDO must have at least one FDO type
+            but can also have multiple FDO types. The FDO type typically points to one of the following attributes that
+            specify the FDO type more closely: ... (tbd). But other values of the attributes are possible as well. This
+            attribute is defined by the FDO Forum and is part of the list of mandatory FDO attributes.
+        </td>
+        <td style="background-color: lightgreen">1..*</td>
+        <td style="background-color: lightgreen">Attribute referencing</td>
+        <td>Reference to any string allowed (no pre-defined list of allowed data types/values)</td>
+    </tr>
+    <tr>
+        <td style="background-color: lightgreen">0.FDO/Profile</td>
+        <td>FDO_Profile</td>
+        <td>This attribute specifies the profile used by the FDO. The purpose of the FDO profile is specify which
+            attributes must/may be present in the FDO, and which cardinality they have in the given context. Each FDO
+            must have at least one FDO profile but can also have multiple FDO profiles. The FDO profile references
+            another FDO that defines a profile. The reference can be of any syntax. This attribute is defined by the FDO
+            Forum and is part of the list of mandatory FDO attributes.
+        </td>
+        <td style="background-color: lightgreen">1..*</td>
+        <td style="background-color: lightgreen">Profile referencing</td>
+        <td style="background-color: lightgreen">Reference to a profile (0.FDO/ProfileDef)</td>
+    </tr>
+    <tr>
+        <td>0.FDO/Data</td>
+        <td>FDO_Data</td>
+        <td>
+            This attribute indicates a path to the data (also called: bit-sequence) of the FDO. The purpose of the FDO
+            data reference is to signal a machine where it can find the data associated to this FDO. Each FDO must have
+            at least one FDO data reference but can also have multiple FDO data references. The FDO data reference
+            typically points to one of the following attributes that specify the FDO data reference more closely: ... (tbd).
+            But other values of the attributes are possible as well. This attribute is defined by the FDO Forum and is
+            part of the list of mandatory FDO attributes.
+        </td>
+        <td style="background-color: lightgreen">1..*</td>
+        <td style="background-color: lightgreen">Attribute referencing</td>
+        <td>Reference to any string allowed (no pre-defined list of allowed data types/values)</td>
+    </tr>
+</table>
+
+
+
+
+<h4>Optional/Recommended attributes</h4>
+This list of attributes is a draft of the optional/recommended attributes as defined by the FDO Forum.
+
+<table border="2" id="recommended-attributes" style="background-color: #FFC2C2">
+    <caption style="caption-side:bottom"><b>Table C.1.2</b>: Pre-defined set of <a>attribute definitions</a> that can be used in any
+        <a>FDO</a>.
+    </caption>
+    <tr style="background-color: white">
+        <th>PID</th>
+        <th>Human-readable name</th>
+        <th>Description</th>
+        <th>Cardinality</th>
+        <th>Validation mechanism</th>
+        <th>Validation mechanism specific information</th>
+    </tr>
+    <tr style="background-color: white">
+       <td colspan="6">Attributes that are used in connection with the 0.FDO/Data attribute</td>
+    </tr>
+    <tr>
+        <td>0.FDO/DownloadURL</td>
+        <td></td>
+        <td>Location to download the data bit-sequence of an FDO. 0.FDO/Data may point to this attribute.</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>0.FDO/InlineData</td>
+        <td></td>
+        <td>Data that are given inline in an FDO record. 0.FDO/Data may point to this attribute.</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>0.FDO/FdoReference</td>
+        <td></td>
+        <td>Reference to any FDO. 0.FDO/Data may point to this attribute in case of collections.</td>
+        <td></td>
+        <td>Profile Reference</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>...</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr style="background-color: white">
+       <td colspan="6">Attributes that are used in connection with the 0.FDO/Type attribute</td>
+    </tr>
+    <tr>
+        <td>0.FDO/MimeType</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>The MIME Type of an FDO. 0.FDO/Type may point to this attribute.</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>...</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr style="background-color: white">
+       <td colspan="6">Attributes to connect FDOs to metadata files</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Metadata_Ref</td>
+        <td>one or multiple reference(s) to bit-sequence(s) containing metadata</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>HKIP hasMetadata</td>
+        <td>One or more PID(s) referring to related FDOs providing metadata for the object referenced by the FDO. It is
+            the inverse to isMetadataFor.
+        </td>
+        <td>0..n</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>HKIP isMetadataFor</td>
+        <td>A PID pointing to another FDO describing the object referenced by the FDO this attribute is used in. It is
+            the inverse to hasMetadata.
+        </td>
+        <td>0..n</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr style="background-color: white">
+       <td colspan="6">Provenance metadata</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>dateCreated</td>
+        <td>the creation date of the FDO in ISO8601 format</td>
+        <td>0..1</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>RDA dateLastModified</td>
+        <td>
+            In the case of mutable bit-sequences of the FDO the last date/time of object modification. Format is ISO-8601
+        </td>
+        <td>0..1</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>HKIP wasGeneratedBy</td>
+        <td>A PID pointing to an activity which generated the object referenced by this FDO or the FDO itself.
+        </td>
+        <td>0..1</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>HKIP version</td>
+        <td>Version of the object referenced by the FDO, either as single number or following semantic versioning
+            conventions.
+        </td>
+        <td>0..1</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>hasPreviousVersion</td>
+        <td>A PID refering to an FDO that describes a previous version of the resource or FDO. The version jump depends
+            on the “version” attribute.
+        </td>
+        <td>0..1</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>hasNewerVersion</td>
+        <td>A PID refering to an FDO that describes a newer version of the resource or FDO. The version jump depends
+            oin the “version” attribute.
+        </td>
+        <td>0..n</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr style="background-color: white">
+       <td colspan="6">Rights, Responsibility, status</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>FDOF ResponsibleOrganization</td>
+        <td>
+            note that this can be another organisation than the PID issuer. the value is taken from the ROR registry
+            value domain (or other with namespace id) In the case of an FDO Configuration type that includes a
+            bit-sequence the following attributes are mandatory which will be represented in the PID profile:
+        </td>
+        <td>0..n</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>FDO_Service</td>
+        <td>The service (e.g. repository) where the FDO (record) is stored. This value SHOULD refer to an FDO, but MAY
+            be an URI.
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>license</td>
+        <td>A SPDX URL referring to the license of the resource referenced by the FDO. The FDO record itself is under
+            CC0 license.
+        </td>
+        <td>0..1</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Rights_Metadata_Ref</td>
+        <td>reference to rights specifications URI</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>HKIP underEmbargoUntil</td>
+        <td>The date in ISO 8601 format, when the object referenced by the FDO is planned to be publicly accessible or
+            was made publicly accessible.
+        </td>
+        <td>0..1</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>FDO_Tombstone</td>
+        <td>
+            The lifetime of the resource represented by the FDO has ended due to some reason (e.g. it is not valid, it
+            is damaged, files do not exist anymore). The exact semantics of this attribute still need to be defined.
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr style="background-color: white">
+       <td colspan="6">Policy</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>FDOF PersistencyPolicy</td>
+        <td>
+            this attribute indicates what the intention of its creator is with respect to its life-time/maintenance,
+            and value domain is a vocabulary with {UNKNOWN, NONE, ##Years} (note: seems only partly covered by RDA
+            digitalObjectPolicy. This value will be set to “UNKNOWN” at creation time.
+        </td>
+        <td>0..1</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>RDA digitalObjectPolicy</td>
+        <td>
+            Pointer to a policy object which documents changes to the object or its Information record, including
+            particularly object access and modification policies. A caller SHOULD be able to determine the expected
+            future changes to the object from the policy, which are based on managed processes the object owner
+            maintains.
+        </td>
+        <td>0..1</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>FDOF digitalObjectMutability</td>
+        <td>
+            This attribute indicates whether the included bit-sequence is mutable or immutable.
+        </td>
+        <td>0..1</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr style="background-color: white">
+       <td colspan="6">Generic attributes to describe the resource</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>RDA checksum</td>
+        <td>Checksum of object contents. Checksum format is determined via the attribute type referenced in a
+            Information record.
+        </td>
+        <td>0..n</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>HKIP previewImage</td>
+        <td>A web-resolvable pointer to a preview, e.g., a low-resolution image, of the object referenced by the FDO.</td>
+        <td>0..n</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>genericRelationship</td>
+        <td>A PID pointing to an FDO that describes the relationship to another FDO.
+        </td>
+        <td>0..1</td>
+        <td></td>
+        <td></td>
+    </tr>
+        <tr>
+        <td>0.FDO/LandingPage</td>
+        <td></td>
+        <td>Landing page of an FDO.</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>FDOF ScientificDomain</td>
+        <td>
+            This attribute is an indicator of the scientific domain the FDO refers to. This ensures compliance with the
+            FAIR principles, which are per definition applicable at the domain level. This attribute is required since
+            different mandatory attributes MAY be required at the domain-level.
+        </td>
+        <td>0..n</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>Check out what to take over from DataCite metadata schema.
+        </td>
+        <td>0..n</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr style="background-color: white">
+        <td colspan="6">Attributes to describe relations between FDOs (e.g. collections)</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>has_part</td>
+        <td>For collection FDOs to reference sub-FDOs that belong to the collection</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+     <tr>
+        <td></td>
+        <td>was_derived_from</td>
+        <td>For FDOs that are derived from other FDOs</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+
+
+
+<h4 id="sec-c-1-3">Attributes belonging to the type system</h4>
+This list of attributes is a draft of the attributes that belong to the type system and that are continuously
+mentioned throughout this specification. They are defined by the FDO Forum.
+
+<table border="2" id="type-system-attributes" style="background-color: #FFC2C2">
+    <caption style="caption-side:bottom"><b>Table C.1.3</b>: <a>Attribute definitions</a> that belong to the type system.
+    </caption>
+    <tr style="background-color: white">
+        <th>PID</th>
+        <th>Human-readable name</th>
+        <th>Description</th>
+        <th>Cardinality</th>
+        <th>Validation mechanism</th>
+        <th>Validation mechanism specific information</th>
+    </tr>
+    <tr>
+        <td>0.FDO/Type</td>
+        <td></td>
+        <td>see under C.1.1</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>0.FDO/Profile</td>
+        <td></td>
+        <td>see under C.1.1</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>0.FDO/Data</td>
+        <td></td>
+        <td>see under C.1.1</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>0.FDO/Name</td>
+        <td>FDO_digital_object_name</td>
+        <td>A localized human-readable name for the target-value of 0.FDO/Data_Attribute</td>
+        <td>1..*</td>
+        <td>Syntax</td>
+        <td>0.FDO/LocalizedString:
+            <ul>
+                <li>Primitive Data Type: String</li>
+                <li>Regular Expression: TODO: ^IETF-BCP-47#</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>0.FDO/Description</td>
+        <td>FDO_digital_object_description</td>
+        <td>A localized human-readable description of the target-value of 0.FDO/Data_Attribute</td>
+        <td>0..*</td>
+        <td>Syntax</td>
+        <td>0.FDO/LocalizedString
+            <ul>
+                <li>Primitive Data Type: String</li>
+                <li>Regular Expression: TODO: ^IETF-BCP-47#</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>0.FDO/Attribute</td>
+        <td>FDO_attribute</td>
+        <td>Used in profiles to specify which attributes must be in FDOs.</td>
+        <td>1...*</td>
+        <td>Profile Reference</td>
+        <td>0.FDO/AttributeDef</td>
+    </tr>
+    <tr>
+        <td>0.FDO/Extends</td>
+        <td>FDO_Profile_Extension</td>
+        <td>If this FDO is a profile that is an extension of another profile, this attribute specifies the PID of the parent profile.
+            If this FDO is a type that is an extension of another type, this attribute specifies the PID of the parent type.
+        </td>
+        <td>0..*</td>
+        <td>Profile Referencing</td>
+        <td>0.FDO/Root</td>
+    </tr>
+    <tr>
+        <td>0.FDO/denyAdditionalAttributes</td>
+        <td>FDO_prohibition_of_additional_ attributes</td>
+        <td>If this attribute is not set or has a false value, additional Attributes are allowed (recommended value)</td>
+        <td>0..1</td>
+        <td>Syntax</td>
+        <td>0.FDO/Boolean:
+            <ul>
+                <li>Primitive data type: boolean</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>0.FDO/Cardinality</td>
+        <td>FDO_cardinality</td>
+        <td>Description of the obligation and repeatability of values in an FDO</td>
+        <td>1</td>
+        <td>Syntax</td>
+        <td>
+            0.FDO/CardinalityString
+            <ul>
+                <li>Primitive Data Type: String</li>
+                <li>Regular Expression: ^(\d+)(\.\.(\d+|\*))?$</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>0.FDO/ValidationMechanism</td>
+        <td>Validation_Mechanism</td>
+        <td>This attribute is used in attribute definitions. It lets the attribute specify which validation mechanism it
+            follows.</td>
+        <td></td>
+        <td>Syntax</td>
+        <td>0.FDO/ValidationMechanismEnum:
+            <ul>
+                <li>primitive data type: string</li>
+                <li>whitelist of: Syntax, Union, InlineCombination, AttributeReference, ProfileReference, ExternalVocabularyReference</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>0.FDO/DataType</td>
+        <td>FDO_reference_to_data_type</td>
+        <td>May refer to 0.FDO/SyntaxDef or 0.FDO/ProfileDef  </td>
+        <td>1..*</td>
+        <td>Union</td>
+        <td>? 0.FDO/SyntaxDef, 0.FDO/ProfileDef</td>
+    </tr>
+    <tr>
+        <td>0.FDO/PrimitiveDataType</td>
+        <td>FDO_primitive_data_type</td>
+        <td>A basic classification of which type of value to expect. All of these must be supported by all clients.</td>
+        <td>1</td>
+        <td>Syntax</td>
+        <td>0.FDO/PrimitiveDataTypeEnum
+            <ul>
+                <li>Primitive data type: string</li>
+                <li>whitelist of: string, number, integer, boolean</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>0.FDO/Regex</td>
+        <td>FDO_regular_expression</td>
+        <td>A string defining a Regular expression</td>
+        <td>0..1</td>
+        <td>Syntax</td>
+        <td>
+            0.FDO/RegexString
+            <ul>
+                <li>Primitive Data Type: string</li>
+                <li>Regex: TODO: A regex that catches all regex patterns</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>0.FDO/NumericInterval</td>
+        <td>FDO_numeric_interval</td>
+        <td>An interval of real numbers. see https://en.wikipedia.org/wiki/Interval_(mathematics)</td>
+        <td>0..1</td>
+        <td>Syntax</td>
+        <td>0.FDO/NumericRangeSyntax
+        <ul>
+            <li>Primitive data type: string</li>
+            <li>Regex: todo</li>
+        </ul></td>
+    </tr>
+    <tr>
+        <td>0.FDO/Whitelist</td>
+        <td>FDO_whitelist</td>
+        <td>An exhaustive enumeration of values to accept.</td>
+        <td>0..*</td>
+        <td>Syntax</td>
+        <td>0.FDO/EnumValue
+            <ul>
+                <li>primitive data type: string, number, boolean, enum</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>0.FDO/Blacklist</td>
+        <td>FDO_blacklist</td>
+        <td>A non-exhaustive enumeration of values to reject.</td>
+        <td>0..*</td>
+        <td>Syntax</td>
+        <td>0.FDO/EnumValue
+            <ul>
+                <li>primitive data type: string, number, boolean, enum</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>0.FDO/ImportVocabulary</td>
+        <td>Vocabulary Import</td>
+        <td>Valur refers to an FDO that describes a vocabulary.</td>
+        <td>0..*</td>
+        <td>Profile Referencing</td>
+        <td>0.FDO/VocabularyDef</td>
+    </tr>
+    <tr>
+        <td>0.FDO/SelfRef</td>
+        <td>FDO_reference_to_itself</td>
+        <td>References the FDO it is added to.</td>
+        <td>1</td>
+        <td>Syntax</td>
+        <td>0.FDO/Unvalidated_Ref
+            <ul>
+                <li>Primitive Data Type: String</li>
+                <li>Regular Expression: TODO: A regex that catches all possible PIDs </li>
+            </ul>
+        </td>
+    </tr>
+</table>
