@@ -1,0 +1,156 @@
+<h3>Building Blocks</h3>
+<section>
+    <h4>PID & Resolution</h4>
+    <p>Define the deterministic steps how a PID is unambiguously mapped to its FDO record. This involves:</p>
+    <dl>
+        <dt>[I1-1] PID system (M)</dt>
+        <dd>Say which PID System/s is/are used in your FDO implementation.</dd>
+        <dt>[I1-2] PID detection (M)</dt>
+        <dd>Specify the most narrow regular expression for this PID.</dd>
+        <dt>[I1-3] PID resolution (M)</dt>
+        <dd>Specify the steps that need to be taken to resolve the PID into the FDO record.</dd>
+    </dl>
+</section>
+
+<section>
+    <h4>Attribute Mapping</h4>
+    <dl>
+        <dt>[I2-1] Map mandatory attributes (M)</dt>
+        <dd>
+            Map the conceptual mandatory attributes (see Table 2) to real attribute definitions: 0.FDO/Type,
+            0.FDO/Profile, and 0.FDO/Data.
+        </dd>
+        <dt>[I2-2] Map optional attributes (R)</dt>
+        <dd>
+            It is recommended to also provide mappings for the conceptual optional attributes (see Table X; to be done).
+        </dd>
+        <dt>[I2-3] Map other attributes (O)</dt>
+        <dd>Here you can define other attributes that are frequently used by your implementation.</dd>
+    </dl>
+</section>
+
+<section>
+    <h4>FDO records</h4>
+    <p>Specify how an FDO record is realized by the given FDO implementation.</p>
+    <dl>
+        <dt>[I3-1] Map FDO record → implementation structure (M)</dt>
+        <dd>
+            Starting with the conceptual FDO record containing attributes a<sub>1</sub>,...,a<sub>n</sub>, map this
+            record to an implementation structure that contains implementation-specific attributes
+            a'<sub>1</sub>,...,a'<sub>n</sub>.
+        </dd>
+        <dt>[I3-2] Map implementation structure → FDO record (M)</dt>
+        <dd>
+            Starting with an implementation structure that contains implementation-specific attributes
+            a'<sub>1</sub>,...,a'<sub>n</sub>, map this structure to a conceptional FDO record containing attributes
+            a<sub>1</sub>,...,a<sub>n</sub>.
+        </dd>
+    </dl>
+</section>
+
+<section>
+    <h4>FDO Profiles</h4>
+    <dl>
+        <dt>[I4-1] Profile representation (M)</dt>
+        <dd>
+            Each profile is itself an FDO. You MUST specify how the FDO profile is represented in the given
+            implementation (i.e., how the FDO looks like; this can be understood as a recipe for building FDO profiles
+            in the given FDO implementation).
+            <br><em>Note: In the processing block <b>[S-7]</b>, you need to define an algorithm for a machine to read
+            and interpret a profile in the given implementation in order to perform validation of records against the
+            profile.</em>
+        </dd>
+        <dt>[I4-2] Profile definition profile (M)</dt>
+        <dd>Give the PID for the profile definition profile from your implementation.</dd>
+        <dt>[I4-3] Root profile (R)</dt>
+        <dd>Give the PID for the root profile from your implementation.</dd>
+        <dt>[I4-4] Profile extension (R)</dt>
+        <dd>Specify how the extension mechanism of profiles works within your implementation.</dd>
+    </dl>
+</section>
+
+<section>
+    <h4>FDO Attribute Definitions</h4>
+    <dl>
+        <dt>[I5-1] Representation of FDO attribute definitions (M)</dt>
+        <dd>
+            Each attribute definition is itself an FDO. You MUST specify how the attribute definition is represented in
+            the given implementation (i.e., how the attribute definition looks like; this can be understood as a recipe
+            for building FDO attribute definitions in the given FDO implementation).
+            <br><em>Note: <b>[I5-1]</b> should define the overall structure of an attribute definition. You can go into
+            more detail of how to encode syntax, semantics, complex attributes, and complex validation rules in
+            <b>[I5-3] – [I5-8]</b>. If your implementation uses additional implementation-specific rules for attributes
+            or validation, you can describe them in <b>[I5-9] - ...</b></em>
+        </dd>
+        <dt>[I5-2] Attribute Definition Profile (M)</dt>
+        <dd>
+            Give the PID for the attribute definition profile that is used in your implementation.
+        </dd>
+        <dt>[I5-3] Encoding Semantics (M)</dt>
+        <dd>
+            Specify where one can find the name and the description of an attribute definition.
+        </dd>
+        <dt>[I5-4] Encoding Syntax (M)</dt>
+        <dd> Specify how the following rules are represented in an attribute definition in the given implementation. An
+            attribute…
+            <ul>
+                <li> … MUST have a cardinality.</li>
+                <li> … MUST follow one of the primitive data types “string”, “number”, “integer” and “boolean”.</li>
+                <li> … MAY comply with a regular expression.</li>
+                <li> … MAY lie within a numeric range.</li>
+                <li> … MAY be equal to one element from a whitelist.</li>
+                <li> … MAY be not equal to all elements from a blacklist.</li>
+            </ul>
+            <em>Note: If some of these rules are not compatible with the given implementation (i.e., cannot be encoded
+                in the given technology), you MUST point this out. Different technologies MAY have different levels of
+                expressibility.</em>
+        </dd>
+        <dt>[I5-5] Composition of Attribute Definitions (R)</dt>
+        <dd>Specify how compositions of attributes are represented in the given implementation.</dd>
+        <dt>[I5-6] Unions of Attribute Definitions (R)</dt>
+        <dd>Specify how unions of attributes are represented in the given implementation.</dd>
+        <dt>[I5-7] Profile Referencing (R)</dt>
+        <dd>Specify how profile referencing looks like in the given implementation.</dd>
+        <dt>[I5-8] Attribute Referencing (R)</dt>
+        <dd>Specify how attribute referencing looks like in the given implementation.</dd>
+        <dt>[I5-9] – ... Implementation-specific rules (O)</dt>
+        <dd>
+            You can further specify semantic, syntactic, and complex validation rules that are not covered by
+            this document. Then, you MUST describe how the rules are encoded in the given implementation, and how a
+            record is validated against the rules.
+        </dd>
+    </dl>
+</section>
+
+<section>
+    <h4>Inline FDOs</h4>
+    <dl>
+        <dt>[I6-1] Representation of inline FDOs (O)</dt>
+        <dd>Specify how an inline FDO is represented in the given implementation.</dd>
+    </dl>
+</section>
+
+<section>
+    <h4>Collections</h4>
+    <dl>
+        <dt>[I7-1] Representation of collection FDOs (R)</dt>
+        <dd>
+            Specify how a collection FDO is realized in the given implementation. This MAY involve describing how the
+            collection FDO is connected with its parts (e.g., use of specific attributes for this purpose), whether
+            specific types and profiles are applied, or listing any other rules a collection FDO in the given
+            implementation has to comply with.
+        </dd>
+    </dl>
+</section>
+
+<section>
+    <h4>FDO Operations</h4>
+    <dl>
+        <dt>[I8-1] FDO operation representation (O)</dt>
+        <dd>Specify how FDO operations are represented in the given implementation.</dd>
+        <dt>[I8-2] Operation definition profile (O) </dt>
+        <dd>Give the PID for the operation definition profile from your implementation. </dd>
+        <dt>[I8-3] Operation association mechanism (O)</dt>
+        <dd>Specify how operations are associated with FDOs in the given implementation.</dd>
+    </dl>
+</section>

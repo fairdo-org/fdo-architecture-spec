@@ -1,0 +1,157 @@
+<h3>
+    Overview
+</h3>
+<p>
+    The vision of the
+    <a>FDO</a> concept is to enable machine actionability and facilitate highly automated processing of data.
+    If an <a>FDO</a> client finds a <a>PID</a> that identifies an
+    <a>FDO</a>, it is able to automatically interpret and process the
+    <a>FDO</a>, regardless of the technology used to implement it.
+    The basis for enabling automated processing regardless of the used technology is that
+    <a>FDO</a> implementations comply with the rules specified in this implementation-agnostic specification.
+    At its core, this specification describes the structure of an
+    <a>FDO</a> and the rules that govern the relationships between its components.
+    <a href="#fdo-building-blocks">Section 5</a> defines the essential components and rules needed for creating and interpreting
+    <a>FDOs</a> and the <a>FDO</a> type system.
+    All components are themselves fully valid <a>FDOs</a> without any special mechanisms.
+    This grounds
+    <a>FDOs</a> in themselves to prevent unwanted dependencies from specific technologies and enable a common exchange format between implementations.
+    In <a href="#generic-fdo-processing">Section 6</a> we describe how a client finds, accesses, and interprets
+    <a>FDOs</a> to get to the data represented by it.
+    We expect that implementations of <a>FDOs</a> will vary and may not realize all of the building blocks.
+    Thus, we specify in <a
+        href="#implementation-profile">Section 7</a> how implementations adopt this document to facilitate interoperability between implementations.
+</p>
+<p>
+    An <a>FDO</a> consists of the following components (see [[[#fig1]]]):
+</p>
+<figure id="fig1">
+    <img alt="FDO-basic-concept.png" height=400 src="img/FDO-basic-concept.png">
+    <figcaption>
+        This diagram indicates schematically the basic building blocks of an <a>FDO</a>.
+        The <a>attribute definition</a> (left) and
+        the profile (right) are also
+        <a>FDOs</a> where the records consist of tuples, which is not shown in this diagram for
+        readability.
+    </figcaption>
+</figure>
+
+<ul>
+    <li>
+        <strong>Resource</strong>: Each
+        <a>FDO</a> is a<strong>standardised and persistent bundle</strong> of information that
+        represents (i.e., identifies, encapsulates, and describes) a resource.
+        The resource could be digital, in which case the
+        resource would usually be a data <a>bit-sequence</a>.
+        But it is also possible that this resource is physical, in which
+        case there is no data <a>bit-sequence</a> attached to the <a>FDO</a>.
+        The resource is the heart of the <a>FDO</a> and all other
+        components are there to make the resource and its metadata machine actionable.
+    </li>
+    <li>
+        <strong>Persistent identifier (PID)</strong>: Each <a>FDO</a> is identified by a globally unique and persistent
+        identifier.
+        A <a>PID system</a> must resolve the <a>PID</a> to an <a>FDO record</a>.
+    </li>
+    <li>
+        <strong><a>FDO Record</a></strong>: The
+        <a>FDO record</a> is a predictable and machine actionable information structure that
+        contains <a>attributes</a> of the resource which the <a>FDO</a> represents.
+        The <a>FDO record</a> is that piece of information a <a>FDO</a>
+        client first encounters after <a>PID</a> resolution.
+    </li>
+    <li>
+        <strong><a>FDO <a>attributes</a></a></strong>: The <a>FDO record</a> consists of
+        <a>FDO <a>attributes</a></a> in the form of tuples, where
+        <ol>
+            <li>
+                the first element of the tuple identifies an <a>FDO <a>Attribute Definition</a></a> (which is similar to the
+                definition of a metadata field in a metadata schema), and
+            </li>
+            <li>
+                the second element is a value instantiating this
+                <a>FDO <a>Attribute Definition</a></a> (similar to the value that is
+                filled into the metadata field).
+            </li>
+        </ol>
+        <a>FDO <a>attributes</a></a> are properties of the resource the <a>FDO</a> represents, hence they are metadata.
+        We distinguish three types of <a>FDO <a>attributes</a></a>/<a>attribute definitions</a>:
+        <ol>
+            <li>
+                This document specifies <strong>mandatory
+                <a>FDO <a>attributes</a></a></strong> that must be used to ensure predictability and machine actionability of any
+                <a>FDO</a>.:
+                <ul>
+                    <li><a>FDO type</a> <em><a>0.FDO/Type</a></em></li>
+                    <li><a>FDO profile</a> <em>(0. <a>FDO</a>/Profile)</em></li>
+                    <li><a>FDO data</a> <em>(0. <a>FDO</a>/Data)</em></li>
+                </ul>
+            </li>
+            <li>
+                The <a>FDO Forum</a> is maintaining a list of frequently used <strong>optional
+                <a>FDO <a>attributes</a></a></strong>, that are formally defined and registered with <a>PIDs</a>.
+                These can be used by <a>FDO</a> creators to increase interoperability between different implementations.
+            </li>
+            <li>
+                Communities of practice are free to choose their own <strong>community-defined
+                <a>FDO <a>attributes</a></a></strong>,
+                however, they need to ensure that they are defined and registered in open registries.
+            </li>
+        </ol>
+    </li>
+    <li>
+        <strong>FDO <a>Attribute Definition</a></strong>: An
+        <a>FDO <a>Attribute Definition</a></a> specifies syntactic rules and a semantic
+        meaning of an <a>FDO attribute</a>.
+        In detail, an <a>attribute definition</a> specifies:
+        <ol>
+            <li>
+                a label for the <a>attribute</a> (e.g., “Author”),
+            </li>
+            <li>
+                a semantic description of the <a>attribute</a> (e.g., “Person who wrote the document”),
+            </li>
+            <li>
+                a cardinality (e.g., this <a>attribute</a> can be used at most one time in an <a>FDO record</a>), and
+            </li>
+            <li>
+                syntactic rules for the value that instantiates this
+                <a>attribute</a> (e.g., “a string that is at most 100
+                characters long”).
+            </li>
+        </ol>
+        <a>Attribute definitions</a> ensure that the <a>attributes</a> in the
+        <a>FDO record</a> are machine interpretable.
+        They also enable
+        validation, i.e., to check that the values of <a>attributes</a> follow the syntactic rules specified in the
+        <a>attribute</a>
+        definitions.
+        Each <a>attribute definition</a> is itself an <a>FDO</a>.
+    </li>
+    <li>
+        <strong><a>FDO Profile</a></strong>: The <a>FDO profile</a> specifies the set of
+        <a>FDO <a>Attribute Definitions</a></a> that must or can
+        (depending on the cardinality of the <a>attribute definitions</a>) be instantiated to create
+        <a>FDO records</a> by a certain
+        repository, community, or implementation.
+        The <a>FDO profile</a> makes the content of an <a>FDO record</a> predictable for an
+        <a>FDO</a> client: Each <a>FDO record</a> needs to have a reference to the <a>FDO profile</a> it complies with.
+        By inspecting the
+        profile, a client learns which <a>attributes</a> it can expect to find in the <a>FDO record</a>.
+        Each <a>FDO profile</a> is itself an <a>FDO</a>.
+    </li>
+    <li>
+        <strong><a>FDO Type</a></strong>: Each <a>FDO</a> has to specify an
+        <a>FDO type</a> which essentially provides any client with a hint
+        how the resource can be processed.
+    </li>
+    <li>
+        <strong>Registries</strong>: <a>Attribute Definitions</a> and profiles must be stored in open registries.
+        This gives the possibility of a reverse lookup.
+        The mandatory and optional <a>attribute definitions</a> are stored in registries maintained by the
+        <a>FDO</a> Forum.
+        Communities of practice maintain their own community-defined <a>attribute definitions</a> in open registries.
+    </li>
+</ul>
+
+

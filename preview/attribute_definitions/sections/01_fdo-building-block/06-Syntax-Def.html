@@ -1,0 +1,150 @@
+<h3 id="syntax-def"><dfn data-lt="FDO syntax definition">Syntax Definitions</dfn></h3>
+<dl>
+    <dt><h4 class="rule-heading" id="rule-r6_1">[R6-1] Syntax Definition Purpose</h4></dt>
+    <dd>
+        <a>FDO syntax definitions</a> (short: <a>syntax definitions</a>) define syntactic <a>validation</a> rules for <a>attribute definitions</a>.
+        All <a>syntax definitions</a> are defined in <a>FDO records</a> that MUST instantiate at least <a><em>0.FDO/SyntaxDef</em></a>
+        They are referenced by <a>attribute definitions</a> (see <a href="#rule-r5_8"></a>).
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r6_2">[R6-2] Mechanisms for Syntax Definition</h4></dt>
+    <dd>
+        The following rules can be used to define a syntax: An <a>attribute</a> value can be specified to
+        <ul>
+            <li>follow one of the primitive data types “string”, “number”, “integer” and “boolean”.</li>
+            <li>comply with a regular expression.</li>
+            <li>lie within a numeric range.</li>
+            <li>be equal to one element from a whitelist.</li>
+            <li>be not equal to all elements from a blacklist.</li>
+        </ul>
+        <a href="#rule-r6_4"></a> shows how to represent these rules in an <a>FDO</a>.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r6_3">[R6-3] <dfn>Syntax Definition are <a>FDOs</a></dfn></h4></dt>
+    <dd>
+        All <a>syntax definitions</a> MUST themselves be represented as <a>FDOs</a> that instantiate the <a>syntax definition profile</a>.
+        Hence, they are identified by a <a>PID</a> that resolves into an <a>FDO record</a> consisting of <a>attributes</a>.
+    </dd>
+
+   <dt><h4 class="rule-heading" id="rule-r6_4">[R6-4] <dfn data-lt="0.FDO/SyntaxDef|FDO Syntax Definition Profile">Syntax Definition Profile</dfn></h4></dt>
+    <dd>
+        The <a>FDO syntax definition profile</a> defines a set of <a>attribute definitions</a> that MUST be instantiated in
+        the <a>FDO record</a> of each <a>syntax definition</a>, according to the cardinalities in the <a>attribute definitions</a>.
+        The <a>FDO syntax definition profile</a> is defined by the <a>FDO Forum</a>, has the <a>PID</a> <a><em>0.FDO/SyntaxDef</em></a>
+        and contains the list of <a>attribute definitions</a> shown in <a href="#recordSyntaxDefProfile">Table 4</a>.
+        It instantiates the <a>profile definition profile</a> and extends the <a>root profile</a> to ensure all <a>syntax definitions</a> are valid <a>FDOs</a>.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r6_5">[R6-5] Domain-Specific Validation</h4></dt>
+    <dd>
+        The <a>FDO record</a> of a <a>syntax definition</a> MAY have <a>additional <a>attributes</a></a> and instantiate additional <a>profiles</a> for any reason.
+        For example, domain-specific validation technologies (e.g., SHACL, JSON scheme) MAY be expressed using this.
+        However, their implementation MUST be considered optional for generic <a>FDO clients</a>.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r6_6">[R6-6] <dfn>Community Syntax Definitions</dfn></h4></dt>
+    <dd>
+        Community-specified <a>syntax definitions</a> MAY be implemented by communities of practice in the DTR or any other suitable open registry.
+        Special rules apply in case <a>syntax definitions</a> are updated, see <a href="#rule-r11_3"></a> – <a href="#rule-r11_6"></a>.
+    </dd>
+</dl>
+
+<table border="2" id="recordSyntaxDefProfile">
+    <caption style="caption-side:bottom"><b>Table 4</b>:
+        The list of <a>attribute definitions</a> specified by the <a>FDO syntax definition profile</a> (<a><em>0.FDO/SyntaxDef</em></a>).
+        These <a>attributes</a> MUST be used when defining any new <a>syntax definition</a>.
+        This table does not include all information about the <a>attributes</a>.
+        Please resolve the <a>attribute definition</a> <a>PIDs</a>
+        via the Handle System or see the <a href="appendixAttrsFDOTypeSystem">appendix</a> of this document.
+    </caption>
+    <tr>
+        <th>PID of <a>Attribute Definition</a></th>
+        <th>Description of the <a>attribute</a></th>
+        <th>Cardinality of the <a>attribute</a></th>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Type</em></a>
+        </td>
+        <td>
+            The <a>FDO types</a> as specified in <a href="#fdo-types"></a>.
+            The <a>FDO type</a> of a <a>syntax definition</a> is simply the string <em>FDO_Syntax_Definition</em> or an <a>attribute reference</a> to the <a><em>0.FDO/Profile</em></a> <a>attribute</a>.
+        </td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Profile</em></a></td>
+        <td>
+            The <a>profiles</a> as specified in <a href="#profiles"></a>.
+            The <a>profile</a> of a <a>syntax definition</a> is <a><em>0.FDO/SyntaxDef</em></a>.
+        </td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Data</em></a>
+        </td>
+        <td>
+            Data of the <a>FDO</a>.
+            For <a>syntax definitions</a>, this <a>attribute</a> does often not apply, in which case this <a>attribute</a> MAY simply use the string <em>Not_Applicable</em>.
+            Alternatively, an <a>attribute reference</a> to the <a><em>0.FDO/SelfRef</em></a> <a>attribute</a>, which has the <a>PID</a> of the <a>FDO</a> in which it is used as its value, MAY be used as well.
+        </td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Name</em></a>
+        </td>
+        <td>Human-readable and localized labels for this <a>syntax definition</a>.</td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Description</em></a>
+        </td>
+        <td>Human-readable and localized descriptions for this <a>syntax definition</a>.</td>
+        <td>0..*</td>
+    </tr>
+    <tr>
+        <td><dfn data-lt="primitive data type"><em>0.FDO/PrimitiveDataType</em></dfn></td>
+        <td>
+            There are four possible values: “string”, “number”, “integer”, and “boolean”.
+            All clients MUST support all of these <a>primitive data types</a>.
+        </td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Regex</em></a></td>
+        <td>
+            Only applicable if the value of <a><em>0.FDO/PrimitiveDataType</em></a> is <em>“string”</em>.
+            This regular expression in [[ECMA-262]] syntax MUST be successfully validated for all <a>attributes</a> that use this <a>syntax definition</a>.
+        </td>
+        <td>0..1</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/NumericInterval</em></a></td>
+        <td>
+            An interval for the value (space of real numbers) that has different meanings depending on the <a>primitive data type</a>.
+            If <a><em>0.FDO/PrimitiveDataType</em></a> is “string”: a range of the length of the value.
+            If <a><em>0.FDO/PrimitiveDataType</em></a> is “number” or “integer”: an interval that restricts the <a>attribute</a> value
+        </td>
+        <td>0..1</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Whitelist</em></a>
+        </td>
+        <td>
+            Specifies that a specific value is allowed to instantiate this <a>attribute</a>.
+            If <a><em>0.FDO/Whitelist</em></a> appears multiple times, this gives an exhaustive list of allowed values to instantiate the <a>attribute</a>.
+            No other values than these are permitted.
+        </td>
+        <td>0..*</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Blacklist</em></a>
+            <a>FDO</a>/Blacklist
+        </td>
+        <td>
+            Specifies that a specific value is not allowed to instantiate this <a>attribute</a>.
+            If <a><em>0.FDO/Blacklist</em></a> appears multiple times, this gives a non-exhaustive list of forbidden values for the <a>attribute</a>.
+            Other restrictions such as <a><em>0.FDO/Regex</em></a> or <a><em>0.FDO/NumericInterval</em></a> still apply.
+        </td>
+        <td>0..*</td>
+    </tr>
+</table>
