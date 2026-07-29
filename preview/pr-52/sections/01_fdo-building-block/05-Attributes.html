@@ -1,0 +1,302 @@
+<h3 id="attributes">FDO attributes</h3>
+<dl>
+    <dt><h4 class="rule-heading" id="rule-r5_1">[R5-1] <dfn>Attribute Definition Tuple</dfn></h4></dt>
+<!--    TODO: Seems redundant to R3-2 -->
+    <dd>
+        Each <a>tuple</a> in an <a>FDO Record</a> is called an <dfn data-lt="FDO attribute|attribute">FDO attribute</dfn> (short: <a>attribute</a>).
+        See also <a href="#rule-r3_2"></a>.
+    </dd>
+
+
+    <dt><h4 class="rule-heading" id="rule-r5_2">[R5-2] <a>Attribute</a> Structure</h4></dt>
+    <dd>An <a>attribute</a> denotes a property of an <a>FDO</a> in form of a tuple that consists of the following two elements:
+        <ul>
+            <li>
+                The first element of the tuple MUST be either a <a>PID</a> that resolves to an<a>attribute definition</a>,
+                or a human-readable name of an <a>attribute</a>.
+                Latter MAY result in ambiguities (e.g. due to naming conflicts) and MAY NOT support certain mechanisms in this document;
+                thus using human-readable names instead of <a>PIDs</a> SHOULD be avoided.
+            </li>
+            <li>
+                The second element (called value) can be any literal.
+                If the first element refers to an <a>attribute definition</a>, then the value MUST be successfully validated (see <a href="#validation"></a>)
+                against the <a>attribute definition</a> at least upon creation and update of the <a>FDO record</a>.
+            </li>
+        </ul>
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r5_3">[R5-3] <dfn>Attribute Categories</dfn></h4></dt>
+    <dd>There are three qualitative categories of <a>attributes</a> (or <a>attribute definitions</a>):
+        mandatory, optional, and community-defined <a>attributes</a>.
+        <ul>
+            <li>
+                The <a>FDO Forum</a> defines a set of mandatory <a>attributes</a> that MUST be used in each <a>FDO Record</a>.
+                This set is defined in the <a>root profile</a>.
+            </li>
+            <li>
+                The <a>FDO Forum</a> defines a set of <dfn data-lt="optional attribute">optional, but recommended <a>attributes</a></dfn>.
+                These include all <a>attributes</a> needed for the functioning of the <a>FDO type system</a> specified in this document (see <a href="#appendixAttrsFDOTypeSystem"></a>).
+                It also includes some pre-defined <a>attributes</a> which SHOULD be reused by use-cases within their <a>FDO Records</a> and <a>profiles</a> (see <a href="#appendix"></a>).
+                Use-cases SHOULD reuse these <a>attributes</a>, whenever suitable, for better harmonization of <a>FDO attribute</a> information.
+            </li>
+            <li>
+                <dfn>Community-defined <a>attributes</a></dfn> are any <a>attributes</a> that are not defined by the <a>FDO Forum</a>.
+                They appear in different forms, with decreasing level of machine-actionability in the following enumeration:
+                <ul>
+                    <li>
+                        A community <a>attribute</a> MAY be specified as an <a>attribute definition</a>, according to
+                        <a href="#rule-r5_4"></a> – <a href="#rule-r5_15"></a>, against which the instantiated <a>attribute</a> in an <a>FDO Record</a> MUST be validated.
+                        The
+                        <a>Attribute definition</a> is instantiated as the following <a>attribute</a>:
+                        <ul>
+                            <li>first element: the <a>PID</a> or the name of the <a>attribute definition</a></li>
+                            <li>value: any literal that correctly validates against the first element</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a>Community attributes</a> MAY be used in <a>records</a> by referencing existing elements in vocabularies, terminologies, or ontologies.
+                        <a>Validation</a> MAY be performed, but is not guaranteed.
+                        See <a href="#advanced-ref"></a> for more details.
+                        Such an <a>attribute</a> looks as follows:
+                        <ul>
+                            <li>first element: reference to an element from a vocabulary, terminology, or ontology</li>
+                            <li>value: instantiates the first element</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a>Community attributes</a> MAY be used in records by a simple human-readable label.
+                        No <a>validation</a> can be performed here.
+                        <ul>
+                            <li>first element: human-readable label</li>
+                            <li>value: any literal</li>
+                        </ul>
+                    </li>
+                </ul>
+                <aside class="note" title="">
+                    <p>These levels do not impose additional requirements but help repositories and users to assess
+                        <a>validation</a> behavior, interoperability, and long-term interpretability of
+                        <a>FDO Records</a>.
+                    </p>
+                </aside>
+            </li>
+        </ul>
+    </dd>
+
+
+    <dt><h4 class="rule-heading" id="rule-r5_4">[R5-4] <dfn data-lt="FDO attribute definition">Attribute Definitions are <a>FDOs</a></dfn></h4></dt>
+    <dd>
+        <a>FDO attribute definitions</a> (short: <a>attribute definitions</a>) are themselves represented as <a>FDOs</a>.
+        Hence, they are unambiuously identified by a <a>PID</a> that resolves into an <a>FDO Record</a> consisting of <a>attributes</a>.
+        An <a>attribute definition</a> defines the value space of its instantiating <a>attributes</a> in all <a>FDO Record</a> and represents its semantics.
+    </dd>
+
+
+    <dt><h4 class="rule-heading" id="rule-r5_5">[R5-5] Syntactic Rules</h4></dt>
+    <dd>
+        An <a>attribute definition</a> specifies syntactic, machine-readable rules for an <a>attribute</a> in an
+        <a>FDO Record</a> (that is, the <a>attribute</a> instantiates the <a>attribute definition</a>).
+    </dd>
+
+
+    <dt><h4 class="rule-heading" id="rule-r5_6">[R5-6] Semantic Description</h4></dt>
+    <dd>
+        <a>Attribute definitions</a> describe the semantics of an <a>attribute</a>.
+        They MUST provide at least one localized and human-readable name.
+        For better understanding, at least one localized and human-readable description SHOULD be provided.
+        Other <a>attributes</a> MAY be included in the <a>attribute definition</a> <a>FDO records</a> to refer to external resources and provide additional context for the semantics of the <a>attribute</a>.
+    </dd>
+
+
+    <dt><h4 class="rule-heading" id="rule-r5_7">[R5-7] <dfn data-lt="cardinality|attribute cardinality">Cardinality of <a>Attributes</a></dfn></h4></dt>
+    <dd>
+        An <a>attribute definition</a> MUST specify the cardinality of an <a>attribute</a>.
+        The <a>cardinality</a> MUST follow this regular expression:
+        <pre lang="regex">^(\d+)(\.\.(\d+|\*))?$</pre>
+        Examples for possible cardinalities include but are not limited to:
+        <ul>
+            <li>1 (mandatory),</li>
+            <li>0..1 (optional),</li>
+            <li>1..* (mandatory and repeatable),</li>
+            <li>0..* (optional and repeatable),</li>
+            <li>2..3 (MUST occur two to three times).</li>
+        </ul>
+    </dd>
+
+
+    <dt><h4 class="rule-heading" id="rule-r5_8">[R5-8] <dfn data-lt="syntactic rules">Syntax Reference</dfn></h4></dt>
+<!--    TODO: reformulate-->
+    <dd>
+        To specify syntactic, machine-readable rules, an <a>attribute definition</a> MUST contain a <a>syntax definition</a> by
+        using the <a>attribute</a> <a><em>0.FDO/DataType</em></a> with a reference to a <a>syntax definition</a> (see <a href="#syntax-def"></a>) as its value.
+        Furthermore, the <a>attribute definition</a> MUST contain the <a>attribute</a> (<a><em>0.FDO/ValidationMechanism</em></a>, Syntax).
+        To instantiate the <a>attribute definition</a> in an <a>FDO Record</a>,
+        <ul>
+            <li>the first element MUST be either the <a>PID</a> or a name of the <a>attribute definition</a>, and</li>
+            <li>the value MUST <a>validate</a> against the <a>syntax definition</a> referenced in the
+                <a>attribute definition</a> at least upon creation and update of the <a>FDO Record</a>.
+            </li>
+        </ul>
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r5_9">[R5-9] <dfn data-lt="union type|attribute union">Union Validation</dfn></h4></dt>
+    <dd>
+        An <a>attribute definition</a> A MAY be a union of <a>attribute definitions</a> (a.k.a. “any of”)
+        <em>A<sub>1</sub>,...,A<sub>n</sub></em> by containing the <a>attribute</a> (<a><em>0.FDO/ValidationMechanism</em></a>, Union)
+        and the <a>attributes</a> (<a><em>0.FDO/DataType</em></a>, <em>A<sub>i</sub></em>) for i=1,...,n.
+        To instantiate this <a>attribute definition</a> in another <a>FDO record</a>,
+        <ul>
+            <li>the first element MUST be the <a>PID</a> or a name of <em>A</em>,</li>
+            <li>the value MUST comply with the <a>syntactic rules</a> of at least one of <em>A<sub>1</sub>,...,A<sub>n</sub></em>.</li>
+        </ul>
+    </dd>
+
+
+    <dt><h4 class="rule-heading" id="rule-r5_10">[R5-10] <dfn data-lt="inline combination">Composition Validation</dfn></h4></dt>
+    <dd>
+        An <a>attribute definition</a> A MAY be a composition of <a>attribute definitions</a> (a.k.a. “all of”)
+        <em>A<sub>1</sub>,...,A<sub>n</sub></em> by
+        containing the <a>attribute</a> (<a><em>0.FDO/ValidationMechanism</em></a>, InlineCombination) and the <a>attributes</a>
+        (<a><em>0.FDO/DataType</em></a>, <em>A<sub>i</sub></em>) for i=1,...,n.
+        To instantiate this <a>attribute definition</a> in another <a>FDO record</a>,
+        <ul>
+            <li>the first element MUST be the <a>PID</a> or a name of <em>A</em>,</li>
+            <li>the value MUST be an inline combination of instantiations of A<sub>1</sub>,...,A<sub>n</sub>.
+                The format of this inline combination (e.g. JSON, JSON-LD, …) MAY depend on the implementation.
+            </li>
+        </ul>
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r5_11">[R5-11] <dfn>Advanced Referencing Mechanisms</dfn></h4></dt>
+<!--    TODO: Remove since duplicate?-->
+    <dd>
+        There exist three pre-defined, advanced mechanisms for <a>attribute definitions</a> which follow special patterns:
+        <ul>
+            <li><a>Profile referencing</a></li>
+            <li><a>Attribute referencing</a></li>
+            <li><a>ExternalVocabularyReferencing</a></li>
+        </ul>
+        These mechanisms are further specified in <a href="#advanced-ref"></a> and MAY be applied by <a>attribute definitions</a> instead of <a href="#rule-r5_9"></a> – <a href="#rule-r5_11"></a>.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r5_12">[R5-12] <dfn data-lt="0.FDO/AttributeDef|Attribute Definition Profile">FDO Attribute Definition Profile</dfn></h4></dt>
+    <dd>
+        The <a>FDO attribute definition profile</a> defines a set of <a>attribute definitions</a> that MUST be instantiated
+        in the <a>FDO record</a> of every <a>attribute definition</a> with respect to their cardinalities.
+        The <a>FDO attribute definition profile</a> is a <a>profile</a> that instatiates <a><em>0.FDO/ProfileDef</em></a> and extends from the <a>root profile</a>.
+        It is defined by the <a>FDO Forum</a>, has the <a>PID</a> <a><em>0.FDO/AttributeDef</em></a> and contains the set of
+        <a>attribute definitions</a> shown in <a href="#attrDefProfileRecord">Table 3</a>.
+    </dd>
+
+
+    <dt><h4 class="rule-heading" id="rule-r5_13">[R5-13] <dfn data-lt="extra <a>attributes</a> in definition"><a>Additional Attributes</a> in <a>Attribute Definition FDOs</a></dfn></h4></dt>
+    <dd>
+        <a>Attribute Definitions</a> MAY have additional <a>attributes</a> and instantiate additional profiles for any reason.
+        This SHOULD be used to relate <a>attribute definitions</a> to existing external resources such as vocabularies, ontologies, or terminologies.
+    </dd>
+
+
+    <dt><h4 class="rule-heading" id="rule-r5_14">[R5-14] <dfn><a>FDO Forum</a> <a>Attribute Definitions</a></dfn></h4></dt>
+<!--    TODO: This doesnt seem up to date anymore. Remove?-->
+    <dd>
+        The <a>attribute definitions</a> listed in Tables 1 - 4 (comprising the mandatory and optional <a>attributes</a>
+        defined by the <a>FDO Forum</a>) are implemented within the <a>Data Type Registry</a> (DTR) by the <a>FDO Forum</a>.
+        Those <a>attribute definitions</a> are implemented as Handles and SHOULD be reused in any <a>FDO</a> implementation independent of the used technology.
+        This ensures interoperability between different <a>FDO</a> implementations and compliance with the type system.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r5_15">[R5-15] <dfn><a>Community Attribute</a> Definitions</dfn></h4></dt>
+    <dd>
+        Community-specified <a>attribute definitions</a> MAY be implemented by communities of practice in the <a>DTR</a> or any other suitable open registry.
+        Special rules apply in case <a>attribute definitions</a> are updated, see <a href="#rule-r11_3"></a>- <a href="#rule-r11_6"></a>.
+    </dd>
+</dl>
+
+<table border="2" id="attrDefProfileRecord">
+    <caption style="caption-side:bottom"><b>Table 3</b>: The list of <a>attribute definitions</a> specified by the <a>FDO attribute definition profile</a> (<a><em>0.FDO/AttributeDef</em></a>).
+        These <a>attributes</a> MUST be used when defining any new <a>attribute definition</a>.
+        This table does not include all information about the <a>attributes</a>.
+        Please resolve the <a>attribute definition</a> <a>PIDs</a> via the Handle System or see the <a href="#appendixAttrsFDOTypeSystem">appendix</a> of this document.
+    </caption>
+    <tr>
+        <th>PID of <a>Attribute Definition</a></th>
+        <th>Description of the <a>attribute</a></th>
+        <th>Cardinality of the <a>attribute</a></th>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Type</em></a>
+        </td>
+        <td>
+            The <a>FDO types</a> as specified in <a href="#fdo-types"></a>.
+            The <a>FDO type</a> of an <a>attribute definition</a> is simply the string <em>FDO_Attribute_Definition</em> or an <a>attribute reference</a> to <a><em>0.FDO/Profile</em></a>.
+        </td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Profile</em></a></td>
+        <td>
+            The <a>profiles</a> as specified in <a href="#profiles"></a>.
+            One of the <a>profiles</a> of an <a>attribute definition</a> must be <a><em>0.FDO/AttributeDef</em></a>.
+        </td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Data</em></a>
+        </td>
+        <td>
+            Data of the <a>FDO</a>.
+            For <a>attribute definitions</a>, this <a>attribute</a> does often not apply, in which case this <a>attribute</a> MAY simply use the string <em>Not_Applicable</em>.
+            Alternatively, an <a>attribute reference</a> to the <a><em>0.FDO/SelfRef</em></a> <a>attribute</a>, which has the <a>PID</a> of the <a>FDO</a> in which it is used as its value, MAY be used as well.
+        </td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Name</em></a>
+        </td>
+        <td>
+            Human-readable and localized labels for the <a>FDO attribute definition</a>.
+            All of these are viable candidates for referencing the respective <a>attribute definition</a> in <a>FDOs</a>.
+        </td>
+        <td>1..*</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Description</em></a>
+        </td>
+        <td>Human-readable and localized descriptions for the <a>FDO attribute definition</a>.</td>
+        <td>0..*</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/ValidationMechanism</em></a>
+        </td>
+        <td>
+            One of:
+            <ul>
+                <li><em>Syntax</em> (see <a href="#rule-r5_8"></a>)</li>
+                <li><em>Union</em> (see <a href="#rule-r5_9"></a>)</li>
+                <li><em>InlineCombination</em> (see <a href="#rule-r5_10"></a>)</li>
+                <li><em>AttributeReference</em> (see <a href="#attribute-referencing"></a>)</li>
+                <li><em>ProfileReference</em> (see <a href="#profile-referencing"></a>)</li>
+                <li><em>ExternalVocabularyReference</em> (see <a href="#external-vocabulary-referencing"></a>)</li>
+            </ul>
+        </td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/DataType</em></a>
+        </td>
+        <td>A reference to one of:
+            <ul>
+                <li>a <a>syntax definition</a> (see <a href="#rule-r5_8"></a>)</li>
+                <li>an <a>attribute definition</a> (see <a href="#rule-r5_9"></a>, <a href="#rule-r5_10"></a> and <a href="#attribute-referencing"></a>)</li>
+                <li>a profile (see <a href="#profile-referencing"></a>)</li>
+                <li>an external vocabulary namespace (see <a href="#external-vocabulary-referencing"></a>)</li>
+            </ul>
+        </td>
+        <td>0..*</td>
+    </tr>
+    <tr>
+        <td><a><em>0.FDO/Cardinality</em></a>
+        </td>
+        <td>Description of the obligation and repeatability of values in an <a>FDO</a>. See <a href="#rule-r5_7"></a></td>
+        <td>1</td>
+    </tr>
+</table>
