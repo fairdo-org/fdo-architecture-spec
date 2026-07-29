@@ -24,10 +24,11 @@
 
 <ul>
     <li>
-        <strong>Resource</strong>: Each FDO is a<strong>standardised and persistent bundle</strong> of information that
+        <strong>Resource</strong>: Each FDO is a <strong>standardised and persistent bundle</strong> of information that
         represents (i.e., identifies, encapsulates and describes) a resource. The resource could be digital, in which case the
         resource would usually be a data bit-sequence. But it is also possible that this resource is physical, in which
-        case there is no data bit-sequence attached to the FDO. The resource is the heart of the FDO and all other
+        case the bit-sequence could vary greatly in purpose such as representing location information, a scanned representation, 
+        a service access point or any other useful information to describe this object. The resource is the heart of the FDO and all other
         components are there to make the resource and its metadata machine actionable.
     </li>
     <li>
@@ -36,11 +37,11 @@
     </li>
     <li>
         <strong>FDO record</strong>: The FDO record is a predictable and machine actionable information structure that
-        contains attributes of the resource which the FDO represents. The FDO record is that piece of information a FDO
-        client first encounters after PID resolution.
+        contains FDO attributes describing the resource the FDO represents. The FDO record is that piece of information a FDO
+        client first encounters after PID resolution.  It is the FDO's metadata.
     </li>
     <li>
-        <strong>FDO attributes</strong>: The FDO record consists of FDO attributes in the form of tuples, where
+        <strong>FDO attribute</strong>: The FDO Attribute is expressed a tuples (Can be though as as a type:value pair). 
         <ol>
             <li>
                 the first element of the tuple identifies an FDO attribute definition (which is similar to the
@@ -51,22 +52,20 @@
                 filled into the metadata field).
             </li>
         </ol>
-        FDO attributes are properties of the resource the FDO represents, hence they are metadata. We distinguish three
+        An FDO attribute is a property that can be used to describe a resource, as well as the FDO itself. We distinguish three
         types of FDO attributes/attribute definitions:
         <ol>
             <li>
-                The FDO Forum specifies <strong>mandatory FDO attributes</strong> (indicated in the diagram are the FDO
-                type (0.FDO/Type), the FDO profile (0.FDO/Profile) and the data of an FDO (0.FDO/Data)), which must be
-                used to ensure predictability and machine actionability of the FDO.
+                <strong>Mandatory FDO Attributes</strong>.  These are core FDO Attributes specified and maintained by the FDO Forum. They are formally defined and registered as FDOs.  The current attributes consists of the following three attributes: The FDO
+                type (0.FDO/Type), the FDO profile (0.FDO/Profile) and the data of an FDO (0.FDO/Data). They ensure core FDO interoperability, predictability and machine actionability of the FDO.  
             </li>
             <li>
-                The FDO Forum is maintaining a list of frequently used <strong>optional FDO attributes</strong>, which
-                will be formally defined and registered with PIDs. They can be used by FDO creators to increase
-                interoperability between different implementations.
+                <strong>Optional FDO Attributes</strong>.  A list of frequently used FDO Attributes.  They are formally defined and registered as FDOs and will be managed by the FDO Forum. 
+                They are recommended to be used by any FDO creator to facilitate reusability and interoperability of their FDO accross various implemenations.
             </li>
             <li>
-                Communities of practice are free to choose their own <strong>community-defined FDO attributes</strong>,
-                however, they need to ensure that they are defined and registered in open registries.
+                <strong>Community-defined FDO Attributes</strong>  Communities of practice are free to choose their own 
+                however, they need to ensure that they are defined and registered in open registries, preferably as FDOs.
             </li>
         </ol>
     </li>
@@ -105,10 +104,9 @@
         how the resource can be processed.
     </li>
     <li>
-        <strong>Registries</strong>: Attribute definitions and profiles must be stored in open registries. This gives
-        the possibility of a reverse lookup. The mandatory and optional attribute definitions are stored in registries
-        maintained by the FDO Forum. Communities of practice maintain their own community-defined attribute definitions
-        in open registries.
+        <strong>FDO Registries</strong>: FDO Attribute and FDO profiles definitions must be stored in open FDO registries. An FDO Registry is a registry that stores and provides reverse lookup on FDOs and their respective attributes.
+        The mandatory and optional FDO attribute definitions should be stored in FDO registries maintained by the FDO Forum. Communities of practice maintain their own community-defined FDO compatible attribute definitions
+        in their open FDO compatible registries.
     </li>
 </ul>
 
