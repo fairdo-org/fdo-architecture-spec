@@ -18,7 +18,7 @@
     <a>FDOs</a> in themselves to prevent unwanted dependencies from specific technologies and enable a common exchange format between implementations.
     In <a href="#generic-fdo-processing">Section 6</a> we describe how a client finds, accesses, and interprets
     <a>FDOs</a> to get to the data represented by it.
-    We expect that implementations of <a>FDOs</a> will vary and may not realize all of the building blocks.
+    We expect that implementations of <a>FDOs</a> will vary and may not realize all the building blocks.
     Thus, we specify in <a
         href="#implementation-profile">Section 7</a> how implementations adopt this document to facilitate interoperability between implementations.
 </p>
@@ -83,8 +83,8 @@
                 <a>FDO</a>.:
                 <ul>
                     <li><a>FDO type</a> <em><a>0.FDO/Type</a></em></li>
-                    <li><a>FDO profile</a> <em>(0. <a>FDO</a>/Profile)</em></li>
-                    <li><a>FDO data</a> <em>(0. <a>FDO</a>/Data)</em></li>
+                    <li><a>FDO profile</a> <em><a>0.FDO/Profile</a></em></li>
+                    <li>FDO data <em><a>0.FDO/Data</a></em></li>
                 </ul>
             </li>
             <li>
@@ -146,10 +146,9 @@
         how the resource can be processed.
     </li>
     <li>
-        <strong>Registries</strong>: <a>Attribute Definitions</a> and profiles must be stored in open registries.
+        <strong>Registries</strong>: <a>Attribute Definitions</a> and profiles must be stored in <dfn data-lt="DTR|data type registry">open registries</dfn>.
         This gives the possibility of a reverse lookup.
-        The mandatory and optional <a>attribute definitions</a> are stored in registries maintained by the
-        <a>FDO</a> Forum.
+        The mandatory and optional <a>attribute definitions</a> are stored in registries maintained by the <a>FDO Forum</a>.
         Communities of practice maintain their own community-defined <a>attribute definitions</a> in open registries.
     </li>
 </ul>

@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>FAIR Digital Objects Architecture Specification DRAFT</title>
+    <meta name="color-scheme" content="light dark">
+    <title>FAIR Digital Objects Architecture Specification</title>
     <script
       src="https://www.w3.org/Tools/respec/respec-w3c"
       class="remove"
@@ -98,11 +99,16 @@
             company: "Senckenberg, SDCT"
           }
         ],
-        github: "https://github.com/fairdo-org/fdo-architecture-spec/",
+        github: {
+          repoURL: "https://github.com/fairdo-org/fdo-architecture-spec",
+          pulls: "https://github.com/fairdo-org/fdo-architecture-spec/pulls",
+          commitHistoryURL: "https://github.com/fairdo-org/fdo-architecture-spec/commits/main/",
+        },
+        canonicalURI: "edDraft",
+        doJSONLD: true,
+        license: "cc-by",
         shortName: "FDO_Architecture_Spec",
         latestVersion: null,
-        edDraftURI: "https://github.com/fairdo-org/fdo-architecture-spec",
-        commitHistoryURL: "https://github.com/fairdo-org/fdo-architecture-spec/commits/main/",
         localBiblio: {
           "FAIR": {
             title: "The FAIR Guiding Principles for scientific data management and stewardship",
@@ -209,10 +215,9 @@
     <section class="informative" data-include="sections/00_introduction/00-Intro.html"></section>
     <section class="informative" data-include="sections/00_introduction/01-How-To-Read-This-Document.html"></section>
     <section class="informative" data-include="sections/00_introduction/02-High-Level-Overview.html"></section>
-    <section class="informative" data-include="sections/00_introduction/03-Terminology.html"></section>
 
     <section data-dfn-for="building-blocks" class="normative">
-      <h2>FDO Building Blocks</h2>
+      <h2><dfn data-lt="FDO type system">FDO Building Blocks</dfn></h2>
       <section data-include="sections/01_fdo-building-block/01-PID.html" id="pid"></section>
       <section data-include="sections/01_fdo-building-block/02-Granularity.html" id="granularity"></section>
       <section data-include="sections/01_fdo-building-block/03-FDO-Records.html" id="records"></section>
@@ -250,11 +255,14 @@
     </section>
 
     <section id="conformance" data-include="sections/04-Conformance.html"></section>
-    <section id="tof" class="appendix"></section>
-    <section id="index" class="appendix"></section>
+
     <section id="appendix" class="appendix">
       <h2>Appendix</h2>
-      <section data-include="sections/05_appendix/01_AttributeDefs.html" id="appendixAttrDefsUsed"></section>
+      <section id="list-of-tables" class="appendix"></section>
+      <section id="tof" class="appendix"></section>
+      <section id="index" class="appendix"></section>
+      <section class="informative appendix" data-include="sections/05_appendix/01-Terminology.html" id="terminology"></section>
+      <section data-include="sections/05_appendix/02_AttributeDefs.html" id="appendixAttrDefsUsed"></section>
     </section>
   </body>
 </html>

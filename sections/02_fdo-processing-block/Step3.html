@@ -23,16 +23,15 @@ This step takes an identifier record from <a
                 list of <a>FDO attribute</a> tuples.
                 The first value in every tuple refers to the <a>attribute definition</a> AKA type of
                 the type-value tuple.
-                The second value in every tuples is a value claiming to be compliant to this <a>attribute</a>
+                The second value in every tuple is a value claiming to be compliant to this <a>attribute</a>
                 definition or stated differently, an instance of the type.
             </li>
         </ul>
         <p>
-            Any other information extracted from the
-            <a>FDO record</a> such as intrinsic metadata are not requirements of the
-            specification but will be described within the respective implementation profile.
-            Examples such as the record, tuple time stamps of resolution in [[RFC3339]] format, a time to live (TTL), and possibly other implementation-specific
-            fields.
+            Any other information extracted from the<a>FDO record</a> such as intrinsic metadata,
+            are not requirements of the specification but will be described within the respective implementation profile.
+            Examples such as the record, tuple time stamps of resolution in [[RFC3339]] format, a time to live (TTL),
+            and possibly other implementation-specific fields.
         </p>
     </dd>
     <dt>Expected behavior</dt>
@@ -40,7 +39,7 @@ This step takes an identifier record from <a
         This step is expected to transform a valid <a>PID record</a> into a valid <a>FDO record</a>.
         The concrete realization is specific to every implementation.
         This step must terminate within a reasonable minimal timeframe (e.g., of < 10 ms).
-        It is not intended to perform network requests or if is does, it would cache the information for efficiency purposes.
+        It is not intended to perform network requests, or if it does, it caches the information for efficiency purposes.
         This step only extracts <a>FDO attributes</a> out of the <a>PID record</a> and discards the remainder of the
         <a>PID record</a>.
         If needed, some <a>PID</a> system-specific information may be transformed into <a>FDO attributes</a>.

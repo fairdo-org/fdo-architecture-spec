@@ -1,6 +1,6 @@
 <h3 id="attributes">FDO attributes</h3>
 <dl>
-    <dt><h4 class="rule-heading" id="rule-r5_1">[R5-1] <dfn>Attribute Definition Tuple</dfn></h4></dt>
+    <dt><h4 class="rule-heading" id="rule-r5_1">[R5-1] Attribute Tuple</h4></dt>
 <!--    TODO: Seems redundant to R3-2 -->
     <dd>
         Each <a>tuple</a> in an <a>FDO Record</a> is called an <dfn data-lt="FDO attribute|attribute">FDO attribute</dfn> (short: <a>attribute</a>).
@@ -12,9 +12,9 @@
     <dd>An <a>attribute</a> denotes a property of an <a>FDO</a> in form of a tuple that consists of the following two elements:
         <ul>
             <li>
-                The first element of the tuple MUST be either a <a>PID</a> that resolves to an<a>attribute definition</a>,
+                The first element of the tuple MUST be either a <a>PID</a> that resolves to an<a>attribute definition</a>
                 or a human-readable name of an <a>attribute</a>.
-                Latter MAY result in ambiguities (e.g. due to naming conflicts) and MAY NOT support certain mechanisms in this document;
+                Latter MAY result in ambiguities (e.g., due to naming conflicts) and MAY NOT support certain mechanisms in this document;
                 thus using human-readable names instead of <a>PIDs</a> SHOULD be avoided.
             </li>
             <li>
@@ -30,7 +30,7 @@
         mandatory, optional, and community-defined <a>attributes</a>.
         <ul>
             <li>
-                The <a>FDO Forum</a> defines a set of mandatory <a>attributes</a> that MUST be used in each <a>FDO Record</a>.
+                The <a>FDO Forum</a> defines a set of <dfn>mandatory <a>attributes</a></dfn> that MUST be used in each <a>FDO Record</a>.
                 This set is defined in the <a>root profile</a>.
             </li>
             <li>
@@ -44,7 +44,7 @@
                 They appear in different forms, with decreasing level of machine-actionability in the following enumeration:
                 <ul>
                     <li>
-                        A community <a>attribute</a> MAY be specified as an <a>attribute definition</a>, according to
+                        A <dfn>community <a>attribute</a></dfn> MAY be specified as an <a>attribute definition</a>, according to
                         <a href="#rule-r5_4"></a> – <a href="#rule-r5_15"></a>, against which the instantiated <a>attribute</a> in an <a>FDO Record</a> MUST be validated.
                         The
                         <a>Attribute definition</a> is instantiated as the following <a>attribute</a>:
@@ -83,10 +83,10 @@
     </dd>
 
 
-    <dt><h4 class="rule-heading" id="rule-r5_4">[R5-4] <dfn data-lt="FDO attribute definition">Attribute Definitions are <a>FDOs</a></dfn></h4></dt>
+    <dt><h4 class="rule-heading" id="rule-r5_4">[R5-4] <dfn data-lt="FDO attribute definition|attribute definition|attribute definition FDO">Attribute Definitions are <a>FDOs</a></dfn></h4></dt>
     <dd>
         <a>FDO attribute definitions</a> (short: <a>attribute definitions</a>) are themselves represented as <a>FDOs</a>.
-        Hence, they are unambiuously identified by a <a>PID</a> that resolves into an <a>FDO Record</a> consisting of <a>attributes</a>.
+        Hence, they are unambiguously identified by a <a>PID</a> that resolves into an <a>FDO Record</a> consisting of <a>attributes</a>.
         An <a>attribute definition</a> defines the value space of its instantiating <a>attributes</a> in all <a>FDO Record</a> and represents its semantics.
     </dd>
 
@@ -161,7 +161,7 @@
         <ul>
             <li>the first element MUST be the <a>PID</a> or a name of <em>A</em>,</li>
             <li>the value MUST be an inline combination of instantiations of A<sub>1</sub>,...,A<sub>n</sub>.
-                The format of this inline combination (e.g. JSON, JSON-LD, …) MAY depend on the implementation.
+                The format of this inline combination (e.g., JSON, JSON-LD, …) MAY depend on the implementation.
             </li>
         </ul>
     </dd>
@@ -173,7 +173,7 @@
         <ul>
             <li><a>Profile referencing</a></li>
             <li><a>Attribute referencing</a></li>
-            <li><a>ExternalVocabularyReferencing</a></li>
+            <li><a>External Vocabulary Referencing</a></li>
         </ul>
         These mechanisms are further specified in <a href="#advanced-ref"></a> and MAY be applied by <a>attribute definitions</a> instead of <a href="#rule-r5_9"></a> – <a href="#rule-r5_11"></a>.
     </dd>
@@ -182,13 +182,13 @@
     <dd>
         The <a>FDO attribute definition profile</a> defines a set of <a>attribute definitions</a> that MUST be instantiated
         in the <a>FDO record</a> of every <a>attribute definition</a> with respect to their cardinalities.
-        The <a>FDO attribute definition profile</a> is a <a>profile</a> that instatiates <a><em>0.FDO/ProfileDef</em></a> and extends from the <a>root profile</a>.
+        The <a>FDO attribute definition profile</a> is a <a>profile</a> that instantiates <a><em>0.FDO/ProfileDef</em></a> and extends from the <a>root profile</a>.
         It is defined by the <a>FDO Forum</a>, has the <a>PID</a> <a><em>0.FDO/AttributeDef</em></a> and contains the set of
         <a>attribute definitions</a> shown in <a href="#attrDefProfileRecord">Table 3</a>.
     </dd>
 
 
-    <dt><h4 class="rule-heading" id="rule-r5_13">[R5-13] <dfn data-lt="extra <a>attributes</a> in definition"><a>Additional Attributes</a> in <a>Attribute Definition FDOs</a></dfn></h4></dt>
+    <dt><h4 class="rule-heading" id="rule-r5_13">[R5-13] <dfn><a>Additional Attributes</a> in <a>Attribute Definition FDOs</a></dfn></h4></dt>
     <dd>
         <a>Attribute Definitions</a> MAY have additional <a>attributes</a> and instantiate additional profiles for any reason.
         This SHOULD be used to relate <a>attribute definitions</a> to existing external resources such as vocabularies, ontologies, or terminologies.
@@ -198,7 +198,7 @@
     <dt><h4 class="rule-heading" id="rule-r5_14">[R5-14] <dfn><a>FDO Forum</a> <a>Attribute Definitions</a></dfn></h4></dt>
 <!--    TODO: This doesnt seem up to date anymore. Remove?-->
     <dd>
-        The <a>attribute definitions</a> listed in Tables 1 - 4 (comprising the mandatory and optional <a>attributes</a>
+        The <a>attribute definitions</a> listed in Tables 1–4 (comprising the mandatory and optional <a>attributes</a>
         defined by the <a>FDO Forum</a>) are implemented within the <a>Data Type Registry</a> (DTR) by the <a>FDO Forum</a>.
         Those <a>attribute definitions</a> are implemented as Handles and SHOULD be reused in any <a>FDO</a> implementation independent of the used technology.
         This ensures interoperability between different <a>FDO</a> implementations and compliance with the type system.
@@ -211,8 +211,9 @@
     </dd>
 </dl>
 
-<table border="2" id="attrDefProfileRecord">
-    <caption style="caption-side:bottom"><b>Table 3</b>: The list of <a>attribute definitions</a> specified by the <a>FDO attribute definition profile</a> (<a><em>0.FDO/AttributeDef</em></a>).
+<table border="2" id="attrDefProfileRecord" class="numbered">
+    <caption style="caption-side:bottom">
+        The list of <a>attribute definitions</a> specified by the <a>FDO attribute definition profile</a> (<a><em>0.FDO/AttributeDef</em></a>).
         These <a>attributes</a> MUST be used when defining any new <a>attribute definition</a>.
         This table does not include all information about the <a>attributes</a>.
         Please resolve the <a>attribute definition</a> <a>PIDs</a> via the Handle System or see the <a href="#appendixAttrsFDOTypeSystem">appendix</a> of this document.
@@ -265,7 +266,7 @@
         <td>0..*</td>
     </tr>
     <tr>
-        <td><a><em>0.FDO/ValidationMechanism</em></a>
+        <td><dfn><em>0.FDO/ValidationMechanism</em></dfn>
         </td>
         <td>
             One of:
@@ -281,7 +282,7 @@
         <td>1</td>
     </tr>
     <tr>
-        <td><a><em>0.FDO/DataType</em></a>
+        <td><dfn><em>0.FDO/DataType</em></dfn>
         </td>
         <td>A reference to one of:
             <ul>
@@ -294,7 +295,7 @@
         <td>0..*</td>
     </tr>
     <tr>
-        <td><a><em>0.FDO/Cardinality</em></a>
+        <td><dfn><em>0.FDO/Cardinality</em></dfn>
         </td>
         <td>Description of the obligation and repeatability of values in an <a>FDO</a>. See <a href="#rule-r5_7"></a></td>
         <td>1</td>

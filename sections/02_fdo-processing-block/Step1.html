@@ -41,20 +41,22 @@
                 There would be two instances of the Identifier-Resolvers structure:</p>
             <ul>
                 <li>identifier: https://dx.doi.org/10.500/123</li>
-                <li>ResolverList includes:</li>
-                <ul>
-                    <li><em>0.FDO/HTTP_GET</em></li>
-                    <li>Identifier: 10.500/123</li>
-                    <li>The ResolversList includes:
-                        0.FDO/HDL_RESOLVER,
-                        0.FDO/HDL_WEB_RESOLVER
-                    </li>
-                </ul>
+                <li>ResolverList includes:
+                    <ul>
+                        <li><em>0.FDO/HTTP_GET</em></li>
+                        <li>Identifier: 10.500/123</li>
+                        <li>The ResolversList includes:
+                            0.FDO/HDL_RESOLVER,
+                            0.FDO/HDL_WEB_RESOLVER
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </aside>
 
         <aside class="example" title="The input string is https://www.ACME.org/fdo/123-245-232">
-            <p>[Step 1] would determine that this is a valid URI and that it could be an <a>FDO</a> because of the “fdo” in path name.
+            <p>[Step 1] would determine that this is a valid URI and that it could be an
+                <a>FDO</a> because of the “fdo” in path name.
                 But while “123-245-232” looks like an identifier, no known resolver can be found. [Step 1] would generate an
                 identifier-resolver with the following values:</p>
             <ul>
