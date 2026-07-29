@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>FAIR Digital Objects Architecture Specification DRAFT</title>
+    <meta name="color-scheme" content="light dark">
+    <title>FAIR Digital Objects Architecture Specification</title>
     <script
       src="https://www.w3.org/Tools/respec/respec-w3c"
       class="remove"
@@ -98,11 +99,16 @@
             company: "Senckenberg, SDCT"
           }
         ],
-        github: "https://github.com/fairdo-org/fdo-architecture-spec/",
+        github: {
+          repoURL: "https://github.com/fairdo-org/fdo-architecture-spec",
+          pulls: "https://github.com/fairdo-org/fdo-architecture-spec/pulls",
+          commitHistoryURL: "https://github.com/fairdo-org/fdo-architecture-spec/commits/main/",
+        },
+        canonicalURI: "edDraft",
+        doJSONLD: true,
+        license: "cc-by",
         shortName: "FDO_Architecture_Spec",
         latestVersion: null,
-        edDraftURI: "https://github.com/fairdo-org/fdo-architecture-spec",
-        commitHistoryURL: "https://github.com/fairdo-org/fdo-architecture-spec/commits/main/",
         localBiblio: {
           "FAIR": {
             title: "The FAIR Guiding Principles for scientific data management and stewardship",
@@ -250,12 +256,14 @@
     </section>
 
     <section id="conformance" data-include="sections/04-Conformance.html"></section>
-    <section id="tof" class="appendix"></section>
-    <section id="index" class="appendix"></section>
+
     <section id="appendix" class="appendix">
       <h2>Appendix</h2>
       <section id="list-of-tables" class="appendix"></section>
+      <section id="tof" class="appendix"></section>
+      <section id="index" class="appendix"></section>
       <section data-include="sections/05_appendix/01_AttributeDefs.html" id="appendixAttrDefsUsed"></section>
+      <section id="references"></section>
     </section>
   </body>
 </html>
