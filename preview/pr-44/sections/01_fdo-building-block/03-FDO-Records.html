@@ -1,0 +1,76 @@
+<h3 id="records"><dfn data-lt="FDO Record|record">FDO Records</dfn></h3>
+<p>
+    Each <a>FDO Record</a> MUST fulfill the following requirements:
+</p>
+<dl>
+    <dt><h4 class="rule-heading" id="rule-r3_1">[R3-1] <a>FDO Record</a> Structure</h4></dt>
+    <dd>
+        A <a>PID</a> identifying an <a>FDO</a> resolves into a structured information record, called the
+        <a>FDO Record</a>.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r3_2">[R3-2] <dfn data-lt="attribute tuple|record entry|FDO record entry|FDO record tuple|record tuple|tuple"><a>FDO attribute</a> tuples</dfn></h4></dt>
+    <dd>
+        The <a>FDO Record</a> consists of a finite number of tuples
+        (called <a>FDO attributes</a>, short: <a>attributes</a>) that can be interpreted by a machine.
+        Conceptually, every tupel consists of a single key and a single value.
+        Keys are NOT unique in an FDO record.
+        The limit for the number of tuples per record depends on the implementation.
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r3_3">[R3-3] Minimal <a>FDO Record</a> Requirements</h4></dt>
+    <dd>
+        All <a>FDO Record</a> MUST contain the <a>attributes</a> from the <a href="#rule-r4_9">0.FDO/Root profile</a>:
+        <em><a>0.FDO/Profile</a></em>, <em><a>0.FDO/Type</a></em> and <em><a>0.FDO/Data</a></em>
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r3_4">[R3-4] <em><a>0.FDO/Profile</a></em> <a>attribute</a></h4></dt>
+    <dd>
+        Each <a>FDO Record</a> MUST link to at least one <a>FDO Profile</a>, which it complies to.
+        This is done using the designated <em><a>0.FDO/Profile</a></em> <a>attribute</a> in its <a>FDO Record</a>.
+        To link multiple <a>FDO Profiles</a>, the <a>attribute</a> <em><a>0.FDO/Profile</a></em> MAY be repeated multiple times in the <a>FDO Record</a>.
+        <ul>
+            <li>
+                The first element of such a tuple representing the <a>FDO</a>'s profile is either the <a>PID</a>
+                <em><a>0.FDO/Profile</a></em> or the string <em>FDO_Profile</em>.
+            </li>
+            <li>
+                The second element is a <a>PID</a> referencing an <a>FDO profile</a>.
+            </li>
+        </ul>
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r3_5">[R3-5] <em><a>0.FDO/Type</a></em> <a>attribute</a></h4></dt>
+    <dd>
+        Each <a>FDO</a> MUST specify its <a>FDO Type</a> using the designated <em><a>0.FDO/Type</a></em> <a>attribute</a>.
+        To link multiple <a>FDO types</a>, the <a>attribute</a> <em><a>0.FDO/Type</a></em> MAY be repeated multiple times in the <a>FDO Record</a>.
+        <em><a>0.FDO/Type</a></em> follows the <a href="#attribute-referencing">attribute referencing</a> mechanism.
+        <ul>
+            <li>
+                The first element of such a tuple representing the <a>FDO</a>'s type is either the <a>PID</a>
+                <em><a>0.FDO/Type</a></em> or the string <em>FDO_Type</em>.
+            </li>
+            <li>
+                According to the <a href="#attribute-referencing">attribute referencing</a> mechanism, the value is the <a>PID</a> of another <a>
+                attribute</a> in the same <a>FDO Record</a>.
+            </li>
+        </ul>
+    </dd>
+
+    <dt><h4 class="rule-heading" id="rule-r3_6">[R3-6] <em><a>0.FDO/Data</a></em> <a>attribute</a></h4></dt>
+    <dd>
+        Each <a>FDO</a> MUST contain the designated <em><a>0.FDO/Data</a></em> <a>attribute</a> at least once.
+        The <a>attribute</a> <em><a>0.FDO/Data</a></em> is used to reference the <a>FDO</a>'s data.
+        It uses the <a href="#attribute-referencing">attribute referencing</a> mechanism to reference the <a>FDO</a>'s data.
+        <ul>
+            <li>
+                The first element of such a tuple representing the <a>FDO</a>'s data is either the <a>PID</a>
+                <em><a>0.FDO/Data</a></em> or the string <em>FDO_Data</em>.
+            </li>
+            <li>
+                According to the <a href="#attribute-referencing">attribute referencing</a> mechanism, the value is the <a>PID</a> of another <a>
+                attribute</a> in the same <a>FDO Record</a>.
+            </li>
+        </ul>
+    </dd>
+</dl>
