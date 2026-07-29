@@ -1,0 +1,45 @@
+<h3>Introduction</h3>
+<p>
+    While all FDOs follow one common concept to make data FAIR, they can still be implemented using various different
+    technologies. In order to guarantee interoperability between existing FDO implementations, it is essential that each
+    implementation clearly specifies how it maps the technology-agnostic concepts (given in this specification) into a
+    technology-specific implementation. Only then, interoperability between different implementations can emerge, i.e.,
+    a sequence of steps how to map an FDO in one implementation to an FDO in another implementation can be defined.
+</p>
+<p>
+    Each FDO implementation MUST specify how it implements the technology-agnostic FDO requirements.
+    To this end, FDO implementations MUST provide details on
+</p>
+<ol>
+    <li>
+        how their FDOs implement the building blocks in the chosen technology/implementation, and
+    </li>
+    <li>
+        how their FDOs can be processed automatically by a machine, i.e., a sequence of steps that defines at least how
+        the type, the data, and the metadata of the FDO can be extracted.
+    </li>
+</ol>
+<p>
+    The complete list of requirements to be specified by an implementation is given below. Some requirements are
+    mandatory (M; MUST be satisfied), some are recommended (R; SHOULD be satisfied), and some are optional (O; MAY be
+    satisfied).
+<p>
+<ul>
+    <li>
+        For the <b>mandatory</b> points, please describe how your implementation meets these requirements.
+        The aim of the implementation template is to capture all technology-specific adaptations that are made by your
+        implementation, and all conceptional deviations of your implementation from this document. Hence, sometimes it
+        may be sufficient to just state that your implementation works exactly similar to the corresponding part in this
+        document.
+    </li>
+    <li>If your implementation does not support one of the <b>recommended</b> points, please shortly explain why this is
+        the case.</li>
+    <li>
+        If your implementation does not support one of the <b>optional</b> points, simply state "<b>[X-Y]</b> This
+        implementation does not support ..." in your implementation specification.
+    </li>
+</ul>
+<p>
+    Handle-based FDOs have already started to formulate a Handle-based FDO specification [[?HandleFDOSpec2026]], which
+    you may want to look at for reference.
+</p>
