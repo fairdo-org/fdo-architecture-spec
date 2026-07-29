@@ -1,6 +1,6 @@
 <h3 id="attributes">FDO attributes</h3>
 <dl>
-    <dt><h4 class="rule-heading" id="rule-r5_1">[R5-1] <dfn>Attribute Definition Tuple</dfn></h4></dt>
+    <dt><h4 class="rule-heading" id="rule-r5_1">[R5-1] Attribute Tuple</h4></dt>
 <!--    TODO: Seems redundant to R3-2 -->
     <dd>
         Each <a>tuple</a> in an <a>FDO Record</a> is called an <dfn data-lt="FDO attribute|attribute">FDO attribute</dfn> (short: <a>attribute</a>).
@@ -30,7 +30,7 @@
         mandatory, optional, and community-defined <a>attributes</a>.
         <ul>
             <li>
-                The <a>FDO Forum</a> defines a set of mandatory <a>attributes</a> that MUST be used in each <a>FDO Record</a>.
+                The <a>FDO Forum</a> defines a set of <dfn>mandatory <a>attributes</a></dfn> that MUST be used in each <a>FDO Record</a>.
                 This set is defined in the <a>root profile</a>.
             </li>
             <li>
@@ -44,7 +44,7 @@
                 They appear in different forms, with decreasing level of machine-actionability in the following enumeration:
                 <ul>
                     <li>
-                        A community <a>attribute</a> MAY be specified as an <a>attribute definition</a>, according to
+                        A <dfn>community <a>attribute</a></dfn> MAY be specified as an <a>attribute definition</a>, according to
                         <a href="#rule-r5_4"></a> – <a href="#rule-r5_15"></a>, against which the instantiated <a>attribute</a> in an <a>FDO Record</a> MUST be validated.
                         The
                         <a>Attribute definition</a> is instantiated as the following <a>attribute</a>:
@@ -83,7 +83,7 @@
     </dd>
 
 
-    <dt><h4 class="rule-heading" id="rule-r5_4">[R5-4] <dfn data-lt="FDO attribute definition">Attribute Definitions are <a>FDOs</a></dfn></h4></dt>
+    <dt><h4 class="rule-heading" id="rule-r5_4">[R5-4] <dfn data-lt="FDO attribute definition|attribute definition|attribute definition FDO">Attribute Definitions are <a>FDOs</a></dfn></h4></dt>
     <dd>
         <a>FDO attribute definitions</a> (short: <a>attribute definitions</a>) are themselves represented as <a>FDOs</a>.
         Hence, they are unambiuously identified by a <a>PID</a> that resolves into an <a>FDO Record</a> consisting of <a>attributes</a>.
@@ -173,7 +173,7 @@
         <ul>
             <li><a>Profile referencing</a></li>
             <li><a>Attribute referencing</a></li>
-            <li><a>ExternalVocabularyReferencing</a></li>
+            <li><a>External Vocabulary Referencing</a></li>
         </ul>
         These mechanisms are further specified in <a href="#advanced-ref"></a> and MAY be applied by <a>attribute definitions</a> instead of <a href="#rule-r5_9"></a> – <a href="#rule-r5_11"></a>.
     </dd>
@@ -188,7 +188,7 @@
     </dd>
 
 
-    <dt><h4 class="rule-heading" id="rule-r5_13">[R5-13] <dfn data-lt="extra <a>attributes</a> in definition"><a>Additional Attributes</a> in <a>Attribute Definition FDOs</a></dfn></h4></dt>
+    <dt><h4 class="rule-heading" id="rule-r5_13">[R5-13] <dfn><a>Additional Attributes</a> in <a>Attribute Definition FDOs</a></dfn></h4></dt>
     <dd>
         <a>Attribute Definitions</a> MAY have additional <a>attributes</a> and instantiate additional profiles for any reason.
         This SHOULD be used to relate <a>attribute definitions</a> to existing external resources such as vocabularies, ontologies, or terminologies.
@@ -266,7 +266,7 @@
         <td>0..*</td>
     </tr>
     <tr>
-        <td><a><em>0.FDO/ValidationMechanism</em></a>
+        <td><dfn><em>0.FDO/ValidationMechanism</em></dfn>
         </td>
         <td>
             One of:
@@ -282,7 +282,7 @@
         <td>1</td>
     </tr>
     <tr>
-        <td><a><em>0.FDO/DataType</em></a>
+        <td><dfn><em>0.FDO/DataType</em></dfn>
         </td>
         <td>A reference to one of:
             <ul>
@@ -295,7 +295,7 @@
         <td>0..*</td>
     </tr>
     <tr>
-        <td><a><em>0.FDO/Cardinality</em></a>
+        <td><dfn><em>0.FDO/Cardinality</em></dfn>
         </td>
         <td>Description of the obligation and repeatability of values in an <a>FDO</a>. See <a href="#rule-r5_7"></a></td>
         <td>1</td>
