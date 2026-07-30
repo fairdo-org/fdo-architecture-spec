@@ -43,14 +43,16 @@ All these types together form the type system.
     <dd>
         <p>
             <a>Profiles</a>, <a>attribute definitions</a>, and <a>syntax definitions</a> are special <a>FDOs</a> in the
-            sense that they are part of the type system. All of these FDOs do not have a data bit-sequence they refer to
-            since they consist of only meta-information in the FDO record. Hence, the FDO record itself is treated as
-            the data bit-sequence of these FDOs. This makes the profile of the FDO effectively the type of the FDO
-            because the profile fully describes the structure of the record.
+            sense that they are part of the type system. All of these FDOs do not have a data <a>bit-sequence</a> they
+            refer to, since they consist of only meta-information in the <a>FDO record</a>. Hence, the <a>FDO record</a>
+            itself is treated as the data <a>bit-sequence</a> of these FDOs. This makes the <a>profile</a> of the FDO
+            effectively the <a>type</a> of the FDO because the <a>profile</a> fully describes the structure of the
+            <a>record</a>.
         <br>
             Consequently, for all <a>profiles</a>, <a>attribute definitions</a>, and <a>syntax definitions</a>, the
-            <a><em>0.FDO/Type</em></a> <a>attribute</a> MUST have at least the value <a><em>0.FDO/Profile</em></a>.
-            Adding additional <a>FDO types</a> to these <a>FDOs</a> is allowed.
+            <a><em>0.FDO/Type</em></a> <a>attribute</a> MUST have at least the value <a><em>0.FDO/Profile</em></a>
+            (hence, it points to the <a>profile</a> using <a>attribute referencing</a>). Adding additional
+            <a>FDO types</a> to these <a>FDOs</a> is allowed.
         </p>
 
     </dd>
