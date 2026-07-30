@@ -46,7 +46,7 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
         </li>
     </ul>
     <figure id="profile-ref">
-        <img alt="Profile_Referencing" height="400" src="img/profile-referencing.drawio.svg">
+        <img alt="Profile_Referencing" height="400" src="img/profile-referencing.svg">
         <figcaption>
             An example for <a>profile referencing</a>.
         </figcaption>
@@ -138,7 +138,7 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
         </li>
     </ul>
     <figure id="attr-ref-1">
-        <img alt="Attribute_Referencing_1.png" height="400" src="img/attribute-referencing-1.drawio.svg">
+        <img alt="Attribute_Referencing_1.png" height="400" src="img/attribute-referencing-1.svg">
         <figcaption>
             Four examples for how the <a><em>0.FDO/Data</em></a> <a>attribute definition</a> can be instantiated in
             <a>FDO records</a>.
@@ -169,12 +169,12 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
 
     <dt><h4 class="rule-heading" id="rule-r7_8">[R7-8] <dfn><a>Attribute Reference</a> Whitelist</dfn></h4></dt>
     <dd>
-        The <a>attribute definition</a> A MAY specify a whitelist of <a>attribute definition</a><a>PIDs</a>
-        <em>B<sub>1</sub>,...,B<sub>n</sub></em>using the <a>attribute</a> <em>(<a><em>0.FDO/DataType</em></a>, B<sub>i</sub>)</em>, i=1,...,n, in its record.
-        If A specifies this whitelist, an <a>attribute</a> a (instantiating A) MUST reference an
-        <a>attribute</a> b that instantiates any of B<sub>1</sub>,...,B<sub>n</sub>.
-        If the <a><em>0.FDO/DataType</em></a> <a>attribute</a> is not contained in A, a may reference any
-        <a>attribute</a> b, as there is no whitelist.
+        The <a>attribute definition</a> <em>A</em> MAY specify a set of <a>attribute definition</a> <a>PIDs</a> or <a>attribute</a> names
+        <em>B<sub>1</sub>,...,B<sub>n</sub></em> using the <a>attribute</a> <em>(<a><em>0.FDO/DataType</em></a>, B<sub>i</sub>)</em>, <em>i=1,...,n</em>, in its record.
+        If <em>A</em> specifies these <em>B<sub>1</sub>,...,B<sub>n</sub></em>, an <a>attribute</a> <em>a</em> (instantiating <em>A</em>) MUST reference an
+        <a>attribute</a> <em>b</em> that instantiates any of <em>B<sub>1</sub>,...,B<sub>n</sub></em>.
+        If the <a><em>0.FDO/DataType</em></a> <a>attribute</a> is not contained in <em>A</em>, <em>a</em> may reference any
+        <a>attribute</a> <em>b</em>.
     </dd>
 
     <dt><h4 class="rule-heading" id="rule-r7_9">[R7-9] <dfn><a>Attribute Reference</a> Cardinality</dfn></h4></dt>
@@ -194,10 +194,11 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
         <a>attribute</a> <em>b=(b<sub>def</sub>,b<sub>val</sub>)</em>
         (instantiating <a>attribute definition</a> B) if and only if
         <ul>
-            <li><em>a<sub>val</sub></em> is a <a>PID</a> resolving to an <a>attribute definition</a></li>
+            <li><em>a<sub>val</sub></em> is a <a>PID</a> resolving to an <a>attribute definition</a>, or it is an <a>attribute</a> name</li>
             <li>the referenced <a>attribute</a> b is instantiated in the same <a>FDO record</a> as <a>attribute</a> a </li>
             <li><em>a<sub>val</sub> = b<sub>def</sub></em></li>
-            <li><em>b<sub>val</sub></em> is validated by <em>b<sub>def</sub></em>. This ensures the reference is actually fulfilled.</li>
+            <li>In case that <em>a<sub>val</sub></em> is an <a>attribute definition</a> <a>PID</a>,
+                <em>b<sub>val</sub></em> is validated by <em>b<sub>def</sub></em>.</li>
         </ul>
     </dd>
 </dl>
@@ -208,7 +209,7 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
     <a>attribute</a> a MAY be ignored to handle this error gracefully in certain use cases.
 </p>
 <figure id="attr-ref-2">
-    <img alt="Attribute_Referencing_2.png" src="img/attribute-referencing-2.drawio.svg">
+    <img alt="Attribute_Referencing_2.png" src="img/attribute-referencing-2.svg">
     <figcaption>
         <a>Attribute referencing</a> in its simplest form.
         The <a>attribute</a> <em>a=(a<sub>def</sub>,a<sub>val</sub>)</em> is a reference to
@@ -217,7 +218,7 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
 </figure>
 
 <figure id="attr-ref-3">
-    <img alt="Attribute_Referencing_3.png" src="img/attribute-referencing-3.drawio.svg">
+    <img alt="Attribute_Referencing_3.png" src="img/attribute-referencing-3.svg">
     <figcaption>
         <a>Attribute referencing</a> with <a href="#rule-r7_9">cardinalities</a> larger than 1.
         On the left, the cardinality of B is larger than 1;
@@ -254,7 +255,7 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
     <a href="#ex-vocab-ref"></a> shows how schema.org terms can be used in an <a>FDO record</a> by applying <a>external
     vocabulary referencing</a>.
     <figure id="ex-vocab-ref">
-        <img alt="External_Vocabulary_Referencing" src="img/external-vocab-referencing.drawio.svg">
+        <img alt="External_Vocabulary_Referencing" src="img/external-vocab-referencing.svg">
         <figcaption>
             This figure shows how schema.org terms are used in the <a>FDO</a> 21.123/456.
         </figcaption>
