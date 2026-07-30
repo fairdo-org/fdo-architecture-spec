@@ -66,8 +66,8 @@
         <td><a><em>0.FDO/Type</em></a>
         </td>
         <td>
-            The <a>FDO type</a>(s) as specified in <a href="#fdo-types"></a> (for syntax definitions, the string
-            <em>0.FDO/Profile</em>).
+            The <a>FDO type</a>(s) as specified in <a href="#fdo-types"></a>. For <a>syntax definitions</a>, at least the string
+            <em>0.FDO/Profile</em> MUST be used.
         </td>
         <td>1..*</td>
     </tr>
@@ -75,7 +75,7 @@
         <td><a><em>0.FDO/Profile</em></a></td>
         <td>
             The <a>profile</a>(s) as specified in <a href="#profiles"></a>.
-            One of the <a>profiles</a> of a <a>syntax definition</a> must be <a><em>0.FDO/SyntaxDef</em></a>.
+            One of the <a>profiles</a> of a <a>syntax definition</a> MUST be <a><em>0.FDO/SyntaxDef</em></a>.
         </td>
         <td>1..*</td>
     </tr>
@@ -83,7 +83,7 @@
         <td><a><em>0.FDO/Data</em></a>
         </td>
         <td>
-            Data of the <a>FDO</a>. For syntax definitions, the <a>FDO record</a> is itself the FDO's data, in which
+            Data of the <a>FDO</a>. For <a>syntax definitions</a>, the <a>FDO record</a> is itself the FDO's data, in which
             case this <a>attribute</a> uses the string <em>self</em>.
         </td>
         <td>1..*</td>
