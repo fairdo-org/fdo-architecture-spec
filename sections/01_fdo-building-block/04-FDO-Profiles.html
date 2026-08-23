@@ -123,8 +123,8 @@
     <tr>
         <td><a><em>0.FDO/Type</em></a>
         </td>
-        <td>The <a>FDO type</a>(s) as specified in <a href="#0.FDO-Type"></a>.
-            The <a>FDO type</a> of a <a>profile</a> is simply the string <em>FDO_Type</em>.
+        <td>The <a>FDO type</a>(s) as specified in <a href="#fdo-types"></a>. For <a>profiles</a>, at least the string
+            <em>0.FDO/Profile</em> MUST be used.
         </td>
         <td>1..*</td>
     </tr>
@@ -139,10 +139,8 @@
     <tr>
         <td><a><em>0.FDO/Data</em></a>
         </td>
-        <td>Data of the <a>FDO</a>.
-            For profiles, this <a>attribute</a> does often not apply, in which case this
-            <a>attribute</a> MAY simply use the string <em>Not_Applicable</em>.
-            Alternatively, an <a>attribute reference</a> to the <a><em>0.FDO/SelfRef</em></a> <a>attribute</a>, which has the <a>PID</a> of the <a>FDO</a> in which it is used as its value, MAY be used as well.
+        <td>Data of the <a>FDO</a>. For <a>profiles</a>, the <a>FDO record</a> is itself the FDO's data, in which case this
+            <a>attribute</a> uses the string <em>self</em>.
         </td>
         <td>1..*</td>
     </tr>
@@ -259,18 +257,22 @@
     <tr>
         <td><a><em>0.FDO/Type</em></a>
         </td>
-        <td>The <a>FDO types</a> as specified in <a href="fdo-types"> section 5.10</a>.</td>
+        <td>The <a>FDO type</a>(s) as specified in <a href="#fdo-types"></a>. For <a>profiles</a>, at least the string
+            <em>0.FDO/Profile</em> MUST be used.
+        </td>
         <td>1..*</td>
     </tr>
     <tr>
         <td><a><em>0.FDO/Profile</em></a></td>
-        <td>The <a>profile</a>(s) as specified in this section</td>
+        <td>The <a>profile</a>(s) as specified in this section. The profiles of a profile are at least
+            <a><em>0.FDO/ProfileDef</em></a> and <a><em>0.FDO/Root</em></a>.</td>
         <td>1..*</td>
     </tr>
     <tr>
         <td><a><em>0.FDO/Data</em></a>
         </td>
-        <td>Indicates a path to the data (also called: <a>bit-sequence</a>) of the <a>FDO</a>.</td>
+        <td>For <a>profiles</a>, the <a>FDO record</a> is itself the FDO's data, in which case this <a>attribute</a>
+            uses the string <em>self</em>.</td>
         <td>1..*</td>
     </tr>
 </table>
