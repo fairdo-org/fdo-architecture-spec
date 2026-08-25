@@ -5,7 +5,7 @@
 <ol>
     <li>Attribute definitions are types for properties of an <a>FDO</a> and are instantiated by <a>attributes</a> in the <a>FDO record</a>.
     </li>
-    <li>The value of the<a><em>0.FDO/Type</em></a> <a>attribute</a> in the <a>FDO record</a> is a type of the <a>resource</a> being represented by the
+    <li>The value of the <a><em>0.FDO/Type</em></a> <a>attribute</a> in the <a>FDO record</a> is a type of the <a>resource</a> being represented by the
         <a>FDO</a>.
     </li>
     <li>The value of the <a><em>0.FDO/Profile</em></a> <a>attribute</a> in the <a>FDO record</a> is a type of the <a>FDO record</a> (which instantiates the
@@ -41,16 +41,20 @@ All these types together form the type system.
     <b>The <a>FDO Type</a> of <a>FDOs</a> that belong to the Type System:</b>
     <dt><h4 class="rule-heading" id="rule-r10_3">[R10-3] Type System <a>FDO Types</a></h4></dt>
     <dd>
-        <a>Profile definitions</a>, <a>attribute definitions</a>, <a>syntax definitions</a>, and <a>FDOs</a> representing the
-        <a>FDO type</a> (see <a href="rule-r10_6"></a>) are special <a>FDOs</a> in the sense that they are part of the type system.
-        They MUST have the following <a>FDO type</a>:
-        <ul>
-            <li>A <a>profile</a> has the <a>FDO type</a> <em>“FDO_Profile”</em>.</li>
-            <li>An <a>attribute definition</a> has the <a>FDO type</a> <em>“FDO_Attribute_Definition”</em>.</li>
-            <li>A <a>syntax definition</a> has the <a>FDO type</a> <em>“FDO_Syntax_Definition”</em>.</li>
-            <li>An <a>FDO</a> representing an <a>FDO type</a> has the <a>FDO type</a> <em>“FDO_Type_Definition”</em>.</li>
-        </ul>
-        Adding additional <a>FDO types</a> to these <a>FDOs</a> is allowed.
+        <p>
+            <a>Profiles</a>, <a>attribute definitions</a>, and <a>syntax definitions</a> are special <a>FDOs</a> in the
+            sense that they are part of the type system. All of these FDOs do not have a data <a>bit-sequence</a> they
+            refer to, since they consist of only meta-information in the <a>FDO record</a>. Hence, the <a>FDO record</a>
+            itself is treated as the data <a>bit-sequence</a> of these FDOs. This makes the <a>profile</a> of the FDO
+            effectively the <a>type</a> of the FDO because the <a>profile</a> fully describes the structure of the
+            <a>record</a>.
+        <br>
+            Consequently, for all <a>profiles</a>, <a>attribute definitions</a>, and <a>syntax definitions</a>, the
+            <a><em>0.FDO/Type</em></a> <a>attribute</a> MUST have at least the value <a><em>0.FDO/Profile</em></a>
+            (hence, it points to the <a>profile</a> using <a>attribute referencing</a>). Adding additional
+            <a>FDO types</a> to these <a>FDOs</a> is allowed.
+        </p>
+
     </dd>
 
     <b><a>FDO Types</a> are defined by communities:</b>
