@@ -227,16 +227,16 @@
         <td><a><em>0.FDO/Type</em></a>
         </td>
         <td>
-            The <a>FDO types</a> as specified in <a href="#fdo-types"></a>.
-            The <a>FDO type</a> of an <a>attribute definition</a> is simply the string <em>FDO_Attribute_Definition</em> or an <a>attribute reference</a> to <a><em>0.FDO/Profile</em></a>.
+            The <a>FDO type</a>(s) as specified in <a href="#fdo-types"></a>. For <a>attribute definitions</a>, at least the string
+            <em>0.FDO/Profile</em> MUST be used.
         </td>
         <td>1..*</td>
     </tr>
     <tr>
         <td><a><em>0.FDO/Profile</em></a></td>
         <td>
-            The <a>profiles</a> as specified in <a href="#profiles"></a>.
-            One of the <a>profiles</a> of an <a>attribute definition</a> must be <a><em>0.FDO/AttributeDef</em></a>.
+            The <a>profile</a>(s) as specified in <a href="#profiles"></a>.
+            One of the <a>profiles</a> of an <a>attribute definition</a> MUST be <a><em>0.FDO/AttributeDef</em></a>.
         </td>
         <td>1..*</td>
     </tr>
@@ -244,9 +244,8 @@
         <td><a><em>0.FDO/Data</em></a>
         </td>
         <td>
-            Data of the <a>FDO</a>.
-            For <a>attribute definitions</a>, this <a>attribute</a> does often not apply, in which case this <a>attribute</a> MAY simply use the string <em>Not_Applicable</em>.
-            Alternatively, an <a>attribute reference</a> to the <a><em>0.FDO/SelfRef</em></a> <a>attribute</a>, which has the <a>PID</a> of the <a>FDO</a> in which it is used as its value, MAY be used as well.
+            Data of the <a>FDO</a>. For <a>attribute definitions</a>, the <a>FDO record</a> is itself the FDO's data, in
+            which case this <a>attribute</a> uses the string <em>self</em>.
         </td>
         <td>1..*</td>
     </tr>
