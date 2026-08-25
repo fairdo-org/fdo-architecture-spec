@@ -2,6 +2,14 @@
 Concepts and mechanisms that are part of this section are not essential for the basic functionality of <a>FDOs</a> but provide additional features that can be used to extend the capabilities of <a>FDOs</a>.
 Thus, clients and implementations of <a>FDOs</a> (that follow section <a href="#implementation-template"></a>) MAY choose to support these features, but they are not required to do so.
 
+<h3 id="inline-fdo"><dfn data-lt="Lambda FDO|Inline Serialization">Inline <a>FDOs</a></dfn></h3>
+<p>
+    When using <a>profile referencing</a>, an <a>attribute</a> references another<a>FDO</a>, for example, <em>a=(&ltattr_def&gt,&ltPID resolving to other <a>FDO</a>&gt)</em>.
+    However, rather than referencing the other <a>FDO</a>, it may be serialized directly as the in-line value of <em>a</em>.
+    In this case, the serialization depends on the implementation, and the implementation MUST specify the serialization format, if it decides to support this feature.
+    Furthermore, <a>inline FDOs</a> typically do NOT have their own <a>PIDs</a> and are hence NOT suited for <a>attribute definitions</a>, <a>syntax definitions</a> or <a>profile definitions</a>.
+</p>
+
 <h3 id="external-vocabulary-referencing"><dfn>External Vocabulary Referencing</dfn></h3>
 <p>
     It is essential for <a>FDOs</a> that existing vocabularies, ontologies, and terminologies can be reused in <a>FDO records</a>
@@ -12,14 +20,14 @@ Thus, clients and implementations of <a>FDOs</a> (that follow section <a href="#
 </p>
 
 <dl>
-    <dt><h4 class="rule-heading" id="rule-r7_12">[R7-12] Declaration of External Vocabulary Usage in an <a>Attribute Definition</a></h4></dt>
+    <dt><h4 class="rule-heading" id="rule-r8_1">[R8-1] Declaration of External Vocabulary Usage in an <a>Attribute Definition</a></h4></dt>
     <dd>
         An <a>attribute definition</a> <em>A</em> MUST explicitly state that it uses this feature by containing the
         <a>attribute</a> <em>(<a><em>0.FDO/ValidationMechanism</em></a>, ExternalVocabularyReference)</em>.
         The <em><a>0.FDO/DataType</a></em> <a>attribute</a> of <em>A</em> MUST refer to an <a>FDO</a> that follows the <a>profile definition</a> <a><em>0.FDO/VocabularyDef</em></a>.
     </dd>
 
-    <dt><h4 class="rule-heading" id="rule-r7_12_1">[R7-13] <dfn data-lt="0.FDO/ImportVocabulary">Declaration of External Vocabulary Usage in an <a>FDO record</a></h4></dt>
+    <dt><h4 class="rule-heading" id="rule-r8_2">[R8-2] <dfn data-lt="0.FDO/ImportVocabulary">Declaration of External Vocabulary Usage in an <a>FDO record</a></h4></dt>
     <dd>
         To use external vocabulary terms as <a>attribute definitions</a> in an <a>FDO record</a>, the record MUST contain the <em><a>0.FDO/ImportVocabulary</a></em> <a>attribute</a>.
         Values of the <em><a>0.FDO/ImportVocabulary</a></em> <a>attribute</a> MUST refer to an <a>FDO</a> that follows the <a>profile definition</a> <a><em>0.FDO/VocabularyDef</em></a>.
@@ -28,7 +36,7 @@ Thus, clients and implementations of <a>FDOs</a> (that follow section <a href="#
         The creator of an <a>FDO record</a> MUST ensure that the prefixes of the imported vocabularies are unique.
     </dd>
 
-    <dt><h4 class="rule-heading" id="rule-r7_13">[R7-14] <dfn data-lt="Vocabulary Definition|0.FDO/VocabularyDef">Vocabulary Definition Profile</dfn></h4></dt>
+    <dt><h4 class="rule-heading" id="rule-r8_3">[R8-3] <dfn data-lt="Vocabulary Definition|0.FDO/VocabularyDef">Vocabulary Definition Profile</dfn></h4></dt>
     <dd>
         <p>
             The <a>vocabulary definition profile</a> <em><a>0.FDO/VocabularyDef</a></em> specifies which information is needed to describe a vocabulary.
@@ -46,7 +54,7 @@ Thus, clients and implementations of <a>FDOs</a> (that follow section <a href="#
 </dl>
 
 <aside class="example" title="External Vocabulary Referencing: Using vocabulary terms as attributes in FDOs">
-    <a href="#ex-vocab-ref"></a> shows how schema.org terms can be used in an <a>FDO record</a> similar to an <a>attribute definition</a> by applying <a>external vocabulary referencing</a> (see <a href="rule-r7_12"></a>).
+    <a href="#ex-vocab-ref"></a> shows how schema.org terms can be used in an <a>FDO record</a> similar to an <a>attribute definition</a> by applying <a>external vocabulary referencing</a> (see <a href="rule-r8_1"></a>).
     <figure id="ex-vocab-ref">
         <img alt="External_Vocabulary_Referencing" src="img/external-vocab-attribute.svg">
         <figcaption>
@@ -86,7 +94,7 @@ Thus, clients and implementations of <a>FDOs</a> (that follow section <a href="#
 
 <aside class="example" title="External Vocabulary Referencing: Using vocabulary terms as values in FDOs">
     <p>
-        <a>External vocabulary referencing</a> can also be used to reference a term from an external vocabulary as the value of an <a>attribute</a> (see <a href="rule-r7_13"></a>).
+        <a>External vocabulary referencing</a> can also be used to reference a term from an external vocabulary as the value of an <a>attribute</a> (see <a href="rule-r8_3"></a>).
         In this case, the <a>attribute definition</a> that applies <a>external vocabulary referencing</a> refers to an <a>FDO</a> that instantiates the <em><a>0.FDO/VocabularyDef</a></em> <a>profile</a>.
         The value of the <a>attribute</a> is then a reference to a term in this vocabulary.
     </p>
