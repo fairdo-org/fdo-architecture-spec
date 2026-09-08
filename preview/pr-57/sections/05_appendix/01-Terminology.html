@@ -4,19 +4,13 @@
 </p>
 <ul data-sort="ascending">
     <li>
-        <b><dfn id="term-abstraction">Abstraction</dfn>:</b>
+        <b><dfn>Abstraction</dfn>:</b>
         <a>FDOs</a> support the abstraction principle, i.e., abstracting away details that are not needed
         at the basic object management level.
         At that level there is no need to distinguish among different types such
         as datasets, metadata, software, semantic assertions, etc., for management operations.
         Since <a>FDOs</a> can include<a>bit-sequences</a> encoding any kind of content,
         they represent the highest possible abstraction level.
-    </li>
-    <li>
-        <b><dfn data-abbr="aFDO" data-lt="Active FDO|aFDO">Active<a>FDO</a></dfn></b>:
-        <a>aFDOs</a> turn <a>FDOs</a> into autonomous acting objects that exchange
-        standardized messages, check the validity of the received messages, and execute operations that affect its own
-        state, may trigger other events to other <a>aFDOs</a> and document all activities.
     </li>
     <li>
         <b><dfn data-lt="Binding|Bundling">Binding/Bundling</dfn>:</b>
@@ -32,35 +26,13 @@
         <a>FDO</a> consists of multiple parts that are interpreted as resources in
         their own right, this <a>FDO</a> is called a collection.
         The decision which parts are interpreted as resources in their
-        own right (and hence may be
+        own right (and hence MAY be
         <a>FDOs</a> themselves) is dependent on pragmatic utility decisions within communities of
         practices.
         As an <a>FDO</a>, the collection is identified by a <a>PID</a>, is described by metadata, and can describe the
         structure of the resource directly in its <a>FDO record</a> or in an associated bit sequence.
         Collections can include
         collections.
-    </li>
-    <li>
-        <b><dfn>Configuration Type</dfn>:</b>
-        <a>FDOs</a> can appear in many different (FDO) configuration types (for example, they can
-        include references (URL/Handles) to bit sequences or not, the reference to a database query, etc.) but
-        nevertheless fulfill the <a>FDO</a> requirement specifications.
-        Differences between configuration types will result in different <a>FDO profiles</a>.
-    </li>
-    <li>
-        <b><dfn>Data <a>FDO</a></dfn>:</b>
-        This term applies to all <a>FDOs</a> associated with one or more data <a>bit sequences</a> of any type.
-        <a>FDOs</a> that are not associated with a data bit sequence, such as an <a>FDO</a> that describes a physical object,
-        are not data<a>FDOs</a>.
-    </li>
-    <li>
-        <b><dfn>Digital Entity</dfn>:</b>
-        A digital entity is anything that can be represented by a <a>bit-sequence</a>.
-    </li>
-    <li><b><dfn data-abbr="DO" data-lt="DO">Digital Object</dfn></b>:
-        A <a>Digital Object</a> has one or multiple structured <a>bit-sequence(s)</a> stored in one
-        or multiple repository(s), assigned a <a>PID</a> and associated with (different kinds of) metadata.
-        If it adheres to the <a>FDO</a> specifications (the normative parts of this document), we call it a <a>FAIR Digital Object</a>.
     </li>
     <li>
         <b><dfn data-lt="repository">Digital Repository</dfn>:</b>
@@ -119,36 +91,7 @@
         <b><dfn>Mutability</dfn></b>:
         Data providers need to make clear policy statements whether the content of a <a>bit-sequence</a> that is <a>encapsulated</a>
         in an <a>FDO</a> is immutable or mutable, i.e., changing over time such as is often the case in databases.
-        Inspecting the correctness of these statements should be part of auditing procedures.
-    </li>
-    <li>
-        <b><dfn>Persistence</dfn></b>:
-        The term persistence is being mentioned frequently in this document, and in the realm of <a>FDOs</a> persistence is an important property.
-        In this document, "persistence" is meant as a promise of an initiative or service provider to maintain specifications or services for a long period of time.
-        It is up to the users to decide whether they trust such a promise.
-        Crucial is the persistence of the <a>PID system</a> which needs to guarantee referential stability.
-        Even if the (data) resource encapsulated by an <a>FDO</a> is deleted, for example, after 10 years, the
-        <a>PID</a> and the corresponding <a>FDO record</a> SHOULD still be accessible without restriction and extended with a tombstone note.
-        Therefore, a <a>PID</a> must be independent of any technology and should not include semantics (locational, etc.) since both will change over time.
-    </li>
-    <li>
-        <b><a>Persistent Identifier</a></b>:
-        Every <a>FDO</a> is assigned one or more <dfn data-abbr="PID" data-lt="PID|persistent identifiers">globally unique, persistent, and resolvable identifier</dfn>.
-        In the context of <a>FDOs</a> each <a>PID</a> must be resolvable
-        into a <a>machine actionable</a> structure which we call the <a>FDO record</a>.
-        The <a>PID</a> of an <a>FDO</a> is assumed to persist even when its data has been deleted.
-        A system that stores and manages a <a>PID</a> and its <a>PID record</a> is called a <dfn>PID system</dfn>.
-        For more information, see <a href="#pid"></a>
-    </li>
-    <li>
-        <b><dfn>PID Record</dfn></b>:
-        The <a>PID record</a> is the structure sent back when resolving a <a>PID</a>.
-        In the <a>FDO</a> context we are using the term "<a>FDO record</a>" which
-        implies the use of an <a>FDO profile</a> and defined <a>FDO attributes</a>.
-        These two terms are synonymous when compliance to
-        the <a>FDO</a> specifications is given.
-        <a>PID records</a> are assumed to be accessible even when the data has been deleted.
-        For more information, see <a href="#pid"></a>
+        Inspecting the correctness of these statements SHOULD be part of auditing procedures.
     </li>
     <li>
         <b><dfn>Resource</dfn></b>:
@@ -172,14 +115,15 @@
     </li>
     <li>
         <b><dfn data-lt="technology-agnostic|technology-agnosticism">Technology Independence</dfn></b>:
-        <a>FDOs</a> and their key components are technology independent, allowing a variety of implementations using different technologies for realization.
+        The <a>FDO</a>-concept and its key components (both described in this document) are technology independent, allowing a variety of implementations using different technologies for realization.
+        When defining <a>attributes</a> or <a>profiles</a>, the specificity of the definition SHOULD be weighed against its reusability and interoperability.
     </li>
     <li>
-        <b><dfn>Tombstone</dfn></b>:
+        <b><dfn data-lt="tombstone note">Tombstone</dfn></b>:
         When a data provider registers <a>PIDs</a> to refer to his data and then decides to delete the data
-        after N years (which is good scientific practice with N > 10 years), the <a>PID</a> MUST not be deleted.
-        The <a>PID</a> resolution MUST always be successful.
-        In the case of the deleted data, a tombstone note should be included in the <a>PID record</a> instead of a <a>reference</a>.
+        after N years (which is good scientific practice with N > 10 years), the <a>FDO</a> MUST not be deleted.
+        The <a>PID resolution</a> MUST always be successful.
+        In the case of the deleted data, a tombstone note SHOULD be included in the <a>PID record</a> and outdated information SHOULD .
         The nature of a tombstone note is still in the process of definition.
     </li>
     <li>

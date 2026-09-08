@@ -41,8 +41,8 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
         <li>
             (<a><em>0.FDO/DataType</em></a>, <a><em>0.FDO/ProfileDef</em></a>):
             This means that if the <a>attribute definition</a> <a><em>0.FDO/Profile</em></a> is
-            instantiated, the value must be a reference to an <a>FDO</a> that instantiates <a><em>0.FDO/ProfileDef</em></a> (i.e., it
-            must be a reference to an <a>FDO profile</a>)
+            instantiated, the value MUST be a reference to an <a>FDO</a> that instantiates <a><em>0.FDO/ProfileDef</em></a> (i.e., it
+            MUST be a reference to an <a>FDO profile</a>)
         </li>
     </ul>
     <figure id="profile-ref">
@@ -103,7 +103,7 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
 <h3 id="inline-fdo"><dfn data-lt="Lambda FDO|Inline Serialization">Inline <a>FDOs</a></dfn></h3>
 <p>
     When using <a>profile referencing</a>, an <a>attribute</a> references another<a>FDO</a>, for example, <em>a=(&ltattr_def&gt,&ltPID resolving to other <a>FDO</a>&gt)</em>.
-    However, rather than referencing the other <a>FDO</a>, it may be serialized directly as the in-line value of <em>a</em>.
+    However, rather than referencing the other <a>FDO</a>, it MAY be serialized directly as the in-line value of <em>a</em>.
     In this case, the serialization depends on the implementation, and the implementation MUST specify the serialization format.
     Furthermore, <a>inline FDOs</a> typically do NOT have their own <a>PIDs</a> and are hence NOT
     suited for <a>attribute definitions</a>, <a>syntax definitions</a> or <a>profile definitions</a>.
@@ -122,7 +122,7 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
     The reason for this is that data can appear in different forms but need to be automatically recognized (see also <a href="#attr-ref-1"></a>):
     <ul>
         <li>
-            Data may be given by a reference to an external <a>bit-sequence</a>.
+            Data MAY be given by a reference to an external <a>bit-sequence</a>.
             Then, the <a><em>0.FDO/Data</em></a> <a>attribute</a> would
             have as its value a URL. (<a href="#attr-ref-1"></a>, top-right)
         </li>
@@ -158,7 +158,7 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
 <p>The detailed requirements for <a>attribute referencing</a> are:</p>
 
 <p><b>Format of an <a>Attribute Definition</a> that applies <a>attribute referencing</a>:</b></p>
-<p>The following requirements must be fulfilled such that an
+<p>The following requirements MUST be fulfilled such that an
     <a>attribute definition</a> A applies <a>attribute</a> referencing:</p>
 <dl>
     <dt><h4 class="rule-heading" id="rule-r7_7">[R7-7] <dfn><a>Attribute Reference</a> Declaration</dfn></h4></dt>
@@ -173,7 +173,7 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
         <em>B<sub>1</sub>,...,B<sub>n</sub></em> using the <a>attribute</a> <em>(<a><em>0.FDO/DataType</em></a>, B<sub>i</sub>)</em>, <em>i=1,...,n</em>, in its record.
         If <em>A</em> specifies these <em>B<sub>1</sub>,...,B<sub>n</sub></em>, an <a>attribute</a> <em>a</em> (instantiating <em>A</em>) MUST reference an
         <a>attribute</a> <em>b</em> that instantiates any of <em>B<sub>1</sub>,...,B<sub>n</sub></em>.
-        If the <a><em>0.FDO/DataType</em></a> <a>attribute</a> is not contained in <em>A</em>, <em>a</em> may reference any
+        If the <a><em>0.FDO/DataType</em></a> <a>attribute</a> is not contained in <em>A</em>, <em>a</em> MAY reference any
         <a>attribute</a> <em>b</em>.
     </dd>
 
@@ -230,8 +230,8 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
 <dl>
     <dt><h4 class="rule-heading" id="rule-r7_11">[R7-11] <dfn>Consecutive usage of <a>attribute references</a></dfn></h4></dt>
     <dd>
-        There may be cases of consecutive referencing (e.g., a references b, b references c, …).
-        All such references within an <a>FDO record</a> must form a directed acyclic graph (no loops allowed).
+        There MAY be cases of consecutive referencing (e.g., a references b, b references c, …).
+        All such references within an <a>FDO record</a> MUST form a directed acyclic graph (i.e., no loops allowed).
     </dd>
 </dl>
 <p>
@@ -267,10 +267,10 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
         </li>
         <li>
             The <a>syntax definition</a> <a><em>0.FDO/SchemaOrgTermSyntax</em></a> specifies the syntax of the <a>attribute definition</a>,
-            i.e., it must be instantiated by the string “https://schema.org”, which is the schema.org namespace.
+            i.e., it MUST be instantiated by the string “https://schema.org”, which is the schema.org namespace.
         </li>
         <li>
-            The <a>FDO</a> 21.123/456 contains the <a>attribute</a> <em>(<a><em>0.FDO/SchemaOrgTerm</em></a>, https://schema.org)</em> 
+            The <a>FDO</a> 21.123/456 contains the <a>attribute</a> <em>(<a><em>0.FDO/SchemaOrgTerm</em></a>, https://schema.org)</em>
             to indicate that it uses vocabulary from schema.org.
             Afterward, any schema.org term can be used as an <a>attribute</a> in the form
             <em>(&ltURL of term&gt, &ltvalue&gt)</em>, such as <em>(https://schema.org/priceCurrency, USD)</em>.
@@ -280,7 +280,7 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
 
 <p>The detailed requirements for <a>external vocabulary referencing</a> are:</p>
 <p><b>Format of an <a>Attribute Definition</a> that applies <a>external vocabulary referencing</a>:</b></p>
-<p>The following detailed requirements must be fulfilled such that an
+<p>The following detailed requirements MUST be fulfilled such that an
     <a>attribute definition</a> A applies <a>external vocabulary referencing</a>:</p>
 <dl>
     <dt><h4 class="rule-heading" id="rule-r7_12">[R7-12] External Vocabulary Declaration</h4></dt>
@@ -288,7 +288,7 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
         The <a>attribute definition</a> A MUST explicitly state that it uses this feature by containing the
         <a>attribute</a> <em>(<a><em>0.FDO/ValidationMechanism</em></a>, ExternalVocabularyReference)</em>.
     </dd>
-    
+
     <dt><h4 class="rule-heading" id="rule-r7_13">[R7-13] Vocabulary Namespace</h4></dt>
     <dd>
         The <a>attribute definition</a> A using <a>external vocabulary referencing</a> MUST explicitly specify the namespace of the external vocabulary using the
@@ -306,7 +306,7 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
             </li>
             <li>an <a>attribute</a> <em>b=(b<sub>def</sub>,b<sub>val</sub>)</em> representing a vocabulary term</li>
         </ul>
-        The following requirements must be fulfilled by a and b:
+        The following requirements MUST be fulfilled by a and b:
         <ul>
             <li><em>a<sub>val</sub></em> is a URL representing a namespace</li>
             <li><em>b<sub>def</sub></em> = <em>a<sub>val</sub>/&ltterm&gt</em>, i.e., <em>b<sub>def</sub></em> is a URL representing a term under a namespace</li>

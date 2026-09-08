@@ -74,7 +74,7 @@ All these types together form the type system.
 
     <dt><h4 class="rule-heading" id="rule-r10_7">[R10-7] Type Derivation</h4></dt>
     <dd>
-        <a>Types</a> MAY be derived from other <a>types</a> (i.e., there may be hierarchies of types
+        <a>Types</a> MAY be derived from other <a>types</a> (i.e., there MAY be hierarchies of types
         defined within communities of practice).
         To state that a type t<sub>2</sub> is derived from a
         type <em>t<sub>1</sub></em>, the <a>FDO record</a> of <em>t<sub>2</sub></em> SHOULD contain the <a>attribute</a> <a><em>0.FDO/DerivedFromType</em></a>,
@@ -83,7 +83,7 @@ All these types together form the type system.
 
     <b><a>FDO Type</a> of <a>collections</a>:</b>
     <p>
-        FDOs may represent <a>collections</a> of objects (see also <a href="#granularity"></a>).
+        FDOs MAY represent <a>collections</a> of objects (see also <a href="#granularity"></a>).
         To assign <a>FDO types</a> to a <a>collection</a> and to objects within the <a>collection</a>,
         the following conditions apply:
     </p>
@@ -118,7 +118,7 @@ All these types together form the type system.
     <dt><h4 class="rule-heading" id="rule-r10_11">[R10-11] Operation Interface</h4></dt>
     <dd>
         <a>Operations</a> abstract and encapsulate their concrete implementation details by providing a uniform interface
-        that at least defines their input parameters, output parameters, and how the operation should be executed.
+        that at least defines their input parameters, output parameters, and how the operation SHOULD be executed.
         This enables execution of operations in arbitrary, possibly restricted environments.
     </dd>
 
@@ -132,8 +132,8 @@ All these types together form the type system.
     <dt><h4 class="rule-heading" id="rule-r10_13">[R10-13] <dfn>Operation Definition Profile</dfn></h4></dt>
     <dd>
         An operation definition profile <a><em>0.FDO/OperationDef</em></a> which specifies a minimal set of <a>attributes</a> that
-        an operation must define (similar to <a><em>0.FDO/ProfileDef</em></a> or <a><em>0.FDO/AttributeDef</em></a>, see
-        <a href="#profiles"></a> and <a href="#attributes"></a>) does not exist yet but may be specified in the
+        an operation MUST define (similar to <a><em>0.FDO/ProfileDef</em></a> or <a><em>0.FDO/AttributeDef</em></a>, see
+        <a href="#profiles"></a> and <a href="#attributes"></a>) does not exist yet but MAY be specified in the
         future.
     </dd>
 
