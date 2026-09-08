@@ -88,7 +88,6 @@ Thus, clients and implementations of <a>FDOs</a> (that follow section <a href="#
         <p>
             The <a>vocabulary definition profile</a> (<a>0.FDO/VocabularyDef</a>) specifies which information is needed to describe a vocabulary.
             <a>FDOs</a> instantiation this <a>profile</a> MUST define values for the <em><a>0.FDO/Name</a></em>, and <em><a>0.FDO/VocabularyPrefix</a></em> <a>attributes</a>.
-            <em><dfn>0.FDO/VocabularyPrefix</dfn></em> specifies the prefix that can be used to identify terms from a vocabulary in an <a>FDO record</a> and is typically either part of the URL prefix of a term (e.g., <em>https://schema.org/</em>) or some other string (e.g., <em>schema:</em>, <em>foaf:</em>).
         </p>
         <p>
             To enable automatic validation of vocabulary terms, the <a>FDO</a> SHOULD also specify a URL from which the vocabulary can be retrieved (usually via <em><a>0.FDO/DownloadURL</a></em>), the format in which the vocabulary is provided (<em><a>0.FDO/VocabularyFormat</a></em>), and a SPARQL query that checks the validity of the vocabulary term (<em><a>0.FDO/SPARQL_Check</a></em>).
