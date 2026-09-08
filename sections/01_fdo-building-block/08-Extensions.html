@@ -38,18 +38,64 @@ Thus, clients and implementations of <a>FDOs</a> (that follow section <a href="#
 
     <dt><h4 class="rule-heading" id="rule-r8_3">[R8-3] <dfn data-lt="Vocabulary Definition|0.FDO/VocabularyDef">Vocabulary Definition Profile</dfn></h4></dt>
     <dd>
+        <table border="2">
+            <caption style="caption-side: bottom">
+                Additional mandatory fields that the vocabulary definition profile requires.
+                Otherwise, it follows the general profile principles, as it inherits from <a>0.FDO/ProfileDef</a>.
+            </caption>
+
+            <thead>
+                <tr>
+                    <th>PID of <a>Attribute Definition</a></th>
+                    <th>Description of the <a>attribute</a></th>
+                    <th>Cardinality of the <a>attribute</a></th>
+                </tr>
+            </thead>
+            <tr>
+                <td>0.FDO/Profile</td>
+                <td>In this case, one value MUST be <em><a>0.FDO/ProfileDef</a></em>.</td>
+                <td>1..*</td>
+            </tr>
+            <tr>
+                <td>0.FDO/Data</td>
+                <td>In this case, one value MAY be <em><a>0.FDO/DownloadURL</a></em>.</td>
+                <td>1..*</td>
+            </tr>
+            <tr>
+                <td><dfn>0.FDO/DownloadURL</dfn></td>
+                <td>URL from which data (in this case, the vocabulary) can be retrieved using a simple HTTP GET request.</td>
+                <td>1..*</td>
+            </tr>
+            <tr>
+                <td><dfn>0.FDO/VocabularyFormat</dfn></td>
+                <td>Specifies the format of the vocabulary retrieved from the <a>0.FDO/DownloadURL</a> <a>attribute</a> and MUST be one of the following strings: <em>RDF/XML</em>, <em>TTL</em>, <em>N-Triples</em>, <em>N-Quads</em>, or <em>JSON-LD</em>.</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td><dfn>0.FDO/VocabularyPrefix</dfn></td>
+                <td>Specifies the prefix that can be used to identify terms from a vocabulary in an <a>FDO record</a> and is typically either part of a PURL (e.g., <em>https://schema.org/</em>) or some other string (e.g., <em>schema:</em>, <em>foaf:</em>).</td>
+                <td>1..*</td>
+            </tr>
+            <tr>
+                <td><dfn>0.FDO/SPARQL_Check</dfn></td>
+                <td>
+                    A SPARQL query that checks whether a term (replaced in the query string using the <em>$TERM$</em> placeholder) is valid in the vocabulary and MUST return a boolean value.
+                    This query is executed against the vocabulary retrieved using <a>0.FDO/DownloadURL</a>.
+                </td>
+                <td>1</td>
+            </tr>
+        </table>
         <p>
-            The <a>vocabulary definition profile</a> <em><a>0.FDO/VocabularyDef</a></em> specifies which information is needed to describe a vocabulary.
+            The <a>vocabulary definition profile</a> (<a>0.FDO/VocabularyDef</a>) specifies which information is needed to describe a vocabulary.
             <a>FDOs</a> instantiation this <a>profile</a> MUST define values for the <em><a>0.FDO/Name</a></em>, and <em><a>0.FDO/VocabularyPrefix</a></em> <a>attributes</a>.
-            <em><dfn>0.FDO/VocabularyPrefix</dfn></em> specifies the prefix that can be used to identify terms from a vocabulary in an <a>FDO record</a> and is typically either part of a PURL (e.g., <em>https://schema.org/</em>) or some other string (e.g., <em>schema:</em>, <em>foaf:</em>).
+            <em><dfn>0.FDO/VocabularyPrefix</dfn></em> specifies the prefix that can be used to identify terms from a vocabulary in an <a>FDO record</a> and is typically either part of the URL prefix of a term (e.g., <em>https://schema.org/</em>) or some other string (e.g., <em>schema:</em>, <em>foaf:</em>).
         </p>
         <p>
-            To enable automatic validation of vocabulary terms, the <a>FDO</a> SHOULD also specify a URL from which the vocabulary can be retrieved (<em><a>0.FDO/DownloadURL</a></em>), the format in which the vocabulary is provided (<em><a>0.FDO/VocabularyFormat</a></em>), and a SPARQL query that checks the validity of the vocabulary term (<em><a>0.FDO/SPARQL_Check</a></em>).
-            <em><dfn>0.FDO/SPARQL_Check</dfn></em> is a SPARQL query that checks whether a term (replaced in the query string using the <em>$TERM$</em> placeholder) is valid in the vocabulary and MUST return a boolean value.
-            This query is executed against the vocabulary retrieved from the <em><dfn>0.FDO/DownloadURL</dfn></em> <a>attribute</a>, which accepts any <a>URL</a>.
-            <em><dfn>0.FDO/VocabularyFormat</dfn></em> specifies the format of the vocabulary retrieved from the <em><a>0.FDO/DownloadURL</a></em> <a>attribute</a> and MUST be one of the following strings: <em>RDF/XML</em>, <em>TTL</em>, <em>N-Triples</em>, <em>N-Quads</em>, or <em>JSON-LD</em>.
+            To enable automatic validation of vocabulary terms, the <a>FDO</a> SHOULD also specify a URL from which the vocabulary can be retrieved (usually via <em><a>0.FDO/DownloadURL</a></em>), the format in which the vocabulary is provided (<em><a>0.FDO/VocabularyFormat</a></em>), and a SPARQL query that checks the validity of the vocabulary term (<em><a>0.FDO/SPARQL_Check</a></em>).
         </p>
-        Optionally, <em><a>0.FDO/Description</a></em>, <em><a>0.FDO/Contact</a></em>, <em><a>0.FDO/LandingPageURL</a></em>, and <em><a>0.FDO/License</a></em> <a>attributes</a> MAY be used to provide additional information about the vocabulary.
+        <p>
+            Optionally, <em><a>0.FDO/Description</a></em>, <em><a>0.FDO/Contact</a></em>, <em><a>0.FDO/LandingPageURL</a></em>, and <em><a>0.FDO/License</a></em> <a>attributes</a> MAY be used to provide additional information about the vocabulary.
+        </p>
     </dd>
 </dl>
 
