@@ -2,7 +2,7 @@
 <h3>General Requirements</h3>
 <p>
     While the previous sections normatively specify the structure and required elements of <a>FDO records</a>, long-term
-    operation of <a>FDO</a>-based infrastructures requires clarity on how <a>FDO records</a> may be updated over time.
+    operation of <a>FDO</a>-based infrastructures requires clarity on how <a>FDO records</a> MAY be updated over time.
     From an operational perspective, it is useful to distinguish between different classes of updates:
 </p>
 <ol>
@@ -33,7 +33,7 @@ The following requirements apply:
 
     <dt><h4 class="rule-heading" id="rule-r11_2">[R11-2] New <a>FDO</a> for a meaningful distinct semantic interpretation</h4></dt>
     <dd>
-        It is RECOMMENDED that updates that would change the meaning or interpretation of the referenced <a>bit-sequence(s)</a> should normally
+        It is RECOMMENDED that updates that would change the meaning or interpretation of the referenced <a>bit-sequence(s)</a> SHOULD normally
         result in the creation of a new <a>FDO</a> with a new <a>PID</a> rather than modification of the existing <a>FDO record</a>.
     </dd>
 </dl>
@@ -60,7 +60,7 @@ The following requirements apply:
         <a>cardinalities</a>, or semantics of <a>attributes</a> SHOULD normally result in the creation of new profiles,
         <a>attribute</a>- or <a>syntax definitions</a> with new <a>PIDs</a>.
         Existing <a>FDO records</a> continue to reference the profile under which they were created.
-        Minor editorial changes that do not affect <a>validation</a> or interpretation may be handled according to repository policies.
+        Minor editorial changes that do not affect <a>validation</a> or interpretation MAY be handled according to repository policies.
     </dd>
 
     <dt><h4 class="rule-heading" id="rule-r11_5">[R11-5] Legacy <a>FDO records</a></h4></dt>
@@ -68,7 +68,7 @@ The following requirements apply:
         Handling of legacy <a>FDO records</a>: Long-lived repositories are expected to manage <a>FDO records</a> created under
         earlier profile versions.
         Such records remain valid as long as the referenced profile remains resolvable.
-        Optional mappings between profiles may be provided to support interoperability, but automatic migration of
+        Optional mappings between profiles MAY be provided to support interoperability, but automatic migration of
         existing <a>FDO records</a> SHOULD NOT be assumed.
     </dd>
 

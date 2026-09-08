@@ -44,8 +44,8 @@
 .idea/**/libraries
 
 # Gradle and Maven with auto-import
-# When using Gradle or Maven with auto-import, you should exclude module files,
-# since they will be recreated, and may cause churn.  Uncomment if using
+# When using Gradle or Maven with auto-import, you SHOULD exclude module files,
+# since they will be recreated, and MAY cause churn.  Uncomment if using
 # auto-import.
 # .idea/artifacts
 # .idea/compiler.xml
@@ -539,7 +539,7 @@ $RECYCLE.BIN/
 .AppleDouble
 .LSOverride
 
-# Icon must end with two \r
+# Icon MUST end with two \r
 Icon
 
 # Thumbnails
@@ -560,4 +560,3 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-

@@ -18,7 +18,7 @@
     <a>FDOs</a> in themselves to prevent unwanted dependencies from specific technologies and enable a common exchange format between implementations.
     In <a href="#generic-fdo-processing">Section 6</a> we describe how a client finds, accesses, and interprets
     <a>FDOs</a> to get to the data represented by it.
-    We expect that implementations of <a>FDOs</a> will vary and may not realize all the building blocks.
+    We expect that implementations of <a>FDOs</a> will vary and MAY not realize all the building blocks.
     Thus, we specify in <a
         href="#implementation-profile">Section 7</a> how implementations adopt this document to facilitate interoperability between implementations.
 </p>
@@ -51,7 +51,7 @@
     <li>
         <strong>Persistent identifier (PID)</strong>: Each <a>FDO</a> is identified by a globally unique and persistent
         identifier.
-        A <a>PID system</a> must resolve the <a>PID</a> to an <a>FDO record</a>.
+        A <a>PID system</a> MUST resolve the <a>PID</a> to an <a>FDO record</a>.
     </li>
     <li>
         <strong><a>FDO Record</a></strong>: The
@@ -79,7 +79,7 @@
         <ol>
             <li>
                 This document specifies <strong>mandatory
-                <a>FDO <a>attributes</a></a></strong> that must be used to ensure predictability and machine actionability of any
+                <a>FDO <a>attributes</a></a></strong> that MUST be used to ensure predictability and <a>machine actionability</a> of any
                 <a>FDO</a>.:
                 <ul>
                     <li><a>FDO type</a> <em><a>0.FDO/Type</a></em></li>
@@ -130,8 +130,8 @@
     </li>
     <li>
         <strong><a>FDO Profile</a></strong>: The <a>FDO profile</a> specifies the set of
-        <a>FDO <a>Attribute Definitions</a></a> that must or can
-        (depending on the cardinality of the <a>attribute definitions</a>) be instantiated to create
+        <a>FDO <a>Attribute Definitions</a></a> that MUST or can
+        (depending on the <a>cardinality</a> of the <a>attribute definitions</a>) be instantiated to create
         <a>FDO records</a> by a certain
         repository, community, or implementation.
         The <a>FDO profile</a> makes the content of an <a>FDO record</a> predictable for an
@@ -146,11 +146,9 @@
         how the resource can be processed.
     </li>
     <li>
-        <strong>Registries</strong>: <a>Attribute Definitions</a> and profiles must be stored in <dfn data-lt="DTR|data type registry">open registries</dfn>.
+        <strong>Registries</strong>: <a>Attribute Definitions</a> and <a>profiles</a> MUST be stored in <dfn data-lt="DTR|data type registry">open registries</dfn>.
         This gives the possibility of a reverse lookup.
         The mandatory and optional <a>attribute definitions</a> are stored in registries maintained by the <a>FDO Forum</a>.
         Communities of practice maintain their own community-defined <a>attribute definitions</a> in open registries.
     </li>
 </ul>
-
-

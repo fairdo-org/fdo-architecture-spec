@@ -15,7 +15,7 @@ This step takes an identifier record from <a
         The result of this step is an <a>FDO record</a> with all its individual type-value pair <a>tuples</a> parsed.
         At this point, the information inside the <a>record</a> and its tuples is not yet validated against the
         <a>attribute definitions</a> and <a>profiles</a>.
-        The structure of the <a>FDO record</a> must be valid.
+        The structure of the <a>FDO record</a> MUST be valid.
         Typically, this <a>FDO record</a> structure consists out of the following information:
         <ul>
             <li>The <a>PID</a> the <a>FDO record</a> was resolved with.</li>
@@ -38,11 +38,11 @@ This step takes an identifier record from <a
     <dd>
         This step is expected to transform a valid <a>PID record</a> into a valid <a>FDO record</a>.
         The concrete realization is specific to every implementation.
-        This step must terminate within a reasonable minimal timeframe (e.g., of < 10 ms).
+        This step MUST terminate within a reasonable minimal timeframe (e.g., of < 10 ms).
         It is not intended to perform network requests, or if it does, it caches the information for efficiency purposes.
         This step only extracts <a>FDO attributes</a> out of the <a>PID record</a> and discards the remainder of the
         <a>PID record</a>.
-        If needed, some <a>PID</a> system-specific information may be transformed into <a>FDO attributes</a>.
+        If needed, some <a>PID</a> system-specific information MAY be transformed into <a>FDO attributes</a>.
         The validation of the contents occurs in a later step (see <a href="#step5"></a>).
     </dd>
 
