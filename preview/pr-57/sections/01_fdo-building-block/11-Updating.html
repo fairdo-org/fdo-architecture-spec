@@ -54,27 +54,27 @@ The following requirements apply:
         <a>syntax definitions</a> SHOULD be treated as stable and immutable artefacts.
     </dd>
 
-    <dt><h4 class="rule-heading" id="rule-r11_4">[R11-4] Profile Versioning</h4></dt>
+    <dt><h4 class="rule-heading" id="rule-r11_4">[R11-4] <a>Profile</a> Versioning</h4></dt>
     <dd>
         <a>Profile</a> evolution and versioning: Changes of <a>attribute</a>- or <a>syntax definitions</a> that affect the structure,
         <a>cardinalities</a>, or semantics of <a>attributes</a> SHOULD normally result in the creation of new profiles,
         <a>attribute</a>- or <a>syntax definitions</a> with new <a>PIDs</a>.
-        Existing <a>FDO records</a> continue to reference the profile under which they were created.
+        Existing <a>FDO records</a> continue to reference the <a>profile</a> under which they were created.
         Minor editorial changes that do not affect <a>validation</a> or interpretation MAY be handled according to repository and community policies.
     </dd>
 
     <dt><h4 class="rule-heading" id="rule-r11_5">[R11-5] Legacy <a>FDO records</a></h4></dt>
     <dd>
         Handling of legacy <a>FDO records</a>: Long-lived repositories are expected to manage <a>FDO records</a> created under
-        earlier profile versions.
-        Such records remain valid as long as the referenced profile remains resolvable.
+        earlier <a>profile</a> versions.
+        Such records remain valid as long as the referenced <a>profile</a> remains resolvable.
         Optional mappings between profiles MAY be provided to support interoperability, but automatic migration of
         existing <a>FDO records</a> SHOULD NOT be assumed.
     </dd>
 
     <dt><h4 class="rule-heading" id="rule-r11_6">[R11-6] Operational considerations</h4></dt>
     <dd>
-        Operational considerations: It is RECOMMENDED that repositories operating <a>FDO</a> services document profile versions,
+        Operational considerations: It is RECOMMENDED that repositories operating <a>FDO</a> services document <a>profile</a> versions,
         ensure persistent accessibility of profiles, and support <a>validation</a> of <a>FDO records</a> against the profiles they
         instantiate throughout their operational lifetime.
     </dd>

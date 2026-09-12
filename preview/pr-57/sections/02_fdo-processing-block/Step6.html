@@ -3,7 +3,7 @@
     This step determines whether the <a>FDO record</a>’s profile(s) is the same or compatible with the <a>FDO Profile</a> the client expects to process.
     This step assumes that <a href="#step4"></a> was completed and that its status indicates that a <a><em>0.FDO/Profile</em></a>
     <a>attribute</a> is present.
-    This step is in some way analogous to the <a>FDO type</a> inspection step with the difference that a profile specifies the
+    This step is in some way analogous to the <a>FDO type</a> inspection step with the difference that a <a>profile</a> specifies the
     set of fields that a <a>FDO Record</a> SHOULD have to describe a particular type of objects. </p>
 <dl>
     <dt>Inputs</dt>
@@ -28,7 +28,7 @@
                     </li>
                     <li>DERIVED_MATCH.
                         Indicates that the <a>FDO Profile</a> in the
-                        <a>FDO Record</a> can be derived Profile from the expected
+                        <a>FDO Record</a> can be derived <a>Profile</a> from the expected
                         <a>FDO Profile</a> list.
                         Derived profiles remain backward compatible with their parent profile.
                     </li>
@@ -79,14 +79,14 @@
                         Note that derived <a>FDO Profiles</a> are compatible with their parent <a>FDO Profile</a>.
                         To determine is and <a>FDO Profile</a> is derived from another, the client resolves each of the <a>FDO Profiles</a> into
                         their respective <a>FDOs</a> and then analyzes these <a>FDOs</a> to see if the Profiles definition specifies that they are
-                        derived from <a>FDO Profiles</a> that match a profile within the expected <a>FDO Profile</a> list.
+                        derived from <a>FDO Profiles</a> that match a <a>profile</a> within the expected <a>FDO Profile</a> list.
                         If the <a>FDO Profiles</a> within the <a>FDO Record</a> are derived from <a>FDO Profiles</a> in the expected <a>FDO Profile</a> list,
                         the <a>FDO Record</a> is compatible with one or more of its expected <a>FDO Profile</a>.
                         Any errors in accessing <a>FDO Profile</a>’s <a>FDO</a> terminates the search for derived matches and results in that <a>FDO profile</a>’s not matching.
                         The results can be:
                         <ul>
                             <li>NO_MATCH and an empty list if no derived Profiles are found.</li>
-                            <li>DERIVED_MATCH a list with the derived Profile matches.</li>
+                            <li>DERIVED_MATCH a list with the derived <a>Profile</a> matches.</li>
                         </ul>
                     </li>
                 </ul>
@@ -97,7 +97,7 @@
         <p>
             The examples below assume the simple <a>FDO Record</a> described below.
             Adding to the example is the fact that the <a>FDO</a>
-            Profile 21.32/234 is derived from <a>FDO Profile</a> 21.32/123, which is itself derived from <a>FDO Profile</a> 21.1/0.
+            <a>Profile</a> 21.32/234 is derived from <a>FDO Profile</a> 21.32/123, which is itself derived from <a>FDO Profile</a> 21.1/0.
         </p>
 
         <table class="numbered">
