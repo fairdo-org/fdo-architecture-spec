@@ -2,7 +2,7 @@
 <p>
     <a>FDO Profiles</a> are templates for <a>FDO Records</a>.
     They specify which <a>attributes</a> SHOULD be considered in an <a>FDO Record</a>.
-    They DO NOT specify the cardinality of the <a>attributes</a>; this is done in the <a>attribute definitions</a>.
+    They DO NOT specify the <a>cardinality</a> of the <a>attributes</a>; this is done in the <a>attribute definitions</a>.
     All <a>FDO Profiles</a> are themselves fully valid FDOs (see <a href="#rule-r4_6"></a>) that instantiate the
     <a>profile definition profile</a> (see <a href="#rule-r4_7"></a>).
     All <a>FDO Profiles</a> MUST fulfill the following requirements:
@@ -111,14 +111,14 @@
         This figure shows the <a>attribute definitions</a> that MUST be used in any <a>FDO</a> instantiating a profile.
         The <a>attribute definitions</a> are specified by their <a>PIDs</a>, which resolve to the respective
         <a>attribute definition</a>.
-        The cardinality of the <a>attribute definitions</a> is also shown.
+        The <a>cardinality</a> of the <a>attribute definitions</a> is also shown.
         This table does not include all information about the <a>attribute definitions</a>; for more information see the
         <a href="#appendixAttrDefsUsed">appendix</a>.
     </caption>
     <tr>
         <th>PID of <a>Attribute Definition</a></th>
         <th>Description of the <a>attribute</a></th>
-        <th>Cardinality of the <a>attribute</a></th>
+        <th><a>Cardinality</a> of the <a>attribute</a></th>
     </tr>
     <tr>
         <td><a><em>0.FDO/Type</em></a>
@@ -161,7 +161,7 @@
         </td>
         <td><em><a><em>0.FDO/Attribute</em></a></em> defines the set of
             <a>attribute definitions</a> that MUST be instantiated in any <a>FDO</a> instantiating this <a>profile</a>.
-            The cardinality of the <a>attribute definitions</a> MUST be respected in the <a>FDOs</a>.
+            The <a>cardinality</a> of the <a>attribute definitions</a> MUST be respected in the <a>FDOs</a>.
             When not using <a>profile extension</a>, <a><em>0.FDO/Attribute</em></a> MUST be defined with at least the attributes from the <a>root profile</a>.
             Other <a>attribute definitions</a> can be added by adding more <a><em>0.FDO/Attribute</em></a> <a>tuples</a> with the <a>PID</a> of the desired <a>attribute definition</a>.
         </td>
@@ -235,7 +235,7 @@
         extension hierarchy MUST be resolved until a <a>profile</a> is reached that does not extend another <a>profile</a> (which MAY be
         <a><em>0.FDO/Root</em></a> or another <a>profile</a>).
         During this process, a set of <a>attribute definitions</a> is collected from all <a>profiles</a> in the extension hierarchy.
-        The <a>FDO Record</a> MUST then be validated against this set of <a>attribute definitions</a> according to the cardinalities specified in the <a>attribute definitions</a>.
+        The <a>FDO Record</a> MUST then be validated against this set of <a>attribute definitions</a> according to the <a>cardinalities</a> specified in the <a>attribute definitions</a>.
         If any of the <a>profiles</a> in the extension hierarchy explicitly prohibits <a>additional attributes</a>, then the <a>FDO Record</a> MUST NOT contain any <a>attributes</a> that are not listed in the set of <a>attribute definitions</a> up to this node in the hierarchy.
         The validation only succeeds if all <a>attribute definitions</a> are satisfied and none of the <a>profiles</a> in the extension hierarchy prohibits <a>additional attributes</a> that are present in the <a>FDO Record</a>.
     </dd>
