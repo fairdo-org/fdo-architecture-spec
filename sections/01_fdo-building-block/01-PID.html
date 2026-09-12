@@ -10,20 +10,20 @@
     <dt><h4 class="rule-heading" id="rule-r1_2">[R1-2] <dfn data-abbr="PID" data-lt="PID">Persistent Identifier</dfn></h4></dt>
     <dd>
         Every <a>FDO</a> is assigned one or more <dfn data-abbr="GUPRI">globally unique, persistent, and resolvable identifier</dfn> (<a>PID</a>).
-        Resolving a <a>PID</a> via a <a>PID system</a> MUST always produce an at least <a>machine-readable</a> structure, the <a>PID record</a>.
+        Resolving a <a>PID</a> via a <a>PID system</a> MUST always produce an at least <a>machine readable</a> structure, the <a>PID record</a>.
         The <a>PID</a> of an <a>FDO</a> is assumed to be persistent even when its data has been deleted.
     </dd>
 
     <dt><h4 class="rule-heading" id="rule-r1_3">[R1-3] <dfn><a>PID</a> Record</dfn></h4></dt>
     <dd>
-        A <a>PID record</a> is an at least <a>machine-readable</a> structure sent back when resolving a <a>PID</a>.
+        A <a>PID record</a> is an at least <a>machine readable</a> structure sent back when resolving a <a>PID</a>.
         A subset of the <a>PID record</a> MAY contain the <a>FDO record</a>, refer to the <a>FDO record</a>, or refer to another <a>PID</a>.
         The contents of a <a>PID record</a> can also be arbitrary, in which case, depending on the <a>implementation</a>, it does not provide an <a>FDO</a>.
     </dd>
 
     <dt><h4 class="rule-heading" id="rule-r1_4">[R1-4] <dfn><a>PID</a> System</dfn></h4></dt>
     <dd>
-        A system that stores and manages <a>PIDs</a> and their <a>PID records</a> is called a <dfn>PID system</dfn>.
+        A system that stores and manages <a>PIDs</a> and their <a>PID records</a> is called a <a>PID system</a>.
         It MUST provide mechanisms to facilitate reliable referential stability over extensive time periods.
         Even after this time period, a <a>PID</a> MUST NOT be re-assigned to another <a>PID record</a>, except with negligible probability.
         For FDOs, we expect <a>PID systems</a> to provide storage, access, and referential stability of <a>PIDs</a> and their <a>PID records</a> for at least 10 years after last modification.
