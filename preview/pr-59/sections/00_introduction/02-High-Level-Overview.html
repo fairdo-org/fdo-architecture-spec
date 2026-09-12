@@ -2,8 +2,7 @@
     Overview
 </h3>
 <p>
-    The vision of the
-    <a>FDO</a> concept is to enable machine actionability and facilitate highly automated processing of data.
+    The vision of the <a>FDO</a> concept is to enable <a>machine actionability</a> and facilitate highly automated processing of data.
     If an <a>FDO</a> client finds a <a>PID</a> that identifies an
     <a>FDO</a>, it is able to automatically interpret and process the
     <a>FDO</a>, regardless of the technology used to implement it.
@@ -18,7 +17,7 @@
     <a>FDOs</a> in themselves to prevent unwanted dependencies from specific technologies and enable a common exchange format between implementations.
     In <a href="#generic-fdo-processing">Section 6</a> we describe how a client finds, accesses, and interprets
     <a>FDOs</a> to get to the data represented by it.
-    We expect that implementations of <a>FDOs</a> will vary and may not realize all the building blocks.
+    We expect that implementations of <a>FDOs</a> will vary and MAY not realize all the building blocks.
     Thus, we specify in <a
         href="#implementation-profile">Section 7</a> how implementations adopt this document to facilitate interoperability between implementations.
 </p>
@@ -30,7 +29,7 @@
     <figcaption>
         This diagram indicates schematically the basic building blocks of an <a>FDO</a>.
         The <a>attribute definition</a> (left) and
-        the profile (right) are also
+        the <a>profile</a> (right) are also
         <a>FDOs</a> where the records consist of tuples, which is not shown in this diagram for
         readability.
     </figcaption>
@@ -38,25 +37,25 @@
 
 <ul>
     <li>
-        <strong>Resource</strong>: Each
+        <strong><a>resource</a></strong>: Each
         <a>FDO</a> is a<strong>standardised and persistent bundle</strong> of information that
-        represents (i.e., identifies, encapsulates, and describes) a resource.
-        The resource could be digital, in which case the
-        resource would usually be a data <a>bit-sequence</a>.
-        But it is also possible that this resource is physical, in which
+        represents (i.e., identifies, encapsulates, and describes) a <a>resource</a>.
+        The <a>resource</a> could be digital, in which case the
+        <a>resource</a> would usually be a data <a>bit-sequence</a>.
+        But it is also possible that this <a>resource</a> is physical, in which
         case there is no data <a>bit-sequence</a> attached to the <a>FDO</a>.
-        The resource is the heart of the <a>FDO</a> and all other
-        components are there to make the resource and its metadata machine actionable.
+        The <a>resource</a> is the heart of the <a>FDO</a> and all other
+        components are there to make the <a>resource</a> and its metadata machine actionable.
     </li>
     <li>
         <strong>Persistent identifier (PID)</strong>: Each <a>FDO</a> is identified by a globally unique and persistent
         identifier.
-        A <a>PID system</a> must resolve the <a>PID</a> to an <a>FDO record</a>.
+        A <a>PID system</a> MUST resolve the <a>PID</a> to an <a>FDO record</a>.
     </li>
     <li>
         <strong><a>FDO Record</a></strong>: The
         <a>FDO record</a> is a predictable and machine actionable information structure that
-        contains <a>attributes</a> of the resource which the <a>FDO</a> represents.
+        contains <a>attributes</a> of the <a>resource</a> which the <a>FDO</a> represents.
         The <a>FDO record</a> is that piece of information a <a>FDO</a>
         client first encounters after <a>PID</a> resolution.
     </li>
@@ -74,12 +73,12 @@
                 filled into the metadata field).
             </li>
         </ol>
-        <a>FDO <a>attributes</a></a> are properties of the resource the <a>FDO</a> represents, hence they are metadata.
+        <a>FDO <a>attributes</a></a> are properties of the <a>resource</a> the <a>FDO</a> represents, hence they are metadata.
         We distinguish three types of <a>FDO <a>attributes</a></a>/<a>attribute definitions</a>:
         <ol>
             <li>
                 This document specifies <strong>mandatory
-                <a>FDO <a>attributes</a></a></strong> that must be used to ensure predictability and machine actionability of any
+                <a>FDO <a>attributes</a></a></strong> that MUST be used to ensure predictability and <a>machine actionability</a> of any
                 <a>FDO</a>.:
                 <ul>
                     <li><a>FDO type</a> <em><a>0.FDO/Type</a></em></li>
@@ -112,7 +111,7 @@
                 a semantic description of the <a>attribute</a> (e.g., “Person who wrote the document”),
             </li>
             <li>
-                a cardinality (e.g., this <a>attribute</a> can be used at most one time in an <a>FDO record</a>), and
+                a <a>cardinality</a>  (e.g., this <a>attribute</a> can be used at most one time in an <a>FDO record</a>), and
             </li>
             <li>
                 syntactic rules for the value that instantiates this
@@ -130,10 +129,9 @@
     </li>
     <li>
         <strong><a>FDO Profile</a></strong>: The <a>FDO profile</a> specifies the set of
-        <a>FDO <a>Attribute Definitions</a></a> that must or can
-        (depending on the cardinality of the <a>attribute definitions</a>) be instantiated to create
-        <a>FDO records</a> by a certain
-        repository, community, or implementation.
+        <a>FDO <a>Attribute Definitions</a></a> that MUST or can
+        (depending on the <a>cardinality</a> of the <a>attribute definitions</a>) be instantiated to create
+        <a>FDO records</a> by a certain repository, community, or implementation.
         The <a>FDO profile</a> makes the content of an <a>FDO record</a> predictable for an
         <a>FDO</a> client: Each <a>FDO record</a> needs to have a reference to the <a>FDO profile</a> it complies with.
         By inspecting the
@@ -143,14 +141,12 @@
     <li>
         <strong><a>FDO Type</a></strong>: Each <a>FDO</a> has to specify an
         <a>FDO type</a> which essentially provides any client with a hint
-        how the resource can be processed.
+        how the <a>resource</a> can be processed.
     </li>
     <li>
-        <strong>Registries</strong>: <a>Attribute Definitions</a> and profiles must be stored in <dfn data-lt="DTR|data type registry">open registries</dfn>.
+        <strong>Registries</strong>: <a>Attribute Definitions</a> and <a>profiles</a> MUST be stored in <dfn data-lt="DTR|data type registry">open registries</dfn>.
         This gives the possibility of a reverse lookup.
         The mandatory and optional <a>attribute definitions</a> are stored in registries maintained by the <a>FDO Forum</a>.
         Communities of practice maintain their own community-defined <a>attribute definitions</a> in open registries.
     </li>
 </ul>
-
-
