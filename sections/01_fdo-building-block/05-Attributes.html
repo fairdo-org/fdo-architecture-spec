@@ -40,7 +40,8 @@
                 Use-cases SHOULD reuse these <a>attributes</a>, whenever suitable, for better harmonization of <a>FDO attribute</a> information.
             </li>
             <li>
-                <dfn>Community-defined <a>attributes</a></dfn> are any <a>attributes</a> that are not defined by the <a>FDO Forum</a>.
+                <dfn>Community-defined <a>attributes</a></dfn> are any <a>attributes</a> that are defined by a community of practice (i.e., usually not the <a>FDO Forum</a>).
+                Interoperability between different communities and their <a>attributes</a> can be facilitated by either reusing <a>attributes</a> with their semantic meaning in other communities, defining more generic <a>attributes</a>, or by providing a bidirectional mapping process.
                 They appear in different forms, with decreasing level of machine-actionability in the following enumeration:
                 <ul>
                     <li>
@@ -93,7 +94,7 @@
 
     <dt><h4 class="rule-heading" id="rule-r5_5">[R5-5] Syntactic Rules</h4></dt>
     <dd>
-        An <a>attribute definition</a> specifies syntactic, machine-readable rules for an <a>attribute</a> in an
+        An <a>attribute definition</a> specifies syntactic, <a>machine readable</a> rules for an <a>attribute</a> in an
         <a>FDO Record</a> (that is, the <a>attribute</a> instantiates the <a>attribute definition</a>).
     </dd>
 
@@ -103,16 +104,16 @@
         <a>Attribute definitions</a> describe the semantics of an <a>attribute</a>.
         They MUST provide at least one localized and human-readable name.
         For better understanding, at least one localized and human-readable description SHOULD be provided.
-        Other <a>attributes</a> MAY be included in the <a>attribute definition</a> <a>FDO records</a> to refer to external resources and provide additional context for the semantics of the <a>attribute</a>.
+        Other <a>attributes</a> MAY be included in the <a>attribute definition</a> <a>FDO records</a> to refer to external <a>resources</a> and provide additional context for the semantics of the <a>attribute</a>.
     </dd>
 
 
     <dt><h4 class="rule-heading" id="rule-r5_7">[R5-7] <dfn data-lt="cardinality|attribute cardinality">Cardinality of <a>Attributes</a></dfn></h4></dt>
     <dd>
-        An <a>attribute definition</a> MUST specify the cardinality of an <a>attribute</a>.
+        An <a>attribute definition</a> MUST specify the <a>cardinality</a> of an <a>attribute</a>.
         The <a>cardinality</a> MUST follow this regular expression:
         <pre lang="regex">^(\d+)(\.\.(\d+|\*))?$</pre>
-        Examples for possible cardinalities include but are not limited to:
+        Examples for possible <a>cardinalities</a> include but are not limited to:
         <ul>
             <li>1 (mandatory),</li>
             <li>0..1 (optional),</li>
@@ -126,7 +127,7 @@
     <dt><h4 class="rule-heading" id="rule-r5_8">[R5-8] <dfn data-lt="syntactic rules">Syntax Reference</dfn></h4></dt>
 <!--    TODO: reformulate-->
     <dd>
-        To specify syntactic, machine-readable rules, an <a>attribute definition</a> MUST contain a <a>syntax definition</a> by
+        To specify syntactic, <a>machine readable</a> rules, an <a>attribute definition</a> MUST contain a <a>syntax definition</a> by
         using the <a>attribute</a> <a><em>0.FDO/DataType</em></a> with a reference to a <a>syntax definition</a> (see <a href="#syntax-def"></a>) as its value.
         Furthermore, the <a>attribute definition</a> MUST contain the <a>attribute</a> (<a><em>0.FDO/ValidationMechanism</em></a>, Syntax).
         To instantiate the <a>attribute definition</a> in an <a>FDO Record</a>,
@@ -191,7 +192,7 @@
     <dt><h4 class="rule-heading" id="rule-r5_13">[R5-13] <dfn><a>Additional Attributes</a> in <a>Attribute Definition FDOs</a></dfn></h4></dt>
     <dd>
         <a>Attribute Definitions</a> MAY have additional <a>attributes</a> and instantiate additional profiles for any reason.
-        This SHOULD be used to relate <a>attribute definitions</a> to existing external resources such as vocabularies, ontologies, or terminologies.
+        This SHOULD be used to relate <a>attribute definitions</a> to existing external <a>resources</a> such as vocabularies, ontologies, or terminologies.
     </dd>
 
 
@@ -206,7 +207,7 @@
 
     <dt><h4 class="rule-heading" id="rule-r5_15">[R5-15] <dfn><a>Community Attribute</a> Definitions</dfn></h4></dt>
     <dd>
-        Community-specified <a>attribute definitions</a> MAY be implemented by communities of practice in the <a>DTR</a> or any other suitable open registry.
+        Community-specified <a>attribute definitions</a> MAY be implemented by communities of practice in the <a>DTR</a> or any other suitable open registry [[!RDA-DTR-WG]].
         Special rules apply in case <a>attribute definitions</a> are updated, see <a href="#rule-r12_3"></a>- <a href="#rule-r12_6"></a>.
     </dd>
 </dl>
@@ -221,7 +222,7 @@
     <tr>
         <th>PID of <a>Attribute Definition</a></th>
         <th>Description of the <a>attribute</a></th>
-        <th>Cardinality of the <a>attribute</a></th>
+        <th><a>Cardinality</a> of the <a>attribute</a></th>
     </tr>
     <tr>
         <td><a><em>0.FDO/Type</em></a>
@@ -287,7 +288,7 @@
             <ul>
                 <li>a <a>syntax definition</a> (see <a href="#rule-r5_8"></a>)</li>
                 <li>an <a>attribute definition</a> (see <a href="#rule-r5_9"></a>, <a href="#rule-r5_10"></a> and <a href="#attribute-referencing"></a>)</li>
-                <li>a profile (see <a href="#profile-referencing"></a>)</li>
+                <li>a <a>profile</a> (see <a href="#profile-referencing"></a>)</li>
                 <li>an external vocabulary namespace (see <a href="#external-vocabulary-referencing"></a>)</li>
             </ul>
         </td>

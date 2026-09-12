@@ -36,13 +36,13 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
     <ul>
         <li>
             (<a><em>0.FDO/ValidationMechanism</em></a>, <em>ProfileReference</em>:
-            This means that the <a>attribute definition</a> with the <a>PID</a> <a><em>0.FDO/Profile</em></a> applies the profile referencing mechanism.
+            This means that the <a>attribute definition</a> with the <a>PID</a> <a><em>0.FDO/Profile</em></a> applies the <a>profile referencing</a> mechanism.
         </li>
         <li>
             (<a><em>0.FDO/DataType</em></a>, <a><em>0.FDO/ProfileDef</em></a>):
             This means that if the <a>attribute definition</a> <a><em>0.FDO/Profile</em></a> is
-            instantiated, the value must be a reference to an <a>FDO</a> that instantiates <a><em>0.FDO/ProfileDef</em></a> (i.e., it
-            must be a reference to an <a>FDO profile</a>)
+            instantiated, the value MUST be a reference to an <a>FDO</a> that instantiates <a><em>0.FDO/ProfileDef</em></a> (i.e., it
+            MUST be a reference to an <a>FDO profile</a>)
         </li>
     </ul>
     <figure id="profile-ref">
@@ -64,7 +64,7 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
         (<a><em>0.FDO/ValidationMechanism</em></a>, <a>Profile</a>Reference).
     </dd>
 
-    <dt><h4 class="rule-heading" id="rule-r7_5">[R7-5] Profile Reference Target</h4></dt>
+    <dt><h4 class="rule-heading" id="rule-r7_5">[R7-5] <a>Profile</a> Reference Target</h4></dt>
     <dd>
         The <a>attribute definition</a> MAY also specify a list of profile
         <a>PIDs</a> <em>P<sub>1</sub>,...,P<sub>n</sub></em> where at least
@@ -77,7 +77,7 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
 
 <b>Instantiation of the <a>Attribute Definition</a> that Applies <a>Profile</a> Referencing:</b>
 <dl>
-    <dt><h4 class="rule-heading" id="rule-r7_6">[R7-6] <dfn>Profile Reference Instantiation</dfn></h4></dt>
+    <dt><h4 class="rule-heading" id="rule-r7_6">[R7-6] <dfn><a>Profile</a> Reference Instantiation</dfn></h4></dt>
     <dd>
         When the <a>attribute definition</a> is instantiated (i.e., it is used in an <a>FDO</a> with at least one value), the
         <ul>
@@ -113,14 +113,14 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
     The reason for this is that data can appear in different forms but need to be automatically recognized (see also <a href="#attr-ref-1"></a>):
     <ul>
         <li>
-            Data may be given by a reference to an external <a>bit-sequence</a>.
+            Data MAY be given by a reference to an external <a>bit-sequence</a>.
             Then, the <a><em>0.FDO/Data</em></a> <a>attribute</a> would
             have as its value a URL. (<a href="#attr-ref-1"></a>, top-right)
         </li>
         <li>
             Data could also be encapsulated in its own <a>FDO</a>, especially if the <a>FDO</a> is a <a>collection</a>.
             Then, the<a><em>0.FDO/Data</em></a> <a>attribute</a> would have as its value a reference to an <a>FDO</a>,
-            which possibly follows a specific profile (<a href="#attr-ref-1"></a>, bottom-left).
+            which possibly follows a specific <a>profile</a> (<a href="#attr-ref-1"></a>, bottom-left).
         </li>
         <li>
             Data could also be in-line in the record.
@@ -149,7 +149,7 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
 <p>The detailed requirements for <a>attribute referencing</a> are:</p>
 
 <p><b>Format of an <a>Attribute Definition</a> that applies <a>attribute referencing</a>:</b></p>
-<p>The following requirements must be fulfilled such that an
+<p>The following requirements MUST be fulfilled such that an
     <a>attribute definition</a> A applies <a>attribute</a> referencing:</p>
 <dl>
     <dt><h4 class="rule-heading" id="rule-r7_7">[R7-7] <dfn><a>Attribute Reference</a> Declaration</dfn></h4></dt>
@@ -164,15 +164,15 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
         <em>B<sub>1</sub>,...,B<sub>n</sub></em> using the <a>attribute</a> <em>(<a><em>0.FDO/DataType</em></a>, B<sub>i</sub>)</em>, <em>i=1,...,n</em>, in its record.
         If <em>A</em> specifies these <em>B<sub>1</sub>,...,B<sub>n</sub></em>, an <a>attribute</a> <em>a</em> (instantiating <em>A</em>) MUST reference an
         <a>attribute</a> <em>b</em> that instantiates any of <em>B<sub>1</sub>,...,B<sub>n</sub></em>.
-        If the <a><em>0.FDO/DataType</em></a> <a>attribute</a> is not contained in <em>A</em>, <em>a</em> may reference any
+        If the <a><em>0.FDO/DataType</em></a> <a>attribute</a> is not contained in <em>A</em>, <em>a</em> MAY reference any
         <a>attribute</a> <em>b</em>.
     </dd>
 
-    <dt><h4 class="rule-heading" id="rule-r7_9">[R7-9] <dfn><a>Attribute Reference</a> Cardinality</dfn></h4></dt>
+    <dt><h4 class="rule-heading" id="rule-r7_9">[R7-9] <dfn><a>Attribute Reference</a> <a>Cardinality</a></dfn></h4></dt>
     <dd>
-        The cardinality of the <a>attribute definition</a> A only specifies the occurrence of instances of A itself
+        The <a>cardinality</a> of the <a>attribute definition</a> A only specifies the occurrence of instances of A itself
         (and not the occurrence of instances of any of <em>B<sub>1</sub>,...,B<sub>n</sub></em>).
-        The cardinality of <em>B<sub>1</sub>,...,B<sub>n</sub></em> cannot be influenced by A.
+        The <a>cardinality</a> of <em>B<sub>1</sub>,...,B<sub>n</sub></em> cannot be influenced by A.
     </dd>
 </dl>
 
@@ -212,17 +212,17 @@ Hence, it is a mechanism to enforce that specific <a>attributes</a> in <a>FDO re
     <img alt="Attribute_Referencing_3.png" src="img/attribute-referencing-3.svg">
     <figcaption>
         <a>Attribute referencing</a> with <a href="#rule-r7_9">cardinalities</a> larger than 1.
-        On the left, the cardinality of B is larger than 1;
+        On the left, the <a>cardinality</a> of B is larger than 1;
         hence B can be instantiated multiple times.
-        On the right, the cardinality of A is also larger than 1.
+        On the right, the <a>cardinality</a> of A is also larger than 1.
     </figcaption>
 </figure>
 
 <dl>
     <dt><h4 class="rule-heading" id="rule-r7_11">[R7-11] <dfn>Consecutive usage of <a>attribute references</a></dfn></h4></dt>
     <dd>
-        There may be cases of consecutive referencing (e.g., a references b, b references c, …).
-        All such references within an <a>FDO record</a> must form a directed acyclic graph (no loops allowed).
+        There MAY be cases of consecutive referencing (e.g., a references b, b references c, …).
+        All such references within an <a>FDO record</a> MUST form a directed acyclic graph (i.e., no loops allowed).
     </dd>
 </dl>
 <p>
