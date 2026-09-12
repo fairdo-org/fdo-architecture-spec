@@ -11,7 +11,7 @@
     <dt><h4 class="rule-heading" id="rule-r4_1"><dfn
             data-lt="FDO profile|profile">[R4-1] Definition of the term "FDO Profile"</dfn></h4></dt>
     <dd>
-        An <a>FDO Profile</a> (short: profile) is a machine-readable template that MAY be instantiated by <a>FDO Records</a>.
+        An <a>FDO Profile</a> (short: profile) is a <a>machine readable</a> template that MAY be instantiated by <a>FDO Records</a>.
         It defines a set of <a>attribute definitions</a> that MUST be contained in any <a>FDO Record</a>
         instantiating the <a>profile</a>, according to the <a>cardinalities</a> specified in the <a>attribute definitions</a> (see <a href="#rule-r5_7"></a>).
     </dd>
@@ -170,7 +170,7 @@
     <tr>
         <td><a><em>0.FDO/ExtendsProfile</em></a></td>
         <td>If this <a>profile</a> is an extension of another <a>profile</a>, this <a>attribute</a> specifies the
-            <a>PID</a> of the parent <a>profile</a> (see <a href="#r4_11"></a>).
+            <a>PID</a> of the parent <a>profile</a> (see <a href="#rule-r4_11"></a>).
             All <a>profiles</a> MUST either extend from <a><em>0.FDO/Root</em></a>, another <a>profile</a> that recursively extends
             from <a><em>0.FDO/Root</em></a>, or specify the mandatory attributes from <a><em>0.FDO/Root</em></a> using <a><em>0.FDO/Attribute</em></a>.
         </td>
