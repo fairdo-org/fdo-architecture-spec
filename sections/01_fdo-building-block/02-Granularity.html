@@ -24,12 +24,15 @@
         The <a>resource</a> MAY be complex, that is, it MAY consist of multiple other <a>resources</a>.
     </dd>
 
-    <dt><h4 class="rule-heading" id="rule-r2_2">[R2-2] <dfn>Collection Definition</dfn></h4></dt>
+    <dt><h4 class="rule-heading" id="rule-r2_2">[R2-2] <dfn data-lt="Collection|Collection FDO">Collection Definition</dfn></h4></dt>
     <dd>
-        If an <a>FDO</a> represents a <a>resource</a> which consists of multiple parts that are interpreted as
+        If an <a>FDO</a> represents a <a>resource</a> that consists of multiple parts that are interpreted as
         <a>resources</a> in their own right, this <a>FDO</a> is called a <a>collection</a>.
         The decision which parts are interpreted as <a>resources</a> in their own right (and hence MAY be represented as their own <a>FDOs</a>) is
         dependent on pragmatic utility decisions within communities of practices.
+        As a <a>collection</a> is an <a>FDO</a>, it is identified by a <a>PID</a>, described by metadata in the <a>FDO record</a>, and able to describe the
+        structure of the resource directly in its <a>FDO record</a> or in an associated <a>bit sequence</a>.
+        <a>Collections</a> can include other <a>collections</a>.
     </dd>
 
     <dt><h4 class="rule-heading" id="rule-r2_3">[R2-3] <dfn>Resource Description</dfn></h4></dt>
