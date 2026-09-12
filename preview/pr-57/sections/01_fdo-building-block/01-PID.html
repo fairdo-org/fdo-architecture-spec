@@ -5,18 +5,12 @@
         The term <a>persistence</a> is being mentioned frequently in this document, as in the realm of <a>FDOs</a> <a>persistence</a> is an important property.
         In regard to <a>FDOs</a> <a>persistence</a> is defined as a promise of an initiative or service provider to maintain specifications or services for a long period of time.
         It is up to the users to decide whether they trust such a promise.
-        <!--Crucial is the persistence of the <a>PID system</a> which needs to guarantee referential stability.
-        Even if the resource encapsulated by an <a>FDO</a> is deleted, for example, after 10 years, the
-        <a>PID</a> and the corresponding <a>FDO record</a> SHOULD still be accessible without restriction and extended with a <a>tombstone note</a>.
-        Therefore, a <a>PID</a> MUST be independent of any technology and SHOULD not include semantics (locational, etc.) since both will change over time.-->
     </dd>
 
     <dt><h4 class="rule-heading" id="rule-r1_2">[R1-2] <dfn data-abbr="PID" data-lt="PID">Persistent Identifier</dfn></h4></dt>
     <dd>
         Every <a>FDO</a> is assigned one or more <dfn data-abbr="GUPRI">globally unique, persistent, and resolvable identifier</dfn> (<a>PID</a>).
         Resolving a <a>PID</a> via a <a>PID system</a> MUST always produce an at least <a>machine-readable</a> structure, the <a>PID record</a>.
-        <!--In the context of <a>FDOs</a> each <a>PID</a> MUST be resolvable
-        into a <a>machine actionable</a> structure which we call the <a>FDO record</a>.-->
         The <a>PID</a> of an <a>FDO</a> is assumed to be persistent even when its data has been deleted.
     </dd>
 
@@ -25,11 +19,6 @@
         A <a>PID record</a> is an at least <a>machine-readable</a> structure sent back when resolving a <a>PID</a>.
         A subset of the <a>PID record</a> MAY contain the <a>FDO record</a>, refer to the <a>FDO record</a>, or refer to another <a>PID</a>.
         The contents of a <a>PID record</a> can also be arbitrary, in which case, depending on the <a>implementation</a>, it does not provide an <a>FDO</a>.
-        <!--In the <a>FDO</a> context we are using the term "<a>FDO record</a>" which
-        implies the use of an <a>FDO profile</a> and defined <a>FDO attributes</a>.
-        These two terms are synonymous when compliance to
-        the <a>FDO</a> specifications is given.
-        <a>PID records</a> are assumed to be accessible even when the data has been deleted.-->
     </dd>
 
     <dt><h4 class="rule-heading" id="rule-r1_4">[R1-4] <dfn><a>PID</a> System</dfn></h4></dt>

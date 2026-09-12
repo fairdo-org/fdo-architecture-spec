@@ -3,8 +3,8 @@
     <a>FDO Profiles</a> are templates for <a>FDO Records</a>.
     They specify which <a>attributes</a> SHOULD be considered in an <a>FDO Record</a>.
     They DO NOT specify the cardinality of the <a>attributes</a>; this is done in the <a>attribute definitions</a>.
-    All <a>FDO Profiles</a> are themselves fully valid FDOs (see <a href="#rule-r4_6">[R4-6]</a>) that instantiate the
-    <a>profile definition profile</a> (see <a href="#rule-r4_7">[R4-7]</a>).
+    All <a>FDO Profiles</a> are themselves fully valid FDOs (see <a href="#rule-r4_6"></a>) that instantiate the
+    <a>profile definition profile</a> (see <a href="#rule-r4_7"></a>).
     All <a>FDO Profiles</a> MUST fulfill the following requirements:
 </p>
 <dl>
@@ -16,10 +16,10 @@
         instantiating the profile, according to the cardinalities specified in the <a>attribute definitions</a> (see <a href="#rule-r5_7"></a>).
     </dd>
 
-    <dt><h4 class="rule-heading" id="rule-r4_2">[R4-1] <dfn data-lt="0.FDO/Attribute">Attribute Definition Inclusion</dfn></h4></dt>
+    <dt><h4 class="rule-heading" id="rule-r4_2">[R4-2] <dfn data-lt="0.FDO/Attribute">Attribute Definition Inclusion</dfn></h4></dt>
     <dd>
         An <a>attribute definition</a> is contained in a <a>profile</a>’s list of
-        <a>attribute definitions</a> (as described in [R4-1]) if
+        <a>attribute definitions</a> (as described in <a href="#rule-r4_1"></a>) if
         and only if the profile contains an <a>attribute</a>, where the <a>attribute</a>’s
         <ul>
             <li>
@@ -71,7 +71,7 @@
         Hence, it is identified by a <a>PID</a> that resolves into an <a>FDO Record</a> consisting of
         <a>attribute tuples</a>.
         All <a>profiles</a> MUST at least comply with the <a>FDO root profile</a> and the
-        <a>FDO Profile definition profile</a> (see <a href="#rule-r4_7">[R4-7]</a>).
+        <a>FDO Profile definition profile</a> (see <a href="#rule-r4_7"></a>).
     </dd>
 
     <dt><h4 class="rule-heading" id="rule-r4_7">[R4-7] <dfn
@@ -170,7 +170,7 @@
     <tr>
         <td><a><em>0.FDO/ExtendsProfile</em></a></td>
         <td>If this <a>profile</a> is an extension of another <a>profile</a>, this <a>attribute</a> specifies the
-            <a>PID</a> of the parent profile (see <a href="#r4_11">[R4-11]</a>).
+            <a>PID</a> of the parent profile (see <a href="#r4_11"></a>).
             All <a>profiles</a> MUST either extend from <a><em>0.FDO/Root</em></a>, another profile that recursively extends
             from <a><em>0.FDO/Root</em></a>, or specify the mandatory attributes from <a><em>0.FDO/Root</em></a> using <a><em>0.FDO/Attribute</em></a>.
         </td>

@@ -22,25 +22,6 @@
         and other related objects.
     </li>
     <li>
-        <b><dfn>Collection</dfn>:</b> If the resource of an
-        <a>FDO</a> consists of multiple parts that are interpreted as resources in
-        their own right, this <a>FDO</a> is called a collection.
-        The decision which parts are interpreted as resources in their
-        own right (and hence MAY be
-        <a>FDOs</a> themselves) is dependent on pragmatic utility decisions within communities of
-        practices.
-        As an <a>FDO</a>, the collection is identified by a <a>PID</a>, is described by metadata, and can describe the
-        structure of the resource directly in its <a>FDO record</a> or in an associated bit sequence.
-        Collections can include
-        collections.
-    </li>
-    <li>
-        <b><dfn data-lt="repository">Digital Repository</dfn>:</b>
-        A digital repository is an infrastructure component that is able to store, manage and curate <a>DOs</a>
-        and return their <a>bit-sequence(s)</a> when a request is issued.
-        A trustworthy repository is embedded in an organization, managed by a team of experts, and is certified.
-    </li>
-    <li>
         <b><dfn data-lt="encapsulates|encapsulated">Encapsulation</dfn>:</b>
         Encapsulation in <dfn data-abbr="OOP" data-lt="OOP">Object-oriented programming</dfn> means wrapping internal structures by methods enabling information hiding.
         For <a>FDOs</a> it describes the integration of <a>operations</a> with <a>FDOs</a>,
@@ -51,16 +32,15 @@
         <b><dfn data-abbr="FDOF" data-lt="Forum|FDOF">FDO Forum</dfn></b>:
         The <a>FDO Forum</a> is an international, independent organization that specifies <a>FDOs</a> and
         best practices, organizes the <a>FDO</a> community, and coordinates <a>FDO</a> implementations and applications.
-        It is not yet a legal entity, therefore, it will need to be represented by an existing
-        organization until it becomes a legal entity.
+        It is not yet a legal entity, therefore, it will need to be represented by an existing organization until it becomes a legal entity.
     </li>
     <li>
         <b><dfn data-lt="Machine actionable">Machine Actionability</dfn></b>:
-        Machine actionability means that clients can not only read structures and identify elements,
+        <a>Machine actionability</a> means that clients can not only read structures and identify elements,
         but can also infer which actions can be taken without human intervention.
         This requires the accessibility of <a>FDO profiles</a>, the definition of
         <a>FDO attributes</a> and the association with <a>operations</a>.
-        <a>Machine actionability</a> requires machine interpretability.
+        <a>Machine actionability</a> requires <a>machine interpretability</a>.
         For details see [[MachineActionability]].
     </li>
     <li>
@@ -95,28 +75,11 @@
     </li>
     <li>
         <b><dfn>Resource</dfn></b>:
-        Each <a>FDO</a> is a bundle that <a>encapsulates</a>, represents, and describes a resource.
-        It could be a digital resource, in which case the resource would usually be a data <a>bit-sequence</a>.
+        Each <a>FDO</a> is a bundle that <a>encapsulates</a>, represents, and describes a <a>resource</a>.
+        It could be a digital <a>resource</a>, in which case the <a>resource</a> would usually be a data <a>bit-sequence</a>.
         A <dfn data-lt="bit sequence|bit-sequence(s)">bit-sequence</dfn> can be any form of digitalized information representable in an array of bits.
-        But it is also possible that this resource is physical, in which case there is no data <a>bit-sequence</a> attached to the <a>FDO</a>.
-        The resource is the heart of the <a>FDO</a> and all other components are there to make the <a>resource</a> and its <a>metadata</a> <a>machine actionable</a>.
-    </li>
-    <li>
-        <b><dfn>Semantic Interoperability</dfn></b>:
-        Interoperability such that the meaning of the data model within the context of a subject area is understood by the participating systems.
-    </li>
-    <li>
-        <b><dfn>Semantic Mapping</dfn></b>:
-        An assertion establishing a relation between two semantic artifacts.
-    </li>
-    <li>
-        <b><dfn>Syntactic Interoperability</dfn></b>:
-        Interoperability such that the formats of the exchanged information can be understood by the participating systems.
-    </li>
-    <li>
-        <b><dfn data-lt="technology-agnostic|technology-agnosticism">Technology Independence</dfn></b>:
-        The <a>FDO</a>-concept and its key components (both described in this document) are technology independent, allowing a variety of implementations using different technologies for realization.
-        When defining <a>attributes</a> or <a>profiles</a>, the specificity of the definition SHOULD be weighed against its reusability and interoperability.
+        But it is also possible that this <a>resource</a> is physical, in which case there is no data <a>bit-sequence</a> attached to the <a>FDO</a>.
+        The <a>resource</a> is the heart of the <a>FDO</a> and all other components are there to make the <a><a>resource</a></a> and its <a>metadata</a> <a>machine actionable</a>.
     </li>
     <li>
         <b><dfn data-lt="tombstone note">Tombstone</dfn></b>:
