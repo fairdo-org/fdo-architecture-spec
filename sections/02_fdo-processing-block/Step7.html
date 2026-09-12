@@ -9,7 +9,7 @@
     The validation step acquires the <a>FDO Profile</a> Definition for each of the <a>FDO Profiles</a> in the
     <a>FDO Record</a> by resolving each of the <a>FDO Profiles</a>’ identifiers and accessing their respective <a>FDO</a>.
     Each <a>FDO Profile</a> Definition specifies the properties and more specifically the set of <a>attributes</a>
-    that must be present in any <a>FDO</a> that instantiates it.
+    that MUST be present in any <a>FDO</a> that instantiates it.
     This definition includes such things as the names of the <a>attributes</a>, value type, description, etc.
 </p>
 <p>
@@ -30,11 +30,11 @@
             <li>Profile <a>PID</a>: <a>PID</a> of the <a>FDO Profile</a> validated</li>
             <li>Status:
                 <ul>
-                    <li>VALID: All profile required <a>attributes</a> are found.
+                    <li>VALID: All <a>profile</a> required <a>attributes</a> are found.
                         Note that missing optional fields is acceptable.
                     </li>
-                    <li>PARTIALLY_VALID: Some profile required <a>attributes</a> are missing.</li>
-                    <li>INVALID, No profile required <a>attributes</a> are found.</li>
+                    <li>PARTIALLY_VALID: Some <a>profile</a> required <a>attributes</a> are missing.</li>
+                    <li>INVALID, No <a>profile</a> required <a>attributes</a> are found.</li>
                     <li>NOT_DEFINED.
                         No <a>FDO Profile</a> definition could not be found.
                     </li>
@@ -73,7 +73,7 @@
                     </li>
                     <li>ERROR_NO_PROFILE_DEF: No definition found in the <a>FDO profile</a>.</li>
                     <li>ERROR_INVALID_PROFILE: The <a>FDO profile</a> is not a <a>profile definition</a>.</li>
-                    <li>ERROR_PARSING_DEFINITION: Illegal or incompatible profile definition.</li>
+                    <li>ERROR_PARSING_DEFINITION: Illegal or incompatible <a>profile definition</a>.</li>
                 </ul>
             </li>
             <li>The <a>FDO Profile</a> has an <a>FDO profile definition</a> and the <a>FDO Record</a> has all the required <a>attributes</a>.
