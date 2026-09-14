@@ -1,0 +1,32 @@
+<p>
+    Validation is a key characteristic of FDOs.
+    It enables detecting errors in the <a>FDO Record</a> early on.
+    Validation SHOULD at least be carried out upon creation and update of an FDO.
+</p>
+<p>
+    An <a>FDO Record</a> is said to be valid if and only if
+</p>
+<dl>
+    <dt>[R8-1]</dt>
+    <dd>
+        it contains the attribute <i>0.FDO/Profile</i> at least once. The value of each of these attributes MUST be references
+        to profiles.
+    </dd>
+    <dt>[R8-2]</dt>
+    <dd>For each of these referenced profiles,
+        <ul>
+            <li>the <a>FDO Record</a> MUST contain attributes that instantiate the attribute definitions listed in the
+                profile, according to their cardinalities.</li>
+            <li>the values of these attributes MUST comply with the specified validation rules, e.g., with syntax rules,
+                profile referencing rules, attribute referencing rules, or external vocabulary referencing rules, as
+                given by the attribute definition.</li>
+        </ul>
+    </dd>
+    <dt>[R8-3]</dt>
+    <dd>All attributes with an attribute definition MUST be correctly validated according to their validation rules.
+    </dd>
+    <dt>[R8-4]</dt>
+    <dd>The <a>FDO Record</a> MUST successfully validates against the <i>0.FDO/Root profile</i>.</dd>
+    <dt>[R8-5]</dt>
+    <dd>The FDO MUST NOT violate any of the rules specified in this document.</dd>
+</dl>

@@ -1,0 +1,88 @@
+<p>
+  Each <dfn>FDO Record</dfn> MUST fulfill the following requirements:
+</p>
+<b>An FDO Record consists of tuples (called “<a>FDO Attribute</a>”)</b>:
+<dl>
+  <dt>[R3-1]</dt>
+  <dd>A PID identifying an FDO resolves into a structured information record, called the FDO Record.</dd>
+  <dt>[R3-2]</dt>
+  <dd>The FDO Record consists of a finite number of n-tuples with n>1 (called FDO attributes, short: attributes) that can be
+    interpreted by a machine. The limit for the number of tuples per record depends on the implementation. 
+    Each can always be unambiguously mapped onto a canonical triple form (subject, predicate, object) — 
+    regardless of whether the implementation uses 2, 3 or more elements. 
+    The subject is optional and has the FDO’s own PID as defined default.
+    <ul>
+      <li>The predicate MUST be either a PID that resolves to an attribute definition or a human-readable name.</li>
+      <li>The object may be any literal; if the predicate refers to an attribute definition, the object MUST be validated against it.</li>
+      <li>The subject is OPTIONAL. If the subject is omitted, the subject is assumed to be the PID implicitly</li>
+      <li>Elements of higher level tuples are OPTIONAL and may contain additional meta-information about the statement itself that is not relevant to validation </li>
+    </ul>  
+  </dd>
+  <ul>
+    <li>
+      [R5-2a] Every n-tuple MUST be projectable onto a canonical triple form: π(a)=(s, p, v) This projection forms the basis for validation (3.8), 
+      RDF mapping (3.12) and all further processing steps that require a fixed statement structure.
+    </li>
+    <li>
+      [R5-2b] The cardinality rules of an attribute definition (see [R5-7]) always refer exclusively to the predicate p — regardless of the chosen arity n.
+      A predicate with cardinality 1..* permits any number of tuple instances, whether realised as a pair, a triple or a higher-order tuple.
+    </li>
+    <li>
+      [R5-2c] Implementations that use only the 2-tuple (ordered pair) are considered to be minimally compliant. Implementations that use the subject position (n=3) 
+      or qualifier positions (n>3) MUST explicitly indicate this via the attribute definition (see [R5-2d]).
+    </li>
+    <li>
+      [R5-2d] An attribute definition MUST declare the arity it permits, using the attribute 0.FDO/ArityMode with one of the following values: 
+        <ul>
+          <li>PAIR_ONLY (only n=2, subject implicit),</li>
+          <li>TRIPLE_ALLOWED (n=2 or n=3, explicit subject permitted),</li>
+          <li>QUALIFIED (n≥2, additional qualifier positions permitted).</li>
+        </ul>  
+      If 0.FDO/ArityMode is omitted, the default PAIR_ONLY applies — this ensures that all existing attribute definitions remain automatically backwards-compatible without requiring any changes.
+    </li>
+  </ul>
+</dl>
+<b>An FDO Record contains the attributes <i>0.FDO/Type</i>, <i>0.FDO/Profile</i> and <i>0.FDO/Data</i></b>:
+<dl>
+  <dt>[R3-3]</dt>
+  <dd>Each FDO Record MUST link to at least one <a>FDO Profile</a>, which it complies to, via the designated
+    attribute <i>0.FDO/Profile</i>  in its FDO Record. To link multiple FDO profiles, the attribute <i>0.FDO/Profile</i>  MAY be
+    repeated multiple times in the FDO Record.
+    <ul>
+      <li>
+        The first element of such a tuple representing the FDO’s profile is either the PID <i>0.FDO/Profile</i> , or the string
+        FDO_Profile.
+      </li>
+      <li>
+        The second element is a PID referencing an FDO profile.
+      </li>
+    </ul>
+  </dd>
+  <dt>[R3-4]</dt>
+  <dd>
+    Each FDO MUST specify its FDO type via the designated attribute <i>0.FDO/Type</i>  in its FDO Record. To link
+    multiple FDO types, the attribute <i>0.FDO/Type</i>  MAY be repeated multiple times in the FDO Record.
+    <ul>
+      <li>
+        The first element of such a tuple representing the FDO’s type is either the PID <i>0.FDO/Type</i> , or the string
+        FDO_Type.
+      </li>
+      <li>
+        The <i>0.FDO/Type</i>  attribute follows the attribute referencing mechanism as defined in <a href="#advanced-ref"></a>.
+      </li>
+    </ul>
+  </dd>
+  <dt>[R3-5]</dt>
+  <dd>Each FDO MUST contain the designated attribute <i>0.FDO/Data</i>  in its FDO Record at least once. The <i>0.FDO/Data</i> 
+    attribute points to data associated with the FDO.
+    <ul>
+      <li>
+        The first element of such a tuple representing the FDO’s data is either the PID <i>0.FDO/Data</i> , or the string
+        FDO_Data.
+      </li>
+      <li>
+        The <i>0.FDO/Data</i>  attribute follows the attribute referencing mechanism as defined in <a href="#advanced-ref"></a>.
+      </li>
+    </ul>
+  </dd>
+</dl>
