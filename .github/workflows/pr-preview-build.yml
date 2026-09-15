@@ -84,7 +84,7 @@ jobs:
           mkdir -p site
           if [ "${ACTION}" != "closed" ]; then
             # Move built site contents into the artifact staging directory,
-            # excluding git/github metadata that should not be deployed.
+            # excluding git/github metadata that SHOULD not be deployed.
             shopt -s dotglob
             for item in *; do
               case "$item" in
