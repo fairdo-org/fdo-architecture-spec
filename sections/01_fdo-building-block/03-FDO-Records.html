@@ -11,11 +11,20 @@
 
     <dt><h4 class="rule-heading" id="rule-r3_2">[R3-2] <dfn data-lt="attribute tuple|record entry|FDO record entry|FDO record tuple|record tuple|tuple"><a>FDO attribute</a> tuples</dfn></h4></dt>
     <dd>
-        The <a>FDO Record</a> consists of a finite number of tuples
-        (called <a>FDO attributes</a>, short: <a>attributes</a>) that can be interpreted by a machine.
-        Conceptually, every tupel consists of a single key and a single value.
-        Keys are NOT unique in an FDO record.
-        The limit for the number of tuples per record depends on the implementation.
+        <p>
+            The <a>FDO Record</a> consists of a finite number of <a>FDO Attributes</a> (short: <a>Attributes</a>). Each
+            <a>Attribute</a> instantiates properties of the identified <a>resource</a>. As such, an <a>Attribute</a>
+            consists of at least a label for the property and a value. The property MAY be further specified with
+            additional semantics and <a>validation</a> rules (see <a>Attribute Definitions</a>). Properties do NOT need
+            to be unique in an <a>FDO record</a>.
+        </p>
+        <p>
+            <a>Attributes</a> MUST be implemented as <em>n</em>-tuples, <em>n≥2</em>. With <em>n=2</em> being the minimal
+            allowed order of tuples, this document uses 2-tuples to define all relevant FDO concept throughout. Each FDO
+            implementation MAY use tuples of higher order to implement attributes, as long as the concepts from this
+            document are preserved. The limit for the number of tuples per <a>record</a> depends on the implementation.
+        </p>
+
     </dd>
 
     <dt><h4 class="rule-heading" id="rule-r3_3">[R3-3] Minimal <a>FDO Record</a> Requirements</h4></dt>
