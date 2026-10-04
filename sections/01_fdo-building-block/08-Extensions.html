@@ -40,8 +40,7 @@ Thus, clients and implementations of <a>FDOs</a> (that follow section <a href="#
     <dd>
         <table border="2">
             <caption style="caption-side: bottom">
-                Additional mandatory fields that the vocabulary definition profile requires.
-                Otherwise, it follows the general profile principles, as it inherits from <a>0.FDO/ProfileDef</a>.
+                List of <a>attributes</a> that the vocabulary definition profile uses.
             </caption>
 
             <thead>
@@ -53,12 +52,28 @@ Thus, clients and implementations of <a>FDOs</a> (that follow section <a href="#
             </thead>
             <tr>
                 <td>0.FDO/Profile</td>
-                <td>In this case, one value MUST be <em><a>0.FDO/ProfileDef</a></em>.</td>
+                <td>In this case, one value MUST be <em><a>0.FDO/VocabularyDef</a></em>.</td>
+                <td>1..*</td>
+            </tr>
+            <tr>
+                <td>0.FDO/Type</td>
+                <td>See <a href="#fdo-types"></a>. In this case, usually a reference to the <em><a>0.FDO/Profile</a></em> should be sufficient.</td>
                 <td>1..*</td>
             </tr>
             <tr>
                 <td>0.FDO/Data</td>
                 <td>In this case, one value MAY be <em><a>0.FDO/DownloadURL</a></em>.</td>
+                <td>1..*</td>
+            </tr>
+            <tr>
+                <td><a><em>0.FDO/Name</em></a>
+                </td>
+                <td>Human-readable and localized label(s) for the vocabulary.</td>
+                <td>1..*</td>
+            </tr>
+            <tr>
+                <td><dfn>0.FDO/VocabularyPrefix</dfn></td>
+                <td>Specifies the prefix that can be used to identify terms from a vocabulary in an <a>FDO record</a> and is typically either part of a PURL (e.g., <em>https://schema.org/</em>) or some other string (e.g., <em>schema:</em>, <em>foaf:</em>).</td>
                 <td>1..*</td>
             </tr>
             <tr>
@@ -72,17 +87,33 @@ Thus, clients and implementations of <a>FDOs</a> (that follow section <a href="#
                 <td>1</td>
             </tr>
             <tr>
-                <td><dfn>0.FDO/VocabularyPrefix</dfn></td>
-                <td>Specifies the prefix that can be used to identify terms from a vocabulary in an <a>FDO record</a> and is typically either part of a PURL (e.g., <em>https://schema.org/</em>) or some other string (e.g., <em>schema:</em>, <em>foaf:</em>).</td>
-                <td>1..*</td>
-            </tr>
-            <tr>
                 <td><dfn>0.FDO/SPARQL_Check</dfn></td>
                 <td>
                     A SPARQL query that checks whether a term (securely replaced in the query string using the <em>$TERM$</em> placeholder) is valid in the vocabulary and MUST return a boolean value.
                     This query is executed against the vocabulary retrieved using <a>0.FDO/DownloadURL</a>.
                 </td>
                 <td>1</td>
+            </tr>
+            <tr>
+                <td><a><em>0.FDO/Description</em></a>
+                </td>
+                <td>Human-readable and localized description(s) for the vocabulary.</td>
+                <td>0..*</td>
+            </tr>
+            <tr>
+                <td><a><em>0.FDO/Contact</em></a>
+                </td>
+                <td>
+                    A person or organization that is the primary point of contact for any <a>FDO</a> it is used in.
+                    This contact MAY also be responsible for the <a>resource</a> behind <a><em>0.FDO/Data</em></a>.
+                </td>
+                <td>0..*</td>
+            </tr>
+            <tr>
+                <td><a><em>0.FDO/SPDXLicense</em></a>
+                </td>
+                <td>SPDX license id for the <a>resource</a>(s) behind <a><em>0.FDO/Data</em></a>.</td>
+                <td>0..*</td>
             </tr>
         </table>
         <p>
