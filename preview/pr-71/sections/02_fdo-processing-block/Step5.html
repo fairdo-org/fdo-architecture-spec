@@ -55,7 +55,10 @@
 
     <dd>
         In this step, the client will compare the list of <a>FDO types</a> in the <a>FDO record</a> with the
-        Expected_Fdo_Type_List looking for matches.
+        Expected_Fdo_Type_List looking for matches. As the <a>0.FDO/Type</a> attribute uses <a>attribute referencing</a>,
+        the client does not only inspect the <a>0.FDO/Type</a> attributes itself but also the attribute(s) which
+        <a>0.FDO/Type</a> is referencing. Comparisons are made between the Expected_Fdo_Type_List and the value of the
+        referenced attributes in the record.
         The following lists the possible scenarios:
 
         <ol>
