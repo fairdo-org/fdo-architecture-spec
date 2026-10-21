@@ -104,18 +104,18 @@
         </ol>
     <aside class="example" title="Inspecting the FDO types">
         <p>
-            This example shows a simple <a>FDO record</a> 10.1234/456 with two <a>FDO types</a> 21.abc/Concept (the
-            general type of resource) and 21.abc/application-json-ld (the MIME type of the resource).
-            Adding to the example is the fact that the <a>FDO type</a> 21.abc/application-json-ld is derived from
-            the <a>FDO type</a> 21.abc/application-json.
+            This example shows a simple <a>FDO record</a> 10.1234/456 with two <a>FDO types</a> 0.example/Concept (the
+            general type of resource) and 0.example/application-json-ld (the MIME type of the resource).
+            Adding to the example is the fact that the <a>FDO type</a> 0.example/application-json-ld is derived from
+            the <a>FDO type</a> 0.example/application-json.
         </p>
 
             Applying the processing step <a href="#step5"></a> delivers
             <ul>
                 <li>FULL_MATCH for an empty Expected_Fdo_Type_List</li>
-                <li> ALL_MATCH for the Expected_Fdo_Type_List [21.abc/Concept, 21.abc/application-json-ld]</li>
-                <li> PARTIAL_MATCH for the Expected_Fdo_Type_List [21.abc/Dataset, 21.abc/application-json-ld]</li>
-                <li> NO_MATCH for the EExpected_Fdo_Type_List [21.abc/application-json], but DERIVED_MATCH if the
+                <li> ALL_MATCH for the Expected_Fdo_Type_List [0.example/Concept, 0.example/application-json-ld]</li>
+                <li> PARTIAL_MATCH for the Expected_Fdo_Type_List [0.example/Dataset, 0.example/application-json-ld]</li>
+                <li> NO_MATCH for the Expected_Fdo_Type_List [0.example/application-json], but DERIVED_MATCH if the
                     Type_Matching is set to DERIVED_MATCH</li>
             </ul>
 
@@ -129,22 +129,22 @@
             <tr>
                 <th scope="row">0.FDO/Type
                 </th>
-                <td>10.123/ResourceTypeGeneral</td>
+                <td>0.example/ResourceTypeGeneral</td>
             </tr>
             <tr>
-                <th scope="row">10.123/ResourceTypeGeneral
+                <th scope="row">0.example/ResourceTypeGeneral
                 </th>
-                <td>21.abc/Concept</td>
+                <td>0.example/Concept</td>
             </tr>
             <tr>
                 <th scope="row">0.FDO/Type
                 </th>
-                <td>21.abc/MimeType</td>
+                <td>0.example/MimeType</td>
             </tr>
             <tr>
-                <th scope="row">21.abc/MimeType
+                <th scope="row">0.example/MimeType
                 </th>
-                <td>21.abc/application-json-ld</td>
+                <td>0.example/application-json-ld</td>
             </tr>
             <tr>
                 <th scope="row">0.FDO/Profile
@@ -165,7 +165,7 @@
             <tr>
                 <th scope="row">0.FDO/Description
                 </th>
-                <td>FDO Test Demonstration</td>
+                <td><a>FDO</a> Test Demonstration</td>
             </tr>
             </tbody>
         </table>
