@@ -1,0 +1,47 @@
+<h3 id="intro">Introduction</h3>
+<p>
+    The concept of FAIR Digital Object (FDO) emerged from discussions, in the fall of 2019, between members of the 
+    Research Data Alliance (RDA) the FAIR Community and others organizations that recognized the potential of FAIR 
+    as well as the need to further its technical development.  These discussions resulted in an agreement to converge 
+    on the elaboration of data infrastructure technologies, define FDO technical requirements and agree on a governance 
+    structure to advance FDO development.  The FAIR community had clearly identified that <a>machine actionability</a> [[Jacobsen2020}} and 
+    interoperability were key FAIR requirements.  The RDA had determined that Digital Objects (DO), as specified in a 
+    seminal paper on the Digital Object Architecture (DOA) by Kahn and Wilensky [[Kahn-Wilensky]], are a foundational, 
+    core architectural concept that enables machine actionable data management, facilitates interoperability and reusability 
+    that could directly address these FAIR requirements.  
+    This specification document is a result of this collaboration and specifies how FAIR can be implemented using the 
+    Digital Object Architecture. 
+    </p>
+<p>
+    An <dfn data-abbr="FDO">FAIR Digital Object</dfn> (<a>FDO</a>) is a <strong>predictable, standardized and persistent bundle</strong>
+    of information that represents (i.e., identifies, encapsulates, and describes) a digital or physical <a>resource</a>
+    which can be of any type (data, metadata, semantic assertions, configurations, AI models, etc.) and complexity.
+    Every <a>FDO</a> implements the <dfn>FAIR principles</dfn> [[FAIR]] and complies by-default with these principles:
+</p>
+<ul>
+    <li>
+        An FDO is identified by a globally unique, resolvable, and persistent identifier knows as a <a>PID</a>).
+    </li>
+    <li>
+        A <a>PID</a> resolves (directly or indirectly) into a structured, machine-actionable metadata record that describes the identified <a>resource</a>.
+    </li>
+    <li>
+        The machine-actioanble record contains or has external reference(s) to the data <a>bit-sequence</a> of the <a>resource</a> and additional metadata
+        <a>bit-sequence(s)</a>, if appropriate.
+    </li>
+    <li>
+        An <a>FDO</a> includes at a minimum license and provenance information, and standard, domain-specific metadata.
+    </li>
+</ul>
+<p>
+    <a>FDOs</a> are an implementation of the FAIR principles that also improve data sovereignty, transparency/traceability, accountability, interoparability and persistence.
+    These characteristics are increasingly more important when establishing a stable, robust, and highly distributed
+    ecosystem of data, which includes well-documented AI models and their training corpus.
+    Society, businesses and governments will increasingly depend these FDO caracteristics to establish trust in their data and data services.
+    While <a>FDOs</a> can be passive units of information they can be directly associated with executable operations which can be used for data <a>encapsulation</a> 
+    but can faciliatate autonomously acting agents.
+</p>
+<p>
+    <a>FDO</a> characteristics and properties, provide a common harmonization layer for the many existing and emerging dataspaces in science and industry.
+    They specifically provide solutions for the trust, control and data planes of dataspace.
+</p>
