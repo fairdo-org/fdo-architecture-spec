@@ -1,8 +1,15 @@
 <h3 id="processing-intro">Introduction</h3>
 <p>
-    The <dfn data-lt="processing|FDO processing|FDO processing block|processing block">generic FDO processing</dfn> consists of a set of 11 steps that a <a>FDO</a> client MAY execute
-    in order to access an <a>FDO</a> and all its components, given its <a>PID</a>. All <a>FDO implementations</a>
-    SHOULD be able to describe how their approach satisfies the following set of steps.
+    The <dfn data-lt="processing|FDO processing|FDO processing block|processing block">generic FDO processing</dfn>
+    consists of a set of 11 steps that a <a>FDO</a> client may execute in order to access an <a>FDO</a> and all its
+    components, given its <a>PID</a>. This specification uses these steps to describe the function and characteristic of
+    the various components of the <a>FDO</a>.
+</p>
+<p>
+    All <a>FDO implementations</a> should describe how their approach satisfies the following set of steps in an
+    <a>implementation profile</a> (see <a href="#rule-imp-1"></a>). <a>FDO implementations</a> are not required to
+    implement each of these steps as long as they can account for how their implicit assumptions and different
+    components achieve the same results.
 </p>
 <dl>
     <dt> <a href="#step1"></a>
@@ -43,11 +50,6 @@
     <dt><a href="#step11"></a>
     <dd>Validate if the <a>FDO</a>’s data matches the <a>type</a>(s) of the <a>FDO</a>.</dd>
 </dl>
-<p>
-    This specification uses these steps to describe the function and characteristic of the various components of the <a>FDO</a>.
-     <a>FDO implementations</a> are not required to implement each of these steps as long as they can account for how their implicit
-    assumptions and different components achieve the same results.
-</p>
 <p>
     Each of the steps is described below.
 </p>
