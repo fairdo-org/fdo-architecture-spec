@@ -1,0 +1,111 @@
+<h3 id="step6">[S-6]: <a>FDO Profile</a>(s) Inspection</h3>
+<p>
+    This step determines whether the <a>FDO record</a>’s profiles are the same or compatible with the <a>FDO profile</a> the client expects to process.
+    This step assumes that <a href="#step4"></a> was completed and that its status indicates that a <a><em>0.FDO/Profile</em></a>
+    <a>attribute</a> is present.
+    This step is in analog to the <a>FDO type</a> inspection step with the only difference that a <a>profile</a> specifies the
+    set of fields that an <a>FDO record</a> SHOULD have to describe a particular type of objects. </p>
+<dl>
+    <dt>Inputs</dt>
+    <dd>
+        This step expects that <a href="#step4"></a> had a Mandatory_Attributes_Status of COMPLETE, PROFILE_ONLY,
+        TYPE_MISSING, or DATA_MISSING and two inputs:
+        <ol>
+            <li>The list of profiles that the client is looking for.
+                This is called the Expected_Fdo_Profile_List.
+            </li>
+            <li>The Profile_Matching flag.
+                The three possible values are:
+                <ul>
+                    <li>ALL_MATCH: Indicates that any <a>FDO profile</a> is acceptable.
+                        This ignores the Expected_Fdo_Profile_List if provided.
+                    </li>
+                    <li>EXACT_MATCH.
+                        Indicates that the <a>FDO profile</a> matching requires an exact match with the
+                        <a>FDO profiles</a> in the Expected_Fdo_Profile_List.
+                    </li>
+                    <li>DERIVED_MATCH.
+                        Indicates that the <a>FDO profiles</a> in the
+                        <a>FDO record</a> can be derived <a>profiles</a> from the Expected_Fdo_Profile_List.
+                        Derived profiles remain backward compatible with their parent profiles.
+                    </li>
+                </ul>
+            </li>
+        </ol>
+    </dd>
+    <dt>Outputs</dt>
+    <dd>
+        This step returns
+        <ul>
+            <li>the Profile_Matching_Status: FULL_MATCH, ALL_MATCH, PARTIAL_MATCH, DERIVED_MATCH, or NO_MATCH</li>
+            <li>a list of the <a>FDO profiles</a> that match or are derived from the expected profiles.
+                If the list is empty, it indicates that none were found. The client can determine from the number of
+                <a>FDO profile</a> matches whether the match is full or partial.
+            </li>
+        </ul>
+    </dd>
+
+    <dt>Expected behavior</dt>
+    <dd>
+        The client will compare the list of <a>FDO profiles</a> in the <a>FDO record</a> with the Expected_Fdo_Profile_List
+        looking for matches. The expected behavior is completely analog to <a href="#step5"></a>.
+
+        <aside class="example" title="Inspecting the FDO profiles">
+        <p>
+            This example shows a simple <a>FDO record</a> 10.1234/777 with two <a>FDO profiles</a> 10.123/Profile1 and
+            10.123/Profile2.
+            Adding to the example is the fact that the <a>FDO profile</a> 10.123/Profile1 is derived from
+            the <a>FDO profile</a> 10.123/Profile0.
+        </p>
+
+            Applying the processing step <a href="#step6"></a> delivers
+            <ul>
+                <li> FULL_MATCH for an empty Expected_Fdo_Profile_List</li>
+                <li> ALL_MATCH for the Expected_Fdo_Profile_List [10.123/Profile1, 10.123/Profile2]</li>
+                <li> PARTIAL_MATCH for the Expected_Fdo_Profile_List [10.123/Profile1, 21.123/my_profile]</li>
+                <li> NO_MATCH for the Expected_Fdo_Profile_List [10.123/Profile0], but DERIVED_MATCH if the
+                    Profile_Matching is set to DERIVED_MATCH</li>
+            </ul>
+
+        <table class="numbered">
+            <thead>
+            <tr>
+                <th scope="col">10.1234/777</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">0.FDO/Type</th>
+                <td>0.example/MimeType</td>
+            </tr>
+            <tr>
+                <th scope="row">0.example/ResourceTypeGeneral</th>
+                <td>0.example/Concept</td>
+            </tr>
+            <tr>
+                <th scope="row">0.FDO/Profile</th>
+                <td>10.123/Profile1</td>
+            </tr>
+            <tr>
+                <th scope="row">0.FDO/Profile</th>
+                <td>10.123/Profile2</td>
+            </tr>
+            <tr>
+                <th scope="row">0.FDO/Data
+                </th>
+                <td>self
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">0.FDO/Name</th>
+                <td>Test <a>FDO</a></td>
+            </tr>
+            <tr>
+                <th scope="row">0.FDO/Description</th>
+                <td><a>FDO</a> Test Demonstration</td>
+            </tr>
+            </tbody>
+        </table>
+    </aside>
+    </dd>
+</dl>
