@@ -59,3 +59,69 @@ field is present (a Mandatory_Attributes_Status of COMPLETE, DATA_ONLY, TYPE_MIS
         instructions.
     </dd>
 </dl>
+
+<aside class="example" title="Finding all data references">
+
+    This example shows an <a>FDO record</a> 10.1234/000 with three <em>0.FDO/Data</em> attributes.
+    <div> <br/> </div>
+
+     <table class="numbered">
+        <thead>
+        <tr>
+            <th scope="col">10.1234/000</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">0.FDO/Type</th>
+            <td>0.example/ResourceTypeGeneral</td>
+        </tr>
+        <tr>
+            <th scope="row">0.example/ResourceTypeGeneral</th>
+            <td>0.example/Collection</td>
+        </tr>
+        <tr>
+            <th scope="row">0.FDO/Profile</th>
+            <td>10.123/Profile100</td>
+        </tr>
+        <tr>
+            <th scope="row">0.FDO/Data</th>
+            <td>0.example/HttpUrl</td>
+        </tr>
+        <tr>
+            <th scope="row">0.example/HttpUrl</th>
+            <td>www.my-file.com</td>
+        </tr>
+        <tr>
+            <th scope="row">0.example/HttpUrl</th>
+            <td>www.my-file-2.com</td>
+        </tr>
+        <tr>
+            <th scope="row">0.example/Description</th>
+            <td>This FDO consists of several data bit-sequences.</td>
+        </tr>
+        <tr>
+            <th scope="row">0.FDO/Data</th>
+            <td>0.example/FdoRef</td>
+        </tr>
+        <tr>
+            <th scope="row">0.example/FdoRef</th>
+            <td>21.abc/def</td>
+        </tr>
+        <tr>
+            <th scope="row">0.FDO/Data</th>
+            <td>0.example/InlineData</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br/>
+
+    Applying the processing step <a href="#step10"></a> returns
+    <ul>
+        <li>Data_Extraction_Status: PARTIAL_SUCCESS, because 0.example/InlineData does not point anywhere in the <a>record</a></li>
+        <li>Data_Attributes: [(0.example/HttpUrl, www.my-file.com), (0.example/HttpUrl, www.my-file-2.com),
+            (0.example/FdoRef, 21.abc/def)]. The client may continue by attempting to follow those references.
+        </li>
+    </ul>
+</aside>
