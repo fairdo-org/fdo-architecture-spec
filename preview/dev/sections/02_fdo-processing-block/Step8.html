@@ -1,69 +1,60 @@
-<h3 id="step8">S-8: <a>FDO attributes</a> Processing</h3>
-The step requires that <a href="#step7"></a> successfully validated one or more profiles resulting in one or
-more sets of <a>attributes</a>.
-For each set of <a>attributes</a>, the <a>FDO attribute</a> processing checks each <a>attribute</a>’s type - value pair to
-determine if the value is appropriate given its type.
-This validation process will greatly vary in complexity depending on the specific type.
+<h3 id="step8">[S-8]: FDO Attributes Validation</h3>
+The step assumes that <a href="#step7"></a> successfully validated one or more profiles resulting in one or more sets
+of <a>attributes</a>. For each <a>attribute</a>, this step determines if the <a>attribute</a>'s value is appropriate
+given its <a>validation</a> rules. The <a>validation</a> itself will greatly vary in complexity depending on the rules
+of the specific <a>attribute</a>.
+
 <dl>
     <dt>Inputs</dt>
     <dd>
-        The inputs consist of the list of Validated_Profile from <a href="#step7"></a> with a status of VALID, PARTIALLY_VALID.
+        The inputs consist of the list of Validated_Profile (especially Valid_Attributes and Invalid_Attributes) from
+        <a href="#step7"></a>. Even if the <a>cardinality</a> of some <a>attributes</a> was not valid (Invalid_Attributes),
+        a <a>validation</a> of the <a>attribute</a>'s value against its <a>attribute definition</a> may still be performed.
         Note that this step could be used with any <a>attribute</a> list that would need validation.
     </dd>
     <dt>Outputs</dt>
     <dd>
-        The output will be a list of ValidatedProfile where each <a>attribute</a> will have a ValidityStatus status and a
-        ErrorDescription description.
+        The output will be a list of Validated_Attribute where each <a>attribute</a> will have an
+        Attribute_Validation_Status and an Error_Description. The Attribute_Validation_Status will include, but is not
+        limited to, the following list:
+        <ul>
+            <li>VALID: Indicates that the value is appropriate according to the <a>validation</a> rules.</li>
+            <li>
+                PARTIALLY_VALID: Indicates that the value is partially valid. An example is the case of a
+                <em>0.example/DateTime</em> <a>attribute</a>, where the date is filled in but there is no time
+                information. While incomplete, this value could still be of interest to the client.
+            </li>
+            <li>INVALID: Indicates that the value did not comply with the <a>validation</a> rules.</li>
+            <li>
+                NO_RULES: Indicates that the process could not find any rules to <a>validate</a> the <a>attribute</a>
+                with.
+            </li>
+            <li>NOT_VALIDATED: <a>Validation</a> failed due to any reason, e.g. if there were no rules in the cache and
+                when trying to get the rules, the <a>PID</a> of the <a>attribute definition</a> did not resolve, the
+                <a>attribute definition</a> is not parsable, not accessible or not interpretable.
+            </li>
+        </ul>
+        It is expected that there could be additional specific attribute-defined statuses defined by <a>implementation
+        profiles</a>.
     </dd>
 
     <dt>Expected behavior</dt>
     <dd>
-        The <a>FDO attribute</a> processing iterates over the list of <a>attributes</a> and using the following steps:
+        The <a>FDO attribute</a> processing iterates over the list of <a>attributes</a> using the following steps:
         <ol>
-            <li>If it has a validation rule for the type it applies it on the <a>attribute</a>’s value.
-                It will set the validity status and any error description it MAY have generated.
-                The ValidityStatus will include, but not limited to, the following list:
-                <ul>
-                    <li>VALID: Indicates that the value is appropriate according to the type validation rules.</li>
-                    <li>INVALID: Indicates that the value did not comply with the validation rules.</li>
-                    <li>PARTIAL: Indicates that the value is partially valid.
-                        An example is the case of a <a><em>0.FDO/DateTime</em></a> <a>attribute</a>,
-                        where the date is filled in but there is no time information.
-                        While incomplete, this value could still be of interest to the client.
-                    </li>
-                </ul>
-            </li>
-
             <li>
-                It is expected that there could be additional specific type-defined statuses.
-                If the <a>FDO attribute</a> processing does not have validation rules for the type,
-                it will attempt to acquire them.
-                The <a>FDO attribute</a> process has the following options:
-
-                <ul>
-                    <li>
-                        Assume that the <a>PID</a> could be that of an <a>FDO</a>.
-                        Start with <a href="#step1"></a> using the type
-                        identifier as the potential <a>PID</a>.
-                        The Expected Type List in <a href="#step5"></a> SHOULD be <a><em>0.FDO/AttributeDef</em></a>,
-                        and the Expected Profile List in <a href="#step6"></a> be <a><em>0.FDO/AttributeDef</em></a>initionProfile,
-                        finally, one all the steps are completed, extract the validation rules.
-                        If it succeeds, it will retry operation 1 above.
-                        If it fails at any point, the <a>FDO attribute</a> Process will set
-                        the <a>attribute</a> status to NOT_VALIDATED and wi
-                    </li>
-
-                    <li>
-                        The type has a <a>PID</a> that the client knows points to a type registry.
-                        It tries to acquire the rules and retries operation 1 above.
-                    </li>
-
-                    <li>
-                        The type as a <a>PID</a> that is unrecognizable.
-                        The process cannot evaluate the <a>attribute</a> sets status of <em>NORULES</em>:
-                        Indicates that the <a>attribute</a> processing did not have any rules to validate the <a>attribute</a>.
-                    </li>
-                </ul>
+                The process checks whether it already has <a>validation</a> rules for the given <a>attribute</a> in its
+                cache. If yes, it proceeds to 2. below. If not, it attempts to acquire them. To do so, it resolves the
+                <a>PID</a> of the <a>attribute definition</a> and extracts the <a>validation</a> rules from the
+                <a>record</a>. If it cannot access, parse or interprete the <a>record</a>, it will set the
+                Attribute_Validation_Status to NOT_VALIDATED. If there are no <a>validation</a> rules in the <a>record</a>,
+                the Attribute_Validation_Status is set to NO_RULES. The Error_Description is set with any error messages
+                that were generated.
+            </li>
+            <li>
+                The <a>validation</a> rules are checked against the <a>attribute</a>’s value. The process will set the
+                Attribute_Validation_Status to VALID, PARTIALLY_VALID or INVALID and any Error_Description it may have
+                generated.
             </li>
         </ol>
     </dd>
