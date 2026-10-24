@@ -12,37 +12,49 @@
     </dd>
 
     <dt>Outputs:</dt>
-    <dd>A flag status reflecting the success, partial success, and error when trying to find the <a>FDO root profile</a>
-        <a>attributes</a> in the <a>FDO record</a>.</dd>
+    <dd>A status Mandatory_Attributes_Status reflecting the success, partial success, and error when trying to
+        find the <a>FDO root profile</a> <a>attributes</a> in the <a>FDO record</a>. The status may have the following
+        values:
+        <ul>
+            <li>
+                COMPLETE (integer value of 0) to indicate that all the <a>FDO root profile</a> fields
+                (<a><em>0.FDO/Type</em></a>, <a><em>0.FDO/Profile</em></a>, and <a><em>0.FDO/Data</em></a>)
+                were successfully found.
+                With such a status, the <a>FDO</a> processing has all the information it needs to proceed to the next step.
+            </li>
+            <li>
+                TYPE_MISSING (integer value of 1) to indicate that <a><em>0.FDO/Type</em></a> is missing.
+            </li>
+            <li>
+                PROFILE_MISSING (integer value of 2) to indicate that <a><em>0.FDO/Profile</em></a> is missing.
+            </li>
+            <li>
+                DATA_MISSING (integer value of 3) to indicate that <a><em>0.FDO/Data</em></a> is missing.
+            </li>
+            <li>
+                TYPE_ONLY (integer value of 4) to indicate that only <a><em>0.FDO/Type</em></a> was found.
+            </li>
+            <li>
+                PROFILE_ONLY (integer value of 5) to indicate that only the <a><em>0.FDO/Profile</em></a> was found.
+            </li>
+            <li>
+                DATA_ONLY (integer value of 6) to indicate that only the <a><em>0.FDO/Data</em></a> was found.
+            </li>
+            <li>
+                NON_COMPLIANT (integer value of -1) indicates that the <a>FDO root profile</a> <a>attributes</a> were
+                not found. At this point, the <a>FDO record</a> cannot be further processed as an <a>FDO</a>.
+            </li>
+        </ul>
+    </dd>
 
     <dt>Expected behavior:</dt>
     <dd>
         <p>This step finds all mandatory <a>attributes</a> as specified by the <a>root profile</a>.
-            It specifically looks for the <a>attributes</a>: <a><em>0.FDO/Type</em></a>,
-            <a><em>0.FDO/Profile</em></a>, and <a><em>0.FDO/Data</em></a>.
+            It specifically looks for the <a>attributes</a> <a><em>0.FDO/Type</em></a>,
+            <a><em>0.FDO/Profile</em></a>, and <a><em>0.FDO/Data</em></a>. Depending on which of the <a>attributes</a>
+            were found, the corresponding status is returned.
         </p>
 
-        <p>The Status value MAY have the following values:</p>
-        <ul>
-            <li>
-                COMPLETE (integer value of 0) to indicate that all the <a>FDO root profile</a> fields were successfully found.
-                With such a status, the <a>FDO</a> processing has all the information it needs to proceed to the next step.
-            </li>
-            <li>
-                REQUIRED_FIELDS (integer value of 1) to indicate that only the <a><em>0.FDO/Profile</em></a>
-                and 0<a><em>0.FDO/Type</em></a> <a>attributes</a> were found.
-            </li>
-            <li>
-                PROFILE_ONLY (integer value of 2) indicates that only the <a><em>0.FDO/Profile</em></a> <a>attribute</a>(s) were found.
-            </li>
-            <li>
-                TYPE_ONLY (integer value of 3) indicates that only the <a><em>0.FDO/Type</em></a> <a>attribute</a>(s) were found.
-            </li>
-            <li>
-                NON_COMPLIANT (integer value of -1) indicates that the <a>FDO root profile</a> <a>attributes</a> were not found.
-                At this point, the <a>FDO record</a> cannot be further processed as an <a>FDO</a>.
-            </li>
-        </ul>
 
         <aside class="example" title="A well-formed FDO with all required FDO root profile fields">
             <table class="numbered">
