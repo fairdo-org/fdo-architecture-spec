@@ -1,24 +1,36 @@
 <h3>Introduction</h3>
 <p>
     While all FDOs follow one common concept to make data FAIR, they can still be implemented using various different
-    technologies. In order to guarantee interoperability between existing FDO implementations, it is essential that each
-    implementation clearly specifies how it maps the technology-agnostic concepts (given in this specification) into a
-    technology-specific implementation. Only then, interoperability between different implementations can emerge, i.e.,
-    a sequence of steps how to map an FDO in one implementation to an FDO in another implementation can be defined.
+    technologies. In order to guarantee interoperability between existing <dfn data-lt="implementation|implementations|FDO implementation">FDO implementations</dfn>, it is essential that each
+    <a>implementation</a> clearly specifies how it maps the technology-agnostic concepts of this specification document into a
+    technology-specific <a>implementation</a> (called an <dfn data-lt="FDO implementation profiles|implementation profile|implementation profiles">FDO implementation profile</dfn>). Only then, interoperability between different <a>implementations</a> can emerge, i.e.,
+    a sequence of steps how to map an FDO in one <a>implementation</a> to an FDO in another <a>implementation</a> can be defined.
 </p>
-<p>
-    Each FDO implementation MUST specify how it implements the technology-agnostic FDO requirements.
-    To this end, FDO implementations MUST provide details on
-</p>
-<ol>
-    <li>
-        how their FDOs implement the building blocks in the chosen technology/implementation, and
-    </li>
-    <li>
-        how their FDOs can be processed automatically by a machine, i.e., a sequence of steps that defines at least how
-        the type, the data, and the metadata of the FDO can be extracted.
-    </li>
-</ol>
+<dl>
+    <dt><h4 class="rule-heading" id="rule-imp-1">[R-Imp-1] Implementation Profile</h4></dt>
+    <dd>
+        Each <a>FDO implementation</a> SHOULD specify how it implements the technology-agnostic requirements given in
+        <a href="building-blocks">4. FDO Building Blocks</a> and the processing steps given in
+        <a href="generic-processing">5. Generic FDO Processing</a>. To this end, <a>FDO implementations</a> SHOULD provide
+        details on
+        <ol>
+            <li>
+                how their FDOs implement the building blocks in the chosen technology/implementation, or how they differ
+                from those, and
+            </li>
+            <li>
+                how their FDOs can be processed by a machine, i.e., describe how processing steps [S-1] - [S-11] work in
+                their implementation, or how the <a>implementation</a> differs from these steps.
+            </li>
+        </ol>
+        This specification uses the building blocks and processing steps to describe the function and characteristic of
+        the various components of the <a>FDO</a>. <a>FDO implementations</a> are not required to implement each of these
+        steps and components as long as they can account for how their implicit assumptions and different components
+        achieve the same processing results.
+    </dd>
+</dl>
+
+
 <p>
     The complete list of requirements to be specified by an implementation is given below. Some requirements are
     mandatory (M; MUST be satisfied), some are recommended (R; SHOULD be satisfied), and some are optional (O; MAY be
@@ -29,7 +41,7 @@
         For the <b>mandatory</b> points, please describe how your implementation meets these requirements.
         The aim of the implementation template is to capture all technology-specific adaptations that are made by your
         implementation, and all conceptional deviations of your implementation from this document. Hence, sometimes it
-        may be sufficient to just state that your implementation works exactly similar to the corresponding part in this
+        MAY be sufficient to just state that your implementation works exactly similar to the corresponding part in this
         document.
     </li>
     <li>If your implementation does not support one of the <b>recommended</b> points, please shortly explain why this is
@@ -41,5 +53,5 @@
 </ul>
 <p>
     Handle-based FDOs have already started to formulate a Handle-based FDO specification [[?HandleFDOSpec2026]], which
-    you may want to look at for reference.
+    you MAY want to look at for reference.
 </p>

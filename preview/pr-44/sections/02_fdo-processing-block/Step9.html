@@ -1,28 +1,34 @@
-<h3 id="step9">S-9: <a>FDO attributes</a> Evaluation</h3>
+<h3 id="step9">[S-9]: FDO Metadata Inspection</h3>
 <p>
-    This step evaluates the set of <a>attributes</a> within each Evaluated_Profile returned from <a href="#step8"></a> to
-    determine whether they describe an object of interest to the accessing client.
-    The <a>FDO attribute</a> Evaluation criteria are specific for each Evaluated_Profile and for each client.
+    In this step, the content of the <a>FDO record</a> and potential associated metadata files are inspected to determine
+    whether they describe a <a>resource</a> that may be of interest to the accessing client. The specific inspection
+    procedure and the evaluation criteria applied are determined by the client.
+</p>
+<p>
+    Clients may have different requirements such as requiring fully valid <a>FDOs</a> with valid <a>FDO profiles</a> and
+    verified <a>attributes</a>, while others may have less restrictive needs. Also, it could be that a client requires
+    that certain <a>attributes</a> exist or have a specific value, or that the content of referenced metadata files
+    is as desired.
 </p>
 <dl>
     <dt>Inputs</dt>
     <dd>
-        The list of Evaluated_Profile from <a href="#step8"></a> and a set of client-specified criteria for
-        evaluating each of the <a>attributes</a> within each <a>profile</a>.
+        This step expects the output of <a href="#step3"></a> as input, namely a list of <a>FDO attributes</a>.
     </dd>
     <dt>Outputs</dt>
     <dd>
-        The output is true or false for each of the Validated_Profiles.
-        Either a <a>profile</a> describes an object that is relevant to the client or it is not.
+        The output is a status:
+        <ul>
+            <li>
+                <em>true</em>: the <a>FDO</a> is of interest to the client and he may proceed to the next step
+            </li>
+            <li><em>false</em>: the <a>FDO</a> is not of any interest to the client </li>
+        </ul>
     </dd>
     <dt>Expected behavior</dt>
     <dd>
-        <p> For each Validated_Profile, inspect the list of <a>attributes</a> within each of the Validated_Profile and evaluate
-            if their values match the client’s requirements.
-        </p>
-        <p>
-            Clients may have different requirements such as requiring fully valid <a>FDOs</a> with valid
-            <a>FDO Profiles</a>, verified <a>attributes</a> while others may have less restrictive needs.
-        </p>
+        The client may use all the <a>attributes</a> and potential metadata files (that he finds by inspecting the
+        <em>0.FDO/Metadata</em> <a>attribute</a> and following external references) to come to a conclusion, based on
+        his internal evaluation criteria.
     </dd>
 </dl>

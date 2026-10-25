@@ -1,106 +1,283 @@
-<h3 id="step7">S-7: <a>FDO Profile</a>(s) Validation</h3>
+<h3 id="step7">[S-7]: <a>FDO Profile</a> <a>Cardinality</a> <a>Validation</a></h3>
 <p>
-    From <a href="#step6"></a>, one or more <a>FDO Profiles</a> of interest were found in the <a>FDO Record</a>.
-    The <a>FDO Profile</a> validation step verifies that the <a>FDO Record</a> is valid according to the
-    <a>FDO Profile</a>’s definition.
-    An <a>FDO</a> is said to be an instance of a <a>FDO Profile</a> when it exhibits all the characteristics it specifies.
+    Each <a>attribute definition</a> specifies a <a>cardinality</a> with which the respective <a>attribute</a> is allowed
+    to occur in an <a>FDO record</a>. If an <a>attribute definition</a> is part of a <a>profile</a>, the
+    <a>cardinality</a> of the <a>attribute</a> can be further restricted directly within the <a>profile</a> to adapt the
+    <a>attribute</a> to a concrete context.
+    This step verifies for all <a>profiles</a> of interest that all <a>attribute</a> <a>cardinalities</a> given by the
+    <a>profile</a> (that is, <a>cardinalities</a> given by the <a>attribute definitions</a> therein, and restrictions to
+    those) are respected by the <a>FDO record</a>.
 </p>
 <p>
-    The validation step acquires the <a>FDO Profile</a> Definition for each of the <a>FDO Profiles</a> in the
-    <a>FDO Record</a> by resolving each of the <a>FDO Profiles</a>’ identifiers and accessing their respective <a>FDO</a>.
-    Each <a>FDO Profile</a> Definition specifies the properties and more specifically the set of <a>attributes</a>
-    that must be present in any <a>FDO</a> that instantiates it.
-    This definition includes such things as the names of the <a>attributes</a>, value type, description, etc.
-</p>
-<p>
-    The <a>profile validation</a> returns a description of the state of validation which can range between complete and
-    partial success and total failure indicating to the processing entity the validity of
-    <a>FDO Record</a> and the values it can expect to find in it.
+    This step returns for each <a>profile</a> of interest a description of the state of <a>validation</a> which can
+    range between complete success, partial success, and total failure, indicating the validity of the <a>FDO record</a>
+    with respect to <a>attribute</a> <a>cardinalities</a>. <a>Attributes</a> that are used in the <a>FDO record</a> but
+    whose <a>attribute definition</a> is not part of the <a>profile</a> are not validated in this step.
 </p>
 <dl>
     <dt>Inputs</dt>
     <dd>
-        The inputs consist of the <a>FDO Record</a>, and the list of the <a>FDO Profile</a> to validate the
-        <a>FDO Record</a> against.
+        The inputs consist of the <a>FDO record</a>, and a list of the <a>FDO profiles</a> to validate the
+        <a>FDO record</a> against. Typically, this is the list of <a>profiles</a> that was returned in <a href="#step6"></a>.
     <dt>Outputs</dt>
     <dd>
-        The output consists of a list of Validated_Profile.
-        A Validated_Profile consists of the following:
+        The output is a list of Validated_Profile. A Validated_Profile consists of the following:
         <ul>
-            <li>Profile <a>PID</a>: <a>PID</a> of the <a>FDO Profile</a> validated</li>
-            <li>Status:
+            <li>Profile <a>PID</a>: <a>PID</a> of the <a>FDO profile</a> to be validated</li>
+            <li>Profile_Validation_Status:
                 <ul>
-                    <li>VALID: All profile required <a>attributes</a> are found.
-                        Note that missing optional fields is acceptable.
+                    <li>VALID:
+                        All <a>attributes</a> are properly often repeated in the <a>record</a> with respect to
+                        the <a>cardinalities</a> in the <a>profile</a>. Note that missing optional fields is acceptable.
                     </li>
-                    <li>PARTIALLY_VALID: Some profile required <a>attributes</a> are missing.</li>
-                    <li>INVALID, No profile required <a>attributes</a> are found.</li>
-                    <li>NOT_DEFINED.
-                        No <a>FDO Profile</a> definition could not be found.
+                    <li>PARTIALLY_VALID:
+                        Some of the <a>attributes</a> in the <a>profile</a> has the proper number of occurrences in the
+                        <a>record</a>.
+                    </li>
+                    <li>INVALID:
+                        None of the <a>attributes</a> in the <a>profile</a> has the proper number of occurrences in the
+                        <a>record</a>.
                     </li>
                 </ul>
             </li>
-            <li>Attributes: The list of <a>attributes</a> found in the <a>FDO Profile</a>.
-                Empty list when invalid.
+            <li>Attributes_In_Profile: A list with each element being a combination of
+                <ul>
+                    <li>
+                        the <a>PID</a> of an <a>attribute definition</a> found in the <a>FDO profile</a> and
+                    </li>
+                    <li>
+                        its required <a>cardinality</a> (minimum and maximum). If the <a>cardinality</a> of an <a>attribute</a> was restricted in the
+                        <a>profile</a>, this <a>cardinality</a> overrides the original <a>cardinality</a>.
+                    </li>
+                </ul>
             </li>
-            <li>MissingAttributes: The list of missing required <a>attributes</a>.
+            <li>Valid_Attributes: A list with each element being a combination of
+                <ul>
+                    <li>
+                        the <a>PID</a> of an <a>attribute definition</a> found in the <a>FDO profile</a> that has the
+                        right number of occurrences in the <a>FDO record</a>, and
+                    </li>
+                    <li>
+                        the <a>attribute</a>'s number of occurrences in the <a>record</a>.
+                    </li>
+                </ul>
+                Empty list when INVALID.
+            </li>
+            <li>Invalid_Attributes: A list with each element being a combination of
+                <ul>
+                    <li>
+                        the <a>PID</a> of an <a>attribute definition</a> found in the <a>FDO profile</a> that does not
+                        have the right number of occurrences in the <a>FDO record</a>, and
+                    </li>
+                    <li>
+                        the <a>attribute</a>'s actual number of occurrences in the <a>record</a>.
+                    </li>
+                </ul>
                 Empty list when VALID.
             </li>
         </ul>
     </dd>
+
     <dt>Expected behavior</dt>
 
     <dd>
-        The <a>FDO Profile</a> Validation shall process each <a>FDO Profile</a> selected from the
-        <a>FDO Record</a> during <a href="#step6"></a> and create a list of <a>profile validation</a> status
-        specifying how the <a>FDO Record</a> conforms to each of the <a>FDO Profile</a>’s requirements.
+        This step shall process each <a>FDO profile</a> selected from the <a>FDO record</a> during <a href="#step6"></a>
+        and create a list of Validated_Profile specifying how the <a>FDO record</a> conforms to each of the
+        <a>FDO profile</a>’s <a>attribute definitions</a>.
 
-        <p>
-            For each <a>FDO Profile</a> selected, the process will acquire its respective <a>FDO</a> and extract from it the
-            <a>FDO profile definition</a>.
-            From this definition it will get the list of <a>attributes</a> and look for them in the <a>FDO Record</a>.
-            Every <a>attribute</a> it finds in the <a>FDO Record</a> will be added to the <a>attributes</a> list.
-            Every required <a>attribute</a> not found in the <a>FDO Record</a> is added to the MissingAttributes list.
+        <p>The following describes the expected behavior for a given <a>FDO profile</a> to generate the Validated_Profile.
         </p>
-
-        <p>The following describes the expected behavior for a given <a>FDO Profile</a>.</p>
         <ol>
             <li>
-                If the <a>FDO Profile</a> cannot be mapped to a valid <a>FDO profile definition</a> the process throws one of the following exceptions:
+                 For each <a>FDO profile</a> selected, the process will get the list of its <a>attribute definitions</a> and
+                store them in the Attributes_In_Profile list. Then, it checks whether each <a>attribute</a>'s cardinality is
+                restricted by the profile. If not, the original <a>cardinality</a> (from the <a>attribute definition</a>)
+                is written to the Attributes_In_Profile list, else the new restricted <a>cardinality</a>.
+                <p>
+                If the <a>FDO profile</a> cannot be mapped to a valid list of <a>attribute definitions</a> and
+                <a>cardinalities</a>, the process instead throws one of the following exceptions:
+                </p>
                 <ul>
                     <li>ERROR_RESOLVING_FDO: Profile <a>PID</a> cannot be resolved.</li>
-                    <li>ERROR_PROFILE_NOT_ACCESSIBLE: The <a>PID</a> resolve but the <a>FDO</a> is not accessible / not valid.
+                    <li>ERROR_PROFILE_NOT_ACCESSIBLE: The <a>PID</a> resolves but the <a>FDO</a> is not accessible.
                     </li>
-                    <li>ERROR_NO_PROFILE_DEF: No definition found in the <a>FDO profile</a>.</li>
-                    <li>ERROR_INVALID_PROFILE: The <a>FDO profile</a> is not a <a>profile definition</a>.</li>
-                    <li>ERROR_PARSING_DEFINITION: Illegal or incompatible profile definition.</li>
+                    <li>ERROR_INVALID_PROFILE: The <a>FDO record</a> is not parsable, not interpretable, not a
+                        <a>profile</a>, or does not specify any <a>attribute definitions</a>.
+                    </li>
                 </ul>
             </li>
-            <li>The <a>FDO Profile</a> has an <a>FDO profile definition</a> and the <a>FDO Record</a> has all the required <a>attributes</a>.
-                The Profile_Validation_Status contains:
+            <li>The <a>FDO record</a> contains all the <a>attributes</a> given in the <a>profile</a> with the proper
+                number of occurrences. The outputs (additional to Attributes_In_Profile) are:
                 <ul>
-                    <li>Status: VALID</li>
-                    <li>Attributes: contains the list of all found <a>attributes</a></li>
-                    <li>MissingAttributes: empty.</li>
+                    <li>Profile_Validation_Status: VALID</li>
+                    <li>Valid_Attributes: contains the list of all found <a>attributes</a> together with their
+                        occurrences</li>
+                    <li>Invalid_Attributes: empty</li>
                 </ul>
             </li>
             <li>
-                The <a>FDO Profile</a> has an <a>FDO profile definition</a> and the
-                <a>FDO Record</a> has some of the required <a>attributes</a>.
-                The Profile_Validation_Status contains:
+                The <a>FDO record</a> contains some of the <a>attributes</a> given in the <a>profile</a> with the proper
+                number of occurrences, and some with the wrong number of occurrences. The outputs (additional to
+                Attributes_In_Profile) are
                 <ul>
-                    <li>Status: PARTIALLY_VALID</li>
-                    <li>Attributes: contains the list of found <a>attributes</a>.</li>
-                    <li>MissingAttributes: contains the required <a>attributes</a> that are missing.</li>
+                    <li>Profile_Validation_Status: PARTIALLY_VALID</li>
+                    <li>Valid_Attributes: contains the list of valid <a>attributes</a> together with their number of
+                        occurrences.
+                    </li>
+                    <li>Invalid_Attributes: contains the list of invalid <a>attributes</a> together with their number of
+                        occurrences.</li>
                 </ul>
             </li>
             <li>
-                The <a>FDO Profile</a> has an <a>FDO profile definition</a> and the
-                <a>FDO Record</a> has none of the required <a>attributes</a>.
-                Status: INVALID
-                <a>attributes</a>: contains the list of any optional <a>attributes</a>.
-                MissingAttributes: contains the list of required <a>attributes</a>
+                The <a>FDO record</a> does not contain any of the <a>attributes</a> given in the <a>profile</a> with the
+                proper number of occurrences. The outputs are:
+                <ul>
+                    <li>Profile_Validation_Status: INVALID</li>
+                    <li>Valid_Attributes: empty</li>
+                    <li>Invalid_Attributes: contains the list of all found <a>attributes</a> together with their
+                        occurrences</li>
+                </ul>
             </li>
         </ol>
     </dd>
 </dl>
+
+<aside class="example" title="Validating the cardinalities in an FDO record against an FDO profile">
+
+    This example shows an <a>FDO record</a> 10.1234/999 with the <a>FDO profile</a> 10.123/Profile10.
+    <div> <br/> </div>
+
+    <table class="numbered">
+        <thead>
+        <tr>
+            <th scope="col">10.123/Profile10</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">0.FDO/Type</th>
+            <td>0.FDO/Profile</td>
+        </tr>
+        <tr>
+            <th scope="row">0.FDO/Profile</th>
+            <td>0.FDO/ProfileDef</td>
+        </tr>
+        <tr>
+            <th scope="row">0.FDO/Data</th>
+            <td>self</td>
+        </tr>
+        <tr>
+            <th scope="row">0.FDO/Name</th>
+            <td>Example_Profile.</td>
+        </tr>
+        <tr>
+            <th scope="row">0.FDO/Description</th>
+            <td>A profile to descibe a generic file.</td>
+        </tr>
+        <tr>
+            <th scope="row">0.FDO/Extends</th>
+            <td>0.FDO/Root</td>
+        </tr>
+        <tr>
+            <th scope="row">0.FDO/Attribute</th>
+            <td>0.FDO/Description</td>
+        </tr>
+        <tr>
+            <th scope="row">0.FDO/Attribute</th>
+            <td>0.FDO/BasicAttribute: 0.example/Author,<br/>
+                0.FDO/Cardinality: 1</td>
+        </tr>
+        <tr>
+            <th scope="row">0.FDO/Attribute</th>
+            <td>0.example/Project</td>
+        </tr>
+        <tr>
+            <th scope="row">0.FDO/Attribute</th>
+            <td>0.example/PublishingDate</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br/>
+
+    The <a>attribute definitions</a> in the <a>profile</a> have the following cardinalities defined in their respective
+    <a>records</a> (which are not displayed themselves here for brevity):
+        <ul>
+            <li>0.FDO/Type, 0.FDO/Profile, 0.FDO/Data: 1..* (these <a>attributes</a> are pulled from the <a>root profile</a> 0.FDO/Root)</li>
+            <li>0.FDO/Description: 0..*</li>
+            <li>0.example/Author: 1..*</li>
+            <li>0.example/Project: 0..5</li>
+            <li>0.example/PublishingDate: 1</li>
+        </ul>
+    The <a>profile</a> itself restricts the number of authors to exactly 1 (instead of 1..* as in the
+    <a>attribute definition</a>). This gives the Attributes_In_Profile list:
+    <ul>
+        <li>Attributes_In_Profile: [(0.FDO/Type, 1..*), (0.FDO/Profile, 1..*), (0.FDO/Data, 1..*), (0.FDO/Description, 0..*), (0.example/Author, 1),
+    (0.example/Project, 0..5), (0.example/PublishingDate, 1)].</li>
+    </ul>
+
+     <table class="numbered">
+        <thead>
+        <tr>
+            <th scope="col">10.1234/999</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">0.FDO/Type</th>
+            <td>0.example/MimeType</td>
+        </tr>
+        <tr>
+            <th scope="row">0.example/MimeType</th>
+            <td>0.example/application-json</td>
+        </tr>
+        <tr>
+            <th scope="row">0.FDO/Profile</th>
+            <td>10.123/Profile10</td>
+        </tr>
+        <tr>
+            <th scope="row">0.FDO/Data</th>
+            <td>0.example/HttpUrl</td>
+        </tr>
+        <tr>
+            <th scope="row">0.example/HttpUrl</th>
+            <td>www.my-file.com</td>
+        </tr>
+        <tr>
+            <th scope="row">0.example/Description</th>
+            <td>A metadata file in JSON format.</td>
+        </tr>
+        <tr>
+            <th scope="row">0.example/Author</th>
+            <td>Max Mustermann</td>
+        </tr>
+        <tr>
+            <th scope="row">0.example/Author</th>
+            <td>Karl Mustermann</td>
+        </tr>
+        <tr>
+            <th scope="row">0.example/Project</th>
+            <td>SFB ABCD</td>
+        </tr>
+        <tr>
+            <th scope="row">0.example/Project</th>
+            <td>Project X</td>
+        </tr>
+        <tr>
+            <th scope="row">0.example/ExperimentNumber</th>
+            <td>1101</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br/>
+
+    Applying the processing step <a href="#step7"></a> discovers that the <a>record</a> has too many authors and that a
+    publishing date is missing. The experiment number is ignored because it is not in the <a>profile</a>.
+    The <a>validation</a> result would be:
+    <ul>
+        <li>Profile_Validation_Status: PARTIALLY_VALID</li>
+        <li>Valid_Attributes: [(0.FDO/Type, 1), (0.FDO/Profile, 1), (0.FDO/Data, 1), (0.FDO/Description, 1), (0.example/Project, 2)</li>
+        <li>Invalid_Attributes: [(0.example/Author, 2), (0.example/PublishingDate, 0)]</li>
+    </ul>
+</aside>
