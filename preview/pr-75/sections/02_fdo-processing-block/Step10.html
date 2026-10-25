@@ -1,23 +1,61 @@
-<h3 id="step10">S-10: <a>FDO</a> Data Access</h3>
-This step consists in accessing the <a>FDO</a>’s Data.
+<h3 id="step10">[S-10]: FDO Data Access</h3>
+This step attempts to return the <a>FDO</a>’s data bit-sequence or a reference to it.
+It assumes that <a href="#step4"></a> was completed and that its status indicates that a <a><em>0.FDO/Data</em></a>
+field is present (a Mandatory_Attributes_Status of COMPLETE, DATA_ONLY, TYPE_MISSING, or PROFILE_MISSING).
 <dl>
     <dt>Inputs</dt>
-    <dd>The Validated_Profiles with their respective <a>attributes</a> from <a href="#step8"></a>.</dd>
+    <dd>This step expects that <a href="#step4"></a> had a Mandatory_Attributes_Status of COMPLETE, DATA_ONLY,
+        TYPE_MISSING, or PROFILE_MISSING.
+        The Validated_Profiles with their respective <a>attributes</a> from <a href="#step8"></a>.</dd>
     <dt>Outputs</dt>
-    <dd>There are four different possible outputs:
+    <dd>
+        An object is returned which consists of the following elements:
         <ul>
-            <li>The in-line data value</li>
-            <li>An <a>FDO</a> <a>PID</a></li>
-            <li>An <a>FDO Profile</a></li>
-            <li>A URI</li>
-            <li>A null value.</li>
+            <li>
+                Data_Extraction_Status:
+                <ul>
+                    <li>SUCCESS: All <a><em>0.FDO/Data</em></a> <a>attributes</a> are valid, i.e., they all either
+                    contain the element <em>self</em> or they point to another <a>attribute</a> in the record.</li>
+                    <li>PARTIAL_SUCCESS: Some <a><em>0.FDO/Data</em></a> <a>attributes</a> are valid.</li>
+                    <li>FAILURE: No <a><em>0.FDO/Data</em></a> <a>attributes</a> is valid.</li>
+                </ul>
+            </li>
+            <li>
+                Data_Attributes: a list of <a>attributes</a>, each of which contains data either inline, by reference,
+                or its value is <em>self</em>. In the latter case, the <a>record</a> is itself the data of the <a>FDO</a>.
+            </li>
         </ul>
     </dd>
     <dt>Expected behavior</dt>
     <dd>
-        The Client inspects each of the Validated_Profiles and finds their respective
-        <a><em>0.FDO/Data</em></a> <a>attributes</a> to find the data <a>attributes</a>.
-        The client SHOULD make the best effort to provide the means to access the data depending on the
-        manner in which the <a>FDO</a> references its data.
+        The <a><em>0.FDO/Data</em></a> <a>attribute</a> by definition either has as its value the string <em>self</em>,
+        or it uses the <a>attribute referencing</a> mechanism to point to other <a>attributes</a> in the <a>record</a>
+        that contains data either by reference or inline. The client locates all <a><em>0.FDO/Data</em></a>
+        <a>attributes</a> in the <a>FDO record</a>. For each of them it performs the following steps:
+        <ul>
+            <li>
+                If the <a><em>0.FDO/Data</em></a> <a>attribute</a> has the value <em>self</em>, then
+                (0.FDO/DataAsSelf, self) is added to Data_Attributes. Proceed to the next <a><em>0.FDO/Data</em></a>.
+            </li>
+            <li>
+                If the <a><em>0.FDO/Data</em></a> <a>attribute</a> has a different value, it is assumed that the
+                <a>attribute referencing</a> mechanism is applied. It is checked whether this value appears in any other
+                <a>attribute</a> as first element. All such other <a>attributes</a> which are found in the <a>record</a>
+                (<a><em>0.FDO/Data</em></a> is said to be pointing to those via <a>attribute referencing</a>) are added
+                to Data_Attributes. Proceed to the next <a><em>0.FDO/Data</em></a>.
+            </li>
+        </ul>
+        The Data_Extraction_Status is determined as follows:
+        <ul>
+            <li>If the Data_Attributes list is empty, then the Data_Extraction_Status is FAILURE.</li>
+            <li>Else if there are <a><em>0.FDO/Data</em></a> <a>attributes</a> in the <a>record</a> whose value is not
+                <em>self</em> and which do not point anywhere, the Data_Extraction_Status is set to PARTIAL_SUCCESS.
+            </li>
+            <li>Else, all data elements were found and the Data_Extraction_Status is set to SUCCESS.</li>
+        </ul>
+        The client should make the best effort to provide the means to access the data collected in the Data_Attributes
+        list depending on the manner in which the <a>FDO</a> includes its data. To do so, he may first inspect the
+        <a>attribute definitions</a> of the <a>attributes</a> in the Data_Attributes list to find further information or
+        instructions.
     </dd>
 </dl>
