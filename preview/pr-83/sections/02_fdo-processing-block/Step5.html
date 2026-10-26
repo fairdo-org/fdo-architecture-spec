@@ -22,16 +22,16 @@
             <li>
                 <em>expected_fdo_type_list</em>: A list of types that the client is looking for. It can be empty
                 indicating that any <a>FDO types</a> within the <a>FDO record</a> will be accepted. This forces the
-                MATCH_ALL flag described below.
+                ACCEPT_ANY flag described below.
             </li>
             <li>A <em>matching</em> flag:
                 <ul>
                     <li>
-                        MATCH_ALL: Any <a>FDO type</a> is acceptable. This ignores the <em>expected_fdo_type_list</em>
+                        ACCEPT_ANY: Any <a>FDO type</a> is acceptable. This ignores the <em>expected_fdo_type_list</em>
                         if provided.
                     </li>
-                    <li>EXACT_MATCH: The <a>FDO types</a> in the <a>FDO record</a> need to match exactly the
-                        <a>FDO types</a> in the <em>expected_fdo_type_list</em>.
+                    <li>EXACT_MATCH: Every <a>FDO type</a> in the <a>FDO record</a> must match any of the <a>FDO
+                        types</a> in the <em>expected_fdo_type_list</em>.
                     </li>
                     <li>DERIVED_MATCH: The <a>FDO types</a> can be derived from the <a>FDO types</a> found in the
                         <em>expected_fdo_type_list</em>. Derived <a>types</a> are backward compatible with their parent <a>types</a>.
@@ -66,7 +66,7 @@
 
         <ol>
             <li>
-                If the <em>expected_fdo_type_list</em> is empty and/or the <em>matching</em> flag is set to MATCH_ALL,
+                If the <em>expected_fdo_type_list</em> is empty and/or the <em>matching</em> flag is set to ACCEPT_ANY,
                 all the <a>FDO types</a> within the <a>FDO record</a> are considered appropriate.
                 The result is FULL_MATCH and the list of all <a>FDO types</a> found in the <a>FDO record</a>.
             </li>
@@ -155,7 +155,7 @@
             <tr>
                 <th scope="row">0.FDO/Profile
                 </th>
-                <td>10.123/Profile1</td>
+                <td>abc/Profile1</td>
             </tr>
             <tr>
                 <th scope="row">0.FDO/Data

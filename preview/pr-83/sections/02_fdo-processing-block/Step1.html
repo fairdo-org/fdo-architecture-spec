@@ -2,7 +2,9 @@
 <p>
     This step determines if the provided string is a <a>PID</a>, whether it is potentially resolvable and how.
     This may be achieved using any technical solution such as a regular expression based analysis aware of the well
-    known resolvable <a>PID</a> systems. This process may result in false positives, but must avoid false negatives.
+    known resolvable <a>PID</a> systems. A list of <a>PID</a> systems and corresponding resolvers shall be maintained by the
+    <a>FDO Forum</a> and be updated by the various <a>FDO implementations</a> and by the community at large.
+    This process may result in false positives, but must avoid false negatives.
 </p>
 <dl>
     <dt>Inputs</dt>
@@ -18,7 +20,7 @@
             <li><em>identifier</em>: A syntactically valid <a>PID</a> (there may be multiple outcomes).</li>
             <li>
                 <em>resolvers</em>: A list with 0 or more resolvers by name in order of probability that may resolve the
-                <a>PID</a>. The resolver should be identified as an <a>FDO</a>.
+                <a>PID</a>.
             </li>
         </ul>
         If the analysis fails, it throws an exception UNRECOGNIZED_IDENTIFIER.
@@ -26,10 +28,10 @@
     <dt>Expected behavior</dt>
     <dd>
         <p>
-            This step will iterate through a set of well-known <a>PID</a> technologies. Each client may have its own
-            list that it will use when performing this step. A list of <a>PID</a> technologies shall be maintained by the
-            <a>FDO Forum</a> and be updated by the various <a>FDO implementations</a> and by the community at large.
-            These <a>FDOs</a> will include information about the <a>PID</a> syntax and resolvers.</p>
+            This step will iterate through a set of well-known <a>PID</a> systems. Each client may have its own
+            list that it will use when performing this step, or it can derive a list from the <a>FDO Forum</a>-maintained
+            <a>PID</a> systems. The <a>PID</a> systems will include information about the <a>PID</a> syntax and resolvers.
+        </p>
 
         <aside class="example" title="https://dx.doi.org/10.500/123">
             <p>The input string is https://dx.doi.org/10.500/123. <a href="#step1"></a> would process this as known DOI.
@@ -38,7 +40,7 @@
                 <li>
                     <ul>
                         <li>identifier: https://dx.doi.org/10.500/123</li>
-                        <li>resolvers: [0.example/DNS_RESOLVER]
+                        <li>resolvers: [0.example/HTTP_RESOLVER]
                     </ul>
                 </li>
                 <li>
@@ -57,7 +59,7 @@
                 the identifier_resolvers with the following values:</p>
             <ul>
                 <li>identifier: https://www.ACME.org/fdo/123-245-232</li>
-                <li>resolvers: 0.example/DNS_RESOLVER</li>
+                <li>resolvers: 0.example/HTTP_RESOLVER</li>
             </ul>
         </aside>
     </dd>

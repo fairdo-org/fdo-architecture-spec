@@ -9,7 +9,7 @@ of the specific <a>attribute</a>.
     <dd>
         <ul>
             <li>
-                any <a>attribute</a> list that would need validation. Typically, The inputs consist of the list of
+                any <a>attribute</a> list that requires validation. Typically, The inputs consist of the list of
                 <em>validated_profile</em> (especially <em>valid_attributes</em> and <em>invalid_attributes</em>) from
                 <a href="#step7"></a>. Even if the <a>cardinality</a> of some <a>attributes</a> was not valid
                 (<em>invalid_attributes</em>), a <a>validation</a> of the <a>attribute</a>'s value against its
@@ -28,9 +28,9 @@ of the specific <a>attribute</a>.
                 <em>0.example/DateTime</em> <a>attribute</a>, where the date is filled in but there is no time
                 information. While incomplete, this value could still be of interest to the client.
             </li>
-            <li>INVALID: Tthe value did not comply with the <a>validation</a> rules.</li>
+            <li>INVALID: The value did not comply with the <a>validation</a> rules.</li>
             <li>
-                NO_RULES: The process could not find any rules to <a>validate</a> the <a>attribute</a> with.
+                NO_RULES: The process could not find any rules to <a>validate</a> the <a>attribute</a> against.
             </li>
             <li>NOT_VALIDATED: <a>Validation</a> failed due to any reason, e.g. if there were no rules in the cache and
                 when trying to get the rules, the <a>PID</a> of the <a>attribute definition</a> did not resolve, the
@@ -49,7 +49,7 @@ of the specific <a>attribute</a>.
                 The process checks whether it already has <a>validation</a> rules for the given <a>attribute</a> in its
                 cache. If yes, it proceeds to 2. below. If not, it attempts to acquire them. To do so, it resolves the
                 <a>PID</a> of the <a>attribute definition</a> and extracts the <a>validation</a> rules from the
-                <a>record</a>. If it cannot access, parse or interprete the <a>record</a>, it will set the
+                <a>record</a>. If it cannot access, parse or interpret the <a>record</a>, it will set the
                 <em>status</em> to NOT_VALIDATED. If there are no <a>validation</a> rules in the <a>record</a>,
                 the <em>status</em> is set to NO_RULES. The <em>error_message</em> is set with any error messages
                 that were generated.

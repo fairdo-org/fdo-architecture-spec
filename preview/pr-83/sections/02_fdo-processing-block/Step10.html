@@ -1,14 +1,15 @@
 <h3 id="step10">[S-10]: FDO Data Access</h3>
 This step attempts to return the <a>FDO</a>’s data bit-sequence or a reference to it.
 It assumes that <a href="#step4"></a> was completed and that its status indicates that a <a><em>0.FDO/Data</em></a>
-field is present (i.e., COMPLETE, DATA_ONLY, TYPE_MISSING, or PROFILE_MISSING).
+field is present (i.e., COMPLETE, DATA_ONLY, TYPE_MISSING, or PROFILE_MISSING). Furthermore, it assumes that
+<a href="#step8"></a> was completed successfully.
+
 <dl>
     <dt>Inputs</dt>
     <dd>
         <ul>
             <li>
-                an <a>FDO record</a>: This step expects exactly one well-structured <a>FDO record</a>. Typically, this
-                is the output of <a href="#step3"></a>.
+                a list of <em>validated_attribute</em> as outputted by <a href="#step8"></a>
             </li>
         </ul>
     </dd>
@@ -38,8 +39,8 @@ field is present (i.e., COMPLETE, DATA_ONLY, TYPE_MISSING, or PROFILE_MISSING).
     <dd>
         The <a><em>0.FDO/Data</em></a> <a>attribute</a> by definition either has as its value the string <em>self</em>,
         or it uses the <a>attribute referencing</a> mechanism to point to other <a>attributes</a> in the <a>record</a>
-        that contains data either by reference or inline. The client locates all <a><em>0.FDO/Data</em></a>
-        <a>attributes</a> in the <a>FDO record</a>. For each of them it performs the following steps:
+        that contains data either by reference or inline. The client finds all <a><em>0.FDO/Data</em></a>
+        <a>attributes</a> that have the validation status VALID. For each of them it performs the following steps:
         <ul>
             <li>
                 If the <a><em>0.FDO/Data</em></a> <a>attribute</a> has the value <em>self</em>, then
@@ -48,7 +49,8 @@ field is present (i.e., COMPLETE, DATA_ONLY, TYPE_MISSING, or PROFILE_MISSING).
             <li>
                 If the <a><em>0.FDO/Data</em></a> <a>attribute</a> has a different value, it is assumed that the
                 <a>attribute referencing</a> mechanism is applied. It is checked whether this value appears in any other
-                <a>attribute</a> as first element. All such other <a>attributes</a> which are found in the <a>record</a>
+                <a>attribute</a> as first element. All such other <a>attributes</a> which are found and which have the
+                validation status VALID
                 (<a><em>0.FDO/Data</em></a> is said to be pointing to those via <a>attribute referencing</a>) are added
                 to <em>data_attributes</em>. Proceed to the next <a><em>0.FDO/Data</em></a>.
             </li>
@@ -57,7 +59,8 @@ field is present (i.e., COMPLETE, DATA_ONLY, TYPE_MISSING, or PROFILE_MISSING).
         <ul>
             <li>If the <em>data_attributes</em> list is empty, then the <em>status</em> is FAILURE.</li>
             <li>Else if there are <a><em>0.FDO/Data</em></a> <a>attributes</a> in the <a>record</a> whose value is not
-                <em>self</em> and which do not point anywhere, the <em>status</em> is set to PARTIAL_SUCCESS.
+                <em>self</em> and which are not VALID, or the <a>attribute</a> they are pointing to is not VALID,
+                the <em>status</em> is set to PARTIAL_SUCCESS.
             </li>
             <li>Else, all data elements were found and the <em>status</em> is set to SUCCESS.</li>
         </ul>
@@ -70,13 +73,13 @@ field is present (i.e., COMPLETE, DATA_ONLY, TYPE_MISSING, or PROFILE_MISSING).
 
 <aside class="example" title="Finding all data references">
 
-    This example shows an <a>FDO record</a> 10.1234/000 with three <a><em>0.FDO/Data</em></a> attributes.
+    This example shows an <a>FDO record</a> 1234/000 with three <a><em>0.FDO/Data</em></a> attributes.
     <div> <br/> </div>
 
      <table class="numbered">
         <thead>
         <tr>
-            <th scope="col">10.1234/000</th>
+            <th scope="col">1234/000</th>
         </tr>
         </thead>
         <tbody>
@@ -90,7 +93,7 @@ field is present (i.e., COMPLETE, DATA_ONLY, TYPE_MISSING, or PROFILE_MISSING).
         </tr>
         <tr>
             <th scope="row">0.FDO/Profile</th>
-            <td>10.123/Profile100</td>
+            <td>1234/Profile100</td>
         </tr>
         <tr>
             <th scope="row">0.FDO/Data</th>
@@ -98,11 +101,11 @@ field is present (i.e., COMPLETE, DATA_ONLY, TYPE_MISSING, or PROFILE_MISSING).
         </tr>
         <tr>
             <th scope="row">0.example/HttpUrl</th>
-            <td>www.my-file.com</td>
+            <td>https://www.my-server.example/my-file</td>
         </tr>
         <tr>
             <th scope="row">0.example/HttpUrl</th>
-            <td>www.my-file-2.com</td>
+            <td>https://www.my-server.example/my-file-2</td>
         </tr>
         <tr>
             <th scope="row">0.example/Description</th>
@@ -127,8 +130,9 @@ field is present (i.e., COMPLETE, DATA_ONLY, TYPE_MISSING, or PROFILE_MISSING).
 
     Applying the processing step <a href="#step10"></a> returns
     <ul>
-        <li>status: PARTIAL_SUCCESS, because 0.example/InlineData does not point anywhere in the <a>record</a></li>
-        <li>data_attributes: [(0.example/HttpUrl, www.my-file.com), (0.example/HttpUrl, www.my-file-2.com),
+        <li>status: PARTIAL_SUCCESS, because 0.example/InlineData does not point anywhere in the <a>record</a> (not VALID)</li>
+        <li>data_attributes: [(0.example/HttpUrl, https://www.my-server.example/my-file), (0.example/HttpUrl,
+            https://www.my-server.examplemy-file-2),
             (0.example/FdoRef, 21.abc/def)]. The client may continue by attempting to follow those references.
         </li>
     </ul>

@@ -1,22 +1,22 @@
 <h3 id="step9">[S-9]: FDO Metadata Inspection</h3>
+
+    This step assumes that <a href="#step8"></a> was completed successfully.
 <p>
-    In this step, the content of the <a>FDO record</a> and potential associated metadata files are inspected to determine
+    The content of the <a>FDO record</a> and potential associated metadata files are inspected to determine
     whether they describe a <a>resource</a> that may be of interest to the accessing client. The specific inspection
     procedure and the evaluation criteria applied are determined by the client.
 </p>
 <p>
-    Clients may have different requirements such as requiring fully valid <a>FDOs</a> with valid <a>FDO profiles</a> and
-    verified <a>attributes</a>, while others may have less restrictive needs. Also, it could be that a client requires
-    that certain <a>attributes</a> exist or have a specific value, or that the content of referenced metadata files
-    is as desired.
+    Users may impose additional restrictions depending on the information they are looking for.
+    For example, users may require that certain <a>attributes</a> exist or have a specific value, or that the content of
+    referenced metadata files is as desired. Hence, this may result in users implementing this function themselves.
 </p>
 <dl>
     <dt>Inputs</dt>
     <dd>
         <ul>
             <li>
-                an <a>FDO record</a>: This step expects exactly one well-structured <a>FDO record</a>. Typically, this
-                is the output of <a href="#step3"></a>.
+                a list of <em>validated_attribute</em> as outputted by <a href="#step8"></a>
             </li>
         </ul>
     </dd>
@@ -25,7 +25,7 @@
         The output is a <em>status</em>:
         <ul>
             <li>
-                <em>true</em>: The <a>FDO</a> is of interest to the client and he may proceed to the next step.
+                <em>true</em>: The <a>FDO</a> is of interest to the client, and he may proceed to the next step.
             </li>
             <li><em>false</em>: The <a>FDO</a> is not of any interest to the client.</li>
         </ul>
