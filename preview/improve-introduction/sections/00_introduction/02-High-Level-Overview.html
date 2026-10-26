@@ -6,30 +6,35 @@
     <a>FDO</a> implementations comply with the rules specified in this implementation-agnostic specification.
     At its core, this specification describes the structure of an
     <a>FDO</a> and the rules that govern the relationships between its components.
+
+    <p>
+        An <a>FDO</a> consists of the following components (see [[[#fig1]]]):
+    </p>
+    <figure id="fig1">
+        <img alt="FDO-basic-concept" height=400 src="img/FDO-basic-concept.svg">
+        <figcaption>
+            This diagram indicates schematically the basic building blocks of an <a>FDO</a>.
+            The <a>attribute definition</a> (left) and
+            the <a>profile</a> (right) are also
+            <a>FDOs</a> where the records consist of tuples, which is not shown in this diagram for
+            readability. This implies that the names of the attribute definitions must in fact be resolvable PIDs.
+        </figcaption>
+    </figure>
+
     <a href="#fdo-building-blocks">Section 5</a> defines the essential components and rules needed for creating and interpreting
     <a>FDOs</a> and the <a>FDO</a> type system.
-    All components are themselves fully valid <a>FDOs</a> without any special mechanisms.
-    This grounds
-    <a>FDOs</a> in themselves to prevent unwanted dependencies from specific technologies and enable a common exchange format between implementations.
+    All components, as shown in [[[#fig1]]], are themselves fully valid <a>FDOs</a> without any special mechanisms.
+    This grounds <a>FDOs</a> in themselves to prevent unwanted dependencies from specific technologies
+    and enable a common exchange format between implementations.
+</p>
+
+<p>
     In <a href="#generic-fdo-processing">Section 6</a> we describe how a client finds, accesses, and interprets
     <a>FDOs</a> to get to the data represented by it.
     We expect that implementations of <a>FDOs</a> will vary and MAY not realize all the building blocks.
     Thus, we specify in <a
         href="#implementation-profile">Section 7</a> how implementations adopt this document to facilitate interoperability between implementations.
 </p>
-<p>
-    An <a>FDO</a> consists of the following components (see [[[#fig1]]]):
-</p>
-<figure id="fig1">
-    <img alt="FDO-basic-concept" height=400 src="img/FDO-basic-concept.svg">
-    <figcaption>
-        This diagram indicates schematically the basic building blocks of an <a>FDO</a>.
-        The <a>attribute definition</a> (left) and
-        the <a>profile</a> (right) are also
-        <a>FDOs</a> where the records consist of tuples, which is not shown in this diagram for
-        readability.
-    </figcaption>
-</figure>
 
 <ul>
     <li>
