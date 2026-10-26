@@ -7,10 +7,11 @@
         in the <a>FDO record</a>.
     </li>
     <li>The value of the <a><em>0.FDO/Type</em></a> <a>attribute</a> in the <a>FDO record</a> is a type of the
-        <a><a>resource</a></a> being represented by the <a>FDO</a>.
+        <a>resource</a> being represented by the <a>FDO</a>.
     </li>
-    <li>The value of the <a><em>0.FDO/Profile</em></a> <a>attribute</a> in the <a>FDO record</a> is a type of the <a>FDO
-            record</a>, which instantiates the profile.
+    <li>The <a>FDO record</a> itself is also typed by the <a>profiles</a> it instantiates. In contrast to
+        <a>0.FDO/Type</a>, compliance with <a>profiles</a> is validated in a type-theoretic sense and only provides
+        information on the <a>FDO record</a>.
     </li>
 </ol>
 All these types together form the type system.
@@ -61,7 +62,8 @@ All these types together form the type system.
     Consequently, for all <a>profiles</a> and <a>attribute definitions</a>, the <a><em>0.FDO/Type</em></a>
     <a>attribute</a> MUST have at least the value <a><em>0.FDO/Profile</em></a>, as it points to the <a>profile</a>
     using <a>attribute referencing</a>. Adding additional <a>FDO types</a> to these <a>FDOs</a> is allowed.
-    All profiles and attribute definitions are listed in <a href="#appendixAttrsFDOTypeSystem"></a>.
+    The definitions of all <a>attributes</a> and <a>profiles</a> used in this document are listed in 
+    <a href="#appendixAttrsFDOTypeSystem"></a>.
 </p>
 
 
@@ -78,7 +80,7 @@ All these types together form the type system.
     <dd>
         The <a>FDO type</a> SHOULD be interpretable outside the community of practice to ensure interoperability.
         This SHOULD be ensured by linking to existing standards or software that explain how to interpret the <a>FDO
-        type</a>. These external <a>resources</a> SHOULD be publicly accessible.
+            type</a>. These external <a>resources</a> SHOULD be publicly accessible.
     </dd>
 
     <dt>
@@ -99,25 +101,25 @@ All these types together form the type system.
     </dd>
 </dl>
 
-    <h4 class="rule-heading" id="collectionType"><a>FDO Type</a> of <a>Collections</a></h4>
-    <p>
-        FDOs may represent <a>collections</a> of objects (see also <a href="#granularity"></a>).
-        To assign <a>FDO types</a> to a <a>collection</a> and to objects within the <a>collection</a>,
-        the following conditions apply:
-    </p>
-    <dt>
-        <h4 class="rule-heading" id="rule-typ_4">[R-TYP-4] <a>Collection</a> Type</h4>
-    </dt>
-    <dd>The <a>FDO type</a>(s) of a <a>collection</a> MUST describe the <a>collection</a> as a whole.</dd>
+<h4 class="rule-heading" id="collectionType"><a>FDO Type</a> of <a>Collections</a></h4>
+<p>
+    FDOs may represent <a>collections</a> of objects (see also <a href="#granularity"></a>).
+    To assign <a>FDO types</a> to a <a>collection</a> and to objects within the <a>collection</a>,
+    the following conditions apply:
+</p>
+<dt>
+    <h4 class="rule-heading" id="rule-typ_4">[R-TYP-4] <a>Collection</a> Type</h4>
+</dt>
+<dd>The <a>FDO type</a>(s) of a <a>collection</a> MUST describe the <a>collection</a> as a whole.</dd>
 
-    <dt>
-        <h4 class="rule-heading" id="rule-typ_5">[R-TYP-5] Object Type in a <a>Collection</a></h4>
-    </dt>
-    <dd>
-        If an <a>FDO type</a> SHOULD be assigned to objects within the <a>collection</a>, each object MUST
-        be represented as an <a>FDO</a> (or <a>inline FDO</a>) itself.
-        This <a>FDO</a> can then contain the <a><em>0.FDO/Type</em></a> <a>attribute</a> to specify <a>FDO types</a>.
-    </dd>
+<dt>
+    <h4 class="rule-heading" id="rule-typ_5">[R-TYP-5] Object Type in a <a>Collection</a></h4>
+</dt>
+<dd>
+    If an <a>FDO type</a> SHOULD be assigned to objects within the <a>collection</a>, each object MUST
+    be represented as an <a>FDO</a> (or <a>inline FDO</a>) itself.
+    This <a>FDO</a> can then contain the <a><em>0.FDO/Type</em></a> <a>attribute</a> to specify <a>FDO types</a>.
+</dd>
 </dl>
 
 <h4 id="operation-association-mechanisms">Operation Association Mechanisms</h4>
