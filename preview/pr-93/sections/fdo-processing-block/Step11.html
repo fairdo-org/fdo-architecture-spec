@@ -1,0 +1,16 @@
+The data validation shall analyse the data acquired from <a href="#step9">[Step 9]</a> and validate it against the
+various attributes found in the FDO. The validation is specific to each of the attribute types and some attributes may
+specify in their FDO definition, rules for verifying that the data is compliant with the value in the attribute.
+
+<dl>
+  <dt>Inputs</dt>
+  <dd>The inputs shall consist of the data from <a href="#step9">[Step 9]</a> and the Evaluated_Profiles from
+    <a href="#step8">[Step 8]</a> and a list of test attributes the client wishes to evaluate the data with.
+  </dd>
+  <dt>Expected behavior</dt>
+  <dd>For each of the test attributes, find the attribute in the list of Evaluated_Profiles and evaluate the value of
+    the attributes and determine if the data matches. </dd>
+  <dt>Outputs</dt>
+  <dd>The output is a list of attributes whose values matched the data and a list of attributes whose values did not
+    match the data.</dd>
+</dl>

@@ -1,0 +1,316 @@
+<p>
+    The following terms are used to describe concepts in this specification and related FDO discussions.
+</p>
+<ul data-sort="ascending">
+    <li>
+        <b>Abstraction:</b> FDOs support the abstraction principle, i.e., abstracting away details that are not needed
+        at the basic object management level. At that level there is no need to distinguish among different types such
+        as datasets, metadata, software, semantic assertions, etc., for management operations. Since FDOs can include
+        bit-sequences encoding any kind of content they represent the highest possible abstraction level.
+    </li>
+    <li>
+        <b>Active FDO</b>: Active FDOs (short: aFDOs) turn FDOs into autonomous acting objects that exchange
+        standardized messages, check the validity of the received messages, and execute operations that affect its own
+        state, may trigger other events to other aFDOs and document all activities.
+    </li>
+    <li>
+        <b>Binding/Bundling</b>: FDOs support persistent bindings among all information entities required for FAIR
+        compliance and machine navigation in the global data space, i.e., data is bundled with its associated metadata
+        including, for example, rights metadata. Core for the stable bindings are globally unique and resolvable
+        persistent identifiers that resolve into well-defined structures which include metadata, references to metadata
+        and other related objects.
+    </li>
+    <li>
+        <b>Collection</b>: If the resource of an FDO consists of multiple parts that are interpreted as resources in
+        their own right, this FDO is called a collection. The decision which parts are interpreted as resources in their
+        own right (and hence may be FDOs themselves) is dependent on pragmatic utility decisions within communities of
+        practices. As an FDO, the collection is identified by a PID, is described by metadata and can describe the
+        structure of the resource directly in its FDO record or in an associated bit sequence. Collections can include
+        collections.
+    </li>
+    <li>
+        <b>Community-Defined Attributes</b>: Those attributes can be added to the FDO record and FDO profile based on
+        community needs. They are not interoperable across communities, however they need to be defined and registered
+        in open community registries according to defined schemas. Not all community attributes being used in a record
+        need to be specified in the FDO profile, although this is strongly recommended.
+    </li>
+    <li>
+        <b>Configuration Type</b>: FDOs can appear in many different (FDO) configuration types (for example, they can
+        include references (URL/Handles) to bit sequences or not, the reference to a database query, etc.) but
+        nevertheless fulfill the FDO requirement specifications. Differences between configuration types will result in
+        different FDO profiles.
+    </li>
+    <li>
+        <b>Data FDO</b>: This term applies to all FDOs associated with one or more data bit sequences of any type. FDOs
+        that are not associated with a data bit sequence, such as an FDO that describes a physical object, are not data
+        FDOs.
+    </li>
+    <li>
+        <b>Digital Entity</b>: A digital entity is anything that can be represented by a bit-sequence.
+    </li>
+    <li><b>Digital Object</b>: A Digital Object (short: DO) has one or multiple structured bit-sequence(s) stored in one
+        or multiple
+        repository(s), assigned a PID and associated with (different kinds of) metadata. If it adheres to the FDO
+        specifications (the normative parts of this document) we call it a FAIR Digital Object.
+    </li>
+    <li>
+        <b>Digital Repository</b>: A digital repository is an infrastructure component that is able to store, manage and
+        curate DOs and return their bit-sequence(s) when a request is issued. A trustworthy repository is embedded in an
+        organisation, managed by a team of experts and it is certified.
+    </li>
+    <li>
+        <b>Encapsulation</b>: Encapsulation in Object-oriented programming (OOP) means wrapping internal structures by
+        methods enabling information hiding. Ideally for FDOs it would also mean to integrate operations with the FDOs
+        and to use the operations to access content without the need to know the internal structure of the FDO. Thus,
+        FDOs can support encapsulation on all levels of the FDOs layered structure.
+    </li>
+    <li>
+        <b>Extension</b>: This specification explains how to create new profiles from existing profiles using a simple
+        extension mechanism. Extending an existing profile means to keep all attributes from the existing profile and
+        add attributes, in order to create the new profile. A similar concept may also apply to FDO types (e.g., FDO
+        type 1 is derived from FDO type 2). However, in this case it is not straightforward to generically define what
+        it means that a type is derived from another type. This is up to communities of practice to define and maintain
+        their own hierarchical type structures.
+    </li>
+    <li>
+        <b>FAIR Digital Object</b>: A FAIR Digital Object (FDO) is a machine actionable unit of information composed of
+        data that is a sequence of bits, or a set of such bit-sequences, each of the sequences being structured (typed)
+        in a way that is interpretable by one or more computer systems. An FDO has the following essential elements: an
+        assigned globally unique and persistent identifier (PID), a type definition for the object, and a profile that
+        defines mandatory and optional attributes (metadata) of the object. These elements make an FDO as a whole
+        findable, accessible, interoperable and reusable, both by humans and computers, for the reliable interpretation
+        and processing of the data included in the FDO.
+    </li>
+    <li>
+        <b>FDO Attribute</b>: An <a>FDO Attribute</a> is a tuple in the FDO record where the first element in the tuple points
+        to an attribute definition and the second element is a value that complies with the given attribute definition.
+        The attribute values should be validated against the attribute definition where available. Attributes must be
+        defined and registered in open registries. We distinguish three categories of attributes: (1) mandatory
+        attributes specified by the FDO Forum, (2) optional attributes specified by the FDO Forum but not mandatory and
+        (3) community-defined attributes specified by communities.
+    </li>
+    <li>
+        <b>FDO Attribute Definition</b>: Attribute definitions determine the value space that attribute values possibly
+        can have and make the content of the attribute predictable and actionable for machines. Attribute definitions
+        equip an property of an FDO with a label, a semantic meaning and syntactical validation rules for the
+        instantiating attribute value.
+    </li>
+    <li>
+        <b>FDO Attribute Definition Profile</b>: The FDO attribute definition profile specifies a list of attribute
+        definitions that must be instantiated when registering a new FDO attribute definition. Hence, it defines the
+        structure of the FDO record of attribute definitions. The FDO attribute definition profile is defined by the FDO
+        Forum.
+    </li>
+    <li>
+        <b>FDO Attribute Registry</b>: FDO Attributes that are included in the FDO records need to be defined and
+        registered in an openly available registry. Mandatory and optional kernel attributes are defined by the FDO
+        Forum and registered in an open registry managed by the FDO Forum. Community kernel attributes are managed by
+        communities of practice.
+    </li>
+    <li>
+        <b>FDO Attribute Value</b>: Each FDO attribute is a tuple in the FDO record. The second element of the tuple is
+        the attribute value.
+    </li>
+    <li>
+        <b>FDO Forum</b>: The FDO Forum is an international, independent organisation that specifies FDO standards and
+        best practices, organises the FDO community and coordinates FDO implementations and applications. It is not yet
+        a legal entity, therefore it will need to be represented by an existing organisation until it becomes a legal
+        entity.
+    </li>
+    <li>
+        <b>FDO Operations</b>: FDOs can be associated with operations using different methods. Operations can be used
+        with many different intentions such as to change the included bit-sequence, to trigger operations on other
+        entities, and to encapsulate the FDO.
+    </li>
+    <li>
+        <b>FDO Profile</b>: An FDO profile defines a list of mandatory, optional and community attributes to be used
+        when registering a new FDO. An FDO profile makes the result of the PID resolution predictable and only defined
+        and registered attributes are allowed in the FDO profile. Each FDO must be associated with one FDO profile and
+        the reference to the profile is a mandatory attribute in the FDO record. The FDO profile is itself an FDO and
+        has a specified and unified structure. The attributes being specified in the FDO profile and instantiated in the
+        FDO records need to be registered and defined in open registries.
+    </li>
+    <li>
+        <b>FDO Profile Definition Profile</b>: The FDO profile definition profile specifies a list of attribute
+        definitions that must be instantiated when registering a new FDO profile. Hence, it defines the structure of the
+        FDO record of profiles. The FDO profile definition profile is defined by the FDO Forum.
+    </li>
+    <li>
+        <b>FDO Profile Registry</b>: Profiles must be registered in open registries, enabling the reverse lookup of
+        existing profiles.
+    </li>
+    <li>
+        <b>FDO Record</b>: The FDO record is the structure associated with the PID of an FDO, i.e., when a client
+        submits a PID to the PID system it will return the information contained in this structure. The FDO record
+        consists of FDO attributes. A few specifications need to be fulfilled: the set of attributes needs to be
+        specified by a profile, the attributes need to be defined and registered, the mandatory attributes defined by
+        the FDO Forum must be used.
+    </li>
+    <li>
+        <b>FDO Root Profile</b>: The root profile defines a list of attributes that MUST be instantiated in any FDO
+        record. It is the minimal profile in the sense that it contains all mandatory attributes that must be used in
+        any FDO. The root profile is defined by the FDO Forum.
+    </li>
+    <li>
+        <b>FDO syntax definition</b>: FDO syntax definitions define syntactic validation rules for attribute
+        definitions. In detail, an attribute definition is equipped with syntactical validation rules by referencing a
+        syntax definition, and an attribute value must comply with the syntactical rules. Possible rules include
+        requiring a primitive data type (“string”, “number”, “integer” and “boolean”), a specific regular expression, a
+        numeric range, a blacklist or a whitelist.
+    </li>
+    <li>
+        <b>FDO syntax definition profile</b>: The FDO syntax definition profile specifies a list of attribute
+        definitions that must be instantiated when registering a new FDO syntax definition. Hence, it defines the
+        structure of the FDO record of syntax definitions. The FDO syntax definition profile is defined by the FDO
+        Forum.
+    </li>
+    <li>
+        <b>FDO Type</b>: This is a mandatory attribute in the FDO record that informs machines what type the associated
+        resource has. The <a>FDO Type</a> is an intentionally chosen entry point that signals some default processing semantics
+        for the resource.
+    </li>
+    <li>
+        <b>Granularity</b>: The granularity of an FDO describes the size and scope of the included content encoded by a
+        bit-sequence. The granularity for building FDOs is dependent on pragmatic utility decisions within communities
+        of practices: what are useful entities to work with in the corresponding application field? Early choices can
+        always be revised by (1) breaking up the bit-sequences of a given FDO in parts and creating new FDOs assigned to
+        the parts or (2) by aggregating individual FDOs into collections which are also FDOs.
+    </li>
+    <li>
+        <b>Interface Protocol</b>: Each FDO can be accessed or operated on using the interface protocol specified by the
+        PID of a registered operation. Since the FDO is a generic model for all kinds of data, it is possible to specify
+        a unique protocol which is independent of all technologies and interfaces to specific repositories. This is
+        FDO’s greatest potential.
+    </li>
+    <li>
+        <b>Machine Actionable</b>: Machine actionable means that clients can not only read structures and identify
+        elements, but that clients are able to infer which actions can be taken without human intervention. This
+        requires the accessibility of FDO profiles, the definition of FDO attributes and the association with
+        operations. Machine actionability requires machine interpretability. For details look
+        <a href="https://zenodo.org/records/7825650" target="_blank">here</a>.
+    </li>
+    <li>
+        <b>Machine Interpretable</b>: Machine interpretable means that agents are able to structurally identify elements
+        and relate it with semantic artifacts in a given context and therefore associate a defined purpose. Machine
+        interpretability requires machine readability.
+    </li>
+    <li>
+        <b>Machine Readable</b>: Machine readable means that elements can be identified by agents based on clearly
+        defined structural specifications.
+    </li>
+    <li>
+        <b>Mandatory FDO Attributes</b>: Mandatory FDO attributes are the minimal set of attributes that have been
+        defined by the FDO Forum and must be used in every FDO profile and FDO record.
+    </li>
+    <li>
+        <b>Metadata</b>: Metadata in the context of FDOs occur in general at two layers: (1) FDO attributes as part of
+        the FDO record are metadata and (2) the rich metadata description as provided by the data creator, e.g. within
+        repositories, associated with the data. Metadata describes properties of the bit-sequence(s) of an FDO to make
+        them FAIR. FDO attributes in the FDO record must be defined in open registries, whereas community metadata
+        managed by repositories should be specified by a registered schema that refers to defined and registered
+        metadata categories. Such specifications enable machines to interpret values. Metadata can be of different types
+        such as descriptive, deep scientific, provenance, rights, access permissions, transactions, etc. Usage of these
+        terms has not been harmonized yet.
+    </li>
+    <li>
+        <b>Mutability</b>: Data providers need to make clear policy statements whether the content of an FDO encoded in
+        a bit-sequence is mutable, changing over time such as is often the case in databases, or immutable. Inspecting
+        the correctness of these statements should be part of auditing procedures.
+    </li>
+    <li>
+        <b>Optional FDO Attributes</b>: Optional FDO attributes are those attributes that have been defined by the FDO
+        Forum to increase interoperability but are not mandatory. The FDO Forum will incrementally define optional FDO
+        attributes to increase interoperability.
+    </li>
+    <li>
+        <b>Persistence</b>: The term persistence is being mentioned frequently in this document and in the realm of
+        FDOs persistence is an important property. In this document, “persistence” is meant as a promise of an
+        initiative or service provider to maintain specifications or services for a long period of time. It is up to the
+        users to decide whether they trust such a promise. Crucial is the persistence of the PID system 
+        which needs to guarantee referential stability. Even if the (data) resource encapsulated by an FDO will be
+        deleted, for example after 10 years, which in science is common practice for experimental data, the PID and the
+        corresponding FDO record should stay without restriction, extended with a tombstone note. Therefore, a PID must
+        be independent of any technology and should not include semantics (locational, etc.) since both will change over
+        time.
+    </li>
+    <li>
+        <b>PID</b>: A PID, standing for a globally unique, persistent and resolvable identifier, is at the basis for
+        FAIR Digital Objects. Every FDO is assigned one or more PIDs. In the context of FDOs each PID must be resolvable
+        into a machine actionable structure which we call the FDO record. The PID of a data FDO is assumed to persist
+        even when the data has been deleted.
+    </li>
+    <li>
+        <b>PID Record</b>: The PID record is the structure sent back when resolving a PID. Some literature describing
+        digital objects is using the term “PID record”. In the FDO context we are using the term “FDO record” which
+        implies the use of an FDO profile and defined FDO attributes. These two terms are synonymous when compliance to
+        the FDO specifications is given. PID records are assumed to be accessible even when the data has been deleted.
+    </li>
+    <li>
+        <b>Resource</b>: Each FDO is a bundle that encapsulates, represents and describes a resource. It could be a
+        digital resource, in which case the resource would usually be a data bit-sequence. But it is also possible that
+        this resource is physical, in which case there is no data bit-sequence attached to the FDO. The resource is the
+        heart of the FDO and all other components are there to make the resource and its metadata machine actionable.
+    </li>
+    <li>
+        <b>PID Resolution</b>: A PID resolves to structured information containing attributes characterised by key-value
+        pairs. In the context of FDOs the resolved record needs to be compliant with a specified FDO profile. This leads
+        to predictable resolution results.
+    </li>
+    <li>
+        <b>PID System</b>: The PID system is the set of specifications, protocols and services that can be used to turn
+        global unique resolvable and persistent identifiers into meaningful information which we call the FDO records.
+    </li>
+    <li>
+        <b>Repository</b>: see digital repository
+    </li>
+    <li>
+        <b>Semantic Interoperability</b>: Interoperability such that the meaning of the data model within the context of
+        a subject area is understood by the participating systems.
+    </li>
+    <li>
+        <b>Semantic Mapping</b>: An assertion establishing a relation between two semantic artefacts.
+    </li>
+    <li>
+        <b>Syntactic Interoperability</b>: Interoperability such that the formats of the exchanged information can be
+        understood by the participating systems.
+    </li>
+    <li>
+        <b>Signposting Landing Page</b>: A Signposting Landing Page is structured HTML information doing the binding of
+        a
+        digital object with other resources using Web Linking leveraging IANA Link Relation Types (defined by RFC 8288).
+        It can appear in the form of HTML header information or as structured information in an HTML page. Note: it is
+        typically associated with metadata information such as specified by RO-Crates for example.
+    </li>
+    <li>
+        <b>Technology Independence</b>: FDOs and their key components need to support technology independence, allowing
+        a variety of implementations using different technologies.
+    </li>
+    <li>
+        <b>Tombstone</b>: When a data provider registers PIDs to refer to his data and then decides to delete the data
+        after N years (which is good scientific practice with N > 10 years), the PID must not be deleted. The PID
+        resolution should always be successful, but in the case of the deleted data a tombstone note should be included
+        in the PID record instead of a reference. The nature of a tombstone note is still in the process of definition.
+    </li>
+    <li>
+        <b>Validation</b>: Validation is a process that can be applied to FDOs. It enables detecting syntactical errors
+        in the FDO record early on. Validating an FDO means to check that all requirements imposed by its profile and
+        the referenced attribute definitions are met. Validation should at least be carried out upon creation and update
+        of an FDO.
+    </li>
+    <li>
+        <b>Versioning</b>: There are different policies between communities on how to indicate versioning – some use the
+        PID string, some use the PID record and some use extended metadata for these purposes. The choice widely depends
+        on efficiency criteria and no general recommendation can be made except that data providers need to make clear
+        statements on how versioning is handled.
+    </li>
+    <li>
+        <b>FDO Types</b>: Typing is an essential building block of the FDO concept. The term “type/typing” 
+        refers to several concepts simultaneously:
+        <ul>
+            <li>Attribute definitions are types for properties of an FDO and are instantiated by attributes in the FDO record.</li>
+            <li>The value of the 0.FDO/Type attribute in the FDO record is a type of the resource being represented by the FDO.</li>
+            <li>The value of the 0.FDO/Profile attribute in the FDO record is a type of the FDO record (which instantiates the profile).</li>
+        </ul>
+        All these types together form the FDO type system.
+    </li>
+</ul>

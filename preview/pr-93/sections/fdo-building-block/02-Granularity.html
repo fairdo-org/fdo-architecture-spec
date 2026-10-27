@@ -1,0 +1,29 @@
+<p>
+  The granularity of FDOs depends on the pragmatic utility decisions made
+  within communities of practice. In order to represent resources as FDOs,
+  it is necessary to decide what useful entities should be worked with in the
+  relevant application field, and how these entities should be connected to
+  each other. An example is MRI scans of the brain. One option is to create one
+  FDO for the entire set of slices. Another option is to create one FDO for each
+  slice, with attributes indicating which slice it is. Whatever the initial
+  decision is, it can be revised later by either breaking up the bit sequence(s)
+  of a given FDO into parts and creating new FDOs to represent these parts, or by
+  aggregating individual FDOs into collections, which are also FDOs.
+</p>
+<p>
+  The detailed requirements on granularity are:
+<dl>
+  <dt>[R-GRN 1]</dt>
+  <dd> Each FDO MUST represent exactly one logical resource.
+  </dd>
+  <dt>[R-GRN 2]</dt>
+  <dd> A Resource can be anything such as bit stream, a digital representation of a physical object, a concept or anything a community of interest wants to make accessible as an FDO.
+  </dd>
+  <dt>[R-GRN-3]</dt>
+  <dd> If an FDO represents a resource consisting of multiple resource it MUST be structured as a collection.  It is called a collection FDO.
+  </dd>
+  <dt>[R-GRN2-4]</dt>
+  <dd> An FDO's attributes (see <a href="#attributes"></a>) MUST describe the FDO's associated resource or collection of resource. 
+  </dd>
+</dl>
+</p>
