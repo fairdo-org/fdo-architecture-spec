@@ -17,7 +17,7 @@ Thus, clients and implementations of <a>FDOs</a> (that follow section <a href="#
     Using a vocabulary term as an <a>attribute</a> in an <a>FDO record</a> similar to an <a>attribute definition</a> is explicitly supported as a <a>community attribute</a>.
     Vocabulary terms can also be used as the value of an <a>attribute</a> in an <a>FDO record</a>.
     Both variants can be realized by applying the <a>external vocabulary referencing</a> mechanism, which is specified in the following.
-    If implementing this mechanism is not necessary or not desired, <a>implementations</a> SHOULD state and explain their decision when writing their <a>implementation template</a>.
+    If implementing this mechanism is not necessary or not desired, <a>implementations</a> SHOULD state and explain their decision when writing their <a>implementation profile</a>.
 </p>
 
 <dl>
@@ -52,23 +52,22 @@ Thus, clients and implementations of <a>FDOs</a> (that follow section <a href="#
                 </tr>
             </thead>
             <tr>
-                <td>0.FDO/Profile</td>
+                <td><a>0.FDO/Profile</a></td>
                 <td>In this case, one value MUST be <em><a>0.FDO/VocabularyDef</a></em>.</td>
                 <td>1..*</td>
             </tr>
             <tr>
-                <td>0.FDO/Type</td>
+                <td><a>0.FDO/Type</a></td>
                 <td>See <a href="#fdo-types"></a>. In this case, usually a reference to the <em><a>0.FDO/Profile</a></em> should be sufficient.</td>
                 <td>1..*</td>
             </tr>
             <tr>
-                <td>0.FDO/Data</td>
+                <td><a>0.FDO/Data</a></td>
                 <td>This specifies how to download the vocabulary in the format specified by <a><em>0.FDO/VocabularyFormat</em></a>.</td>
                 <td>1..*</td>
             </tr>
             <tr>
-                <td><a><em>0.FDO/Name</em></a>
-                </td>
+                <td>0.FDO/Name</td>
                 <td>Human-readable and localized label(s) for the vocabulary.</td>
                 <td>1..*</td>
             </tr>
@@ -91,14 +90,20 @@ Thus, clients and implementations of <a>FDOs</a> (that follow section <a href="#
                 <td>1</td>
             </tr>
             <tr>
-                <td><a><em>0.FDO/Description</em></a>
-                </td>
+                <td>0.FDO/Description</td>
                 <td>Human-readable and localized description(s) for the vocabulary.</td>
                 <td>0..*</td>
             </tr>
             <tr>
-                <td><a><em>0.FDO/Contact</em></a>
+                <td><dfn>0.FDO/LandingPage</dfn></td>
+                <td>
+                    An entry point to the FDO or the resource behind <a><em>0.FDO/Data</em></a> that provides additional information in a human-readable manner.
+                    This attribute uses <a>attribute referencing</a>, since different kinds of landing pages or types of references to them could be used.
                 </td>
+                <td>0..*</td>
+            </tr>
+            <tr>
+                <td><dfn>0.FDO/Contact</dfn></td>
                 <td>
                     A person or organization that is the primary point of contact for any <a>FDO</a> it is used in.
                     This contact MAY also be responsible for the <a>resource</a> behind <a><em>0.FDO/Data</em></a>.
