@@ -1,16 +1,14 @@
 <h3 id="pid"><a>PIDs</a></h3>
 <dl>
-    <dt><h4 class="rule-heading" id="rule-r1_1">[R1-1] <dfn data-lt="persistent">Persistence</dfn></h4></dt>
-    <dd>
-        The term <a>persistence</a> is being mentioned frequently in this document, as in the realm of <a>FDOs</a> <a>persistence</a> is an important property.
-        In regard to <a>FDOs</a> <a>persistence</a> is defined as a promise of an initiative or service provider to maintain specifications or services for a long period of time.
-        It is up to the users to decide whether they trust such a promise.
-    </dd>
+    
 
     <dt><h4 class="rule-heading" id="rule-r1_2">[R1-2] <dfn data-abbr="PID" data-lt="PID">Persistent Identifier</dfn></h4></dt>
     <dd>
         Every <a>FDO</a> is assigned one or more <dfn data-abbr="GUPRI">globally unique, persistent, and resolvable identifier</dfn> (<a>PID</a>).
         Resolving a <a>PID</a> via a <a>PID system</a> MUST always produce an at least <a>machine readable</a> structure, the <a>PID record</a>.
+        A <a>PID's</a> persistence is defined by a promise of the PID administrator to manage the PID over time to keep it updated and
+        by the PID's service provider policy to maintain its services and its specifications to remain operating and up to date for an appropriate duration. 
+        It is up to the users to decide whether they trust such a promise and policies.
         The <a>PID</a> of an <a>FDO</a> is assumed to be persistent even when its data has been deleted.
     </dd>
 
@@ -53,8 +51,8 @@
 
     <dt><h4 class="rule-heading" id="rule-r1_8">[R1-8] <dfn>Security of <a>PID Systems</a></dfn></h4></dt>
     <dd>
-        The <a>PID system</a> MUST offer a high degree of security that only enables the owner of a<a>FDO Record</a> to manipulate it.
-        It SHOULD be possible to restrict the access to the whole record or to individual key-value pairs.
+        The <a>PID system</a> MUST offer a high degree of security that only enables the owner of an <a>FDO Record</a> to manipulate it.
+        It SHOULD be possible to restrict the access to the whole record or to individual attributes.
         <a>PID systems</a> SHOULD fulfill the security properties confidentiality, integrity, availability, and authenticity.
     </dd>
 </dl>
