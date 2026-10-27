@@ -4,7 +4,7 @@ Thus, clients and implementations of <a>FDOs</a> (that follow section <a href="#
 
 <h3 id="inline-fdo"><dfn data-lt="Lambda FDO|Inline Serialization">Inline <a>FDOs</a></dfn></h3>
 <p>
-    When using <a>profile referencing</a>, an <a>attribute</a> references another<a>FDO</a>, for example, <em>a=(&ltattr_def&gt,&ltPID resolving to other <a>FDO</a>&gt)</em>.
+    When using <a>profile referencing</a>, an <a>attribute</a> references another <a>FDO</a>, for example, <em>a=(&ltattr_def&gt,&ltPID resolving to other <a>FDO</a>&gt)</em>.
     However, rather than referencing the other <a>FDO</a>, it may be serialized directly as the in-line value of <em>a</em>.
     In this case, the serialization depends on the implementation, and the implementation MUST specify the serialization format, if it decides to support this feature.
     Furthermore, <a>inline FDOs</a> typically do NOT have their own <a>PIDs</a> and are hence NOT suited for <a>attribute definitions</a>, <a>syntax definitions</a> or <a>profile definitions</a>.
@@ -16,7 +16,7 @@ Thus, clients and implementations of <a>FDOs</a> (that follow section <a href="#
     For example, existing, specific metadata could be added this way (even if vocabulary terms do not fulfill the same guarantees as <a>attribute definitions</a>).
     Using a vocabulary term as an <a>attribute</a> in an <a>FDO record</a> similar to an <a>attribute definition</a> is explicitly supported as a <a>community attribute</a>.
     Vocabulary terms can also be used as the value of an <a>attribute</a> in an <a>FDO record</a>.
-    Both variants can be realized out by applying the <a>external vocabulary referencing</a> mechanism, which is specified in the following.
+    Both variants can be realized by applying the <a>external vocabulary referencing</a> mechanism, which is specified in the following.
 </p>
 
 <dl>
@@ -118,19 +118,19 @@ Thus, clients and implementations of <a>FDOs</a> (that follow section <a href="#
         </table>
         <p>
             The <a>vocabulary definition profile</a> (<a>0.FDO/VocabularyDef</a>) specifies which information is needed to describe a vocabulary.
-            <a>FDOs</a> instantiation this <a>profile</a> MUST define values for the <em><a>0.FDO/Name</a></em>, and <em><a>0.FDO/VocabularyPrefix</a></em> <a>attributes</a>.
+            <a>FDOs</a> instantiating this <a>profile</a> MUST define values for the <em><a>0.FDO/Name</a></em>, and <em><a>0.FDO/VocabularyPrefix</a></em> <a>attributes</a>.
         </p>
         <p>
             To enable automatic validation of vocabulary terms, the <a>FDO</a> SHOULD also specify a URL from which the vocabulary can be retrieved (usually via <em><a>0.FDO/DownloadURL</a></em>), the format in which the vocabulary is provided (<em><a>0.FDO/VocabularyFormat</a></em>), and a SPARQL query that checks the validity of the vocabulary term (<em><a>0.FDO/SPARQL_Check</a></em>).
         </p>
         <p>
-            Optionally, <em><a>0.FDO/Description</a></em>, <em><a>0.FDO/Contact</a></em>, <em><a>0.FDO/LandingPageURL</a></em>, and <em><a>0.FDO/License</a></em> <a>attributes</a> MAY be used to provide additional information about the vocabulary.
+            Optionally, <em><a>0.FDO/Description</a></em>, <em><a>0.FDO/Contact</a></em>, <em><a>0.FDO/LandingPageURL</a></em>, and <em><a>0.FDO/License</a></em> <a>attributes</a> SHOULD be used to provide additional information about the vocabulary.
         </p>
     </dd>
 </dl>
 
 <aside class="example" title="External Vocabulary Referencing: Using vocabulary terms as attributes in FDOs">
-    <a href="#ex-vocab-ref"></a> shows how schema.org terms can be used in an <a>FDO record</a> similar to an <a>attribute definition</a> by applying <a>external vocabulary referencing</a> (see <a href="rule-r8_1"></a>).
+    <a href="#ex-vocab-ref"></a> shows how schema.org terms can be used in an <a>FDO record</a> similar to an <a>attribute definition</a> by applying <a>external vocabulary referencing</a> (see <a href="#rule-r8_1"></a>).
     <figure id="ex-vocab-ref">
         <img alt="External_Vocabulary_Referencing" src="img/external-vocab-attribute.svg">
         <figcaption>
