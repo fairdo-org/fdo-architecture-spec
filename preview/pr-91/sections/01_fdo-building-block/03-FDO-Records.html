@@ -1,0 +1,84 @@
+<h3 id="records"><dfn data-lt="FDO record|record">FDO record</dfn></h3>
+<p>
+    This section is normative.
+</p>
+<dl>
+    <dt>
+        <h4 class="rule-heading" id="rule-rec_1">[R-REC-1] FDO record </h4>
+    </dt>
+    <dd>
+        A <a>PID</a> identifying an <a>FDO</a> MUST resolve into a structured information record, called the
+        <a>FDO record</a>.
+    </dd>
+
+    <dt>
+        <h4 class="rule-heading" id="rule-rec_2">[R-REC-2] <dfn
+                data-lt="attribute tuple|record entry|FDO record entry|FDO record tuple|record tuple|tuple|tuples">FDO
+                attribute tuples</dfn></h4>
+    </dt>
+    <dd>
+        <p>
+            A <a>FDO record</a> consists of a finite number of <dfn data-lt="FDO attribute|attribute|attributes">FDO attributes</dfn> (short: <a>attributes</a>). Each
+            <a>attribute</a> instantiates properties of the identified <a>resource</a>. As such, an <a>attribute</a>
+            consists of at least a label for the property and a value. The property MAY be further enriched with
+            additional semantics and <a>validation</a> rules (see <a>attribute definitions</a>). Properties do NOT need
+            to be unique in an <a>FDO record</a>.
+        </p>
+        <p>
+            <a>Attributes</a> MUST be implemented as <em>n</em>-<a>tuples</a>, with <em>n≥2</em>. With <em>n=2</em> as the smallest
+            permitted order of tuples, this document uses 2-<a>tuples</a> for the definitions and requirements. Any <a>FDO
+            implementation</a> MAY use higher-order <a>tuples</a> to implement <a>attributes</a> , provided that the requirements described
+            in this document are met. The upper limit on the number of <a>tuples</a> per <a>record</a> depends on the specific
+            <a>implementation</a> .
+        </p>
+        <aside class="note" title="Representation of Attributes">
+            In more detail, in this specification, <a>attributes</a> are represented as 2-<a>tuples</a> with the first
+            element of the <a>tuple</a> being a <a>PID</a> that resolves to an <a>attribute definition</a>, and the
+            second element (called value) is any literal complying with the <a>attribute definition</a> (see also the
+            tables and examples in this document). <a>FDO implementations</a> may represent their <a>attributes</a>
+            differently.
+        </aside>
+    </dd>
+
+    <dt>
+        <h4 class="rule-heading" id="rule-rec_3">[R-REC-3] Minimum requirements for FDO records</h4>
+    </dt>
+    <dd>
+        All <a>FDO records</a> MUST contain the <a>attributes</a> from the <a href="#rule-prof_9"><em>0.FDO/Root</em></a> profile:
+        <ul>
+            <li><a><em>0.FDO/Profile</em></a> or FDO_Profile,</li>
+            <li><a><em>0.FDO/Type</em></a> or FDO_Type,</li>
+            <li><a><em>0.FDO/Data</em></a> or FDO_Data.</li>
+        </ul>
+    </dd>
+
+    <dt>
+        <h4 class="rule-heading" id="rule-rec_4">[R-REC-4] 0.FDO/Profile attribute</h4>
+    </dt>
+    <dd>
+        Every <a>FDO record</a> MUST be linked via a <a>PID</a> to at least one <a>FDO profile</a>, which it complies to.
+        This is done using the designated <em><a>0.FDO/Profile</a></em> <a>attribute</a> in its <a>FDO record</a>.
+        To link multiple <a>FDO profiles</a>, the <a>attribute</a> <em><a>0.FDO/Profile</a></em> MAY be repeated
+        multiple times in the <a>FDO record</a>.
+    </dd>
+
+    <dt>
+        <h4 class="rule-heading" id="rule-r3_5">[R-REC-5] 0.FDO/Type attribute</h4>
+    </dt>
+    <dd>
+        Each <a>FDO</a> MUST specify its <a>FDO type</a> using the designated <em><a>0.FDO/Type</a></em>
+        <a>attribute</a>.
+        To link multiple <a>FDO types</a>, the <a>attribute</a> <em><a>0.FDO/Type</a></em> MAY be repeated multiple
+        times in the <a>FDO record</a>.
+        <em><a>0.FDO/Type</a></em> follows the <a href="#attribute-referencing">attribute referencing</a> mechanism.
+    </dd>
+
+    <dt>
+        <h4 class="rule-heading" id="rule-r3_6">[R-REC-6] <dfn>0.FDO/Data</dfn> attribute</h4>
+    </dt>
+    <dd>
+        Each <a>FDO</a> MUST contain the designated <em><a>0.FDO/Data</a></em> <a>attribute</a> at least once.
+        The <a>attribute</a> <em><a>0.FDO/Data</a></em> is used to reference the <a>FDO</a>'s data.
+        It uses the <a href="#attribute-referencing">attribute referencing</a> mechanism.
+    </dd>
+</dl>
