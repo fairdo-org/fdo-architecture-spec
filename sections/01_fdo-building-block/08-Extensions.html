@@ -170,7 +170,8 @@ Thus, clients and implementations of <a>FDOs</a> (that follow section <a href="#
     </figure>
     <p>
         This example shows how the <a>attribute definition</a> <em>21.example/TypeOfWork</em> uses <a>external vocabulary referencing</a>.
-        It refers to the <a>FDO</a> <em>21.example/SchemaOrgCreativeWork</em>, which instantiates the <a>profile definition</a> <em><a>0.FDO/VocabularyDef</a></em> and validates that the term is a subclass of <a href="https://schema.org/CreativeWork">CreativeWork</a>.
-        The <a>attribute</a> <em>(21.example/TypeOfWork, schema:Photograph)</em> in the <a>FDO record</a> <em>21.123/example5</em> is valid because the term <a href="https://schema.org/Photograph">https://schema.org/Photograph</a> is a subclass of <a href="https://schema.org/CreativeWork">CreativeWork</a>.
+        It refers to the <a>FDO</a> <em>21.example/SchemaOrgCreativeWork</em>, which instantiates the <a>profile definition</a> <em><a>0.FDO/VocabularyDef</a></em> and validates that the term is a subclass of <em><a href="https://schema.org/CreativeWork">CreativeWork</a></em>.
+        Creating <em>21.example/SchemaOrgCreativeWork</em> is necessary to express and validate the constraint to only subclasses of <em><a href="https://schema.org/CreativeWork">CreativeWork</a></em>.
+        The <a>attribute</a> <em>(21.example/TypeOfWork, schema:Photograph)</em> in the <a>FDO record</a> <em>21.123/example5</em> is valid because the term <em><a href="https://schema.org/Photograph">https://schema.org/Photograph</a></em> is a subclass of <em><a href="https://schema.org/CreativeWork">CreativeWork</a></em>.
     </p>
 </aside>
