@@ -1,4 +1,4 @@
-<h4 class="rule-heading" id="rule-profile-ref">[R-Attr-13]
+<h4 class="rule-heading" id="rule-profile-ref">[R-Attr-14]
 <dfn data-lt="profile reference|profile referencing mechanism">Profile Referencing</dfn></h4>
 
 <p>
@@ -31,9 +31,10 @@
     </li>
 </ul>
 
-When the <a>attribute definition</a> is instantiated, the value MUST be either a <a>validated reference</a> to another
-<a>FDO</a> following at least one of the specified <a>profiles</a>, or an <a href="#inline-fdo">inline serialization of
-    an <a>FDO</a></a> that instantiates at least one of the specified <a>profiles</a>.
+When the <a>attribute definition</a> is instantiated, the value MUST be either a reference to another
+<a>FDO</a> following at least one of the specified <a>profiles</a> (where resolution MUST be possible in a reasonable
+amount of time), or an <a href="#inline-fdo">inline serialization of an <a>FDO</a></a> that instantiates at least one of
+the specified <a>profiles</a>.
 
 <div><br/></div>
 <table border="2" id="profile-ref-table" class="numbered">
@@ -46,7 +47,7 @@ When the <a>attribute definition</a> is instantiated, the value MUST be either a
         <a>attribute definition</a>, once for each of the <em>P<sub>1</sub>,...,P<sub>n</sub></em>.
         This table does not include all information about the <a>attributes</a>.
         Please resolve the <a>attribute definition</a> <a>PIDs</a> via the Handle System or see the
-        <a href="appendixAttrsFDOTypeSystem">appendix</a> of this document.
+        <a href="#appendixAttrsFDOTypeSystem">appendix</a> of this document.
     </caption>
     <tr>
         <th>PID of <a>Attribute Definition</a></th>
@@ -74,4 +75,29 @@ When the <a>attribute definition</a> is instantiated, the value MUST be either a
             An example for <a>profile referencing</a>.
         </figcaption>
     </figure>
+</aside>
+
+<aside class="note" title="Types of References">
+    References are key to <a>FDOs</a> as they are used to associate <a>bit-sequences</a> and refer to any other
+    related objects and information.
+    The <a>primitive data type</a> for all references is assumed to be a string. However, their syntax, interpretation,
+    and resolution remain implementation specific. This note aims to classify references into two categories depending
+    on their degree of <a>validation</a>.
+    <ul>
+        <li>
+            <b><dfn data-lt="PID candidate">unvalidated references</dfn></b>: A reference is considered an
+            <a>unvalidated reference</a> if it is a string that follows the syntactic format of a <a>PID</a>.
+            The <a>PID</a> may not be resolvable. The classification as an <a>unvalidated reference</a> may be performed
+            by a heuristic that creates false positives. Therefore, <a>unvalidated references</a> may be called a
+            <a>PID candidate</a>, as they syntactically appear to be a <a>PID</a>, but may not always resolve to an
+            <a>FDO</a>.
+        </li>
+        <li>
+            <b><dfn>validated references</dfn></b>: For a reference to be considered a <a>validated reference</a>, it
+            must resolve to a valid <a>FDO</a> record in reasonable time. It must also qualify as an <a>unvalidated
+            reference</a>.
+        </li>
+    </ul>
+    <a>Profile referencing</a> assumes that the reference to the <a>FDO</a> (that complies to one of the given <a>profiles</a>)
+    is a <a>validated reference</a>.
 </aside>
