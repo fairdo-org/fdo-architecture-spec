@@ -172,12 +172,17 @@
         </td>
         <td><a><em>0.FDO/Attribute</em></a> specifies which <a>attribute definitions</a>
             MUST be instantiated in any <a>FDO</a> instantiating this <a>profile</a> (via 0.FDO/Profile).
-            The value of this <a>attribute</a> is a <a>PID</a> of the <a>attribute definition</a>.
             It can be repeated to add multiple <a>attribute definitions</a>.
-            The cardinality of the <a>attribute definitions</a> MUST be respected in the <a>FDOs</a>.
             When not using <a>profile extension</a>, <a><em>0.FDO/Attribute</em></a> MUST be defined
             with at least the <a>attributes</a> the <a>root profile</a> specifies.
             <a>Additional attributes</a> can be used as well.
+            The value of this <a>attribute</a> is either
+            <ul>
+                <li> a reference to an <a>attribute definition</a>, or</li>
+                <li>an <a>inline combination</a> of a reference to an <a>attribute definition</a> and a localized
+                    <a>cardinality</a> that restricts the original <a>cardinality</a> of this <a>attribute definition</a>
+                    in the new context (<a>cardinality restriction</a>).</li>
+            </ul>
         </td>
         <td>0..*</td>
     </tr>
