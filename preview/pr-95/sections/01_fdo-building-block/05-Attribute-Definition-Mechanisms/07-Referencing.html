@@ -1,0 +1,24 @@
+<h3 id="advanced-ref">Advanced Referencing</h3>
+<dl>
+  <dt><h4 class="rule-heading" id="rule-r7_1">[R7-1] <dfn>References</dfn></h4></dt>
+  <dd>
+    <a>References</a> are key to <a>FDOs</a> as they are used to associate <a>bit-sequences</a> and refer to any other related objects and information.
+    Therefore, the <a>primitive data type</a> for all references MUST be a string.
+    However, their syntax, interpretation, and resolution remain implementation specific.
+    This <a href="#advanced-ref">section</a> aims at providing a solution for intra and inter <a>FDO</a> references.
+  </dd>
+
+  <dt><h4 class="rule-heading" id="rule-r7_2">[R7-2] <dfn data-lt="PID candidate">Unvalidated References</dfn></h4></dt>
+  <dd>
+    A reference is considered an <a>unvalidated reference</a> if it is a string that follows the syntactic format of a <a>PID</a>.
+    The <a>PID</a> MAY not be resolvable.
+    The classification as an <a>unvalidated reference</a> MAY be performed by a heuristic that creates false positives.
+    Therefore, <a>unvalidated references</a> MAY be called a <a>PID candidate</a>, as they syntactically appear to be a <a>PID</a>, but MAY NOT always resolve to an <a>FDO</a>.
+  </dd>
+
+  <dt><h4 class="rule-heading" id="rule-r7_3">[R7-3] <dfn>Validated References</dfn></h4></dt>
+  <dd>
+    For a reference to be considered a <a>validated reference</a>, it MUST resolve to a valid <a>FDO</a> record in reasonable time.
+    It MUST also qualify as an <a>unvalidated reference</a>.
+  </dd>
+</dl>
