@@ -1,9 +1,9 @@
 <h3 id="processing-intro">Introduction</h3>
 <p>
     The <dfn data-lt="processing|FDO processing|FDO processing block|processing block">generic FDO processing</dfn>
-    consists of a set of 11 steps that a <a>FDO</a> client may execute in order to access an <a>FDO</a> and all its
-    components, given its <a>PID</a>. This specification uses these steps to describe the function and characteristic of
-    the various components of the <a>FDO</a>.
+    consists of a set of 10 steps that a <a>FDO</a> client may execute in order to access an <a>FDO</a> and all its
+    components, given its <a>PID</a>. This specification uses these steps to describe the function and characteristics of
+    the various components of an <a>FDO</a>.
 </p>
 <p>
     All <a>FDO implementations</a> should describe how their approach satisfies the following set of steps in an
@@ -25,30 +25,27 @@
     <dd>Locate all mandatory <a>FDO attributes</a>.</dd>
 
     <dt><a href="#step5"></a>
-    <dd>Determine if the <a>FDO</a> has one or more <a>type</a>(s) and whether they are appropriate given the
+    <dd>Determine if the <a>FDO</a> has one or more <a>types</a> and whether they are appropriate given the
         requirements of the client.
     </dd>
 
     <dt><a href="#step6"></a>
-    <dd> Determine if the <a>FDO</a> has one or more <a>profile</a>(s) and whether they are appropriate given
+    <dd> Determine if the <a>FDO</a> has one or more <a>profiles</a> and whether they are appropriate given
         the requirements of the client.
     </dd>
 
     <dt><a href="#step7"></a>
-    <dd>Validate the <a>FDO record</a> against the <a>profile</a>(s) that are of interest to the client.</dd>
+    <dd>Validate the <a>FDO record</a> against the <a>profiles</a> that are of interest to the client.</dd>
 
     <dt><a href="#step8"></a>
-    <dd>Validate the <a>FDO attributes</a> against their <a>attribute definition</a>(s) that are of interest to the client.</a>.
+    <dd>Validate the <a>FDO attributes</a> against their <a>attribute definitions</a> that are of interest to the client.
     </dd>
 
     <dt><a href="#step9"></a>
-    <dd> Determine if the <a>FDO</a>'s data is of interest to the client, given the <a>FDO attributes</a> in the <a>FDO record</a>.</dd>
+    <dd> Determine if the <a>FDO</a>'s data is of interest to the client given any metadata.</dd>
 
     <dt><a href="#step10"></a>
-    <dd>The client accesses the <a>FDO</a>’s data subject to access control.</dd>
-
-    <dt><a href="#step11"></a>
-    <dd>Validate if the <a>FDO</a>’s data matches the <a>type</a>(s) of the <a>FDO</a>.</dd>
+    <dd>The client finds all data bit-sequences of the <a>FDO</a>’s and attempts to access them.</dd>
 </dl>
 <p>
     Each of the steps is described below.

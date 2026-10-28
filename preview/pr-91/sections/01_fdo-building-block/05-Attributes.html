@@ -74,7 +74,7 @@ This section is normative.
         <td>
             The <a>profile</a>(s) as specified in <a href="#profiles"></a>.
             One of the <a>profiles</a> of an <a>attribute definition</a> MUST be <a><em>0.FDO/AttributeDef</em></a>
-            or an extension of this profile.
+            or an extension of this <a>profile</a>.
         </td>
         <td>1..*</td>
     </tr>
@@ -167,12 +167,10 @@ This section is normative.
     </dt>
     <dd>
         All <a>attribute definitions</a> in this specification that use the <em>0.FDO</em> prefix are part of the
-        <a>FDO type system</a>. They are defined by the <a>FDO Forum</a> and implemented as handles within the
-        <a>Data Type Registry</a> (DTR).
-        These <a>attribute definitions</a> MUST be either reused by <a>FDO implementations</a>, or be mapped to
-        corresponding <a>attribute definitions</a> or similar concepts using another technology (see
-        <a href="#I-attribute-mapping"></a>). This ensures interoperability between
-        different <a>FDO implementations</a> and compliance with the <a>type system</a>.
+        <a>FDO type system</a>. They are defined by the <a>FDO Forum</a> and implemented using Handle-based <a>FDOs</a>
+        within a <a>DTR</a>. According to <a href="#I-attribute-mapping"></a> other implementations SHOULD reuse
+        or map them. This ensures interoperability between different <a>FDO implementations</a> and compliance with the
+        <a>type system</a>.
     </dd>
 
     <dt><h4 class="rule-heading" id="rule-r6_6">[R-Attr-9] <dfn data-lt="

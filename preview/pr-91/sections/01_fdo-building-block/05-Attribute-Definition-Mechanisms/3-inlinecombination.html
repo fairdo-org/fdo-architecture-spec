@@ -5,15 +5,15 @@ An <a>attribute definition</a> MAY be defined to be an <a>inline combination of 
 <em>A<sub>1</sub>,...,A<sub>n</sub></em>, <em>n≥1</em>.
 If an <a>attribute definition</a> is an <a>inline combination</a>, this means that any <a>attribute</a> instantiating this
 <a>attribute definition</a> MUST have as its value a combination of values <em>v<sub>1</sub>,...,v<sub>n</sub></em> that instantiate
-A<sub>1</sub>,...,A<sub>n</sub> (a.k.a. “all of”). The combination of <em>v<sub>1</sub>,...,v<sub>n</sub></em> must respect
+<em>A<sub>1</sub>,...,A<sub>n</sub></em> (a.k.a. “all of”). The combination of <em>v<sub>1</sub>,...,v<sub>n</sub></em> must respect
 the <a>cardinalities</a> of <em>A<sub>1</sub>,...,A<sub>n</sub></em>, as long as those are not restricted further in the
 <a>attribute definition</a> of the <a>inline combination</a> (see <a><em>0.FDO/AllowedAttributeInComb</em></a>).
-The format of this combination (e.g., JSON, JSON-LD, …) may depend on the <a>implementation</a>.
+The format of this combination (e.g., JSON, JSON-LD, …) MAY depend on the <a>implementation</a>.
 
 <p>
     To define an <a>attribute definition</a> as an <a>inline combination</a>, the <a>attribute definition</a> <a>record</a> MUST use the
     <a>profile</a> <a>0.FDO/AttributeDefComb</a>. This <a>profile</a> extends the <a>attribute definition profile</a> with the
-    field <a><em>0.FDO/AllowedAttributeInComb</em></a> (see <a href="#comb-profile">Table 6</a>). This field
+    <a>attribute</a> <a><em>0.FDO/AllowedAttributeInComb</em></a> (see <a href="#comb-profile">Table 6</a>). This <a>attribute</a>
     lists as its values all <a>attribute definitions</a> <em>A<sub>1</sub>,...,A<sub>n</sub></em> that are part of the
     <a>inline combination</a>.
 </p>
@@ -22,7 +22,7 @@ The format of this combination (e.g., JSON, JSON-LD, …) may depend on the <a>i
 <table border="2" id="comb-profile" class="numbered">
     <caption style="caption-side:bottom">
         This table shows the <dfn><em>0.FDO/AttributeDefComb</em></dfn> <a>profile</a>. The <a>profile</a> extends the <a>attribute
-        definition profile</a> (see <a href="#attrDefProfileRecord">Table 3</a>). All fields that are inherited from
+        definition profile</a> (see <a href="#attrDefProfileRecord">Table 3</a>). All <a>attributes</a> that are inherited from
         the <a>attribute definition profile</a> are left out for brevity.
         To define that an <a>attribute definition</a> is an <a>inline combination</a> of other <a>attributes</a>
         <em>A<sub>1</sub>,...,A<sub>n</sub></em>, the <a><em>0.FDO/AllowedAttributeInComb</em></a> must be instantiated in an

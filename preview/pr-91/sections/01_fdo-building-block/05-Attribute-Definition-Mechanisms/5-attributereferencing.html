@@ -2,7 +2,11 @@
     <dfn data-lt="attribute referencing|attribute reference|attribute referencing mechanism">Attribute Referencing</dfn></h4>
 
 <p>
-    <a>Attribute referencing</a> is a generic mechanism for redirecting to one or multiple other <a>attributes</a> in the same record.
+    <a>Attribute referencing</a> is a generic mechanism for delegating the specification of an <a>attribute</a>'s value
+    to one or multiple other <a>attributes</a> in the same <a>FDO record</a>. Hence, it can be understood as pointers
+    to other <a>attributes</a> in the same <a>FDO record</a>.
+</p>
+<p>
     <a>Attribute referencing</a> can, for example, be used to group information for different purposes.
     Or it can be used very similarly to <a>unions</a>, i.e., to state that an <a>attribute</a> is effectively realized through
     one or several other <a>attributes</a> in the <a>record</a>, which follow more specific <a>attribute definitions</a>
@@ -15,19 +19,24 @@
     The reason for this is that data can appear in different forms but need to be deterministically recognizable for a machine:
     <ul>
         <li>
-            Data may be given by a reference to an external <a>bit-sequence</a>.
-            Then, the <a><em>0.FDO/Data</em></a> <a>attribute</a> would
-            have as its value a URL. (<a href="#attr-ref-1"></a>, top-left)
+            Data may be given by a reference to an external <a>bit-sequence</a>. Then, the <a><em>0.FDO/Data</em></a>
+            <a>attribute</a> would have as its value an <a>attribute definition</a> specifying a URL (e.g., <em>0.example/HttpURL</em>).
+            This <a>attribute</a> provides the actual URL of the <a>bit-sequence</a> (<a href="#attr-ref-1"></a> part a)).
         </li>
         <li>
             Data could also be encapsulated in its own <a>FDO</a>, especially if the <a>FDO</a> is a <a>collection</a>.
-            Then, the <a><em>0.FDO/Data</em></a> <a>attribute</a> would have as its value a reference to an <a>FDO</a>,
-            which possibly follows a specific <a>profile</a> (<a href="#attr-ref-1"></a>, top-right).
+            Then, the <a><em>0.FDO/Data</em></a> <a>attribute</a> would have as its value an <a>attribute definition</a>
+            specifying a reference to an <a>FDO</a> which possibly follows a specific <a>profile</a>
+            (e.g., <em>0.example/FdoRef</em>). (<a href="#attr-ref-1"></a> part b)).
         </li>
         <li>
             Data could also be inline in the <a>record</a>.
-            Then, the <a><em>0.FDO/Data</em></a> <a>attribute</a> would have as its value a
-            simple data <a>bit-sequence</a> (<a href="#attr-ref-1"></a>, bottom-left).
+            Then, the <a><em>0.FDO/Data</em></a> <a>attribute</a> would
+            have as its value an <a>attribute definition</a> specifying an inline string (e.g., <em>0.example/InlineData</em>).
+            The value of this <a>attribute</a> would be a simple inline data <a>bit-sequence</a>
+            (<a href="#attr-ref-1"></a> part c)).
+        </li>
+        <li>A <a>record</a> could also contain a mixture of these (or other) approaches (<a href="#attr-ref-1"></a> part d)).
         </li>
     </ul>
     <figure id="attr-ref-1">
@@ -157,6 +166,8 @@ the <a>referencing attribute</a> MAY be ignored to handle this error gracefully 
 <aside class="note" title="Cardinalities in Attribute Referencing">
     The <a>cardinality</a> of the <a>attribute definition</a> that applies <a>attribute referencing</a> only specifies
     the occurrence of the <a>referencing attribute</a> and not the occurrence of the <a>referenced attribute</a>.
+    For example, even though the <a>referencing attribute</a> has a cardinality of 1, the <a>referenced attribute</a>
+    MAY have an arbitrary amount of cardinalities, only limited by its <a>attribute definition</a> and <a>profile</a>.
 </aside>
 
 <aside class="example" title="Attribute Referencing with Labels and Attribute Definitions">
