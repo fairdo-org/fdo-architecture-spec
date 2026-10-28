@@ -1,0 +1,206 @@
+<h4 class="rule-heading" id="rule-attr-ref">[R-Attr-15]
+    <dfn data-lt="attribute referencing|attribute reference|attribute referencing mechanism">Attribute Referencing</dfn></h4>
+
+<p>
+    <a>Attribute referencing</a> is a generic mechanism for delegating the specification of an <a>attribute</a>'s value
+    to one or multiple other <a>attributes</a> in the same <a>FDO record</a>. Hence, it can be understood as pointers
+    to other <a>attributes</a> in the same <a>FDO record</a>.
+</p>
+<p>
+    <a>Attribute referencing</a> can, for example, be used to group information for different purposes.
+    Or it can be used very similarly to <a>unions</a>, i.e., to state that an <a>attribute</a> is effectively realized through
+    one or several other <a>attributes</a> in the <a>record</a>, which follow more specific <a>attribute definitions</a>
+    <em>A<sub>1</sub>,...,A<sub>n</sub></em> or have labels <em>l<sub>1</sub>,...,l<sub>m</sub></em>, <em>m,n≥0</em>.
+    To start with, here is an example:
+</p>
+
+<aside class="example" title="The 0.FDO/Data attribute">
+    The <a>mandatory attribute</a> <a><em>0.FDO/Data</em></a> (and actually also the <a><em>0.FDO/Type</em></a> <a>attribute</a>) apply <a>attribute referencing</a>.
+    The reason for this is that data can appear in different forms but need to be deterministically recognizable for a machine:
+    <ul>
+        <li>
+            Data may be given by a reference to an external <a>bit-sequence</a>. Then, the <a><em>0.FDO/Data</em></a>
+            <a>attribute</a> would have as its value an <a>attribute definition</a> specifying a URL (e.g., <em>0.example/HttpURL</em>).
+            This <a>attribute</a> provides the actual URL of the <a>bit-sequence</a> (<a href="#attr-ref-1"></a> part a)).
+        </li>
+        <li>
+            Data could also be encapsulated in its own <a>FDO</a>, especially if the <a>FDO</a> is a <a>collection</a>.
+            Then, the <a><em>0.FDO/Data</em></a> <a>attribute</a> would have as its value an <a>attribute definition</a>
+            specifying a reference to an <a>FDO</a> which possibly follows a specific <a>profile</a>
+            (e.g., <em>0.example/FdoRef</em>). (<a href="#attr-ref-1"></a> part b)).
+        </li>
+        <li>
+            Data could also be inline in the <a>record</a>.
+            Then, the <a><em>0.FDO/Data</em></a> <a>attribute</a> would
+            have as its value an <a>attribute definition</a> specifying an inline string (e.g., <em>0.example/InlineData</em>).
+            The value of this <a>attribute</a> would be a simple inline data <a>bit-sequence</a>
+            (<a href="#attr-ref-1"></a> part c)).
+        </li>
+        <li>A <a>record</a> could also contain a mixture of these (or other) approaches (<a href="#attr-ref-1"></a> part d)).
+        </li>
+    </ul>
+    <figure id="attr-ref-1">
+        <img alt="Attribute_Referencing_1.png" height="400" src="img/attribute-referencing-1.svg">
+        <figcaption>
+            Four examples for how the <a><em>0.FDO/Data</em></a> <a>attribute definition</a> can be instantiated in
+            <a>FDO records</a>.
+            In all examples, the <em><a><em>0.FDO/Data</em></a></em> <a>attribute</a> references another
+            <a>attribute definition</a> that specifies the way how the data are represented in this <a>FDO</a>.
+        </figcaption>
+    </figure>
+    As <em><a><em>0.FDO/Data</em></a></em> uses <a>attribute referencing</a>, all these different notions of data references can be unified in
+    one common and harmonized <a>attribute definition</a> <em><a><em>0.FDO/Data</em></a></em>.
+    It is essential that the <em><a><em>0.FDO/Data</em></a></em> <a>attribute</a> is not redefined over and over by different <a>implementations</a>.
+    Otherwise, a machine would not be able to know which <a>attribute</a> to inspect to find the data <a>bit-sequence</a> of an
+    <a>FDO</a>, irrespective of the <a>implementation</a>.
+    <a>Attribute referencing</a> provides a harmonized entrypoint (<em><a><em>0.FDO/Data</em></a></em>) for machines to easily
+    detect data (see also <a href="#step10"></a>).
+</aside>
+
+If an <a>attribute definition</a> uses the <a>attribute referencing mechanism</a>, we use the following terms for its
+instantiation:
+<ul>
+    <li>The <a>attribute</a> that instantiates the <a>attribute definition</a> is called the <dfn>referencing attribute</dfn>.</li>
+    <li>The <a>attribute</a> that the <a>referencing attribute</a> is pointing to is called the <dfn>referenced attribute</dfn>.</li>
+</ul>
+See <a href="#attr-ref-2"></a> for an illustration.
+
+<figure id="attr-ref-2">
+    <img alt="Attribute_Referencing_2.png" src="img/attribute-referencing-2.svg">
+    <figcaption>
+        <a>Attribute referencing</a> in its simplest form.
+        The <a>attribute</a> <em>a=(a<sub>def</sub>,a<sub>val</sub>)</em> is the <a>referencing attribute</a> that points
+        to the <a>referenced attribute</a> <em>b=(b<sub>def</sub>, b<sub>val</sub>)</em>.
+    </figcaption>
+</figure>
+
+<p>
+    To register an <a>attribute definition</a> that uses <a>attribute referencing</a> with the
+    allowed <a>attribute definitions</a> <em>A<sub>1</sub>,...,A<sub>n</sub></em> or allowed labels
+    <em>l<sub>1</sub>,...,l<sub>m</sub></em>, the following requirements MUST be fulfilled:
+</p>
+<ul>
+    <li>
+        The <a>attribute definition</a> <a>record</a> MUST use the <a>profile</a> <a>0.FDO/AttributeDefAttrRef</a>
+        (that is, it contains the <a>attribute</a> (<a><em>0.FDO/Profile</em></a>, <a>0.FDO/AttributeDefAttrRef</a>)).
+        This indicates that the <a>attribute definition</a> applies the <a>attribute referencing mechanism</a>.
+    </li>
+    <li>
+        The <a>attribute definition</a> <a>record</a> MAY specify a set of <a>attribute definition</a> <a>PIDs</a>
+        <em>A<sub>1</sub>,...,A<sub>n</sub></em> and/or labels <em>l<sub>1</sub>,...,l<sub>m</sub></em>, <em>m,n≥0</em>.
+        If these <em>A<sub>1</sub>,...,A<sub>n</sub></em> and/or <em>l<sub>1</sub>,...,l<sub>m</sub></em>
+        are specified in the <a>attribute definition</a> <a>record</a>, it means that in an instantiation, the
+        <a>referencing attribute</a> MUST point to a <a>referenced attribute</a> in the same <a>record</a> that
+        instantiates one of
+        <em>A<sub>1</sub>,...,A<sub>n</sub></em> or has one of the labels
+        <em>l<sub>1</sub>,...,l<sub>m</sub></em>. In particular,
+        <ul>
+            <li>(m=0 ,n=0) The <a>referenced attribute</a> MAY be anything.</li>
+            <li>(m=1, n=0) The <a>referenced attribute</a> MUST have the label <em>l<sub>1</sub></em>.</li>
+            <li>(m=0, n=1) The <a>referenced attribute</a> MUST have the <a>attribute definition</a> <em>A<sub>1</sub></em>.</li>
+            <li>(m>0, n>0) The <a>referenced attribute</a> MUST have either one of the <a>attribute definitions</a>
+                <em>A<sub>1</sub>,...,A<sub>n</sub></em> or one of the labels <em>l<sub>1</sub>,...,l<sub>m</sub></em>.
+            </li>
+        </ul>
+    </li>
+    <li>
+        To specify <a>attribute definitions</a> <em>A<sub>1</sub>,...,A<sub>n</sub></em>,
+        the <a>attribute definition</a> <a>record</a> MUST contain the <a>attributes</a>
+        (<a><em>0.FDO/AllowedAttributeInAttrRef</em></a>, <a>PID</a> of <em>A<sub>i</sub></em>) for <em>i=1,...,n</em>.
+        If <em>n=0</em>, this requirement does not apply. See also <a href="#attr-ref-table">Table 8</a>.
+
+    </li>
+    <li>
+        To specify labels <em>l<sub>1</sub>,...,l<sub>m</sub></em>,
+        the <a>attribute definition</a> <a>record</a> MUST contain the <a>attributes</a>
+        (<a><em>0.FDO/AllowedPlainNameInAttrRef</em></a>, <em>l<sub>i</sub></em>) for <em>i=1,...,m</em>.
+        If <em>m=0</em>, this requirement does not apply. See also <a href="#attr-ref-table">Table 8</a>. Specifying
+        labels SHOULD be avoided if it is possible to specify <a>attribute definitions</a> instead.
+    </li>
+</ul>
+
+<div><br/></div>
+<table border="2" id="attr-ref-table" class="numbered">
+    <caption style="caption-side:bottom">
+        This table shows the <dfn><em>0.FDO/AttributeDefAttrRef</em></dfn> <a>profile</a>. The <a>profile</a> extends the <a>attribute
+        definition profile</a> (see <a href="#attrDefProfileRecord">Table 3</a>). All fields that are inherited from
+        the <a>attribute definition profile</a> are left out for brevity.
+        To define that an <a>attribute definition</a> is a <a>attribute reference</a> to one of the <a>attribute definitions</a>
+        <em>A<sub>1</sub>,...,A<sub>n</sub></em> or labels <em>l<sub>1</sub>,...,l<sub>m</sub></em>, the
+        <a><em>0.FDO/AllowedAttributeInAttrRef</em></a> respectively <a><em>0.FDO/AllowedPlainNameInAttrRef</em></a>
+        must be instantiated in the <a>attribute definition</a>, once for each of the
+        <em>A<sub>1</sub>,...,A<sub>n</sub></em> respectively <em>l<sub>1</sub>,...,l<sub>m</sub></em>.
+        This table does not include all information about the <a>attributes</a>.
+        Please resolve the <a>attribute definition</a> <a>PIDs</a> via the Handle System or see the
+        <a href="#appendixAttrsFDOTypeSystem">appendix</a> of this document.
+    </caption>
+    <tr>
+        <th>PID of <a>Attribute Definition</a></th>
+        <th>Description of the <a>attribute</a> values</th>
+        <th><a>Cardinality</a> of the <a>attribute</a></th>
+    </tr>
+    <tr>
+        <td><dfn><em>0.FDO/AllowedAttributeInAttrRef</em></dfn></td>
+        <td>
+            Reference to an <a>attribute definition</a> that is part of the <a>attribute reference</a>.
+        </td>
+        <td>0..*</td>
+    </tr>
+    <tr>
+        <td><dfn><em>0.FDO/AllowedPlainNameInAttrRef</em></dfn></td>
+        <td>
+            A label that is part of the <a>attribute reference</a>.
+        </td>
+        <td>0..*</td>
+    </tr>
+</table>
+<div><br/></div>
+
+In the instantiation of an <a>attribute definition</a> that applies <a>attribute referencing</a>, there MAY be cases of
+consecutive referencing where the <a>referenced attribute</a> itself points to another <a>attribute</a>. All such
+references within an <a>FDO record</a> MUST form a directed acyclic graph (i.e., no loops allowed).
+Furthermore, if the <a>referencing attribute</a> apparently does not point to any <a>referenced attribute</a>,
+the <a>referencing attribute</a> MAY be ignored to handle this error gracefully in certain use cases.
+
+
+<aside class="note" title="Cardinalities in Attribute Referencing">
+    The <a>cardinality</a> of the <a>attribute definition</a> that applies <a>attribute referencing</a> only specifies
+    the occurrence of the <a>referencing attribute</a> and not the occurrence of the <a>referenced attribute</a>.
+    For example, even though the <a>referencing attribute</a> has a cardinality of 1, the <a>referenced attribute</a>
+    MAY have an arbitrary amount of cardinalities, only limited by its <a>attribute definition</a> and <a>profile</a>.
+</aside>
+
+<aside class="example" title="Attribute Referencing with Labels and Attribute Definitions">
+    This example illustrates <a>attribute referencing</a> with labels and with <a>attribute definitions</a>.
+    <ul>
+        <li>In the left image, the <a><em>0.FDO/Data</em></a> attribute uses in its <a>referencing attribute</a>
+            the label <em>URL</em> to point to two <a>referenced attributes</a>.
+            Using simple labels can make sense in a setting where an existing <a>record</a> should be turned into an
+            <a>FDO</a> without changing the original entries (e.g., the <em>URL</em> field).
+            However, no validation of the value can be performed in this case.
+        </li>
+        <li>The right image uses different <a>attribute definitions</a> to describe in depth what kind of metadata
+            can be expected behind the references, including semantics (technical metadata, descriptive metadata, etc.),
+            the metadata format or schema (Dublin Core, etc.), and other information.
+
+        </li>
+    </ul>
+
+    <figure id="attr-ref-3">
+    <img alt="Attribute_Referencing_3.png" src="img/attribute-referencing-3.svg">
+    <figcaption>
+        Examples for <a>attribute referencing</a> with labels (left) and <a>attribute definitions</a> (right).
+    </figcaption>
+</figure>
+
+</aside>
+
+<aside class="note" title="Attribute Referencing vs. Unions">
+    <a>Attribute referencing</a> is very similar to <a>unions of attribute definitions</a>:
+    In both cases, an <a>attribute definition</a> states that its instantiation validates one of several
+    <a>attribute definitions</a>. However, the slight difference is that for <a>attribute referencing</a>, the
+    <a>referencing attribute</a> also states which of the <a>attribute definitions</a> is actually chosen for the
+    <a>referenced attribute</a>, while this is not stated in the case of <a>unions</a>.
+    If compared to programming principles, <a>attribute referencing</a> behaves somewhat like pointers, whereas
+    <a>unions</a> behave like union types.
+</aside>
