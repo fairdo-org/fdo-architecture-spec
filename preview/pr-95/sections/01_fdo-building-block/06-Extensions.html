@@ -66,7 +66,7 @@ This section is normative.
             <tr>
                 <td><dfn>0.FDO/VocabularyFormat</dfn></td>
                 <td>Specifies the format of the vocabulary retrieved using the <a>0.FDO/Data</a> <a>attribute</a> and MUST be one of the following strings: <em>RDF/XML</em>, <em>TTL</em>, <em>N-Triples</em>, <em>N-Quads</em>, or <em>JSON-LD</em>.</td>
-                <td>1</td>
+                <td>0..1</td>
             </tr>
             <tr>
                 <td><dfn>0.FDO/SPARQL_Check</dfn></td>
@@ -74,7 +74,7 @@ This section is normative.
                     A SPARQL query that checks whether a term (securely replaced in the query string using the <em>$TERM$</em> placeholder) is valid in the vocabulary and MUST return a boolean value.
                     This query is executed against the vocabulary retrieved using <a>0.FDO/Data</a>.
                 </td>
-                <td>1</td>
+                <td>0..1</td>
             </tr>
             <tr>
                 <td>0.FDO/Description</td>
@@ -174,7 +174,7 @@ This section is normative.
                 <td>
                     Reference to an <a>FDO</a> that instantiates the <a>0.FDO/VocabularyDef</a> <a>profile</a>.
                 </td>
-                <td>0..*</td>
+                <td>1</td>
             </tr>
             <tr>
                 <td><a><em>0.FDO/SPARQL_Check</em></a></td>
