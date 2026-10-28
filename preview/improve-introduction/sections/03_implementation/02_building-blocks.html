@@ -13,18 +13,22 @@
 </section>
 
 <section>
-    <h4>Attribute Mapping</h4>
+    <h4 id="I-attribute-mapping">Attribute Mapping</h4>
     <dl>
-        <dt>[I2-1] Map mandatory attributes (M)</dt>
+        <dt>[I2-1] Map type system attributes (M)</dt>
         <dd>
-            Map the conceptual mandatory attributes (see Table 2) to real attribute definitions: 0.FDO/Type,
-            0.FDO/Profile, and 0.FDO/Data.
+            The FDO specification defines <a>attributes</a> that build up a <a>type system</a>. Each <a>implementation</a>
+            either has to say that it uses these attributes directly (i.e., that it uses the handle-based <a>implementation</a>
+            of the <a>type system</a>), or it accounts for how the <a>type system</a> is resembled using a different
+            technology. The latter means to map the <a>attributes</a> from the <a>type system</a> to real <a>attributes</a>
+            using the desired <a>implementation</a>.
+            If no new <a>community attributes</a> or <a>profiles</a> should be defined by the given <a>FDO implementation</a>, then it
+            is enough to map <a>0.FDO/Type</a>, <a>0.FDO/Profile</a>, and <a>0.FDO/Data</a>, and <a>0.FDO/Metadata</a>.
+            If new <a>community attributes</a> or <a>profiles</a> should be defined, the relevant parts of the
+            <a>type system</a> must be mapped. The complete <a>type system</a> can be found on
+            <a href="https://github.com/fairdo-org/type_system">Github</a>.
         </dd>
-        <dt>[I2-2] Map optional attributes (R)</dt>
-        <dd>
-            It is recommended to also provide mappings for the conceptual optional attributes (see Table X; to be done).
-        </dd>
-        <dt>[I2-3] Map other attributes (O)</dt>
+        <dt>[I2-2] Define other attributes (O)</dt>
         <dd>Here you can define other attributes that are frequently used by your implementation.</dd>
     </dl>
 </section>

@@ -1,33 +1,31 @@
-<h3 id="step2">[S-2]: Resolution of <a>PIDs</a></h3>
-This process shall resolve the PID using the resolvers from the list of IdentifierResolvers provided by
-<a href="#step1">[S-1]</a>.
+<h3 id="step2">[S-2]: Resolution of PIDs</h3>
+This step assumes that <a href="#step1"></a> has finished successfully and outputted an <em>identifier_resolvers</em>
+list. For the elements of <em>identifier_resolvers</em>, it now attempts to resolve the identifier using the
+different resolvers.
 <dl>
     <dt>Inputs</dt>
     <dd>
         <ul>
-            <li>A list of IdentifierResolvers from <a href="#step1">[S-1]</a></li>
+            <li> A list of objects as outputted by <a href="#step1"></a></li>
             <li>
-                An optional flag TRY_ALL that will try all resolvers. The default is to stop at the first successful
-                resolution.
+                <em>try_all</em>: An optional flag that will try all resolvers. The default is to stop at the first
+                successful resolution.
             </li>
         </ul>
     </dd>
     <dt>Outputs</dt>
-    <dd>For each resolver specified in ResolverList that succeeds, the following information is returned:
+    <dd>A list of objects is returned where each object is of the form:
         <ul>
-            <li>The name of the resolver</li>
-            <li>Resolution status: RESOLVED</li>
-            <li>The PID record</li>
+            <li><em>identifier</em>: the tested identifier</li>
+            <li><em>resolver</em>: the name of the tested resolver</li>
+            <li><em>status</em>: RESOLVED or NOT_RESOLVED</li>
+            <li><em>pid_record</em>: the <a>PID record</a>, if resolution was successful </li>
+            <li><em>error_message</em>: the resolvers error message if any, if resolution was not successful</li>
         </ul>
-        <p>If the resolution is not successful:</p>
-        <ul>
-            <li>The name of the resolver</li>
-            <li>Resolution status: NOT_RESOLVED</li>
-            <li>The resolvers error message if any</li>
-        </ul>
-    </dd>
+
     <dt>Expected behavior</dt>
-    <dd>The process will try each resolver until one is successful or, if specified by TRY_ALL, all resolvers.
-        This process will return each resolver’s respective PID record. The process MUST prevent false positives.
+    <dd>For each element of <em>identifier_resolvers</em>, the process will try each resolver on the identifier until one is
+        successful or, if specified by <em>try_all</em>, it will try all resolvers. This process will return each resolver’s
+        respective <a>PID record</a>. The process must prevent false positives.
     </dd>
 </dl>

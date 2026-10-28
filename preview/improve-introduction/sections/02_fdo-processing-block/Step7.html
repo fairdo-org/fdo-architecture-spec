@@ -1,4 +1,4 @@
-<h3 id="step7">[S-7]: <a>FDO Profile</a> <a>Cardinality</a> <a>Validation</a></h3>
+<h3 id="step7">[S-7]: FDO Profiles Validation</h3>
 <p>
     Each <a>attribute definition</a> specifies a <a>cardinality</a> with which the respective <a>attribute</a> is allowed
     to occur in an <a>FDO record</a>. If an <a>attribute definition</a> is part of a <a>profile</a>, the
@@ -17,14 +17,23 @@
 <dl>
     <dt>Inputs</dt>
     <dd>
-        The inputs consist of the <a>FDO record</a>, and a list of the <a>FDO profiles</a> to validate the
-        <a>FDO record</a> against. Typically, this is the list of <a>profiles</a> that was returned in <a href="#step6"></a>.
+        <ul>
+            <li>
+                an <a>FDO record</a>: This step expects exactly one well-structured <a>FDO record</a>. Typically, this
+                is the output of <a href="#step3"></a>.
+            </li>
+            <li>
+                a list of the <a>FDO profiles</a> to validate the <a>FDO record</a> against. Typically, this is the
+                <em>profile_matching</em> list that was returned in <a href="#step6"></a>.
+            </li>
+        </ul>
+
     <dt>Outputs</dt>
     <dd>
-        The output is a list of Validated_Profile. A Validated_Profile consists of the following:
+        The output is a list of <em>validated_profile</em>. A <em>validated_profile</em> consists of the following:
         <ul>
-            <li>Profile <a>PID</a>: <a>PID</a> of the <a>FDO profile</a> to be validated</li>
-            <li>Profile_Validation_Status:
+            <li><em>pid</em>: <a>PID</a> of the <a>FDO profile</a> to be validated</li>
+            <li><em>status</em>:
                 <ul>
                     <li>VALID:
                         All <a>attributes</a> are properly often repeated in the <a>record</a> with respect to
@@ -40,7 +49,7 @@
                     </li>
                 </ul>
             </li>
-            <li>Attributes_In_Profile: A list with each element being a combination of
+            <li><em>attributes_in_profile</em>: A list with each element being a combination of
                 <ul>
                     <li>
                         the <a>PID</a> of an <a>attribute definition</a> found in the <a>FDO profile</a> and
@@ -51,7 +60,7 @@
                     </li>
                 </ul>
             </li>
-            <li>Valid_Attributes: A list with each element being a combination of
+            <li><em>valid_attributes</em>: A list with each element being a combination of
                 <ul>
                     <li>
                         the <a>PID</a> of an <a>attribute definition</a> found in the <a>FDO profile</a> that has the
@@ -63,7 +72,7 @@
                 </ul>
                 Empty list when INVALID.
             </li>
-            <li>Invalid_Attributes: A list with each element being a combination of
+            <li><em>invalid_attributes</em>: A list with each element being a combination of
                 <ul>
                     <li>
                         the <a>PID</a> of an <a>attribute definition</a> found in the <a>FDO profile</a> that does not
@@ -81,18 +90,18 @@
     <dt>Expected behavior</dt>
 
     <dd>
-        This step shall process each <a>FDO profile</a> selected from the <a>FDO record</a> during <a href="#step6"></a>
-        and create a list of Validated_Profile specifying how the <a>FDO record</a> conforms to each of the
+        This step shall process each <a>FDO profile</a>
+        and create a list of <em>validated_profile</em> specifying how the <a>FDO record</a> conforms to each of the
         <a>FDO profile</a>’s <a>attribute definitions</a>.
 
-        <p>The following describes the expected behavior for a given <a>FDO profile</a> to generate the Validated_Profile.
+        <p>The following describes the expected behavior for a given <a>FDO profile</a> to generate the <em>validated_profile</em>.
         </p>
         <ol>
             <li>
                  For each <a>FDO profile</a> selected, the process will get the list of its <a>attribute definitions</a> and
-                store them in the Attributes_In_Profile list. Then, it checks whether each <a>attribute</a>'s cardinality is
-                restricted by the profile. If not, the original <a>cardinality</a> (from the <a>attribute definition</a>)
-                is written to the Attributes_In_Profile list, else the new restricted <a>cardinality</a>.
+                store them in the <em>attributes_in_profile</em> list. Then, it checks whether each <a>attribute</a>'s cardinality is
+                restricted by the <a>profile</a>. If not, the original <a>cardinality</a> (from the <a>attribute definition</a>)
+                is written to the <em>attributes_in_profile</em> list, else the new restricted <a>cardinality</a>.
                 <p>
                 If the <a>FDO profile</a> cannot be mapped to a valid list of <a>attribute definitions</a> and
                 <a>cardinalities</a>, the process instead throws one of the following exceptions:
@@ -107,34 +116,34 @@
                 </ul>
             </li>
             <li>The <a>FDO record</a> contains all the <a>attributes</a> given in the <a>profile</a> with the proper
-                number of occurrences. The outputs (additional to Attributes_In_Profile) are:
+                number of occurrences. The outputs (additional to <em>attributes_in_profile</em>) are:
                 <ul>
-                    <li>Profile_Validation_Status: VALID</li>
-                    <li>Valid_Attributes: contains the list of all found <a>attributes</a> together with their
+                    <li><em>status</em>: VALID</li>
+                    <li><em>valid_attributes</em>: contains the list of all found <a>attributes</a> together with their
                         occurrences</li>
-                    <li>Invalid_Attributes: empty</li>
+                    <li><em>invalid_attributes</em>: empty</li>
                 </ul>
             </li>
             <li>
                 The <a>FDO record</a> contains some of the <a>attributes</a> given in the <a>profile</a> with the proper
                 number of occurrences, and some with the wrong number of occurrences. The outputs (additional to
-                Attributes_In_Profile) are
+                <em>attributes_in_profile</em>) are
                 <ul>
-                    <li>Profile_Validation_Status: PARTIALLY_VALID</li>
-                    <li>Valid_Attributes: contains the list of valid <a>attributes</a> together with their number of
+                    <li><em>status</em>: PARTIALLY_VALID</li>
+                    <li><em>valid_attributes</em>: contains the list of valid <a>attributes</a> together with their number of
                         occurrences.
                     </li>
-                    <li>Invalid_Attributes: contains the list of invalid <a>attributes</a> together with their number of
+                    <li><em>invalid_attributes</em>: contains the list of invalid <a>attributes</a> together with their number of
                         occurrences.</li>
                 </ul>
             </li>
             <li>
                 The <a>FDO record</a> does not contain any of the <a>attributes</a> given in the <a>profile</a> with the
-                proper number of occurrences. The outputs are:
+                proper number of occurrences. The outputs (additional to <em>attributes_in_profile</em>) are:
                 <ul>
-                    <li>Profile_Validation_Status: INVALID</li>
-                    <li>Valid_Attributes: empty</li>
-                    <li>Invalid_Attributes: contains the list of all found <a>attributes</a> together with their
+                    <li><em>status</em>: INVALID</li>
+                    <li><em>valid_attributes</em>: empty</li>
+                    <li><em>invalid_attributes</em>: contains the list of all found <a>attributes</a> together with their
                         occurrences</li>
                 </ul>
             </li>
@@ -172,7 +181,7 @@
         </tr>
         <tr>
             <th scope="row">0.FDO/Description</th>
-            <td>A profile to descibe a generic file.</td>
+            <td>A profile to describe a generic file.</td>
         </tr>
         <tr>
             <th scope="row">0.FDO/Extends</th>
@@ -200,7 +209,7 @@
 
     <br/>
 
-    The <a>attribute definitions</a> in the <a>profile</a> have the following cardinalities defined in their respective
+    The <a>attribute definitions</a> in the <a>profile</a> have the following <a>cardinalities</a> defined in their respective
     <a>records</a> (which are not displayed themselves here for brevity):
         <ul>
             <li>0.FDO/Type, 0.FDO/Profile, 0.FDO/Data: 1..* (these <a>attributes</a> are pulled from the <a>root profile</a> 0.FDO/Root)</li>
@@ -210,9 +219,9 @@
             <li>0.example/PublishingDate: 1</li>
         </ul>
     The <a>profile</a> itself restricts the number of authors to exactly 1 (instead of 1..* as in the
-    <a>attribute definition</a>). This gives the Attributes_In_Profile list:
+    <a>attribute definition</a>). This gives the attributes_in_profile list:
     <ul>
-        <li>Attributes_In_Profile: [(0.FDO/Type, 1..*), (0.FDO/Profile, 1..*), (0.FDO/Data, 1..*), (0.FDO/Description, 0..*), (0.example/Author, 1),
+        <li>attributes_in_profile: [(0.FDO/Type, 1..*), (0.FDO/Profile, 1..*), (0.FDO/Data, 1..*), (0.FDO/Description, 0..*), (0.example/Author, 1),
     (0.example/Project, 0..5), (0.example/PublishingDate, 1)].</li>
     </ul>
 
@@ -241,7 +250,7 @@
         </tr>
         <tr>
             <th scope="row">0.example/HttpUrl</th>
-            <td>www.my-file.com</td>
+            <td>https://www.my-server.example/my-file</td>
         </tr>
         <tr>
             <th scope="row">0.example/Description</th>
@@ -276,8 +285,8 @@
     publishing date is missing. The experiment number is ignored because it is not in the <a>profile</a>.
     The <a>validation</a> result would be:
     <ul>
-        <li>Profile_Validation_Status: PARTIALLY_VALID</li>
-        <li>Valid_Attributes: [(0.FDO/Type, 1), (0.FDO/Profile, 1), (0.FDO/Data, 1), (0.FDO/Description, 1), (0.example/Project, 2)</li>
-        <li>Invalid_Attributes: [(0.example/Author, 2), (0.example/PublishingDate, 0)]</li>
+        <li>status: PARTIALLY_VALID</li>
+        <li>valid_attributes: [(0.FDO/Type, 1), (0.FDO/Profile, 1), (0.FDO/Data, 1), (0.FDO/Description, 1), (0.example/Project, 2)</li>
+        <li>invalid_attributes: [(0.example/Author, 2), (0.example/PublishingDate, 0)]</li>
     </ul>
 </aside>

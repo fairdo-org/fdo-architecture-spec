@@ -18,7 +18,7 @@
     </dt>
     <dd>
         <p>
-            A <a>FDO record</a> consists of a finite number of <a>FDO attributes</a> (short: <a>attributes</a>). Each
+            A <a>FDO record</a> consists of a finite number of <dfn data-lt="FDO attribute|attribute|attributes">FDO attributes</dfn> (short: <a>attributes</a>). Each
             <a>attribute</a> instantiates properties of the identified <a>resource</a>. As such, an <a>attribute</a>
             consists of at least a label for the property and a value. The property MAY be further enriched with
             additional semantics and <a>validation</a> rules (see <a>attribute definitions</a>). Properties do NOT need
@@ -31,6 +31,13 @@
             in this document are met. The upper limit on the number of <a>tuples</a> per <a>record</a> depends on the specific
             <a>implementation</a> .
         </p>
+        <aside class="note" title="Representation of Attributes">
+            In more detail, in this specification, <a>attributes</a> are represented as 2-<a>tuples</a> with the first
+            element of the <a>tuple</a> being a <a>PID</a> that resolves to an <a>attribute definition</a>, and the
+            second element (called value) is any literal complying with the <a>attribute definition</a> (see also the
+            tables and examples in this document). <a>FDO implementations</a> may represent their <a>attributes</a>
+            differently.
+        </aside>
     </dd>
 
     <dt>

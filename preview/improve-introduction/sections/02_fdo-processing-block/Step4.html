@@ -1,47 +1,52 @@
-<h3 id="step4">[S-4]: Locating mandatory attributes in <a>FDO record</a></h3>
+<h3 id="step4">[S-4]: Locating Mandatory Attributes in the FDO Record</h3>
 <p>
-    This step validates the <a>FDO record</a> according to the <a>FDO root profile</a>.
+    This step assumes that <a href="#step3"></a> successfully returned an <a>FDO record</a>.
+    It validates the <a>FDO record</a> according to the <a>FDO root profile</a>.
     Specifically, it verifies that all required <a>FDO root profile</a> <a>attributes</a> are present within the <a>FDO record</a>.
     This method returns an integer status reflecting the degree of validation.
 </p>
 <dl>
     <dt>Inputs:</dt>
     <dd>
-        This step expects the output of <a href="#step3"></a>: exactly one well-structured <a>FDO record</a>.
-        The input MUST NOT be blank.
+        <ul>
+            <li>
+                an <a>FDO record</a>: This step expects exactly one well-structured <a>FDO record</a>. Typically, this
+                is the output of <a href="#step3"></a>.
+            </li>
+        </ul>
+
     </dd>
 
     <dt>Outputs:</dt>
-    <dd>A status Mandatory_Attributes_Status reflecting the success, partial success, and error when trying to
-        find the <a>FDO root profile</a> <a>attributes</a> in the <a>FDO record</a>. The status may have the following
-        values:
+    <dd>A status that reflects the success, partial success, and error when trying to find the <a>FDO root profile</a>
+        <a>attributes</a> in the <a>FDO record</a>. The status may have the following values:
         <ul>
             <li>
-                COMPLETE (integer value of 0) to indicate that all the <a>FDO root profile</a> fields
-                (<a><em>0.FDO/Type</em></a>, <a><em>0.FDO/Profile</em></a>, and <a><em>0.FDO/Data</em></a>)
-                were successfully found.
-                With such a status, the <a>FDO</a> processing has all the information it needs to proceed to the next step.
+                COMPLETE (integer value of 0): All the <a>FDO root profile</a> fields (<a><em>0.FDO/Type</em></a>,
+                <a><em>0.FDO/Profile</em></a>, and <a><em>0.FDO/Data</em></a>) were successfully found.
+                With such a status, the <a>FDO</a> processing has all the information it needs to proceed to the next
+                steps.
             </li>
             <li>
-                TYPE_MISSING (integer value of 1) to indicate that <a><em>0.FDO/Type</em></a> is missing.
+                TYPE_MISSING (integer value of 1): <a><em>0.FDO/Type</em></a> is missing.
             </li>
             <li>
-                PROFILE_MISSING (integer value of 2) to indicate that <a><em>0.FDO/Profile</em></a> is missing.
+                PROFILE_MISSING (integer value of 2): <a><em>0.FDO/Profile</em></a> is missing.
             </li>
             <li>
-                DATA_MISSING (integer value of 3) to indicate that <a><em>0.FDO/Data</em></a> is missing.
+                DATA_MISSING (integer value of 3): <a><em>0.FDO/Data</em></a> is missing.
             </li>
             <li>
-                TYPE_ONLY (integer value of 4) to indicate that only <a><em>0.FDO/Type</em></a> was found.
+                TYPE_ONLY (integer value of 4): Only <a><em>0.FDO/Type</em></a> was found.
             </li>
             <li>
-                PROFILE_ONLY (integer value of 5) to indicate that only the <a><em>0.FDO/Profile</em></a> was found.
+                PROFILE_ONLY (integer value of 5): Only the <a><em>0.FDO/Profile</em></a> was found.
             </li>
             <li>
-                DATA_ONLY (integer value of 6) to indicate that only the <a><em>0.FDO/Data</em></a> was found.
+                DATA_ONLY (integer value of 6): Only the <a><em>0.FDO/Data</em></a> was found.
             </li>
             <li>
-                NON_COMPLIANT (integer value of -1) indicates that the <a>FDO root profile</a> <a>attributes</a> were
+                NON_COMPLIANT (integer value of -1): The <a>FDO root profile</a> <a>attributes</a> were
                 not found. At this point, the <a>FDO record</a> cannot be further processed as an <a>FDO</a>.
             </li>
         </ul>
@@ -65,7 +70,7 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <th scope="row"><a>0.FDO/Type</a></th>
+                    <th scope="row">0.FDO/Type</th>
                     <td>0.example/ResourceTypeGeneral</td>
                 </tr>
                 <tr>
@@ -73,21 +78,21 @@
                     <td>0.example/Concept</td>
                 </tr>
                 <tr>
-                    <th scope="row"><a><em>0.FDO/Profile</em></a></th>
-                    <td>10.123/Profile1</td>
+                    <th scope="row">0.FDO/Profile</th>
+                    <td>20.123/Profile1</td>
                 </tr>
                 <tr>
-                    <th scope="row"><a><em>0.FDO/Data</em></a>
+                    <th scope="row">0.FDO/Data
                     </th>
                     <td>self</td>
                 </tr>
                 <tr>
-                    <th scope="row"><em>0.FDO/Name</em>
+                    <th scope="row">0.FDO/Name
                     </th>
                     <td>Test <a>FDO</a></td>
                 </tr>
                 <tr>
-                    <th scope="row"><em>0.FDO/Description</em>
+                    <th scope="row">0.FDO/Description
                     </th>
                     <td><a>FDO</a> Test Demonstration</td>
                 </tr>

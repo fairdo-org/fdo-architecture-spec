@@ -1,38 +1,43 @@
-<h3 id="step3">[S-3]: <a>PID</a> Record Parsing into an <a>FDO record</a></h3>
-This step takes a <a>PID record</a> from <a href="#step2">[S-2]</a> and MUST convert it into a set of <a>FDO attributes</a>.
+<h3 id="step3">[S-3]: Parsing the PID Record into FDO Attributes</h3>
+This step assumes that <a href="#step2"></a> successfully returned at least one <a>PID record</a>, which it converts
+into a set of <a>FDO attributes</a>.
 <dl>
     <dt>Inputs</dt>
     <dd>
-        This step expects exactly one syntactically valid <a>PID record</a> in the format of choosing of the identifier
-        technology. The input MUST NOT be blank. Typically, this is the output of <a href="#step2"></a>.
+        <ul>
+            <li>a <a>PID record</a>: This step expects exactly one syntactically valid <a>PID record</a> in the format
+                of choosing of the identifier technology. Typically, this is the output of <a href="#step2"></a>.</li>
+        </ul>
+
     </dd>
 
     <dt>Outputs</dt>
     <dd>
         The result of this step is an <a>FDO record</a> with all its individual <a>FDO attributes</a> parsed.
         At this point, the information inside the <a>record</a> and its <a>attributes</a> is not yet validated against
-        the <a>attribute definitions</a> and <a>profiles</a>. Typically, the <a>FDO record</a> consists out of the
+        the <a>attribute definitions</a> and <a>profiles</a>. The output is an object that consists out of the
         following information:
         <ul>
-            <li>The <a>PID</a> the <a>record</a> was resolved with.</li>
-            <li>A list of <a>FDO attributes</a> in form of tuples.</li>
+            <li><em>pid</em>: The <a>PID</a> the <a>record</a> was resolved with.</li>
+            <li><em>attributes</em>: A list of <a>FDO attributes</a> in form of tuples.</li>
         </ul>
-        <p>
-            Any other information extracted from the <a>PID record</a> such as intrinsic metadata are not requirements
-            of the specification but will be described within the respective <a>implementation profile</a>.
-            Examples are time stamps of resolution in [[!RFC3339]] format, a time to live (TTL), and possibly other
-            implementation-specific fields.
-        </p>
+
     </dd>
     <dt>Expected behavior</dt>
     <dd>
         This step is expected to transform a valid <a>PID record</a> into a valid <a>FDO record</a>.
         The concrete realization is specific to every <a>FDO implementation</a>.
-        This step MUST terminate within a reasonable timeframe (e.g., of < 10 ms).
+        This step must terminate within a reasonable timeframe (e.g., of < 10 ms).
         It is not intended to perform network requests, or if it does, it caches the information for efficiency purposes.
-        This step only extracts <a>FDO attributes</a> out of the <a>PID record</a> and discards the remainder of the
-        <a>PID record</a>.
-        If needed, some <a>PID</a> technology-specific information MAY be transformed into <a>FDO attributes</a>.
+        <p>
+            This step only extracts <a>FDO attributes</a> out of the <a>PID record</a> and discards the remainder of the
+            <a>PID record</a>. If needed, some <a>PID</a> technology-specific information MAY be transformed into
+            <a>FDO attributes</a>.
+            Any other information extracted from the <a>PID record</a> such as intrinsic metadata are not requirements
+            of the specification but will be described within the respective <a>implementation profile</a>.
+            Examples are time stamps of resolution in [[!RFC3339]] format, a time to live in seconds, and possibly other
+            implementation-specific fields.
+        </p>
         The validation of the contents occurs in a later step (see <a href="#step5"></a>).
     </dd>
 </dl>
