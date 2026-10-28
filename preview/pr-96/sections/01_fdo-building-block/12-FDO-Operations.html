@@ -1,0 +1,82 @@
+<h3 id="operations">FDO Operations</h4>
+<p>
+    <a>Types</a> MAY be used to associate <a>FDOs</a> with <a>operations</a>.
+    The specification of <a>FDO operations</a> is still in an early state and not yet completely understood.
+    A more comprehensive list of requirements beyond <a href="#rule-ops_1"></a> – <a href="#rule-ops_4"></a> will be
+    included in a later version of this document.
+    However, the specification of how to associate <a>FDO operations</a> with
+    <a>FDOs</a> which they are able to act on is already more elaborate.
+</p>
+<dl>
+    <dt>
+        <h4 class="rule-heading" id="rule-ops_1">[DRAFT-OPS-1] <dfn data-lt="Operation">FDO Operation</dfn> Definition</h4>
+    </dt>
+    <dd>
+        <a>FDO</a> operations (short: operations) are procedures that can be invoked on <a>FDOs</a> to create,
+        manipulate or
+        delete <a>FDO record</a>(s), <a>bit-sequence(s)</a>, or trigger other related activities.
+    </dd>
+
+    <dt>
+        <h4 class="rule-heading" id="rule-ops_2">[DRAFT-OPS-2] Operation Interface</h4>
+    </dt>
+    <dd>
+        <a>Operations</a> abstract and encapsulate their concrete implementation details by providing a uniform
+        interface
+        that at least defines their input parameters, output parameters, and how the operation SHOULD be executed.
+        This enables execution of operations in arbitrary, possibly restricted environments.
+    </dd>
+
+    <dt>
+        <h4 class="rule-heading" id="rule-ops_3">[DRAFT-OPS-3] <a>Operations</a> as <a>FDOs</a></h4>
+    </dt>
+    <dd>
+        Operations MUST themselves be represented as <a>FDOs</a>.
+        Hence, they are identified by a <a>PID</a> that resolves into an
+        <a>FDO record</a> consisting of <a>attributes</a>.
+    </dd>
+
+    <dt>
+        <h4 class="rule-heading" id="rule-ops_4">[DRAFT-OPS-4] <dfn>Operation Definition Profile</dfn></h4>
+    </dt>
+    <dd>
+        An <a>operation definition profile</a> <a><em>0.FDO/OperationDef</em></a> which specifies a minimal set of
+        <a>attributes</a> that an operation MUST defines does not exist yet but may be specified in the
+        future.
+    </dd>
+
+    <dt>
+        <h4 class="rule-heading" id="rule-ops_5">[DRAFT-OPS-5] Operation Association</h4>
+    </dt>
+    <dd>
+        To associate an <a>operation</a> with an <a>FDO</a>, types SHOULD be used (i.e., <a>FDO attribute</a>(s), <a>FDO
+            Profile</a>(s) and the
+        <a>FDO type</a>(s) as defined in <a href="#0.FDO-Type"></a>).
+        In detail, to associate an operation with an <a>FDO</a>, (at least)
+        one of the following operation association mechanisms SHOULD be applied:
+        <ul>
+            <li>
+                The <a>FDO record</a> refers to applicable <a>operations</a> for this <a>FDO</a> via a designated
+                <a>attribute</a>.
+            </li>
+            <li>
+                The <a>FDO profile</a> refers to applicable <a>operations</a> for any <a>FDO</a> complying to this
+                <a>profile</a> via a
+                designated <a>attribute</a>.
+            </li>
+            <li>
+                The <a>attributes</a> available in an <a>FDO record</a> are matched with applicable <a>operations</a>
+                and the <a>attributes</a>
+                they require.
+            </li>
+        </ul>
+        More information on the <a>operation</a> association mechanisms is available in the paper [[FDO-Operations]].
+    </dd>
+
+    <dt>
+        <h4 class="rule-heading" id="rule-ops_6">[DRAFT-OPS-6] List Operations</h4>
+    </dt>
+    <dd> Providing an operation to list available <a>operations</a> for specific <a>FDO types</a> is strongly
+        RECOMMENDED.
+    </dd>
+</dl>
