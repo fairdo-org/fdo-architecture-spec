@@ -1,38 +1,29 @@
 <p>
-  The granularity of FDOs depends on the pragmatic utility decisions made
-  within communities of practice. In order to represent resources as FDOs,
-  it is necessary to decide what useful entities should be worked with in the
-  relevant application field, and how these entities should be connected to
-  each other. An example is MRI scans of the brain. One option is to create one
-  FDO for the entire set of slices. Another option is to create one FDO for each
-  slice, with attributes indicating which slice it is. Whatever the initial
-  decision is, it can be revised later by either breaking up the bit sequence(s)
-  of a given FDO into parts and creating new FDOs to represent these parts, or by
-  aggregating individual FDOs into collections, which are also FDOs.
+  The granularity of <a>FDOs</a> depends on the pragmatic utility decisions made
+  within communities of practice. In order to represent a resource as an <a>FDO</a>,
+  it is necessary to decide which of the resource's parts to use, how they are to be described in
+  the <a>FDO</a> using relevant <a>FDO Profiles</a>, <a>FDO Types</a> and <a>FDO attributes</a>, 
+  and how these parts should be related to each other. 
 </p>
+<aside class="example" title="Example of a granularity decision">
+  An example is an MRI scan of the brain. One option is to create one
+  <a>FDO</a> for the entire set of slices. Another option is to create an <a>FDI</a> for each slice, and create a <a>collection FDO</a> referencing all of them.  
+  Regardless of the initial granularity decision, it can be revised later to according to the new granularity requirements.
+</aside>
 <p>
   The detailed requirements on granularity are:
 <dl>
-  <dt>[R2-1]</dt>
-  <dd> Each FDO represents exactly one resource. The resource MAY be complex, that is, it MAY
-    consist of multiple other resources.
+  <dt>[R-GRN-1]</dt>
+  <dd> Each <a>FDO</a> MUST represent exactly one logical resource.
   </dd>
-  <dt>[R2-2]</dt>
-  <dd> If an FDO represents a resource which consists of multiple parts that are interpreted as
-    resources in their own right, this FDO is called a collection. The decision which parts are
-    interpreted as resources in their own right (and hence MAY be represented as their own FDOs) is
-    dependent on pragmatic utility decisions within communities of practices.
+  <dt>[R-GRN-2]</dt>
+  <dd> A Resource can be anything such as bit stream, a digital representation of a physical object, a concept or anything a community of interest wants to make accessible as an FDO.
   </dd>
-  <dt>[R2-3]</dt>
-  <dd> A resource MUST be described by FDO attributes (see <a href="#attributes"></a>) and it MAY have associated
-    data bit-sequence(s). As an example, digital twins of physical objects, or FDOs such as profiles or
-    attribute definitions MAY not necessarily have associated data bit-sequence(s).
+  <dt>[R-GRN-3]</dt>
+  <dd> If an <a>FDO</a> represents a resource consisting of multiple resource it MUST be structured as a <a>collection</a>.  It is called a <a>collection FDO</a>.
   </dd>
-  <dt>[R2-4]</dt>
-  <dd> Every FDO attribute in an FDO record only describes the identified resource and not any
-    other resources. Even if the FDO is a collection, all attributes in the FDO record describe the
-    resource as a whole and not its parts. To describe one of the parts of the resource with FDO attributes,
-    this part needs to be wrapped into its own FDO record.
+  <dt>[R-GRN-4]</dt>
+  <dd> An <a>FDO</a>'s attributes (see <a href="#attributes"></a>) MUST describe the <a>FDO</a>s associated resource or collection of resources. 
   </dd>
 </dl>
 </p>
