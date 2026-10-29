@@ -3,7 +3,7 @@
 This section is normative.
 
 <dl>
-    <dt><h4 class="rule-heading" id="rule-r5_4">[R-Attr-1]
+    <dt><h4 class="rule-heading" id="rule-r5_4">[R-ATTR-1]
         <dfn data-lt="FDO attribute definition|FDO attribute definitions|attribute definition|attribute definitions|attribute definition FDO|attribute definition FDOs">Attribute Definitions</dfn> are FDOs</h4></dt>
     <dd>
         <a>FDO attribute definitions</a> (short: <a>attribute definitions</a>) are themselves <a>FDOs</a>.
@@ -12,7 +12,7 @@ This section is normative.
         in all <a>FDO records</a> it is instantiated in.
     </dd>
 
-    <dt><h4 class="rule-heading" id="rule-r5_6">[R-Attr-2] Semantics of Attribute Definitions</h4></dt>
+    <dt><h4 class="rule-heading" id="rule-r5_6">[R-ATTR-2] Semantics of Attribute Definitions</h4></dt>
     <dd>
         <a>Attribute definitions</a> describe the semantics of an <a>attribute</a> using the <dfn>0.FDO/Name</dfn> and
         <dfn>0.FDO/Description</dfn> <a>attributes</a>.
@@ -22,7 +22,7 @@ This section is normative.
         external <a>resources</a> and provide additional context for the semantics of the <a>attribute</a>.
     </dd>
 
-    <dt><h4 class="rule-heading" id="rule-r5_7">[R-Attr-3] <dfn data-lt="cardinality|cardinalities|attribute cardinality">Cardinality of Attribute Definitions</dfn></h4></dt>
+    <dt><h4 class="rule-heading" id="rule-r5_7">[R-ATTR-3] <dfn data-lt="cardinality|cardinalities|attribute cardinality">Cardinality of Attribute Definitions</dfn></h4></dt>
     <dd>
         An <a>attribute definition</a> MUST specify the <a>cardinality</a> of an <a>attribute</a> using the
         <dfn>0.FDO/Cardinality</dfn> <a>attribute</a>. The <a>cardinality</a>
@@ -39,7 +39,7 @@ This section is normative.
         </ul>
     </dd>
 
-    <dt><h4 class="rule-heading" id="cardinality-restriction">[R-Attr-4] <dfn>Cardinality Restriction</dfn></h4></dt>
+    <dt><h4 class="rule-heading" id="cardinality-restriction">[R-ATTR-4] <dfn>Cardinality Restriction</dfn></h4></dt>
     <dd>
         If an <a>attribute definition</a> is used in a <a>profile</a> or in an <a>inline combination</a>, the
         <a>cardinality</a> of instantiating <a>attributes</a> MAY be restricted compared to the <a>cardinality</a>
@@ -60,7 +60,7 @@ This section is normative.
         It is NOT possible to extend a <a>cardinality</a>.
     </dd>
 
-    <dt><h4 class="rule-heading" id="rule-r5_12">[R-Attr-5] <dfn data-lt="0.FDO/AttributeDef|Attribute Definition Profile">FDO Attribute Definition Profile</dfn></h4></dt>
+    <dt><h4 class="rule-heading" id="rule-r5_12">[R-ATTR-5] <dfn data-lt="0.FDO/AttributeDef|Attribute Definition Profile">FDO Attribute Definition Profile</dfn></h4></dt>
     <dd>
         The <a>FDO attribute definition profile</a> defines a set of <a>attribute definitions</a> that MUST be instantiated
         in the <a>FDO record</a> of every <a>attribute definition</a>.
@@ -139,7 +139,7 @@ This section is normative.
 </table>
     </dd>
 
-    <dt><h4 class="rule-heading" id="rule-r-attr-5">[R-Attr-6] <dfn data-lt="attribute validation mechanisms|validation mechanism|validation mechanisms">Attribute Validation Mechanisms</dfn></h4></dt>
+    <dt><h4 class="rule-heading" id="rule-r-attr-5">[R-ATTR-6] <dfn data-lt="attribute validation mechanisms|validation mechanism|validation mechanisms">Attribute Validation Mechanisms</dfn></h4></dt>
     <dd>
         <p>
             An <a>attribute definition</a> MAY specify <a>validation</a> rules on the value of any <a>attributes</a>
@@ -163,7 +163,7 @@ This section is normative.
         <a>FDO implementations</a> MAY define additional <a>attribute validation mechanisms</a> if required.
     </dd>
 
-    <dt><h4 class="rule-heading" id="rule-r-attr-6">[R-Attr-7] Combining Attribute Validation Mechanisms</h4></dt>
+    <dt><h4 class="rule-heading" id="rule-r-attr-6">[R-ATTR-7] Combining Attribute Validation Mechanisms</h4></dt>
     <dd>
         An <a>attribute definition</a> MAY use several <a>attribute validation mechanisms</a> at the same time. In this
         case, the <a>attribute definition</a> MUST contain the <a>profiles</a> of all the mechanisms that are used.
@@ -173,14 +173,14 @@ This section is normative.
         <a>attribute validation mechanism</a> MUST apply. The default is <em>allof</em>.
     </dd>
 
-    <dt><h4 class="rule-heading" id="rule-r-attr-7">[R-Attr-8] Additional Attributes in Attribute Definitions</h4></dt>
+    <dt><h4 class="rule-heading" id="rule-r-attr-7">[R-ATTR-8] Additional Attributes in Attribute Definitions</h4></dt>
     <dd>
         <a>Attribute definition</a> <a>records</a> MAY have additional <a>attributes</a> and instantiate additional
         <a>profiles</a> for any reason. This SHOULD be used to relate <a>attribute definitions</a> to existing external
         <a>resources</a> such as vocabularies, ontologies, or terminologies.
     </dd>
 
-    <dt><h4 class="rule-heading" id="rule-r5_14">[R-Attr-9] <dfn data-lt="
+    <dt><h4 class="rule-heading" id="rule-r5_14">[R-ATTR-9] <dfn data-lt="
         type system attribute definition|
         type system attribute|
         type system attributes|
@@ -194,7 +194,7 @@ This section is normative.
         <a>type system</a>.
     </dd>
 
-    <dt><h4 class="rule-heading" id="rule-r6_6">[R-Attr-10] <dfn data-lt="
+    <dt><h4 class="rule-heading" id="rule-r6_6">[R-ATTR-10] <dfn data-lt="
         community-defined attribute definitions|
         community-defined attribute definition|
         community-defined attribute|
@@ -242,7 +242,7 @@ This section is normative.
                     <b>reusing existing vocabularies, terminologies or ontologies</b>:
                     <a>Community attributes</a> may be implemented by referencing existing elements in vocabularies,
                     terminologies, or ontologies. <a>Validation</a> may be performed, but is not guaranteed.
-                    See <a href="#advanced-ref"></a> for more details.
+                    See <a href="#rule-attr-ref"></a> for more details.
                 </li>
                 <li>
                     <b>labels</b>:
