@@ -1,0 +1,123 @@
+<h3 id="fdo-types">FDO Types</h3>
+<p>
+    Typing is an essential building block of the <a>FDO</a> architecture.
+    The term “type/typing” refers to several concepts simultaneously:
+<ol>
+    <li><a>Attribute definitions</a> are types for properties of an <a>FDO</a> and are instantiated by <a>attributes</a>
+        in the <a>FDO record</a>.
+    </li>
+    <li>The value of the <a><em>0.FDO/Type</em></a> <a>attribute</a> in the <a>FDO record</a> is a type of the
+        <a>resource</a> being represented by the <a>FDO</a>.
+    </li>
+    <li>The <a>FDO record</a> itself is also typed by the <a>profiles</a> it instantiates. In contrast to
+        <a>0.FDO/Type</a>, compliance with <a>profiles</a> is validated in a type-theoretic sense and only provides
+        information on the <a>FDO record</a>.
+    </li>
+</ol>
+All these types together form the type system.
+<h4 id="0.FDO-Type"><dfn data-lt="FDO type|type|0.FDO/Type"><a>FDO_Type</a></dfn> <a>Attribute</a></h4>
+<p>
+    This section specifies the FDO type (<a><em>0.FDO/Type</em></a>) as the value of the <a><em>0.FDO/Type</em></a>
+    <a>attribute</a>, which must be (c.f. <a href="#rule-rec_3"></a>) instantiated in <a>FDO records</a>. It can be
+    repeated multiple times.
+    <br>
+    This <a><em>0.FDO/Type</em></a> <a>attribute</a> is an intentionally chosen entry point that signals some default
+    processing semantics for the <a>FDO</a>. It gives a hint to a machine how this object may be processed. Other facets
+    of the <a>FDO type</a> could be derived independently of the <a><em>0.FDO/Type</em></a> <a>attribute</a> using other
+    typing mechanisms, e.g., by inspecting the presence of other record <a>attributes</a>. Please note that we will
+    refer to the <a><em>0.FDO/Type</em></a> <a>attribute</a> as the “FDO type” in the following.
+</p>
+
+<!-- ToBeDeleted: Is covered by [R-REC-3]
+    <dt>
+        <h4 class="rule-heading" id="rule-r10_1">[R10-1] Type <a>attribute</a> Requirement</h4>
+    </dt>
+    <dd>
+        <a><em>0.FDO/Type</em></a> is a mandatory <a>attribute</a> that MUST be instantiated in each <a>FDO record</a>.
+        It can be repeated multiple times.
+        It specifies the type of the <a>resource</a> being represented by the <a>FDO</a>.
+    </dd>
+    -->
+<!-- ToBeDeleted: It is not a requirement, rather description of the concept.
+    <dt>
+        <h4 class="rule-heading" id="rule-r10_2">[R10-2] Type Processing Hint</h4>
+    </dt>
+    <dd>
+        The purpose of the <a><em>0.FDO/Type</em></a> <a>attribute</a> is to give a hint to a machine how this
+        object MAY be processed.
+    </dd>
+    -->
+
+<h4 class="rule-heading" id="typeSystem"><dfn data-lt="FDO type system|type system">FDO Type System</dfn></h4>
+
+<p>
+    <a>Profiles</a> and <a>attribute definitions</a> are special <a>FDOs</a> in the
+    sense that they are part of the <a>FDO type system</a>. All of these FDOs do not have a data <a>bit-sequence</a>
+    they
+    refer to, since they consist of only meta-information in the <a>FDO record</a>. Hence, the <a>FDO record</a>
+    itself is treated as the data <a>bit-sequence</a> of these FDOs. This makes the <a>profile</a> of the FDO
+    effectively the <a>type</a> of the FDO because the <a>profile</a> fully describes the structure of the
+    <a>record</a>.
+    <br>
+    Consequently, for all <a>profiles</a> and <a>attribute definitions</a>, the <a><em>0.FDO/Type</em></a>
+    <a>attribute</a> MUST have at least the value <a><em>0.FDO/Profile</em></a>, as it points to the <a>profile</a>
+    using <a>attribute referencing</a>. Adding additional <a>FDO types</a> to these <a>FDOs</a> is allowed.
+    The definitions of all <a>attributes</a> and <a>profiles</a> used in this document are listed in 
+    <a href="#appendixAttrsFDOTypeSystem"></a>.
+</p>
+
+
+<h4 class="rule-heading" id="communityTypes">Communitiy-Defined <a>FDO Types</a></h4>
+<p>
+    Communities of practice may define their <a>FDO types</a> in accordance with their needs, whilst taking the
+    following requirements into account:
+</p>
+
+<dl>
+    <dt>
+        <h4 class="rule-heading" id="rule-typ_1">[R-TYP-1] Type Interpretability</h4>
+    </dt>
+    <dd>
+        The <a>FDO type</a> SHOULD be interpretable outside the community of practice to ensure interoperability.
+        This SHOULD be ensured by linking to existing standards or software that explain how to interpret the <a>FDO
+            type</a>. These external <a>resources</a> SHOULD be publicly accessible.
+    </dd>
+
+    <dt>
+        <h4 class="rule-heading" id="rule-typ_2">[R-TYP-2] Type as <a>FDO</a></h4>
+    </dt>
+    <dd>Community-defined <a>FDO types</a> SHOULD be <a>FDOs</a> for better interpretability.</dd>
+
+    <dt>
+        <h4 class="rule-heading" id="rule-typ_3">[R-TYP-3] Type Derivation</h4>
+    </dt>
+    <dd>
+        <a>Types</a> MAY be derived from other <a>types</a> (i.e., there MAY be hierarchies of types
+        defined within communities of practice).
+        To state that a type t<sub>2</sub> is derived from a
+        type <em>t<sub>1</sub></em>, the <a>FDO record</a> of <em>t<sub>2</sub></em> SHOULD contain the <a>attribute</a>
+        <em>0.FDO/DerivedFromType</em>,
+        whose value is a <a>PID</a> that resolves to <em>t<sub>1</sub></em>.
+    </dd>
+</dl>
+
+<h4 class="rule-heading" id="collectionType"><a>FDO Type</a> of <a>Collections</a></h4>
+<p>
+    FDOs may represent <a>collections</a> of objects (see also <a href="#granularity"></a>).
+    To assign <a>FDO types</a> to a <a>collection</a> and to objects within the <a>collection</a>,
+    the following conditions apply:
+</p>
+<dt>
+    <h4 class="rule-heading" id="rule-typ_4">[R-TYP-4] <a>Collection</a> Type</h4>
+</dt>
+<dd>The <a>FDO type</a>(s) of a <a>collection</a> MUST describe the <a>collection</a> as a whole.</dd>
+
+<dt>
+    <h4 class="rule-heading" id="rule-typ_5">[R-TYP-5] Object Type in a <a>Collection</a></h4>
+</dt>
+<dd>
+    If an <a>FDO type</a> SHOULD be assigned to objects within the <a>collection</a>, each object MUST
+    be represented as an <a>FDO</a> (or <a>inline FDO</a>) itself.
+    This <a>FDO</a> can then contain the <a><em>0.FDO/Type</em></a> <a>attribute</a> to specify <a>FDO types</a>.
+</dd>
+</dl>

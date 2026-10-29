@@ -1,0 +1,103 @@
+<h4 class="rule-heading" id="rule-profile-ref">
+<dfn data-lt="profile reference|profile referencing mechanism">Profile Referencing</dfn></h4>
+
+<p>
+    <a>Profile referencing</a> permits an <a>attribute definition</a> to specify that the value (of an <a>attribute</a>
+    instantiating this <a>attribute definition</a>) MUST be a reference to an <a>FDO</a> following a <a>profile</a> from a set of allowed <a>profiles</a>
+    <em>P<sub>1</sub></em>,...,<em>P<sub>n</sub></em>, <em>n≥0</em>. Depending on how many <a>profiles</a> are
+    allowed, the referenced entity MUST be one of:
+</p>
+<ul>
+    <li>(<em>n=0</em>) an <a>FDO</a> (i.e., complying with the <a>root profile</a>),</li>
+    <li>(<em>n=1</em>) an <a>FDO</a> complying with a specific <a>profile</a> <em>P<sub>1</sub></em>,</li>
+    <li>(<em>n>1</em>) an <a>FDO</a> complying with at least one of the <em>P<sub>1</sub></em>,...,<em>P<sub>n</sub></em>.</li>
+</ul>
+
+<p>
+    To register an <a>attribute definition</a> that uses <a>profile referencing</a> with the allowed <a>profiles</a>
+    <em>P<sub>1</sub>,...,P<sub>n</sub></em>, the following requirements MUST be fulfilled:
+</p>
+<ul>
+    <li>
+        The <a>attribute definition</a> <a>record</a> MUST use the <a>profile</a> <a>0.FDO/AttributeDefProfileRef</a>
+        (that is, it contains the <a>attribute</a> (<a><em>0.FDO/Profile</em></a>, <a>0.FDO/AttributeDefProfileRef</a>)).
+        This indicates that the <a>attribute definition</a> applies the <a>profile referencing mechanism</a>.
+    </li>
+    <li>
+        The <a>attribute definition</a> <a>record</a> MUST contain the <a>attributes</a>
+        (<a><em>0.FDO/AllowedProfileInProfileRef</em></a>, <a>PID</a> of <em>P<sub>i</sub></em>) for <em>i=1,...,n</em>,
+        to indicate which <a>profiles</a> are allowed, see also <a href="#profile-ref-table">Table 7</a>.
+        If <em>n=0</em>, this requirement does not apply.
+    </li>
+</ul>
+
+When the <a>attribute definition</a> is instantiated, the value MUST be either a reference to another
+<a>FDO</a> following at least one of the specified <a>profiles</a> (where resolution MUST be possible in a reasonable
+amount of time), or an <a href="#inline-fdo">inline serialization of an <a>FDO</a></a> that instantiates at least one of
+the specified <a>profiles</a>.
+
+<div><br/></div>
+<table border="2" id="profile-ref-table" class="numbered">
+    <caption style="caption-side:bottom">
+        This table shows the <dfn><em>0.FDO/AttributeDefProfileRef</em></dfn> <a>profile</a>. The <a>profile</a> extends the <a>attribute
+        definition profile</a> (see <a href="attrDefProfileRecord">Table 3</a>). All <a>attributes</a> that are inherited from
+        the <a>attribute definition profile</a> are left out for brevity.
+        To define that an <a>attribute definition</a> is a <a>profile reference</a> to one of the profiles
+        <em>P<sub>1</sub>,...,P<sub>n</sub></em>, the <a><em>0.FDO/AllowedProfileInProfileRef</em></a> MUST be instantiated in an
+        <a>attribute definition</a>, once for each of the <em>P<sub>1</sub>,...,P<sub>n</sub></em>.
+        This table does not include all information about the <a>attributes</a>.
+        Please resolve the <a>attribute definition</a> <a>PIDs</a> via the Handle System or see the
+        <a href="#appendixAttrsFDOTypeSystem">appendix</a> of this document.
+    </caption>
+    <tr>
+        <th>PID of <a>Attribute Definition</a></th>
+        <th>Description of the <a>attribute</a> values</th>
+        <th><a>Cardinality</a> of the <a>attribute</a></th>
+    </tr>
+    <tr>
+        <td><dfn><em>0.FDO/AllowedProfileInProfileRef</em></dfn></td>
+        <td>
+            Reference to a <a>profile</a> that is part of the <a>profile reference</a>.
+        </td>
+        <td>0..*</td>
+    </tr>
+</table>
+<div><br/></div>
+
+<aside class="example" id="example-profile-referencing" title="The 0.FDO/Profile attribute">
+    The <a><em>0.FDO/Profile</em></a> <a>attribute</a> uses <a>profile referencing</a> to ensure that the value of this
+    <a>attribute</a> is a reference to an <a>FDO profile</a> (i.e., complies to <a><em>0.FDO/ProfileDef</em></a>).
+    Its <a>attribute definition</a> <a>record</a> is given on the left hand side in the image, and an instantiation of this
+    <a>attribute definition</a> is given in the data <a>FDO</a> in the middle.
+    <figure id="profile-ref">
+        <img alt="Profile_Referencing" height="400" src="img/profile-referencing.svg">
+        <figcaption>
+            An example for <a>profile referencing</a>.
+        </figcaption>
+    </figure>
+</aside>
+
+<aside class="note" title="Types of References">
+    References are key to <a>FDOs</a> as they are used to associate <a>bit-sequences</a> and refer to any other
+    related objects and information.
+    The <a>primitive data type</a> for all references is assumed to be a string. However, their syntax, interpretation,
+    and resolution remain implementation specific. This note aims to classify references into two categories depending
+    on their degree of <a>validation</a>.
+    <ul>
+        <li>
+            <b><dfn data-lt="PID candidate">unvalidated references</dfn></b>: A reference is considered an
+            <a>unvalidated reference</a> if it is a string that follows the syntactic format of a <a>PID</a>.
+            The <a>PID</a> may not be resolvable. The classification as an <a>unvalidated reference</a> may be performed
+            by a heuristic that creates false positives. Therefore, <a>unvalidated references</a> may be called a
+            <a>PID candidate</a>, as they syntactically appear to be a <a>PID</a>, but may not always resolve to an
+            <a>FDO</a>.
+        </li>
+        <li>
+            <b><dfn>validated references</dfn></b>: For a reference to be considered a <a>validated reference</a>, it
+            must resolve to a valid <a>FDO</a> record in reasonable time. It must also qualify as an <a>unvalidated
+            reference</a>.
+        </li>
+    </ul>
+    <a>Profile referencing</a> assumes that the reference to the <a>FDO</a> (that complies to one of the given <a>profiles</a>)
+    is a <a>validated reference</a>.
+</aside>
