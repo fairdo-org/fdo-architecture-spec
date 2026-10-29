@@ -20,26 +20,14 @@
             definitions</a> (see <a href="#rule-att_7"></a>).
     </dd>
 
-    <!--<h4><dfn data-lt="0.FDO/Attribute">Attribute Definition Inclusion</dfn></h4>-->
     <p>
         An <a>attribute definition</a> is contained in a <a>profile</a>’s list of
         <a>attribute definitions</a> if
-        and only if the <a>profile</a> contains an <a>attribute</a> <em>0.FDO/Attribute</em> (or FDO_Attribute)
+        and only if the <a>profile</a> contains an <a>attribute</a> 
+        <dfn data-lt="0.FDO/Attribute"><em>0.FDO/Attribute</em></dfn> (or FDO_Attribute)
         with a <a>PID</a> resolving to the <a>attribute definition</a> as attribute value.
     </p>
-    <!-- The following requirement is covered by [R-REC-3] 
-    <dt>
-        <h4 class="rule-heading" id="rule-prof_2">[R-PROF-2] <dfn>Mandatory profile attributes </dfn></h4>
-    </dt>
-    <dd>
-        Each <a>profile</a> MUST at least contain the mandatory <a>attributes</a> <a><em>0.FDO/Type</em></a>,
-        <a><em>0.FDO/Profile</em></a>, and <a><em>0.FDO/Data</em></a> as
-        defined by the <a>FDO Forum</a> (see the <a>root profile</a>).
-        It can further contain <a>attributes</a> from the list of optional <a>attributes</a> as defined by <a>FDO</a>
-        Forum (see table X in appendix), or arbitrary community-specified
-        <a>attributes</a>, as long as these are identified by <a>PIDs</a>.
-    </dd>
-    -->
+    
     <dt>
         <h4 class="rule-heading" id="rule-prof_2">[R-PROF-2] <dfn>Additional <a>Attributes</a></dfn></h4>
     </dt>
@@ -73,9 +61,6 @@
         </h4>
     </dt>
     <dd>
-        <!-- Each <a>profile</a> is itself represented as an <a>FDO</a>.
-        Hence, it is identified by a <a>PID</a> that resolves into an <a>FDO record</a> consisting of
-        <a>attribute tuples</a>. -->
         All <a>profiles</a> MUST at least comply with the <a>FDO root profile</a> and the
         <a>FDO profile definition profile</a> (see <a href="#rule-prof_5"></a>).
     </dd>
