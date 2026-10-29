@@ -1,0 +1,44 @@
+<h4 id="rule-union">
+<dfn data-lt="union|unions|attribute union|attribute unions|unions of attribute definition">Union of Attribute Definitions</dfn></h4>
+
+An <a>attribute definition</a> MAY be defined to be a <a>union of attribute definitions</a>
+<em>A<sub>1</sub>,...,A<sub>n</sub></em>, <em>n≥1</em>.
+If an <a>attribute definition</a> is a <a>union</a>, this means that any <a>attribute</a> instantiating this
+<a>attribute definition</a> MUST have a value complying with at least one of the <em>A<sub>1</sub>,...,A<sub>n</sub></em>
+(a.k.a. “any of”). The <a>cardinalities</a> of <em>A<sub>1</sub>,...,A<sub>n</sub></em> are overwritten by the
+<a>cardinality</a> of the <a>union</a>.
+
+<p>
+    To define an <a>attribute definition</a> as a <a>union</a>, the <a>attribute definition</a> <a>record</a> MUST use the
+    <a>profile</a> <a>0.FDO/AttributeDefUnion</a>. This <a>profile</a> extends the <a>attribute definition profile</a> with the
+    <a>attribute</a> <a><em>0.FDO/AllowedAttributeInUnion</em></a> (see <a href="#union-profile">Table 5</a>). This <a>attribute</a>
+    lists as its values all <a>attribute definitions</a> <em>A<sub>1</sub>,...,A<sub>n</sub></em> that are part of the
+    <a>union</a>.
+</p>
+
+<div><br/></div>
+<table border="2" id="union-profile" class="numbered">
+    <caption style="caption-side:bottom">
+        This table shows the <dfn><em>0.FDO/AttributeDefUnion</em></dfn> <a>profile</a>. The <a>profile</a> extends the <a>attribute
+        definition profile</a> (see <a href="#attrDefProfileRecord">Table 3</a>). All <a>attributes</a> that are inherited from
+        the <a>attribute definition profile</a> are left out for brevity.
+        To define that this <a>attribute definition</a> is a <a>union</a> of other <a>attributes</a>
+        <em>A<sub>1</sub>,...,A<sub>n</sub></em>, the <a><em>0.FDO/AllowedAttributeInUnion</em></a> MUST be instantiated in an
+        <a>attribute definition</a>, once for each of the <em>A<sub>1</sub>,...,A<sub>n</sub></em>.
+        This table does not include all information about the <a>attributes</a>.
+        Please resolve the <a>attribute definition</a> <a>PIDs</a> via the Handle System or see the
+        <a href="#appendixAttrsFDOTypeSystem">appendix</a> of this document.
+    </caption>
+    <tr>
+        <th>PID of <a>Attribute Definition</a></th>
+        <th>Description of the <a>attribute</a> values</th>
+        <th><a>Cardinality</a> of the <a>attribute</a></th>
+    </tr>
+    <tr>
+        <td><dfn><em>0.FDO/AllowedAttributeInUnion</em></dfn></td>
+        <td>
+            A reference to an <a>attribute definition</a> that is part of the <a>union</a>.
+        </td>
+        <td>0..*</td>
+    </tr>
+</table>
