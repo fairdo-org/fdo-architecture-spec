@@ -228,6 +228,8 @@ mandatory FDO attributes|mandatory FDO attribute definitions|mandatory FDO attri
         <a>FDO records</a>.
         Therefore, compliance with the <a>root profile</a> MUST be checked by all clients even if it is not explicitly
         included in an <a>FDO record</a> or its <a>profile extension hierarchy</a>.
+        Furthermore, the <a>root profile</a> contains the optional <a><em>0.FDO/Metadata</em></a> <a>attribute</a> to
+        define a generic access point to find associated metadata files.
         The <a>root profile</a> is defined by the <a>FDO Forum</a> and has the <a>PID</a> <a><em>0.FDO/Root</em></a>.
         It instantiates itself and <a>0.FDO/ProfileDef</a>, as it is a <a>profile</a>, and contains the list of
         <a>attribute definitions</a> shown in <a href="rootprofilerecord">Table 2</a>.
@@ -275,23 +277,31 @@ mandatory FDO attributes|mandatory FDO attribute definitions|mandatory FDO attri
     <tr>
         <td><a><em>0.FDO/Type</em></a>
         </td>
-        <td>The <a>FDO type</a>(s) as specified in <a href="#fdo-types"></a>. For <a>profiles</a>, at least the string
-            <em>0.FDO/Profile</em> MUST be used.
+        <td>The <a>FDO type</a>(s) of the <a>FDO</a> as specified in <a href="#fdo-types"></a>.
         </td>
         <td>1..*</td>
     </tr>
     <tr>
         <td><a><em>0.FDO/Profile</em></a></td>
-        <td>The <a>profile</a>(s) as specified in this section. The profiles of a profile are at least
-            <a><em>0.FDO/ProfileDef</em></a> and <a><em>0.FDO/Root</em></a>.
+        <td>The <a>profile</a>(s) of the <a>FDO</a> as specified in this section.
         </td>
         <td>1..*</td>
     </tr>
     <tr>
         <td><a><em>0.FDO/Data</em></a>
         </td>
-        <td>For <a>profiles</a>, the <a>FDO record</a> is itself the FDO's data, in which case this <a>attribute</a>
-            uses the string <em>self</em>.</td>
+        <td>The <a><em>0.FDO/Data</em></a> <a>attribute</a> is the entry point to find the data associated with an <a>FDO</a>.
+            If the identified <a>resource</a> is physical or conceptual, the string "self" is used. If the resource is
+            digital, <a><em>0.FDO/Data</em></a> points to the <a>attribute</a> that references the digital resource.</td>
         <td>1..*</td>
+    </tr>
+    <tr>
+        <td><dfn><a><em>0.FDO/Metadata</em></a></dfn>
+        </td>
+        <td>The <a><em>0.FDO/Metadata</em></a> <a>attribute</a> is the entry point to find metadata files associated
+            with an <a>FDO</a>. This <a>attribute</a> points to one or several other <a>attributes</a> that specify
+            references to metadata files.
+        </td>
+        <td>0..*</td>
     </tr>
 </table>
