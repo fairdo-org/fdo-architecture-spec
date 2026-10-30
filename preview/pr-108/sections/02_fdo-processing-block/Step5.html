@@ -1,0 +1,180 @@
+<h3 id="step5">[S-5]: FDO Types Inspection</h3>
+<p>
+    This step determines whether the given <a>FDO types</a> are as the client expects while processing the <a>FDO</a>.
+    It assumes that <a href="#step4"></a> was completed and that its status indicates that a <a><em>0.FDO/Type</em></a>
+    field is present (i.e., COMPLETE, TYPE_ONLY, PROFILE_MISSING, or DATA_MISSING).
+</p>
+<p>
+    There are many reasons to perform this step.
+    It could be that the client software is only capable of processing
+    limited types of information and the quicker it can determine whether the <a>FDO</a> is appropriate the better.
+    Also, the accessing client may determine when to check for the <a>FDO types</a> as it could be using different hints to
+    determine whether the <a>FDO</a> is appropriate.
+</p>
+<dl>
+    <dt>Inputs</dt>
+    <dd>
+        <ul>
+            <li>
+                an <a>FDO record</a>: This step expects exactly one well-structured <a>FDO record</a>. Typically, this
+                is the output of <a href="#step3"></a>.
+            </li>
+            <li>
+                <em>expected_fdo_type_list</em>: A list of types that the client is looking for. It can be empty
+                indicating that any <a>FDO types</a> within the <a>FDO record</a> will be accepted. This forces the
+                ACCEPT_ANY flag described below.
+            </li>
+            <li>A <em>matching</em> flag:
+                <ul>
+                    <li>
+                        ACCEPT_ANY: Any <a>FDO type</a> is acceptable. This ignores the <em>expected_fdo_type_list</em>
+                        if provided.
+                    </li>
+                    <li>EXACT_MATCH: Every <a>FDO type</a> in the <a>FDO record</a> must match any of the <a>FDO
+                        types</a> in the <em>expected_fdo_type_list</em>.
+                    </li>
+                    <li>DERIVED_MATCH: The <a>FDO types</a> can be derived from the <a>FDO types</a> found in the
+                        <em>expected_fdo_type_list</em>. Derived <a>types</a> are backward compatible with their parent <a>types</a>.
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </dd>
+    <dt>Outputs</dt>
+    <dd>
+        This step returns
+        <ul>
+            <li><em>status</em>: FULL_MATCH, ALL_MATCH, PARTIAL_MATCH, DERIVED_MATCH, or NO_MATCH. For details, see the
+                expected behaviour below.
+            </li>
+            <li><em>type_matching</em>: a list of the <a>FDO types</a> that match or are derived from the expected <a>types</a>.
+                If the list is empty, it indicates that none were found. The client can determine from the number of
+                <a>FDO type</a> matches whether the match is full or partial.
+            </li>
+        </ul>
+    </dd>
+
+    <dt>Expected behavior</dt>
+
+    <dd>
+        In this step, the client will compare the list of <a>FDO types</a> in the <a>FDO record</a> with the
+        <em>expected_fdo_type_list</em> looking for matches. As the <a>0.FDO/Type</a> <a>attribute</a> uses <a>attribute referencing</a>,
+        the client does not only inspect the <a>0.FDO/Type</a> <a>attributes</a> alone but also the <a>attribute</a> which
+        <a>0.FDO/Type</a> is referencing. Comparisons are made between the <em>expected_fdo_type_list</em> and the value of the
+        referenced <a>attributes</a> in the <a>record</a>.
+        The following lists the possible scenarios:
+
+        <ol>
+            <li>
+                If the <em>expected_fdo_type_list</em> is empty and/or the <em>matching</em> flag is set to ACCEPT_ANY,
+                all the <a>FDO types</a> within the <a>FDO record</a> are considered appropriate.
+                The result is FULL_MATCH and the list of all <a>FDO types</a> found in the <a>FDO record</a>.
+            </li>
+            <li>
+                The <a>FDO types</a> in the <a>FDO record</a> fully match those in the <em>expected_fdo_type_list</em>.
+                The result is ALL_MATCH and the list of all matched <a>FDO types</a>.
+            </li>
+            <li>
+                At least one of the <a>FDO types</a> in the <a>FDO record</a> matches at least one of the <a>FDO types</a>
+                in the <em>expected_fdo_type_list</em>. The result is PARTIAL_MATCH and the list of the matching <a>FDO types</a>.
+            </li>
+            <li>
+                The <a>FDO types</a> in the <a>FDO record</a> match none of the <em>expected_fdo_type_list</em>.
+                There are two different results depending on the matching condition.
+                <ul>
+                    <li>
+                        If the <em>matching</em> is set to EXACT_MATCH, the client concludes that the <a>FDO</a> does not have the proper <a>type</a>.
+                        The result is NO_MATCH.
+                    </li>
+                    <li>
+                        If the <em>matching</em> is set to DERIVED_MATCH, the client will respectively analyze each of the <a>FDO types</a> in
+                        the <a>FDO record</a> and determine if they are derived from <a>types</a> that are within the <em>expected_fdo_type_list</em>.
+                        The assumption is that derived <a>FDO types</a> are compatible with their parent <a>FDO types</a>.
+                        To do so, the client resolves each of the <a>FDO types</a> into their respective <a>FDO records</a> and then analyzes these
+                        to see if the <a>types</a> they describe are derived from <a>FDO types</a> that match a <a>type</a> within the <em>expected_fdo_type_list</em>.
+                        If the client determines that one or more of the <a>FDO types</a> in the <a>FDO records</a> are derived from
+                        <a>FDO types</a> that are in the <em>expected_fdo_type_list</em>, it will conclude that the <a>FDO record</a>
+                        is compatible with one or more of its expected <a>FDO types</a>.
+                        The results can be
+                        <ul>
+                            <li>
+                                NO_MATCH if no derived <a>FDO types</a> are found.
+                            </li>
+                            <li>
+                                DERIVED_MATCH if one or more derived <a>FDO types</a> matches are found.
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+    <aside class="example" title="Inspecting the FDO types">
+        <p>
+            This example shows a simple <a>FDO record</a> 10.1234/456 with two <a>FDO types</a> 0.example/Concept (the
+            general type of resource) and 0.example/application-json-ld (the MIME type of the resource).
+            Adding to the example is the fact that the <a>FDO type</a> 0.example/application-json-ld is derived from
+            the <a>FDO type</a> 0.example/application-json.
+        </p>
+
+            Applying the processing step <a href="#step5"></a> delivers
+            <ul>
+                <li>FULL_MATCH for an empty expected_fdo_type_list</li>
+                <li> ALL_MATCH for the expected_fdo_type_list [0.example/Concept, 0.example/application-json-ld]</li>
+                <li> PARTIAL_MATCH for the expected_fdo_type_list [0.example/Dataset, 0.example/application-json-ld]</li>
+                <li> NO_MATCH for the expected_fdo_type_list [0.example/application-json], but DERIVED_MATCH if the
+                    <em>matching</em> is set to DERIVED_MATCH</li>
+            </ul>
+
+        <table class="numbered">
+            <thead>
+            <tr>
+                <th scope="col">10.1234/456</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">0.FDO/Type
+                </th>
+                <td>0.example/ResourceTypeGeneral</td>
+            </tr>
+            <tr>
+                <th scope="row">0.example/ResourceTypeGeneral
+                </th>
+                <td>0.example/Concept</td>
+            </tr>
+            <tr>
+                <th scope="row">0.FDO/Type
+                </th>
+                <td>0.example/MimeType</td>
+            </tr>
+            <tr>
+                <th scope="row">0.example/MimeType
+                </th>
+                <td>0.example/application-json-ld</td>
+            </tr>
+            <tr>
+                <th scope="row">0.FDO/Profile
+                </th>
+                <td>abc/Profile1</td>
+            </tr>
+            <tr>
+                <th scope="row">0.FDO/Data
+                </th>
+                <td>self
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">0.FDO/Name
+                </th>
+                <td>Test <a>FDO</a></td>
+            </tr>
+            <tr>
+                <th scope="row">0.FDO/Description
+                </th>
+                <td><a>FDO</a> Test Demonstration</td>
+            </tr>
+            </tbody>
+        </table>
+    </aside>
+    </dd>
+</dl>
