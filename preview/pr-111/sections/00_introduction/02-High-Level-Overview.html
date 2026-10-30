@@ -1,0 +1,117 @@
+<h3>
+    Overview
+</h3>
+<p>
+    In order to enable automated processing regardless of the technology used,
+    <a>FDO</a> implementations must comply with this document.
+    This document specifies especially implementation-agnostic rules, the FDO structure, and FDO components.
+
+    <p>
+        An <a>FDO</a> consists of the following components (see [[[#fig1]]]):
+    </p>
+    <figure id="fig1">
+        <img alt="FDO-basic-concept" height=400 src="img/FDO-basic-concept.svg">
+        <figcaption>
+            The basic building blocks of an <a>FDO</a> are the PID, the PID Record, the FDO Profile, the Attribute Value, and the FDO Attribute Definition.
+            The <a>attribute definition</a> (left) and the <a>profile</a> (right) are also <a>FDOs</a>
+            where the records consist of tuples, which is not shown in this diagram for readability.
+            This implies that the names of the attribute definitions must be resolvable PIDs.
+        </figcaption>
+    </figure>
+
+    <p>
+        The main principle of FDOs is simple: a record contains a flat list of attributes.
+        Each attribute has two parts: a PID to an attribute definition, and a value.
+        The PID may be resolved for detailed information about semantics and structure of the value (e.g. validation).
+        The value may be used as the client intents, considering the attributes semantics.
+        While the specification provides mandatory and optional attributes,
+        Communities of Practice are free to register their own in open, defined registries.
+        FDO Profiles are comparable to schemas: They determine the attributes for FDOs.
+        As multiple Profiles can be used by an FDO, this allows for flexible reuse of profiles,
+        if their scope fits the resource and available information.
+        Profiles may be useful for clients, for validation, and for guidance/harmonization.
+    </p>
+
+    <a href="#fdo-building-blocks"></a> defines the essential components and rules needed for creating and interpreting
+    <a>FDOs</a> and the <a>FDO</a> type system.
+    All components, as shown in [[[#fig1]]], are themselves fully valid <a>FDOs</a> without any special mechanisms.
+    This grounds <a>FDOs</a> in themselves to prevent unwanted dependencies from specific technologies
+    and enable a common exchange format between implementations.
+
+    <p>
+        In <a href="#generic-fdo-processing"></a> we describe how a client finds, accesses, and interprets
+        <a>FDOs</a> to get to the data represented by it.
+        We expect that implementations of <a>FDOs</a> will vary and MAY not realize all the building blocks.
+        Thus, we specify in <a href="#implementation-template"></a> how implementations adopt this document
+        to facilitate interoperability between implementations.
+    </p>
+</p>
+
+<p>
+    In the following, we define a few basic terms the specification uses
+    and concepts that influenced the specification.
+</p>
+
+<ul>
+    <li>
+        <b><dfn data-lt="Binding|Bundling">Binding/Bundling</dfn>:</b>
+        <a>FDO</a> components are linked to each other using persistent identifiers, which can be considered a binding or a bundle.
+        Implementations may also choose to store, for example, the record, within the same system as the PID to form a tighter kind of binding / bundling.
+        Core for these bindings are globally unique and resolvable persistent identifiers that resolve into well-defined structures.
+    </li>
+    <li>
+        <b><dfn data-lt="encapsulates|encapsulated">Encapsulation</dfn>:</b>
+        Encapsulation in <dfn data-abbr="OOP" data-lt="OOP">Object-oriented programming</dfn> means wrapping internal structures by methods enabling information hiding.
+        For <a>FDOs</a> it describes the integration of <a>operations</a> with <a>FDOs</a>,
+        i.e., to use <a>operations</a> to access content without the need to know the internal structure of the <a>FDO</a>.
+        Thus, <a>FDOs</a> can support <a>encapsulation</a> on all levels of the <a>FDOs</a> layered structure.
+    </li>
+    <li>
+        <b><dfn data-lt="Machine actionable">Machine Actionability</dfn></b>:
+        <a>Machine actionability</a> means that clients can not only read structures and identify elements,
+        but can also infer which actions can be taken without human intervention.
+        This requires the accessibility of <a>FDO profiles</a>, the definition of
+        <a>FDO attributes</a> and the association with <a>operations</a>.
+        <a>Machine actionability</a> requires <a>machine interpretability</a>.
+        For details see [[MachineActionability]].
+    </li>
+    <li>
+        <b><dfn data-lt="Machine interpretable">Machine Interpretability</dfn></b>:
+        <a>Machine interpretable</a> means that clients are able to structurally identify elements
+        and relate them with semantic artifacts in a given context and therefore associate a defined purpose.
+        <a>Machine interpretability</a> requires <a>machine readability</a>.
+        For details see [[MachineActionability]].
+    </li>
+    <li>
+        <b><dfn data-lt="Machine readable">Machine Readability</dfn></b>:
+        Machine readable means that elements can be identified by clients
+        with high or absolute certainty based on precisely structured data.
+        For details see [[MachineActionability]].
+    </li>
+    <li>
+        <b><dfn>Metadata</dfn></b>:
+        Metadata is data describing data.
+        In the context of <a>FDOs</a> metadata occurs in general at two layers: (1) <a>FDO <a>attributes</a></a> as part of
+        the <a>FDO record</a> and (2) the rich metadata description as provided by the data creator, e.g., within
+        repositories, associated with the data.
+        <br>
+        Metadata describes properties of the <a>bit-sequence(s)</a> of an <a>FDO</a> to make them FAIR.
+        <a>FDO attributes</a> enable machines to interpret values in <a>FDOs</a>.
+        Metadata can be of different types such as descriptive, deep scientific, provenance, rights, access permissions, transactions, etc.
+        Usage of these terms has not been harmonized yet.
+    </li>
+    <li>
+        <b><dfn>Mutability</dfn></b>:
+        Data providers need to make clear policy statements whether the content of a <a>bit-sequence</a> that is <a>encapsulated</a>
+        in an <a>FDO</a> is immutable or mutable, i.e., changing over time such as is often the case in databases.
+        Inspecting the correctness of these statements SHOULD be part of auditing procedures.
+    </li>
+    <li>
+        <b><dfn>Resource</dfn></b>:
+        Each <a>FDO</a> is a bundle that <a>encapsulates</a>, represents, and describes a <a>resource</a>.
+        It could be a digital <a>resource</a>, in which case the <a>resource</a> would usually be a data <a>bit-sequence</a>.
+        A <dfn data-lt="bit sequence|bit-sequence(s)">bit-sequence</dfn> can be any form of digitalized information representable in an array of bits.
+        But it is also possible that this <a>resource</a> is physical, in which case there is no data <a>bit-sequence</a> attached to the <a>FDO</a>.
+        The <a>resource</a> is the heart of the <a>FDO</a> and all other components are there to make the <a>resource</a> and its <a>metadata</a> <a>machine actionable</a>.
+    </li>
+</ul>
