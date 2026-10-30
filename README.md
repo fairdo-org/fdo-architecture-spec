@@ -35,11 +35,11 @@ coherent rendered document.
 
 This specification is developed under the governance of the **FDO Forum**.
 
-- The document may evolve over time
-- Not all sections may be complete at all times
+- The document MAY evolve over time
+- Not all sections MAY be complete at all times
 - Changes are discussed and reviewed through the repository’s issue and pull request process
 
-Unless explicitly stated otherwise, the content in this repository should be considered **work in progress**.
+Unless explicitly stated otherwise, the content in this repository SHOULD be considered **work in progress**.
 
 ## Repository Structure
 
@@ -55,6 +55,10 @@ The `index.html` file serves as the entry point for the published specification.
 
 The document uses [https://respec.org/docs/](https://respec.org/docs/) for the current layout.
 
+## Previews
+
+Every branch and pull request automatically generates a preview deployment. Branch previews are available at `https://fairdo-org.github.io/fdo-architecture-spec/preview/<branch-name>/` (see the action run for the actual URL, if you use special characters in the branch name), and PR previews at `https://fairdo-org.github.io/fdo-architecture-spec/preview/pr-<number>/`.
+
 ## Contributing
 
 Contributions are welcome and encouraged.
@@ -69,7 +73,7 @@ Typical contributions include:
 Please read the policy on how to contribute:
   https://github.com/fairdo-org/fdo-architecture-spec/blob/main/Contribution-Specification-Development-Policy-v1.0.pdf
   
-Contributions should follow the architectural scope and terminology defined by the FDO Forum.
+Contributions SHOULD follow the architectural scope and terminology defined by the FDO Forum.
 
 ## Governance
 
