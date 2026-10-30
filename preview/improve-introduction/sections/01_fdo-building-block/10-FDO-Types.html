@@ -26,29 +26,19 @@ All these types together form the type system.
     of the <a>FDO type</a> could be derived independently of the <a><em>0.FDO/Type</em></a> <a>attribute</a> using other
     typing mechanisms, e.g., by inspecting the presence of other record <a>attributes</a>. Please note that we will
     refer to the <a><em>0.FDO/Type</em></a> <a>attribute</a> as the “FDO type” in the following.
+
+    <aside class="example" title="0.FDO/Type: Example of using the 0.FDO/Type attribute">
+        <figure id="ex-fdo-type">
+            <img alt="FDO Type" src="img/FDOType-example.svg">
+            <figcaption>
+                This figure shows how the <a>0.FDO/Type</a> attribute is used in an <a>FDO record</a>.
+                It uses <a>attribute referencing</a> to point to the <em>0.example/DCResource</em> (i.e. the DataCite Resource type) and <em>0.example/MIMEType</em> <a>attributes</a>.
+            </figcaption>
+        </figure>
+    </aside>
 </p>
 
-<!-- ToBeDeleted: Is covered by [R-REC-3]
-    <dt>
-        <h4 class="rule-heading" id="rule-r10_1">[R10-1] Type <a>attribute</a> Requirement</h4>
-    </dt>
-    <dd>
-        <a><em>0.FDO/Type</em></a> is a mandatory <a>attribute</a> that MUST be instantiated in each <a>FDO record</a>.
-        It can be repeated multiple times.
-        It specifies the type of the <a>resource</a> being represented by the <a>FDO</a>.
-    </dd>
-    -->
-<!-- ToBeDeleted: It is not a requirement, rather description of the concept.
-    <dt>
-        <h4 class="rule-heading" id="rule-r10_2">[R10-2] Type Processing Hint</h4>
-    </dt>
-    <dd>
-        The purpose of the <a><em>0.FDO/Type</em></a> <a>attribute</a> is to give a hint to a machine how this
-        object MAY be processed.
-    </dd>
-    -->
-
-<h4 class="rule-heading" id="typeSystem"><dfn data-lt="FDO type system|type system">FDO Type System</dfn></h4>
+<h4 id="typeSystem"><dfn data-lt="FDO type system|type system">FDO Type System</dfn></h4>
 
 <p>
     <a>Profiles</a> and <a>attribute definitions</a> are special <a>FDOs</a> in the
@@ -67,7 +57,7 @@ All these types together form the type system.
 </p>
 
 
-<h4 class="rule-heading" id="communityTypes">Communitiy-Defined <a>FDO Types</a></h4>
+<h4 id="communityTypes">Communitiy-Defined <a>FDO Types</a></h4>
 <p>
     Communities of practice may define their <a>FDO types</a> in accordance with their needs, whilst taking the
     following requirements into account:
@@ -101,7 +91,7 @@ All these types together form the type system.
     </dd>
 </dl>
 
-<h4 class="rule-heading" id="collectionType"><a>FDO Type</a> of <a>Collections</a></h4>
+<h4 id="collectionType"><a>FDO Type</a> of <a>Collections</a></h4>
 <p>
     FDOs may represent <a>collections</a> of objects (see also <a href="#granularity"></a>).
     To assign <a>FDO types</a> to a <a>collection</a> and to objects within the <a>collection</a>,

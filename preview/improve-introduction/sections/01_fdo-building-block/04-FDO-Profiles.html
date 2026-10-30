@@ -17,29 +17,17 @@
             records</a>.
         It defines a set of <a>attribute definitions</a> that MUST be contained in any <a>FDO record</a>
         instantiating the <a>profile</a>, according to the <a>cardinalities</a> specified in the <a>attribute
-            definitions</a> (see <a href="#rule-att_7"></a>).
+            definitions</a> (see <a href="#rule-r5_7"></a>).
     </dd>
 
-    <!--<h4><dfn data-lt="0.FDO/Attribute">Attribute Definition Inclusion</dfn></h4>-->
     <p>
         An <a>attribute definition</a> is contained in a <a>profile</a>’s list of
         <a>attribute definitions</a> if
-        and only if the <a>profile</a> contains an <a>attribute</a> <em>0.FDO/Attribute</em> (or FDO_Attribute)
+        and only if the <a>profile</a> contains an <a>attribute</a> 
+        <dfn data-lt="0.FDO/Attribute"><em>0.FDO/Attribute</em></dfn> (or FDO_Attribute)
         with a <a>PID</a> resolving to the <a>attribute definition</a> as attribute value.
     </p>
-    <!-- The following requirement is covered by [R-REC-3] 
-    <dt>
-        <h4 class="rule-heading" id="rule-prof_2">[R-PROF-2] <dfn>Mandatory profile attributes </dfn></h4>
-    </dt>
-    <dd>
-        Each <a>profile</a> MUST at least contain the mandatory <a>attributes</a> <a><em>0.FDO/Type</em></a>,
-        <a><em>0.FDO/Profile</em></a>, and <a><em>0.FDO/Data</em></a> as
-        defined by the <a>FDO Forum</a> (see the <a>root profile</a>).
-        It can further contain <a>attributes</a> from the list of optional <a>attributes</a> as defined by <a>FDO</a>
-        Forum (see table X in appendix), or arbitrary community-specified
-        <a>attributes</a>, as long as these are identified by <a>PIDs</a>.
-    </dd>
-    -->
+    
     <dt>
         <h4 class="rule-heading" id="rule-prof_2">[R-PROF-2] <dfn>Additional <a>Attributes</a></dfn></h4>
     </dt>
@@ -73,9 +61,6 @@
         </h4>
     </dt>
     <dd>
-        <!-- Each <a>profile</a> is itself represented as an <a>FDO</a>.
-        Hence, it is identified by a <a>PID</a> that resolves into an <a>FDO record</a> consisting of
-        <a>attribute tuples</a>. -->
         All <a>profiles</a> MUST at least comply with the <a>FDO root profile</a> and the
         <a>FDO profile definition profile</a> (see <a href="#rule-prof_5"></a>).
     </dd>
@@ -110,7 +95,7 @@
         Any <a>profile</a> and all <a>attribute definitions</a> it uses MUST be defined in open registries.
         This is done to promote the findability and reusability of <a>FDO profiles</a>, and thus the interoperability of
         <a>FDOs</a>.
-        Special rules apply in case <a>profiles</a> are updated, see <a href="#r11-3">R11-3</a> - <a href="#r11-6">R11-6</a>.
+        Special rules apply in case <a>profiles</a> are updated, see <a href="#updating">R11-3</a>.
     </dd>
 </dl>
 
@@ -172,12 +157,17 @@
         </td>
         <td><a><em>0.FDO/Attribute</em></a> specifies which <a>attribute definitions</a>
             MUST be instantiated in any <a>FDO</a> instantiating this <a>profile</a> (via 0.FDO/Profile).
-            The value of this <a>attribute</a> is a <a>PID</a> of the <a>attribute definition</a>.
             It can be repeated to add multiple <a>attribute definitions</a>.
-            The cardinality of the <a>attribute definitions</a> MUST be respected in the <a>FDOs</a>.
             When not using <a>profile extension</a>, <a><em>0.FDO/Attribute</em></a> MUST be defined
             with at least the <a>attributes</a> the <a>root profile</a> specifies.
             <a>Additional attributes</a> can be used as well.
+            The value of this <a>attribute</a> is either
+            <ul>
+                <li> a reference to an <a>attribute definition</a>, or</li>
+                <li>an <a>inline combination</a> of a reference to an <a>attribute definition</a> and a localized
+                    <a>cardinality</a> that restricts the original <a>cardinality</a> of this <a>attribute definition</a>
+                    in the new context (<a>cardinality restriction</a>).</li>
+            </ul>
         </td>
         <td>0..*</td>
     </tr>
@@ -237,7 +227,9 @@ mandatory FDO attributes|mandatory FDO attribute definitions|mandatory FDO attri
         <a><em>0.FDO/Profile</em></a>, and <a><em>0.FDO/Data</em></a> that are essential to the interpretability of
         <a>FDO records</a>.
         Therefore, compliance with the <a>root profile</a> MUST be checked by all clients even if it is not explicitly
-        included in an <a>FDO record</a> or its <a>profile extension hierarchy</a>.
+        included in an <a>FDO record</a> or its <a>profile extension</a> hierarchy.
+        Furthermore, the <a>root profile</a> contains the optional <a><em>0.FDO/Metadata</em></a> <a>attribute</a> to
+        define a generic access point to find associated metadata files.
         The <a>root profile</a> is defined by the <a>FDO Forum</a> and has the <a>PID</a> <a><em>0.FDO/Root</em></a>.
         It instantiates itself and <a>0.FDO/ProfileDef</a>, as it is a <a>profile</a>, and contains the list of
         <a>attribute definitions</a> shown in <a href="rootprofilerecord">Table 2</a>.
@@ -285,23 +277,31 @@ mandatory FDO attributes|mandatory FDO attribute definitions|mandatory FDO attri
     <tr>
         <td><a><em>0.FDO/Type</em></a>
         </td>
-        <td>The <a>FDO type</a>(s) as specified in <a href="#fdo-types"></a>. For <a>profiles</a>, at least the string
-            <em>0.FDO/Profile</em> MUST be used.
+        <td>The <a>FDO type</a>(s) of the <a>FDO</a> as specified in <a href="#fdo-types"></a>.
         </td>
         <td>1..*</td>
     </tr>
     <tr>
         <td><a><em>0.FDO/Profile</em></a></td>
-        <td>The <a>profile</a>(s) as specified in this section. The profiles of a profile are at least
-            <a><em>0.FDO/ProfileDef</em></a> and <a><em>0.FDO/Root</em></a>.
+        <td>The <a>profile</a>(s) of the <a>FDO</a> as specified in this section.
         </td>
         <td>1..*</td>
     </tr>
     <tr>
         <td><a><em>0.FDO/Data</em></a>
         </td>
-        <td>For <a>profiles</a>, the <a>FDO record</a> is itself the FDO's data, in which case this <a>attribute</a>
-            uses the string <em>self</em>.</td>
+        <td>The <a><em>0.FDO/Data</em></a> <a>attribute</a> is the entry point to find the data associated with an <a>FDO</a>.
+            If the identified <a>resource</a> is physical or conceptual, the string "self" is used. If the resource is
+            digital, <a><em>0.FDO/Data</em></a> points to the <a>attribute</a> that references the digital resource.</td>
         <td>1..*</td>
+    </tr>
+    <tr>
+        <td><dfn><a><em>0.FDO/Metadata</em></a></dfn>
+        </td>
+        <td>The <a><em>0.FDO/Metadata</em></a> <a>attribute</a> is the entry point to find metadata files associated
+            with an <a>FDO</a>. This <a>attribute</a> points to one or several other <a>attributes</a> that specify
+            references to metadata files.
+        </td>
+        <td>0..*</td>
     </tr>
 </table>
