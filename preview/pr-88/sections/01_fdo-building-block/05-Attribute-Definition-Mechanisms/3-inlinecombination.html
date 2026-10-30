@@ -1,4 +1,4 @@
-<h4 class="rule-heading" id="rule-comb">[R-Attr-12]
+<h4 id="rule-comb">
 <dfn data-lt="inline combination|inline combinations|attribute inline combination|attribute inline combinations">Inline Combination of Attribute Definitions</dfn></h4>
 
 An <a>attribute definition</a> MAY be defined to be an <a>inline combination of attribute definitions</a>
@@ -7,13 +7,13 @@ If an <a>attribute definition</a> is an <a>inline combination</a>, this means th
 <a>attribute definition</a> MUST have as its value a combination of values <em>v<sub>1</sub>,...,v<sub>n</sub></em> that instantiate
 <em>A<sub>1</sub>,...,A<sub>n</sub></em> (a.k.a. “all of”). The combination of <em>v<sub>1</sub>,...,v<sub>n</sub></em> must respect
 the <a>cardinalities</a> of <em>A<sub>1</sub>,...,A<sub>n</sub></em>, as long as those are not restricted further in the
-<a>attribute definition</a> of the <a>inline combination</a> (see <a><em>0.FDO/AllowedAttributeInComb</em></a>).
+<a>attribute definition</a> of the <a>inline combination</a> (see <a><em>0.FDO/AllowedAttributeInCombination</em></a>).
 The format of this combination (e.g., JSON, JSON-LD, …) MAY depend on the <a>implementation</a>.
 
 <p>
     To define an <a>attribute definition</a> as an <a>inline combination</a>, the <a>attribute definition</a> <a>record</a> MUST use the
     <a>profile</a> <a>0.FDO/AttributeDefComb</a>. This <a>profile</a> extends the <a>attribute definition profile</a> with the
-    <a>attribute</a> <a><em>0.FDO/AllowedAttributeInComb</em></a> (see <a href="#comb-profile">Table 6</a>). This <a>attribute</a>
+    <a>attribute</a> <a><em>0.FDO/AllowedAttributeInCombination</em></a> (see <a href="#comb-profile">Table 6</a>). This <a>attribute</a>
     lists as its values all <a>attribute definitions</a> <em>A<sub>1</sub>,...,A<sub>n</sub></em> that are part of the
     <a>inline combination</a>.
 </p>
@@ -25,11 +25,11 @@ The format of this combination (e.g., JSON, JSON-LD, …) MAY depend on the <a>i
         definition profile</a> (see <a href="#attrDefProfileRecord">Table 3</a>). All <a>attributes</a> that are inherited from
         the <a>attribute definition profile</a> are left out for brevity.
         To define that an <a>attribute definition</a> is an <a>inline combination</a> of other <a>attributes</a>
-        <em>A<sub>1</sub>,...,A<sub>n</sub></em>, the <a><em>0.FDO/AllowedAttributeInComb</em></a> must be instantiated in an
+        <em>A<sub>1</sub>,...,A<sub>n</sub></em>, the <a><em>0.FDO/AllowedAttributeInCombination</em></a> must be instantiated in an
         <a>attribute definition</a>, once for each of the <em>A<sub>1</sub>,...,A<sub>n</sub></em>.
         This table does not include all information about the <a>attributes</a>.
         Please resolve the <a>attribute definition</a> <a>PIDs</a> via the Handle System or see the
-        <a href="appendixAttrsFDOTypeSystem">appendix</a> of this document.
+        <a href="#appendixAttrsFDOTypeSystem">appendix</a> of this document.
     </caption>
     <tr>
         <th>PID of <a>Attribute Definition</a></th>
@@ -37,7 +37,7 @@ The format of this combination (e.g., JSON, JSON-LD, …) MAY depend on the <a>i
         <th><a>Cardinality</a> of the <a>attribute</a></th>
     </tr>
     <tr>
-        <td><dfn><em>0.FDO/AllowedAttributeInComb</em></dfn></td>
+        <td><dfn><em>0.FDO/AllowedAttributeInCombination</em></dfn></td>
         <td>
             The value of this <a>attribute</a> is either
             <ul>

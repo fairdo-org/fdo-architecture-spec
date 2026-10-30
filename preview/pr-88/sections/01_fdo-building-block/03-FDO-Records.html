@@ -44,12 +44,13 @@
         <h4 class="rule-heading" id="rule-rec_3">[R-REC-3] Minimum requirements for FDO records</h4>
     </dt>
     <dd>
-        All <a>FDO records</a> MUST contain the <a>attributes</a> from the <a href="#rule-prof_9"><em>0.FDO/Root</em></a> profile:
+        All <a>FDO records</a> MUST contain the <a>attributes</a> from the <a href="#rule-prof_7"><em>0.FDO/Root</em></a> profile:
         <ul>
             <li><a><em>0.FDO/Profile</em></a> or FDO_Profile,</li>
             <li><a><em>0.FDO/Type</em></a> or FDO_Type,</li>
             <li><a><em>0.FDO/Data</em></a> or FDO_Data.</li>
         </ul>
+        Each attribute MAY appear more than once.
     </dd>
 
     <dt>
@@ -70,7 +71,7 @@
         <a>attribute</a>.
         To link multiple <a>FDO types</a>, the <a>attribute</a> <em><a>0.FDO/Type</a></em> MAY be repeated multiple
         times in the <a>FDO record</a>.
-        <em><a>0.FDO/Type</a></em> follows the <a href="#attribute-referencing">attribute referencing</a> mechanism.
+        <em><a>0.FDO/Type</a></em> follows the <a href="#rule-attr-ref">attribute referencing</a> mechanism.
     </dd>
 
     <dt>
@@ -79,6 +80,6 @@
     <dd>
         Each <a>FDO</a> MUST contain the designated <em><a>0.FDO/Data</a></em> <a>attribute</a> at least once.
         The <a>attribute</a> <em><a>0.FDO/Data</a></em> is used to reference the <a>FDO</a>'s data.
-        It uses the <a href="#attribute-referencing">attribute referencing</a> mechanism.
+        It uses the <a href="#rule-attr-ref">attribute referencing</a> mechanism.
     </dd>
 </dl>
