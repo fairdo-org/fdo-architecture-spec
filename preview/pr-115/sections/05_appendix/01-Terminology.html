@@ -1,0 +1,31 @@
+<h3>Terminology</h3>
+<p>
+    The following terms are used to describe concepts in this specification and related <a>FDO</a> discussions.
+</p>
+<ul data-sort="ascending">
+    <li>
+        <b><dfn>Abstraction</dfn>:</b>
+        <a>FDOs</a> support the abstraction principle, i.e., abstracting away details that are not needed
+        at the basic object management level.
+        At that level there is no need to distinguish among different types such
+        as datasets, metadata, software, semantic assertions, etc., for management operations.
+        Since <a>FDOs</a> can include <a>bit-sequences</a> encoding any kind of content,
+        they represent the highest possible abstraction level.
+    </li>
+    <li>
+        <b><dfn data-lt="tombstone note">Tombstone</dfn></b>:
+        When a data provider registers <a>PIDs</a> to refer to his data and then decides to delete the data
+        after N years (which is good scientific practice with N > 10 years), the <a>FDO</a> MUST not be deleted.
+        The <a>PID resolution</a> MUST always be successful.
+        In the case of the deleted data, a tombstone note SHOULD be included in the <a>PID record</a> and outdated
+        information SHOULD .
+        The nature of a tombstone note is still in the process of definition.
+    </li>
+    <li>
+        <b><dfn>Versioning</dfn></b>:
+        There are different policies between communities on how to indicate versioning – some use the
+        <a>PID</a> string, some use the <a>PID record</a> and some use extended metadata for these purposes.
+        The choice widely depends on efficiency criteria, and no general recommendation can be made except
+        that data providers need to make clear statements on how versioning is handled.
+    </li>
+</ul>
