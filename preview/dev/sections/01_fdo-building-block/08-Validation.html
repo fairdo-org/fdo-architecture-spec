@@ -7,22 +7,21 @@
 </p>
 <dl>
     <dt>
-        <h4 class="rule-heading" id="rule-val_1">[R-VAL-1] <a>FDOs</a></h4>
+        <h4 class="rule-heading" id="rule-val_1">[R-VAL-1] Profile Validation</h4>
     </dt>
     <dd>
-        Every <a>FDO</a> instance MUST be valid against <a><em>0.FDO/Root</em></a>.
+        Every <a>FDO record</a> instance MUST at least be valid against <a><em>0.FDO/Root</em></a>. It furthermore MUST
+        be valid against all other <a>profiles</a> it claims to instantiate. Being valid against a <a>profile</a> means
+        that the <a>record</a> MUST contain all <a>attributes</a> that are required by the <a>profile</a> with the
+        required cardinalities.
     </dd>
     <dt>
-        <h4 class="rule-heading" id="rule-val_2">[R-VAL-2] <a>FDO Profiles</a></h4>
+        <h4 class="rule-heading" id="rule-val_1">[R-VAL-2] Attribute Validation</h4>
     </dt>
     <dd>
-        Every <a>profile</a> MUST be valid against <a><em>0.FDO/ProfileDef</em></a>.
-    </dd>
-    <dt>
-        <h4 class="rule-heading" id="rule-val_3">[R-VAL-3] <a>FDO attributes</a></h4>
-    </dt>
-    <dd>
-        Every <a>attribute</a> value MUST be valid against its definition <a><em>0.FDO/AttributeDef</em></a>.
+        All <a>attributes</a> in the <a>FDO record</a> that instantiate <a>attribute definitions</a> MUST be valid
+        against the <a>validation</a> rules imposed by the <a>attribute definitions</a>, see also
+        <a href="#rule-r-attr-5"></a>.
     </dd>
 
     <aside class="note" title="">
