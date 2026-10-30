@@ -1,31 +1,28 @@
 <h3 id="intro">Introduction</h3>
 
 <p>
-    This specification adds reliable machine interaction to Persistent identifiers (PIDs)
-    by proposing a flexible framework to assign precisely structured metadata to a PID.
-    It aims to be a generic but flexible <strong>interoperability layer</strong> for
-    fast and reliable automated processing on top of all kind of (research) data.
+    This specification defines a flexible framework that describes how the machine processing of Persistent identifiers (PIDs)
+    resolves into an FAIR Digital Object (<a>FDO</a>), which is consists of harmonized structure used represent the metadata and data of 
+    any PID identified resource.
+    An <a>FDO</a> is any PID identified resource whose PID resolves to a structured <a>FDO</a> record compatible with this specification 
+    that provides consistent access to is metadata and data.
+</p>
+    This specification aims to be a implementation neutral while specifing a flexible building block approach that promotes 
+    a simple, consistent, machine actionabile and interoperable access to of any resource on the Internet.  
+    Any <a>FDO</a> specification complient client should be able to resolve any PID into an FDO, access and process its associated resource 
+    as long as the FDO is compatible with this specifiation regardless of the underlying technologies.
 </p>
 <p>
-    A PID describing data using this framework is called a FAIR Digital Object (FDO).
-    With this metadata, the aim is to make FDOs machine-actionable units,
-    ready for highly automated processing or AI use.
-    Given these properties, FDOs form a harmonization layer for arbitrary data.
-</p>
-
-<p>
-    If an <a>FDO</a> client finds a <a>PID</a> that identifies an
-    <a>FDO</a>, it is able to automatically interpret and process the
-    <a>FDO</a>, regardless of the technology used to implement the concept.
-    This specification is the basis for this kind of interoperability.
+    The FDO's machine-actionability is a key requirement of the specification designed to promote the highly automated 
+    processing of FDO to faciliate automated access and use such as in the case of AI systems.
 </p>
 
 <p>
-    In a more elaborated fashion, a <dfn data-abbr="FDO">FAIR Digital Object</dfn> (<a>FDO</a>) is a <strong>predictable, standardized and persistent resource</strong>
-    of information that represents (i.e., identifies and describes) a digital or physical <a>resource</a>
+    A more detailed description of, a <dfn data-abbr="FDO">FAIR Digital Object</dfn> (<a>FDO</a>) specifies is as <strong>predictable, standardized and persistent resource</strong>
+    of information that represents (i.e., identifies and describes) any digital or physical <a>resource</a>
     which can be of any type (data, metadata, semantic assertions, configurations, AI models, etc.) and complexity.
     It does not necessarily contain the data itself.
-    From the view of data, an FDO is a concept and a process to describe the data and how to access it.
+    From a resource perspective, an FDO is a concept and a process to describe its provide access to it.
     Every <a>FDO</a> implements the <dfn>FAIR principles</dfn> [[FAIR]] and complies by-default with these principles:
 </p>
 <ul>
