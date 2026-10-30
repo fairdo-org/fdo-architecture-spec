@@ -32,17 +32,17 @@
         Profiles may be useful for clients, for validation, and for guidance/harmonization.
     </p>
 
-    <a href="#fdo-building-blocks">Section 5</a> defines the essential components and rules needed for creating and interpreting
+    <a href="#fdo-building-blocks"></a> defines the essential components and rules needed for creating and interpreting
     <a>FDOs</a> and the <a>FDO</a> type system.
     All components, as shown in [[[#fig1]]], are themselves fully valid <a>FDOs</a> without any special mechanisms.
     This grounds <a>FDOs</a> in themselves to prevent unwanted dependencies from specific technologies
     and enable a common exchange format between implementations.
 
     <p>
-        In <a href="#generic-fdo-processing">Section 6</a> we describe how a client finds, accesses, and interprets
+        In <a href="#generic-fdo-processing"></a> we describe how a client finds, accesses, and interprets
         <a>FDOs</a> to get to the data represented by it.
         We expect that implementations of <a>FDOs</a> will vary and MAY not realize all the building blocks.
-        Thus, we specify in <a href="#implementation-profile">Section 7</a> how implementations adopt this document
+        Thus, we specify in <a href="#implementation-template"></a> how implementations adopt this document
         to facilitate interoperability between implementations.
     </p>
 </p>
@@ -112,6 +112,6 @@
         It could be a digital <a>resource</a>, in which case the <a>resource</a> would usually be a data <a>bit-sequence</a>.
         A <dfn data-lt="bit sequence|bit-sequence(s)">bit-sequence</dfn> can be any form of digitalized information representable in an array of bits.
         But it is also possible that this <a>resource</a> is physical, in which case there is no data <a>bit-sequence</a> attached to the <a>FDO</a>.
-        The <a>resource</a> is the heart of the <a>FDO</a> and all other components are there to make the <a><a>resource</a></a> and its <a>metadata</a> <a>machine actionable</a>.
+        The <a>resource</a> is the heart of the <a>FDO</a> and all other components are there to make the <a>resource</a> and its <a>metadata</a> <a>machine actionable</a>.
     </li>
 </ul>
