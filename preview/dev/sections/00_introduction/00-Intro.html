@@ -1,24 +1,28 @@
 <h3 id="intro">Introduction</h3>
-<p>The concept of FAIR Digital Object (FDO) emerged from meetings, in the fall of 2019 consisting of representatives from the 
-    Research Data Alliance (RDA), the FAIR community and other organizations that all recognized the potential of FAIR as well 
-    as the need to further its technical development.  The FAIR community had identified that <a>machine actionability</a> 
-    [[Jacobsen2020]] and interoperability were key FAIR requirements.  The RDA had determined that Digital Objects (DO), as 
-    described in a seminal paper on the Digital Object Architecture (DOA) by Kahn and Wilensky [[Kahn-Wilensky]], represent a 
-    foundational core architectural component that enable machine actionable data management, and facilitate interoperability 
-    and reusability that could directly address these FAIR requirements.  
+
+<p>
+    This specification defines a flexible framework that describes how the machine processing of Persistent identifiers (PIDs)
+    resolves into an FAIR Digital Object (<a>FDO</a>), which is consists of harmonized structure used represent the metadata and data of 
+    any PID identified resource.
+    An <a>FDO</a> is any PID identified resource whose PID resolves to a structured <a>FDO</a> record compatible with this specification 
+    that provides consistent access to is metadata and data.
 </p>
-<p>These meetings resulted in an agreement between the various representatives to collaborate on the elaboration of data infrastructure 
-    technologies, the definition of FDO technical requirements and the creation of a governance structure to advance FDO development.  
+    This specification aims to be a implementation neutral while specifing a flexible building block approach that promotes 
+    a simple, consistent, machine actionabile and interoperable access to of any resource on the Internet.  
+    Any <a>FDO</a> specification complient client should be able to resolve any PID into an FDO, access and process its associated resource 
+    as long as the FDO is compatible with this specifiation regardless of the underlying technologies.
 </p>
-</p>
-This FDO specification document is a result of this collaboration, under the governance of the FDO Forum, and it specifies how 
-Digital Objects, as the core architectural component, can be used to implement the FAIR principles.
+<p>
+    The FDO's machine-actionability is a key requirement of the specification designed to promote the highly automated 
+    processing of FDO to faciliate automated access and use such as in the case of AI systems.
 </p>
 
 <p>
-    An <dfn data-abbr="FDO">FAIR Digital Object</dfn> (<a>FDO</a>) is a <strong>predictable, standardized and persistent bundle</strong>
-    of information that represents (i.e., identifies, encapsulates, and describes) a digital or physical <a>resource</a>
+    A more detailed description of, a <dfn data-abbr="FDO">FAIR Digital Object</dfn> (<a>FDO</a>) specifies is as <strong>predictable, standardized and persistent resource</strong>
+    of information that represents (i.e., identifies and describes) any digital or physical <a>resource</a>
     which can be of any type (data, metadata, semantic assertions, configurations, AI models, etc.) and complexity.
+    It does not necessarily contain the data itself.
+    From a resource perspective, an FDO is a concept and a process to describe its provide access to it.
     Every <a>FDO</a> implements the <dfn>FAIR principles</dfn> [[FAIR]] and complies by-default with these principles:
 </p>
 <ul>
@@ -40,10 +44,34 @@ Digital Objects, as the core architectural component, can be used to implement t
     <a>FDOs</a> are an implementation of the FAIR principles that can improve data sovereignty, transparency/traceability, accountability, interoparability and persistence.
     These characteristics are critical when establishing a stable, robust, and highly distributed ecosystem of data, which includes well-documented AI models and their training corpus.
     Society, businesses and governments will increasingly depend these FDO caracteristics to establish trust in data and data services.
-    While <a>FDOs</a> can be passive units of information they can be directly associated with executable operations which can be used for data <a>encapsulation</a>    
+    While <a>FDOs</a> can be passive units of information they can be directly associated with executable operations which can be used for data <a>encapsulation</a>
     and faciliatate autonomously acting agents.
 </p>
 <p>
     <a>FDO</a> characteristics and properties, provide a common harmonization layer for the many existing and emerging dataspaces in science and industry.
     They specifically provide solutions for the trust, control and data planes of dataspace.
+</p>
+
+
+<h3 id="origin">Origin of this document</h3>
+
+<p>The concept of FAIR Digital Object (FDO) emerged from meetings, in the fall of 2019 consisting of representatives from the
+    Research Data Alliance (RDA), the FAIR community and other organizations that all recognized the potential of FAIR as well
+    as the need to further its technical development.  The FAIR community had identified that <a>machine actionability</a>
+    [[Jacobsen2020]] and interoperability were key FAIR requirements.  The RDA had determined that Digital Objects (DO), as
+    described in a seminal paper on the Digital Object Architecture (DOA) by Kahn and Wilensky [[Kahn-Wilensky]], represent a
+    foundational core architectural component that enable machine actionable data management, and facilitate interoperability
+    and reusability that could directly address these FAIR requirements.
+</p>
+<p>These meetings resulted in an agreement between the various representatives to collaborate on the elaboration of data infrastructure
+    technologies, the definition of FDO technical requirements and the creation of a governance structure to advance FDO development.
+</p>
+
+</p>
+This FDO specification document is a result of this collaboration, under the governance of the FDO Forum, and it specifies how
+Digital Objects, as the core architectural component, can be used to implement the FAIR principles.
+
+The <dfn data-abbr="FDOF" data-lt="Forum|FDOF">FDO Forum</dfn> is an international, independent organization that specifies <a>FDOs</a> and
+best practices, organizes the <a>FDO</a> community, and coordinates <a>FDO</a> implementations and applications.
+It is not yet a legal entity, therefore, it will need to be represented by an existing organization until it becomes a legal entity.
 </p>
