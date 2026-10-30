@@ -1,8 +1,8 @@
 <h3 id="pid"><a>Persistent Identifiers</a></h3>
 <p>
-    <dfn data-abbr="PID" data-lt="PID">Persistent Identifier</dfn> are a critical FDO building block without which FDOs
-    cannot exist. This document acknowledges that there can be many different sorts of PIDs and PID systems and this
-    specification has only the most general requirements and makes a set of recommendations.
+    <dfn data-abbr="PID" data-lt="PID">Persistent Identifiers</dfn> are a critical FDO building block without which FDOs
+    cannot exist. This document acknowledges that there can be many different sorts of PIDs and PID systems and therefore this
+    specification makes only the most general requirements and a set of recommendations.
 </p>
 <dl>
     <dt>
@@ -22,8 +22,7 @@
         <h4 class="rule-heading" id="rule-pid_3">[R-PID-3] PID Persistence</h4>
     </dt>
     <dd>
-        An <a>FDO</a>’s PID MUST persist for a least 10 years after the resource it identifies is no longer available to
-        insure referential stability.
+        An <a>FDO</a>’s PID MUST persist after the resource it identifies is no longer available to insure referential stability.
     </dd>
     <dt>
         <h4 class="rule-heading" id="rule-pid_3">[R-PID-3] PID Assignment</h4>
@@ -56,14 +55,14 @@
                 with global governance that can provide its PID service equally around the world for long periods.
             </li>
             <li>
-                A PID service provider should maintain it up to date with the specifications that it implements.
+                A PID service provider should maintain its PID service up to date with the specifications that it implements.
             </li>
         </ul>
+    <p>
+        ID creators should ensure that they their choice of PID service providers are appropriate for their use.
+    </p>
     </dd>
 </dl>
-<p>
-    ID creators should ensure that they their choice of PID service providers are appropriate for their use.
-</p>
 <dl>
     <dt>PID Service</dt>
     <dd>
@@ -72,14 +71,14 @@
         <ul>
             <li>
                 A <a>PID service</a> should be globally distributed to ensure consistent <dfn>PID resolution</dfn> and
-                management around the globe. It should facilitate digital sovereignty
+                management around the globe. It should facilitate digital sovereignty.
             </li>
             <li>
                 A <a>PID service</a> should have high resolution and management performance and ability to scale.
             </li>
             <li>
                 A <a>PID service</a> should offer a high degree of security to ensure that only designated entities can
-                manage its PIDs and their associated PID records.
+                manage their PIDs and associated PID records.
             </li>
             <li>
                 A <a>PID service</a> should provide options to restrict access to the whole record or to individual
